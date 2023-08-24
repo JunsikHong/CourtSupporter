@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="setContent(content)">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>재판조력자선발</title>
+		<link rel="stylesheet" th:href="@{/css/reset.css}">
+		<link rel="stylesheet" th:href="@{/css/head.css}">
+	</head>
+
+	<body>
+		<!--header-->
+		<header>
+			<!-- 로그인 -->
+			<div class="header-login-wrap">
+				<div class="login-wrap">
+					<p>로그인</p>
+				</div>
+			</div>
+			<!-- 고정헤더 -->
+			<div class="fix-header">
+				<div class="header-menu-wrap">
+					<!--로고-->
+					<div class="logo-wrap">
+						<a>
+							<img th:src="@{/img/logo_color.png}" alt="재판조력자"/>
+						</a>
+					</div>
+					<!--메인메뉴-->
+					<div class="menu-wrap">
+						<ul class="menus">
+							<li class="menu01">
+								<span class="">조력자등재신청</span>
+							</li>
+							<li class="menu02">
+								<span class="">조력자신청안내</span>
+							</li>
+							<li class="menu03">
+								<span class="">My Page</span>
+							</li>
+							<li class="menu04">
+								<span class="">공지사항</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+		</header>
+
+		<div th:replace="${content}">
+
+
+		</div>
+
+		<!--footer-->
+		<footer>
+			<div id="footer-box">
+				<!--로고-흑백-->
+				<div class="logo-footer">
+					<img th:src="@{/img/logo_black.png}" alt="재판조력자">
+				</div>
+				<ul class="footer-menu">
+					<li></li>
+				</ul>
+				<p class="footer-notice clear">
+					<span>"홈페이지 이용/장애문의" TEL 02.3480.1715 (평일 9시~18시)</span>
+				</p>
+				<address>
+					" Copyright 2023 "
+					<a href="" target="_blank" title="대한민국 법원 공식 홈페이지 이동">Supreme Court of Korea.</a>
+					"&nbsp;All Right Reserved. "
+				</address>
+				<!--footer-->
+				<div class="goto-family">
+					<form id="family" name="site" action="#">
+						<fieldset>
+							<select id="site-search" title="관련사이트바로가기">
+								<option value>관련사이트</option>
+
+								<optgroup label="법원">
+									<option value="">대한민국법원</option>
+								</optgroup>
+
+								<optgroup label="대법원사이트">
+									<option value="">전자민원센터</option>
+									<option value="">종합법률정보</option>
+									<option value="">대법원 나홀로소송</option>
+									<option value="">대법원 전자소송 홈페이지</option>
+									<option value="">인터넷등기소</option>
+									<option value="">법원경매정보</option>
+								</optgroup>
+
+							</select>
+							<span class="btngoto mar13">
+								<a href="#none" title="선택된 관련사이트로 이동하는 버튼" onclick="moveSite();">이동</a>
+							</span>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+</th:block>
+
+</html>

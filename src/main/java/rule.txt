@@ -1,0 +1,18 @@
+service 만들 때 package이름은 com.court.supporter.이름.service
+
+html 화면은 view.txt 파일에서 복사해서 페이지이름, th:block 함수 매개변수이름, class이름 3가지 맞추기
+본문에서 제일 최고 부모인 div 의 바로 하위에 div태그 하나 더 만들어서 그 div 태그의 class이름을 이름-wrap으로 만들기
+.main {
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
+}
+
+.main-wrap {
+	width: 1280px;
+}
+그 후에 위의 css 코드 적용
+
+head.css -> .footer 스타일에 margin-top: 1000px; 을 주면 내용없이도 푸터를 밀어낼 수 있음
+
+css, js 파일 이름은 화면 이름과 동일하게 만들기
