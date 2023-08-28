@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/usermypage-applicationlist.css}">
+<th:block th:replace="~{./include/layout :: setContent(~{::.usermypage-applicationlist})}">
+	<div class="usermypage-applicationlist">
+		<div class="usermypage-applicationlist-wrap">
+			<!-- 네비게이션바 -->
+			<th:block th:replace="~{./include/layout-usermypage-side :: layout-usermypage-side}">
+			</th:block>
+			<div class="myinfo-applicationlist-wrap">
+				<div class="myinfo-applicationlist">
+					<h3>신청현황</h3>
+				</div>
+				<div class="myinfo-applicatinlist-title-wrap">
+					<h3 class="myinfo-applicationlist-title">신청현황</h3>
+				</div>
+				<div class="search-wrap">
+					<div class="board_total">전체글수 : <span class="colfb7">76건</span></div>
+					<form>
+						<div class="board_search">
+							<div class="board_search_date">
+								<span class="date-content">기간별 검색</span>
+								<input type="text" class="datepicker" name="prod_startdate" readonly placeholder="날짜선택"
+									required pattern="\d{4}-\d{2}-\d{2}">
+								<span class="date-content">부터</span>
+								<input type="text" class="datepicker" name="prod_enddate" readonly placeholder="날짜선택"
+									required pattern="\d{4}-\d{2}-\d{2}">
+								<span class="date-content">까지</span>
+							</div>
+							<div class="board_search_text">
+								<input type="text" id="searchWord" name="searchWord" title="검색어 입력" value="">
+								<a href="javascript:goSearch()" class="search_btn">검색</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<table class="board_table topT">
+					<colgroup>
+						<col width="12%">
+						<col width="49%">
+						<col width="13%">
+						<col width="13%">
+						<col width="13%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>신청날짜</th>
+							<th>첨부</th>
+							<th>신청상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>76</td>
+							<td style="text-align:left">
+								<a th:href="@{usermypage_applicationdetail}">2023년도 보호사건조력자 모집</a>
+							</td>
+							<td>2023-06-26</td>
+							<td></td>
+							<td>법원 대기중</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+</html>

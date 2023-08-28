@@ -1,7 +1,12 @@
 package com.court.supporter.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MainController {
@@ -10,46 +15,43 @@ public class MainController {
 	public String main() {
 		return "/main";
 	}
-	
-	@GetMapping("/noticeList")
-	public String noticeList() {
-		return "notice/noticeList";
+	//공고 등록 화면으로 이동
+	@GetMapping("/announceReg")
+	public String announceRegist() {
+		return "announce/announceReg";
+	}	
+
+	//등록시 목록으로 이동
+	@PostMapping("/announceRegForm")
+	public String regist() {
+		
+		return "redirect:/announce/announceList";
 	}
 	
-	@GetMapping("/noticeDetail")
-	public String noticeDetail() {
-		return "notice/noticeDetail";
+	//공고 목록으로 이동
+	@GetMapping("/announceList")
+	public String announceList() { //Model model, Criteria cri
+		
+//		ArrayList<AnnounceVO> list = announceService.getList();		
+		
+		return "announce/announceList";
 	}
 	
-	@GetMapping("/noticeModify")
-	public String noticeModify() {
-		return "notice/noticeModify";
+	//임시
+	@GetMapping("/announceDetail")
+	public String announceDetail() {
+		return "announce/announceDetail";
 	}
 	
-	@GetMapping("/noticeRegist")
-	public String noticeRegist() {
-		return "notice/noticeRegist";
+	//공고 수정
+	@GetMapping("/announceModify")
+	public String announceModify() {
+		return "announce/announceModify";
 	}
 	
-	@GetMapping("/faqList")
-	public String faqList() {
-		return "notice/faqList";
-	}
 	
-	@GetMapping("/faqDetail")
-	public String faqDetail() {
-		return "notice/faqDetail";
-	}
+	//공고 삭제
 	
-	@GetMapping("/faqModify")
-	public String faqModify() {
-		return "notice/faqModify";
-	}
-	
-	@GetMapping("/faqRegist")
-	public String faqRegist() {
-		return "notice/faqRegist";
-	}
 	
 	
 }

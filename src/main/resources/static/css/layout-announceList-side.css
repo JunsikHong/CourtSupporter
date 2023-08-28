@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .usermypage-sidemenu-wrap {
    position: absolute;
    top: 0px;
@@ -11,7 +13,7 @@
    font-size: 25px;
    font-weight: 550;
    padding-bottom: 15px;
-   border-bottom: 3px solid black;
+   border-bottom: 3px solid black;     
 }
 
 .usermypage-sidemenu {
@@ -60,8 +62,4 @@
 
 .myapplication-content li:hover {
    background-color: rgb(227, 0, 0);
-}
-
-.hide {
-   display: none;
 }
