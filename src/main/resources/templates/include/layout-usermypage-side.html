@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="layout-usermypage-side">
+   <link rel="stylesheet" th:href="@{/css/layout-usermypage-side.css}">
+
+   <div class="usermypage-sidemenu-wrap">
+      <p class="usermypage-title">My Page</p>
+      <div class="usermypage-sidemenu">
+         <div class="usermypage-myinfo">
+            <h3 class="myinfo-title">나의 정보관리</h3>
+            <ul class="myinfo-content">
+               <li>회원정보</li>
+               <li>알림수신동의</li>
+               <li>회원탈퇴</li>
+            </ul>
+         </div>
+         <div class="usermypage-myapplication">
+            <h3 class="myapplication-title">나의 신청내역</h3>
+            <ul class="myapplication-content">
+               <li>신청내역</li>
+               <li>전자증명서내역</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+
+</th:block>
+
+</html>
