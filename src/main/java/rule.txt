@@ -16,3 +16,15 @@ html 화면은 view.txt 파일에서 복사해서 페이지이름, th:block 함�
 head.css -> .footer 스타일에 margin-top: 1000px; 을 주면 내용없이도 푸터를 밀어낼 수 있음
 
 css, js 파일 이름은 화면 이름과 동일하게 만들기
+
+
+
+head.css -> .footer 스타일에 margin-top: 1000px; 지우고
+각자 페이지 css에
+.main {
+   display: flex;
+   justify-content: center;
+   margin-top: 150px;
+   margin-bottom: 150px;
+}
+로 변경하면 될 것 같아요
