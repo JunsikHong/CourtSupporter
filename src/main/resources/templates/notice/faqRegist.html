@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/noticeDetail.css}">
+
+<th:block th:replace="~{./include/layout :: setContent(~{::.faqRegistWrap})}">
+	
+	
+	<!--contents-->
+    <div class="faqRegistWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+
+      <div class="contentsbox" id="content">
+        <div class="contentsIn">
+          <div id="contentstitle">
+            <span class="FAQtitle">자주묻는질문(FAQ)</span>
+            <span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 자주묻는질문</span>
+          </div>
+          <div id="contents">
+            <form id="faqRegistForm" action="#" method="post">
+              <input type="hidden" id="pageIndex" name="pageIndex">
+              <input type="hidden" id="noticeSer" name="noticeSer">
+              <input type="hidden" id="srchbub" name="srchbub">
+              <div class="tablebox">
+                <table>
+                  <colgroup>
+                    <col style="width: 20%;">
+                    <col style="width: 80%;">
+                  </colgroup>
+                  <tbody>
+
+                    <tr class="firstTh">
+                      <th class scope="row">질문</th>
+                      <td class="left" colspan="5"><input type="text" style="width: 100%;"></td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4" class="contents left" style="text-align: left;">
+                        <p class="textArea"><textarea name="faqRegist" id="faqRegist" cols="30" rows="10" style="width: 99%; height: 200px;"></textarea></p>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div class="btnbox btnbox02">
+                <a href="#none" class="btnfb7" onclick="javascript:goRegist();">등록</a>
+                <a href="#none" class="btn4d5" onclick="javascript:window.close();">취소</a>
+
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+	
+	
+</th:block>
+
+</html>

@@ -15,7 +15,6 @@ public class MainController {
 	public String main() {
 		return "/main";
 	}
-	
 	//공고 등록 화면으로 이동
 	@GetMapping("/announceReg")
 	public String announceRegist() {
