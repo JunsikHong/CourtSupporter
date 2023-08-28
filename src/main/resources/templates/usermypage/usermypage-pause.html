@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/usermypage-pause.css}">
+<th:block th:replace="~{./include/layout :: setContent(~{::.usermypage-pause})}">
+	<div class="usermypage-pause">
+		<div class="usermypage-pause-wrap">
+			<!-- 네비게이션바 -->
+			<th:block th:replace="~{./include/layout-usermypage-side :: layout-usermypage-side}">
+			</th:block>
+			<div class="myinfo-pause-wrap">
+				<div class="myinfo-pause">
+					<h3>중지신청</h3>
+				</div>
+				<div class="myinfo-pause-title-wrap">
+					<h3 class="myinfo-pause-title">중지신청</h3>
+				</div>
+				<table class="board_table topT">
+					<colgroup>
+						<col width="12%">
+						<col width="49%">
+						<col width="13%">
+						<col width="13%">
+						<col width="13%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>중지날짜</th>
+							<th>중지상태</th>
+							<th>중지신청</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>76</td>
+							<td style="text-align:left">
+								<a th:href="@{usermypage_pausedetail}">2023년도 보호사건조력자 모집</a>
+							</td>
+							<td>2023-06-26</td>
+							<td>중지</td>
+							<td><button>중지</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+</html>
