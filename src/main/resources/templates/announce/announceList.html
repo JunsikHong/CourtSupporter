@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" th:href="@{/css/announceList.css}">
+  <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
+
+<th:block th:replace="~{./include/layout :: setContent(~{:: .announceList})}">
+<!-- <th:block th:replace="~{./include/layout-usermypage-side}"></th:block>-->
+
+
+  <div class="announceList"> <!-- 가장 큰 박스 -->
+    
+     <div class="announceList-wrap"> <!-- 다음으로 감싸는 박스-->
+
+      <div> <!--sidebar-->
+         <th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+      </div>
+      
+      <div class="announceInner"> <!-- 공고게시판 -->
+         
+          <div class="announceTitle"> <!-- 게시판 타이틀 -->
+            <p>모집 공고</p>
+          </div>
+   
+          <form action="searchForm" id="" method="get" class="searchBox"> <!-- 검색창 -->
+            <div class="searchTxt">
+              <input type="text" class="search" name="announceSearch">
+               <!-- 검색 버튼 -->
+               <button class="searchBtn">검색</button>        
+            </div>
+      
+          </form>
+      
+          <!-- 게시판, 페이지네이션 -->
+          <div class="announceBoard">
+           
+            <table class="board"> <!-- 공고게시판 -->
+              <thead>
+      
+                <tr class="boardTitle" >  <!-- 게시판 상단부분 (분류) -->
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>작성일</th>
+                  <th>조회</th>
+                </tr>
+      
+                <tbody>  <!-- 게시판 글 목록-->
+                  <tr class="boardContent">
+                    <td class="contentNumber">3</td>
+                    <td class="contentTitle">
+                      <a href="#">재판 조력자 모집 공고</a>
+                    </td>
+                    <td class="contentDate">2023.08.22</td>
+                    <td class="contentViews">1</td>
+                  </tr>
+                  <tr class="boardContent">
+                    <td class="contentNumber">2</td>
+                    <td class="contentTitle">
+                      <a href="announceDetail">서울가정법원 공무직 근로자 채용시험 공고</a>
+                    </td>
+                    <td class="contentDate">2023.08.17</td>
+                    <td class="contentViews">1</td>
+                  </tr>
+                  <tr class="boardContent">
+                    <td class="contentNumber">1</td>
+                    <td class="contentTitle">
+                      <a href="#">사법정책연구원 2024년도 연구주제 공모</a>
+                    </td>
+                    <td class="contentDate">2023.08.09</td>
+                    <td class="contentViews">1</td>
+                  </tr>
+                </tbody>
+      
+              </thead>
+            </table>
+      
+          </div>
+        
+          <div class="pageBox">  <!-- 페이지네이션 -->
+      
+            <a href="">이전</a>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">다음</a>
+            
+          </div>
+          
+       </div>
+       
+     </div>
+     
+  </div>
+
+</th:block>
+
+<script th:inline="javascript"> 
+
+  //검색
+  var searchBtn = document.getElementById("searchBtn");
+  searchBtn.onclick = () => {
+    event.preventDefault();
+    document.searchForm.submit();
+  }
+
+
+</script>
+
+<script th:inline="javascript">
+</script>
+</html>

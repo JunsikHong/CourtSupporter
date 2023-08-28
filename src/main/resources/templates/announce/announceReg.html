@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/announceReg.css}">
+ <!-- <link rel="stylesheet" th:href="@{/css/layout-usermypage-side.css}">-->
+  <link rel="stylesheet" th:href="@{/css/datepicker.css}">
+ 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  
+  <!-- 제이쿼리 js-->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
+  <!--제이쿼리 ui js -->
+ <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --> 
+
+
+<th:block th:replace="~{./include/layout :: setContent(~{:: .announceReg})}">
+  
+  <div class="announceReg"> <!-- container -->
+    
+    <div class="announceReg-wrap"> <!-- innerBox -->
+      
+     <!-- <div> sidebar
+         <th:block th:replace="~{./include/layout-usermypage-side}"></th:block>
+      </div>-->
+
+      <!-- 본문 -->
+      <div class="announceInner">
+
+        <div class="announceTitle"> <!-- 게시판 타이틀 -->
+          <p>공고 등록</p>
+        </div>
+
+        <form action="announceRegForm" name="announceForm" method="post" enctype="multipart/form-data">
+
+          <div class="announceWrap">
+
+            <table>
+              <tbody class="board">
+                <tr >
+                  <th><i class="required-img"><span class="hidden">필수입력</span></i> 제목</th>
+                  <td><input type="text" class="announceTit" name="announceTitle" required></td>
+                </tr>
+                
+                <tr>
+                  <th>모집 시작일</th>
+                  <td>
+                      <input type="text" id="datepicker" class="datepicker1" name="announceStartDate" readonly placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" required>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>모집 종료일</th>
+                  <td>
+                      <input type="text" id="datepicker" class="datepicker2" name="announceEndDate" readonly placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" >
+                  </td>
+                </tr>
+
+                <tr>
+                  <th class="file">첨부파일</th>
+                  <td><input type="file" class="announceFile" name="announceFileName" ></td>                               
+                </tr>
+
+               <!-- <tr class="fileBtnBox">
+                  <th class="bin"></th>
+                  <td>
+                    <button type="button" class="fileBtn"  onclick="upload()">파일업로드</button>
+                    <button type="button" class="add">+</button>
+                    <button type="button" class="delete">-</button>
+                  </td>      
+                </tr>-->
+                
+
+                <tr class="fileInfo">
+                  <th class="limit"></th>              
+                  <td class="fl">첨부 파일 용량 제한 : 20MB</td>
+                </tr>
+
+                <tr class="fileInfo">
+                  <th class="limit"></th>              
+                  <td>첨부 용량 초과시 작성내용이 초기화될 수 있으니 주의바랍니다.</td>              
+                </tr>
+
+                <tr class="fileInfo">
+                  <th class="con"></th>              
+                  <td>첨부 가능한 파일 확장자명 : hwp, doc, docx, ppt, pptx, xls, xlsx, txt, csv, jpg, jpeg, gif, png, bmp, pdf</td>               
+                </tr>
+              
+                <tr class="announceContent">    
+                  <th class="con"><i class="required-img"><span class="hidden">필수입력</span></i> 내용</th>          
+                  <td>
+                    <div>
+                      <textarea name="announceContent" id="contentDetail" cols="30" rows="10" required></textarea>
+                    </div>
+                    <!-- cols="30" rows="10" -->              
+                    <!-- 서울가정법원 공무직 근로자(시설관리원)
+                    채용시험 시행계획 공고 -->
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+                  
+            <div class="btnBox">      
+                <input type="submit" class="registBtn btn" value="등록">                
+                <button class="listBtn btn">
+		            <a href="announceList">취소</a>
+		        </button>    
+            </div>
+          </div>        
+          
+        
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+</th:block>
+
+<script th:inline="javascript">
+
+  function check() {
+    if(announceForm.announceTitle.value == ""){
+      alert("제목을 입력하세요.");
+      announceForm.announceTitle.focus();
+      return false;      
+    } else if(announceForm.announceContent.value == "") {
+      alert("내용을 입력하세요.");
+      announceForm.announceContent.focus();
+      return false;
+    } else {
+      alert("정상적으로 등록되었습니다.");
+      return true;
+    }
+  } 
+    
+  
+</script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- jQuery UI (Datepicker가 포함된 전체 jQuery UI 라이브러리) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <link href="./datepicker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+ 
+
+<script th:inline="javascript"> 
+   
+  $(function() {
+     $( ".datepicker1, .datepicker2" ).datepicker({
+         dateFormat: 'yy-mm-dd' //달력 날짜 형태
+           ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+           ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+           ,changeYear: true //option값 년 선택 가능
+           ,changeMonth: true //option값  월 선택 가능
+           ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+           ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+           ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+           ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+           ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+           ,minDate: "-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+           ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+                
+     });
+    
+    $(".datepicker1").datepicker('setDate', 'today'); //초기값은 오늘 날짜로 설정 
+    
+  });
+  
+</script>
+
+<!--<script>   
+	
+   function upload() {
+      
+      //1.파일데이터 얻기
+      var file = $("input[name='announceFileName']");
+      console.log(file); //jquery 함수
+      console.log(file[0]); //input태그
+      console.log(file[0].files ); //파일리스트
+      console.log(file[0].files[0] ); //파일객체 => 이 값이 서버로 전송되어야한다.   
+   
+      //2. 폼객체
+      var formData = new FormData();
+      formData.append("file", file[0].files[0]); //키, 데이터            
+            
+      //3. 전송
+      $.ajax({
+         url: "upload_ok",
+         type: "post",
+         data: formData, //폼데이터
+         contentType : false, //"multipart/form-data"형식으로 자동 선언
+         processData : false, //jquery가 폼데이터를 쿼리스트링으로 담게되는데, 자동으로 변경되는 것을 방지
+         success : function (data) {
+            console.log(data);
+         },
+         error: function(status, err){
+            console.log(status);
+         }   
+         
+      })   
+   }   
+   
+</script>-->
+
+</html>

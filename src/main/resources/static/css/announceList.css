@@ -1,0 +1,161 @@
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
+
+*{ padding: 0; margin: 0; }
+ul, li { list-style: none; } 
+*{ margin: 0 auto; }
+
+body{ font-family: 'Noto Sans KR', sans-serif;}
+
+.announceList {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 150px;
+}
+.announceList-wrap{
+   width: 1280px;
+   position: relative;
+}
+.announceInner{
+  /* display: block;*/
+   margin-left: 250px;
+   margin-bottom: 150px;
+}
+
+
+/***********************************************/
+
+.announceTitle{ /* rgb(11, 38, 110); */  
+  font-size: x-large;
+  font-weight: 800;
+/*  padding: 20px;*/
+  padding-left: 5px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #424242;
+  color: #424242;
+}
+.announceTitle > p {
+  font-size: x-large;
+  font-weight: 700;
+}
+
+/***********************************************/
+
+.searchBox {
+  margin-left: 20px;
+  margin-bottom: 30px;
+  height: 50px;
+  line-height: 50px;
+  /* border: 0.5px solid rgb(167, 166, 166); */
+  box-sizing: border-box;
+}
+.searchTxt {
+  margin-top: 15px;
+  display: block;
+  float: right;
+}
+.search {
+  width: 200px;
+  height: 30px;
+  border: 0.3px solid #BDBDBD;
+}
+.searchBtn {
+    /*margin-top: 10px;*/
+    margin-left: 10px;
+    width: 70px;
+    height: 31px;
+    line-height: 28px;
+
+    font-size: 14px;  
+    font-weight: 500;
+    border: 0.3px solid rgb(11, 38, 110);
+    background-color:  rgb(11, 38, 110);
+    color: white;  
+}
+
+/***********************************************/
+
+.announceBoard{
+  border-top: 3px solid #848484;
+  width: 100%;
+}
+.board{
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: auto;
+}
+td {
+  padding: 5px 0; /* 위아래 패딩을 조절하여 필요한 높이를 확보하세요. */
+  width: 20%;
+}
+.boardTitle th {
+  height: 15px;
+  line-height: 15px; 
+  border-bottom: 1px solid rgb(160, 160, 160);
+  padding: 15px;
+  background-color: rgb(226, 226, 226);
+  /*background-color:  rgb(214, 221, 238);*/
+}
+.boardContent{
+  border-bottom: 0.5px solid rgb(167, 166, 166);
+}
+.boardContent > td {
+  height: 40px;
+  line-height: 40px; 
+  border-bottom: 1px solid rgb(167, 166, 166);
+  border-radius: 0;
+  /* padding: 13px 5px; */
+}
+.contentNumber {
+  text-align: center;
+  width: 10%;
+  font-size : 15px;
+  color: #424242;
+}
+.contentTitle {
+  width: 50%;  
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 70px;
+  
+  height: 70px;
+  line-height: 70px; 
+  box-sizing: border-box;
+}
+.contentTitle > a{
+  text-decoration: none;
+  color: rgb(75, 75, 75);
+  font-weight: 700;
+}
+.contentDate{
+  width: 30%;
+  text-align: center;
+  font-size : 15px;
+  color: #424242;
+}
+.contentViews{
+  width: 10%;
+  text-align: center;
+  font-size : 15px;
+  color: #424242;
+}
+
+/***********************************************/
+
+.pageBox {
+  text-decoration: none;
+  text-align: center;  
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.pageBox > a {
+  margin: 5px;
+  text-decoration: none;
+  color: rgb(83, 83, 83);
+}
