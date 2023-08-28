@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/usermypage-activitydetail.css}">
+<th:block th:replace="~{./include/layout :: setContent(~{::.usermypage-activitydetail})}">
+	<div class="usermypage-activitydetail">
+		<div class="usermypage-activitydetail-wrap">
+			<!-- 상단 혹은 좌측 메뉴바 -->
+			<div class="container"> <!-- innerWrap -->
+
+				<div class="announceTitle"> <!-- 게시판 타이틀 -->
+					<p>활동내역</p>
+				</div>
+
+
+				<!-- innerBox -->
+
+				<div class="announceBox">
+
+					<table class="annouonceTable">
+						<tbody class="board">
+							<tr> <!-- class="boardTitle" -->
+								<th class="title">제목</th>
+								<td colspan="2">2023년 김모씨 납치사건</td>
+							</tr>
+
+							<tr>
+								<th class="date">활동날짜</th>
+								<td colspan="2">2023-08-22</td>
+							</tr>
+
+							<tr>
+								<th class="viewCount">재판번호</th>
+								<td colspan="2">11-23455</td>
+							</tr>
+
+							<tr>
+								<th class="file">첨부파일</th>
+								<td>채용공고.hwp</td>
+							</tr>
+
+							<tr class="announceContent">
+								<th>내용</th>
+								<td class="innerContent">
+									<p>
+										서울가정법원 공무직 근로자(시설관리원)
+									</p>
+									<p>
+										채용시험 시행계획 공고
+									</p>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<table class="nextTable">
+						<tbody>
+							<tr>
+								<td class="nextContent">다음글</td>
+								<td colspan="3">
+									<a class="nextTitle" href="#">
+										서울가정법원 공무직 근로자(환경관리원) 채용시험 공고
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="btnbox btnbox02">
+						<a th:href="@{usermypage_activitylist}" class="btn4d5" onclick="javascript:goRegist();">목록</a>
+						<a th:href="@{usermypage_activitymodify}" class="btnfb7">수정</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+</html>

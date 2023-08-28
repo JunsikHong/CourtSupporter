@@ -1,0 +1,123 @@
+*{ padding: 0; margin: 0; }
+ul, li { list-style: none; } 
+*{ margin: 0 auto; }
+
+.usermypage-applicationdetail {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+.usermypage-applicationdetail-wrap {
+	width: 1280px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+.announceTitle{
+  font-size: x-large;
+  font-weight: 800;
+  padding: 20px;
+  border-bottom: 3px solid rgb(109, 109, 109);
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+/***********************************************/
+.announceBox {
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+.annouonceTable {
+  width: 100%;
+  border-collapse: collapse;  
+  display: table;
+  table-layout: auto;
+  border-top: 2px solid rgb(145, 145, 145);
+}
+
+.annouonceTable td {
+  /* border-bottom: 0.5px solid rgb(196, 196, 196); */
+  vertical-align: middle;
+  padding: 10px;
+}
+.board th{  
+  width: 20%;;
+  height: 50px;
+  vertical-align: middle;
+  white-space: nowrap; 
+}
+.board tr{
+  /* width: 100%; */
+  border-bottom: 0.5px solid rgb(196, 196, 196);
+}
+.board td {
+  /* width: 300px; */
+  height: 50px;
+}
+.announceContent {  
+  width: 100%; 
+  height: 350px;    
+  box-sizing: border-box;
+  /* border-spacing : 20px; */
+}
+
+/***********************************************/
+.nextTable { 
+  width:100%; 
+  margin-top: 30px;  
+  margin-bottom: 30px;
+  border-top:3px solid  rgb(109, 109, 109); 
+  font-size:16px;
+}
+.nextContent {  
+  padding-left:40px; 
+  width:20%;
+  font-weight: 700;  
+}
+.nextTable tr td {
+  padding-top: 15px;
+}
+.nextTable tr td a:hover{ 
+  color:#0057a1; 
+  text-decoration:underline; 
+  font-weight:bold; }
+.nextTitle {
+  text-decoration: none;
+  color: rgb(97, 97, 97);
+}
+.btnbox {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.btnbox .btnfb7 {
+	background-color: rgb(11, 38, 110);
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox .btn4d5 {
+	background-color: #4d515b;
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox02 a {
+	width: 129px;
+	box-sizing: border-box;
+}
