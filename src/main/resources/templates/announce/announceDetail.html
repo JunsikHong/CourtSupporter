@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" th:href="@{/css/announceDetail.css}">
+  <!--<link rel="stylesheet" th:href="@{/css/layout-usermypage-side.css}">-->
+
+<th:block th:replace="~{./include/layout :: setContent(~{:: .announceDetail})}">
+
+
+  <!-- 상단 혹은 좌측 메뉴바 -->  
+  <div class="announceDetail"> <!-- innerWrap -->
+
+   <div class="announceDetail-wrap">
+      
+   <!--   <div> sidebar
+         <th:block th:replace="~{./include/layout-usermypage-side}"></th:block>
+      </div>
+-->
+      <!-- 본문 -->
+      <div class="announceInner">
+
+       <div class="announceTitle"> <!-- 게시판 타이틀 -->
+         <p>모집 공고</p>
+       </div>
+
+    <!-- innerBox -->
+
+      <div class="announceBox">
+
+        <table class="annouonceTable">
+          <tbody class="board">
+            <tr> <!-- class="boardTitle" -->
+              <th class="title">제목</th>
+              <td  colspan="2">서울가정법원 공무직 근로자(시설관리원) 채용시험 공고</td>
+            </tr>
+
+            <tr>
+              <th class="date">등록일</th>
+              <td colspan="2">2023-08-22</td>              
+            </tr>
+
+            <tr>
+              <th class="viewCount">조회수</th>
+              <td colspan="2">1</td>
+            </tr> 
+
+            <tr>
+              <th class="file">첨부파일</th>
+              <td>채용공고.hwp</td>
+            </tr>
+
+            <tr class="announceContent">
+              <th class="file">내용</th>
+              <td class="innerContent">
+                <p>
+                 서울가정법원 공무직 근로자(시설관리원)
+                </p>
+                <p>
+                  채용시험 시행계획 공고
+                </p>
+               
+                <p>
+					기간제 및 공무직 근로자 관리규정 제9조 및 제10조의 규정에 의하여 공무직 근로자(시설관리원) 채용시험 시행계획을 아래와 같이 공고합니다.					
+				</p>
+				<span>
+					2023.  8.  22.
+					서  울  가  정  법  원  장
+				</span>
+              </td>
+            </tr>        
+          </tbody>
+
+        </table>
+       
+        <table class="nextTable">
+          <tbody>
+            <tr>
+              <td class="nextContent">다음글</td>
+              <td colspan="3">
+                <a class="nextTitle" href="#">
+                서울가정법원 공무직 근로자(환경관리원) 채용시험 공고
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
+
+        <div>
+          <button class="listBtn btn">
+            <a href="announceList">목록</a>
+          </button>
+          <button class="delBtn btn">
+            <a href="#">삭제</a>
+          </button>
+          <button class="modifyBtn btn">
+            <a href="#">수정</a>
+          </button>
+        </div>
+      </div>
+   
+     </div>
+   </div> <!--announceDetail-wrap end-->
+  </div> <!--announceDetail end -->
+
+</th:block>
+
+<script th:inline="javascript">
+   
+</script>
+   
+</html>
