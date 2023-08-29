@@ -3,111 +3,94 @@
 <link rel="stylesheet" th:href="@{/css/noticeList.css}">
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.noticeListWrap})}">
-	
-	
+
+
 	<!--contents-->
-    <div class="noticeListWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
-      <div id="content">
+	<div class="noticeListWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+		<div id="content">
 
-        <div id="contentsbox">
-          <div id="contentstitle">
-            <span class="noticetitle">공지사항</span>
-            <span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 공지사항</span>
-          </div>
-          <div id="contents">
+			<div id="contentsbox">
+				<div id="contentstitle">
+					<span class="noticetitle">공지사항</span>
+					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 공지사항</span>
+				</div>
+				<div id="contents">
 
-            <!--searchform-->
-            <form id="searchform" name="searchForm" action="" method="post">
-              <input type="hidden" id="noticeSer" name="noticeSer">
-              <input type="hidden" id="pageIndex" name="pageIndexr">
-              <input type="hidden" id="eSer" name="srchbub">
+					<!--searchform-->
+					<form id="searchform" name="searchForm" action="" method="post">
+						<input type="hidden" id="noticeSer" name="noticeSer">
+						<input type="hidden" id="pageIndex" name="pageIndexr">
+						<input type="hidden" id="eSer" name="srchbub">
 
-              <!--<div class="searchbox">
-                  <input type="text" name="search_gongji" id="search_gongji" class="waterMark" title="검색"
-                    style="width: 150px;" maxlength="40" value="">
-                  <a href=""><input type="button" value="검색" id="searchbtn" style="cursor: pointer;"></a>
-                </div>-->
-              <div class="board_search_text">
-                <input type="text" id="searchWord" name="searchWord" title="검색어 입력" value="">
-                <a href="javascript:goSearch()" class="search_btn">검색</a>
-              </div>
+						<!--<div class="searchbox">
+                  			<input type="text" name="search_gongji" id="search_gongji" class="waterMark" title="검색"
+                    		style="width: 150px;" maxlength="40" value="">
+                  			<a href=""><input type="button" value="검색" id="searchbtn" style="cursor: pointer;"></a>
+                		</div>-->
+						<div class="board_search_text">
+							<input type="text" id="searchNotice" name="searchNotice" placeholder="검색어 입력" th:value="${pageVO.cri.searchNotice}">
+							<a href="javascript:goSearch()" class="search_btn">검색</a>
+						</div>
 
 
-              <!--table-->
-              <div class="tablebox">
-                <table>
-                  <colgroup>
-                    <col width="10%">
-                    <col width="auto">
-                    <col width="15%">
-                    <col width="10%">
-                  </colgroup>
+						<!--table-->
+						<div class="tablebox">
+							<table>
+								<colgroup>
+									<col width="10%">
+									<col width="auto">
+									<col width="15%">
+									<col width="10%">
+								</colgroup>
 
-                  <thead>
-                    <tr style="background-color: rgb(226, 226, 226);">
-                      <th scope="col" style="font-weight: bold;">번호</th>
-                      <th scope="col" style="font-weight: bold;">제목</th>
-                      <th scope="col" style="font-weight: bold;">작성일</th>
-                      <th scope="col" style="font-weight: bold;">조회</th>
-                    </tr>
-                  </thead>
+								<thead>
+									<tr style="background-color: rgb(226, 226, 226);">
+										<th scope="col" style="font-weight: bold;">번호</th>
+										<th scope="col" style="font-weight: bold;">제목</th>
+										<th scope="col" style="font-weight: bold;">작성일</th>
+										<th scope="col" style="font-weight: bold;">조회</th>
+									</tr>
+								</thead>
 
-                  <tbody>
+								<tbody>
 
-                    <tr>
-                      <td>1</td>
-                      <td class="left"><a href="">이건 제목이에요</a></td>
-                      <td>2023-08-23</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td class="left"><a href="">이건 제목이에요</a></td>
-                      <td>2023-08-23</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td class="left"><a href="">이건 제목이에요</a></td>
-                      <td>2023-08-23</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td class="left"><a href="">이건 제목이에요</a></td>
-                      <td>2023-08-23</td>
-                      <td>0</td>
-                    </tr>
+									<tr th:each="vo, status : ${list}">
+										<td>[[${vo.notice_proper_num}]]</td>
+										<td class="left"><a href="">[[${vo.notice_title}]]</a></td>
+										<td>[[${vo.notice_date}]]</td>
+										<!--<td>0</td>-->
+									</tr>
+									
 
-                  </tbody>
-                </table>
-              </div>
+								</tbody>
+							</table>
+						</div>
 
-              <!--pagination-->
-              <!--현재 페이지 부분을 strong으로 강조, 링크 없음-->
-              <div id="paging">
-                <a href="" onclick=""><strong>1</strong></a>
-                <a href="" onclick="">2</a>
-                <a href="" onclick="">3</a>
-                <a href="" onclick="">4</a>
-                <a href="" onclick="">5</a>
-              </div>
-              <!--pagination end-->
-              <div class="btnbox btnbox02">
-                <a href="#none" class="btnfb7" onclick="javascript:goRegist();">글 작성</a>
-                <a href="#none" class="btn4d5" onclick="javascript:window.close();">삭제</a>
-              </div>
-            </form>
+						<!--pagination-->
+						<!--현재 페이지 부분을 strong으로 강조, 링크 없음-->
+						<div id="paging">
+							<a href="" onclick=""><strong>1</strong></a>
+							<a href="" onclick="">2</a>
+							<a href="" onclick="">3</a>
+							<a href="" onclick="">4</a>
+							<a href="" onclick="">5</a>
+						</div>
+						<!--pagination end-->
+						<div class="btnbox btnbox02">
+							<a href="#none" class="btnfb7" onclick="javascript:goRegist();">글 작성</a>
+							<a href="#none" class="btn4d5" onclick="javascript:window.close();">삭제</a>
+						</div>
+					</form>
 
-            <!--searchform end-->
-          </div>
-        </div>
+					<!--searchform end-->
+				</div>
+			</div>
 
-      </div>
+		</div>
 
-    </div>
-	
-	
+	</div>
+
+
 </th:block>
 
 </html>

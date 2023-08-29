@@ -12,6 +12,8 @@ public class CpCriteria {
 	
 	//검색에 필요한 키워드를 선언
 	private String searchLocation;
+	private String searchFaq;
+	private String searchNotice;
 
 	
 	//기본 생성자로 만들어지면 1, 10이 기본값이다.

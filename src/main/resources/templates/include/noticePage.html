@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<th:block th:fragment="pageNation(pageVO)">
+		<div class="page">
+			<ul>
+				<li><a th:href="@{search(page=1, 
+											  amount=${pageVO.amount},
+											  searchNotice=${pageVO.cri.searchNotice}
+											   )}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+				
+				
+				<th:block th:if="${pageVO.prev}">
+				<li style="margin-right:5px;">
+					<a th:href="@{search(page=${pageVO.start - 1},
+								  		  amount=${pageVO.amount},
+								  		  searchNotice=${pageVO.cri.searchNotice}
+								  		  )}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+				</li>
+				</th:block>
+				
+				
+				<th:block th:each="page : ${pageVO.pageList }">
+				<li th:class="${page == pageVO.page ? 'on' : ''}">
+					<a th:href="@{search(page=${page}, 
+										  amount=${pageVO.amount},
+										  searchNotice=${pageVO.cri.searchNotice}
+										  )}">[[${page}]]</a>
+				</li>
+				</th:block>
+				
+				
+				<th:block th:if="${pageVO.next}">																								
+				<li style="margin-left:5px;">
+					<a th:href="@{search(page=${pageVO.end + 1},
+										  amount=${pageVO.amount},
+										  searchNotice=${pageVO.cri.searchNotice}
+										  )}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+				</li>
+				</th:block>
+				
+				<li><a th:href="@{search(page=${pageVO.realEnd},
+										  amount=${pageVO.amount},
+										  searchNotice=${pageVO.cri.searchNotice}
+										  )}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+			</ul>
+		</div>
+		
+	</th:block>
