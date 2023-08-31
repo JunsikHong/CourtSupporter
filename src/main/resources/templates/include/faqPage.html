@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	
 	<th:block th:fragment="pageNation(pageVO)">
-		<div class="page">
+		<div id="page">
 			<ul>
 				<li><a th:href="@{search(page=1, 
 											  amount=${pageVO.amount},
@@ -20,7 +20,7 @@
 				</th:block>
 				
 				
-				<th:block th:each="page : ${pageVO.pageList }">
+				<th:block th:each="page : ${pageVO.pageList}">
 				<li th:class="${page == pageVO.page ? 'on' : ''}">
 					<a th:href="@{search(page=${page}, 
 										  amount=${pageVO.amount},

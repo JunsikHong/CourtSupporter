@@ -8,6 +8,9 @@ form  table tbody thead tr th td {
   background: transparent;
 }
 
+.adminmenu {
+	display: none;
+}
 
 table th, 
 table td {
@@ -100,10 +103,11 @@ input, select {
 
 .board_search_text {
 	float: right;
+	padding-bottom: 10px;
 }
 
-.board_search input,
-.board_search select {
+.board_search_text input,
+.board_search_text select {
    padding-left: 5px;
    border: 1px #c4c4c4 solid;
    height: 30px;
@@ -182,6 +186,7 @@ table{
 }
 
 .btnbox{text-align: right; margin-top: 40px;}
-.btnbox .btnfb7{background-color: rgb(11, 38, 110); font-size: 17px; color: #FFF;height: 42px; line-height: 42px;display: inline-block; padding: 0 5px; text-align: center; vertical-align: middle;font-family:"ngB" !important;}
-.btnbox .btn4d5{background-color: #4d515b; font-size: 17px; color: #FFF;height: 42px; line-height: 42px;display: inline-block; padding: 0 5px; text-align: center; vertical-align: middle; font-family:"ngB" !important;}
-.btnbox02 a{width: 100px; box-sizing: border-box;}
+.btnbox .btnfb7{background-color: rgb(11, 38, 110); font-size: 17px; color: #FFF;height: 42px; line-height: 42px; display: inline-block; padding: 0 5px; text-align: center; vertical-align: middle;font-family:"ngB" !important;}
+.btnbox .btn4d5{background-color: #4d515b; font-size: 17px; color: #FFF;height: 42px; line-height: 42px; display: inline-block; padding: 0 5px; text-align: center; vertical-align: middle; font-family:"ngB" !important;}
+.btnbox02 a,.btnbox02 input{width: 129px; box-sizing: border-box; border: none; cursor:pointer;}
+.btnbox02 a:hover,.btnbox02 input:hover{text-decoration: underline;}

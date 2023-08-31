@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/noticeList.css}">
+<!--<link rel="stylesheet" th:href="@{/css/page.css}">-->
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.faqListWrap})}">
 
@@ -27,12 +28,12 @@
                     		style="width: 150px;" maxlength="40" value="">
                   			<a href=""><input type="button" value="검색" id="searchbtn" style="cursor: pointer;"></a>
                 		</div>-->
-
-
-						<div class="board_search_text">
-							<input type="text" id="searchFaq" name="searchFaq" placeholder="검색어 입력"
-								th:value="${pageVO.cri.searchFaq}">
-							<a href="javascript:goSearch()" class="search_btn">검색</a>
+						<div style="width: 100%; overflow: hidden;">
+							<div class="board_search_text">
+								<input type="text" id="searchFaq" name="searchFaq" placeholder="검색어 입력"
+									th:value="${pageVO.cri.searchFaq}">
+								<a href="javascript:goSearch()" class="search_btn">검색</a>
+							</div>
 						</div>
 
 						<!--table-->
@@ -41,12 +42,14 @@
 								<colgroup>
 									<col width="10%">
 									<col width="auto">
+									<col width="10%" class="adminmenu">
 								</colgroup>
 
 								<thead>
 									<tr style="background-color: rgb(226, 226, 226);">
 										<th scope="col" style="font-weight: bold;">번호</th>
 										<th scope="col" style="font-weight: bold;">제목</th>
+										<th scope="col" style="font-weight: bold;" class="adminmenu">선택</th>
 									</tr>
 								</thead>
 
@@ -56,6 +59,7 @@
 										<td class="left" style="text-align: center;">[[${vo.faq_proper_num}]]</td>
 										<td class="left" style="text-align: center;"><a
 												href="">[[${vo.faq_ask_content}]]</a></td>
+										<td class="adminmenu"><input type="checkbox"></td>
 									</tr>
 
 
@@ -69,8 +73,8 @@
 						<th:block th:replace="~{./include/faqPage :: pageNation( ${pageVO} )}"></th:block>
 
 						<!--pagination end-->
-						<div class="btnbox btnbox02">
-							<a href="#none" class="btnfb7" onclick="javascript:goRegist();">글 작성</a>
+						<div class="btnbox btnbox02 adminmenu">
+							<a href="faqRegist" class="btnfb7">글 작성</a>
 							<a href="#none" class="btn4d5" onclick="javascript:window.close();">삭제</a>
 						</div>
 					</form>
