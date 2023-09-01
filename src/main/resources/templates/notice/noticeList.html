@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/noticeList.css}">
+<!--<link rel="stylesheet" th:href="@{/css/page.css}">-->
+
+<th:block th:replace="~{./include/layout :: setContent(~{::.noticeListWrap})}">
+
+
+	<!--contents-->
+	<div class="noticeListWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+		<div id="content">
+
+			<div id="contentsbox">
+				<div id="contentstitle">
+					<span class="noticetitle">공지사항</span>
+					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 공지사항</span>
+				</div>
+				<div id="contents">
+
+					<!--searchform-->
+					<form id="searchform" name="searchForm" action="" method="post">
+						<input type="hidden" id="noticeSer" name="noticeSer">
+						<input type="hidden" id="pageIndex" name="pageIndexr">
+						<input type="hidden" id="eSer" name="srchbub">
+
+						<!--<div class="searchbox">
+                  			<input type="text" name="search_gongji" id="search_gongji" class="waterMark" title="검색"
+                    		style="width: 150px;" maxlength="40" value="">
+                  			<a href=""><input type="button" value="검색" id="searchbtn" style="cursor: pointer;"></a>
+                		</div>-->
+						<div style="width: 100%; overflow: hidden;">
+							<div class="board_search_text">
+								<input type="text" id="searchNotice" name="searchNotice" placeholder="검색어 입력"
+									th:value="${pageVO.cri.searchNotice}">
+								<a href="javascript:goSearch()" class="search_btn">검색</a>
+							</div>
+						</div>
+
+
+						<!--table-->
+						<div class="tablebox">
+							<table>
+								<colgroup>
+									<col width="10%">
+									<col width="auto">
+									<col width="15%">
+									<col width="10%"  class="adminmenu">
+								</colgroup>
+
+								<thead>
+									<tr style="background-color: rgb(226, 226, 226);">
+										<th scope="col" style="font-weight: bold;">번호</th>
+										<th scope="col" style="font-weight: bold;">제목</th>
+										<th scope="col" style="font-weight: bold;">작성일</th>
+										<th scope="col" style="font-weight: bold;" class="adminmenu">선택</th>
+									</tr>
+								</thead>
+
+								<tbody>
+
+									<tr th:each="vo, status : ${list}">
+										<td>[[${vo.notice_proper_num}]]</td>
+										<td class="left"><a th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num})}">[[${vo.notice_title}]]</a></td>
+										<td>[[${vo.notice_date}]]</td>
+										<td class="adminmenu"><input type="checkbox"></td>
+									</tr>
+
+
+								</tbody>
+							</table>
+						</div>
+
+						<!--pagination-->
+						<!--현재 페이지 부분을 strong으로 강조, 링크 없음-->
+
+						<th:block th:replace="~{./include/noticePage :: pageNation( ${pageVO} )}"></th:block>
+
+						<!--pagination end-->
+						<div class="btnbox btnbox02 adminmenu">
+							<a href="noticeRegist" class="btnfb7">글 작성</a>
+							<a href="#none" class="btn4d5" onclick="javascript:window.close();">일괄삭제</a>
+						</div>
+					</form>
+
+					<!--searchform end-->
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+</th:block>
+
+</html>

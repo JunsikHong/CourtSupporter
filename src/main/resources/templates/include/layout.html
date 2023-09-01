@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="setContent(content)">
 
+
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +13,7 @@
       integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
       <link rel="stylesheet" th:href="@{/css/page.css}">
    </head>
+
 
 	<body>
 		<!--header-->
@@ -27,8 +29,8 @@
 				<div class="header-menu-wrap">
 					<!--로고-->
 					<div class="logo-wrap">
-						<a>
-							<img th:src="@{/img/logo_color.png}" alt="재판조력자"/>
+						<a th:href="@{/}">
+							<img th:src="@{/img/logo_color.png}" alt="재판조력자" />
 						</a>
 					</div>
 					<!--메인메뉴-->
@@ -40,9 +42,11 @@
 							<li class="menu02">
 								<span class="">조력자신청안내</span>
 							</li>
-							<li class="menu03">
-								<span class="">My Page</span>
-							</li>
+							<a th:href="@{/usermypage/usermypage}">
+								<li class="menu03">
+									<span class="">My Page</span>
+								</li>
+							</a>
 							<li class="menu04">
 								<span class="">공지사항</span>
 							</li>
@@ -51,7 +55,7 @@
 				</div>
 		</header>
 
-	
+
 		<div th:replace="${content}">
 
 

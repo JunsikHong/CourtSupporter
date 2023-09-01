@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/noticeDetail.css}">
+
+<th:block th:replace="~{./include/layout :: setContent(~{::.noticeDetailWrap})}">
+	
+	
+	<!--contents-->
+    <div class="noticeDetailWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+
+      <div class="contentsbox" id="content">
+        <div class="contentsIn">
+          <div id="contentstitle">
+            <span class="noticetitle">공지사항</span>
+            <span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 공지사항</span>
+          </div>
+          <div id="contents">
+            <form id="viewForm" action="noticeModify" method="post">
+              <input type="hidden" id="pageIndex" name="pageIndex">
+              <input type="hidden" id="noticeSer" name="noticeSer">
+              <input type="hidden" id="srchbub" name="srchbub">
+              <div class="tablebox">
+                <table>
+                  <colgroup>
+                    <col style="width: 20%;">
+                    <col style="width: 30%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 10%;">
+                    <col style="width: 10%;">
+                  </colgroup>
+                  <tbody>
+
+                    <tr class="firstTh">
+                      <th class scope="row">제목</th>
+                      <td class="left" colspan="5">[[${vo.notice_title}]]</td>
+                    </tr>
+
+                    <tr class="firstTh">
+                      <th scope="row">등록일</th>
+                      <td scope="left">[[${vo.notice_date}]]</th>
+                      <th scope="row">조회수</th>
+                      <td scope="left">2023</th>
+                      <th scope="row">번호</th>
+                      <td scope="left">[[${vo.notice_proper_num}]]</th>
+                    </tr>
+
+                    <tr class="firstTh">
+                      <th class scope="row">첨부파일</th>
+                      <td class="left" colspan="5" style="text-align: left;">???.???</td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4" class="contents left" style="text-align: left;">
+                        <p class="textArea">[[${vo.notice_content}]]</p>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+                <table class="tableListBox">
+                  <colgroup>
+                    <col style="width: 15%;">
+                  </colgroup>
+                  <tbody>
+
+                    <tr>
+                      <th scope="row">이전글</th>
+                      <td colspan="5" class="left">
+                        <a href="#" onclick="beforeBtn('81')" class="board1" style="cursor: pointer;">오픈에 따른 공지</a>
+                        <input type="hidden" id="bpg" name="bpg" value="1">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row">다음글</th>
+                      <td colspan="5" class="left">
+                        <a href="#" onclick="beforeBtn('79')" class="board1" style="cursor: pointer;">오픈에 따른 공지</a>
+                        <input type="hidden" id="afpg" name="afpg" value="1">
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="btnbox btnbox02">
+                <a href="noticeList" class="btnfb7" onclick="javascript:goRegist();">목록</a>
+                <input type="submit" class="btn4d5" value="수정">
+
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+  
+	
+</th:block>
+
+</html>

@@ -23,7 +23,6 @@ public class PageVO {
 	private int pnCount = 5; //페이지네이션 개수
 	private List<Integer> pageList; //페이지네이션을 리스트로 저장
 	
-	
 	//페이지네이션 클래스는 cri와 total을 매개변수로 받는다.
 	public PageVO(Criteria cri, int total) {
 		this.cri = cri;

@@ -70,7 +70,7 @@ public class AnnounceController {
 		model.addAttribute("list", list);
 		model.addAttribute("pageVO", pageVO);   
 		
-		System.out.println(cri.getSearchLocation());
+
 		//System.out.println(model.toString());
 		
 		return "announce/announceList";
