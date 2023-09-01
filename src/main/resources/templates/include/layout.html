@@ -10,6 +10,7 @@
 		<link rel="stylesheet" th:href="@{/css/head.css}">
 	</head>
 
+
 	<body>
 		<!--header-->
 		<header>
@@ -24,8 +25,8 @@
 				<div class="header-menu-wrap">
 					<!--로고-->
 					<div class="logo-wrap">
-						<a>
-							<img th:src="@{/img/logo_color.png}" alt="재판조력자"/>
+						<a th:href="@{/}">
+							<img th:src="@{/img/logo_color.png}" alt="재판조력자" />
 						</a>
 					</div>
 					<!--메인메뉴-->
@@ -37,9 +38,11 @@
 							<li class="menu02">
 								<span class="">조력자신청안내</span>
 							</li>
-							<li class="menu03">
-								<span class="">My Page</span>
-							</li>
+							<a th:href="@{/usermypage/usermypage}">
+								<li class="menu03">
+									<span class="">My Page</span>
+								</li>
+							</a>
 							<li class="menu04">
 								<span class="">공지사항</span>
 							</li>
@@ -48,7 +51,7 @@
 				</div>
 		</header>
 
-	
+
 		<div th:replace="${content}">
 
 
