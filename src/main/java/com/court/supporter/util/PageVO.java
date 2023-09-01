@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import lombok.Data;
 
 @Data // getter, setter, toString
-public class CpPageVO {
+public class PageVO {
 
 	private int start; //시작페이지네이션 (한번에 보여지는 목록 중)
 	private int end; //끝페이지네이션 (한번에 보여지는 목록 중)
@@ -15,7 +15,7 @@ public class CpPageVO {
 	private boolean next; //다음버튼 활성화여부
 	private int realEnd; //실제 보여지는 끝번호
 	
-	private CpCriteria cri; //페이지기준
+	private Criteria cri; //페이지기준
 	private int page; //cri에 있는 현재조회하는 페이지
 	private int amount; //cri에 있는 데이터 개수
 	private int total; //전체게시글 개수
@@ -23,8 +23,9 @@ public class CpPageVO {
 	private int pnCount = 5; //페이지네이션 개수
 	private List<Integer> pageList; //페이지네이션을 리스트로 저장
 	
+	
 	//페이지네이션 클래스는 cri와 total을 매개변수로 받는다.
-	public CpPageVO(CpCriteria cri, int total) {
+	public PageVO(Criteria cri, int total) {
 		this.cri = cri;
 		this.page = cri.getPage();
 		this.amount = cri.getAmount();

@@ -75,11 +75,15 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   width: 150px;  
  
   color: #424242;
-  border: 0.3px solid #BDBDBD; 
-  background-color: #E0E0E0  ;
+ /* border: 0.3px solid #BDBDBD; */
+  border-top: 0.3px solid #BDBDBD;
+  border-bottom: 0.3px solid #BDBDBD;  
+   background-color: #E8E8E9; 
 }
 .board td {
-   border: 0.3px solid #BDBDBD; 
+/*   border: 0.3px solid #BDBDBD; */
+   border-top: 0.3px solid #BDBDBD;
+   border-bottom: 0.3px solid #BDBDBD;  
    padding-left: 20px;
    padding-right: 20px;
    padding-bottom: 20px;
@@ -87,7 +91,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 .announceTit{
   width: 600px;
   height: 30px;
-  font-size: 18px;
+  font-size: 14px;
 }
 .datepicker1 {
   width: 120px;
@@ -163,7 +167,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 	height: 15px;
 	line-height: 30px;
 	border: none;
-	border-right: 0.3px solid #BDBDBD; 
+	/*border-right: 0.3px solid #BDBDBD; */
 }
 
 .announceContent {

@@ -1,27 +1,33 @@
 package com.court.supporter.util;
 
-import com.court.supporter.util.CpCriteria;
+import com.court.supporter.util.Criteria;
 
 import lombok.Data;
 
 @Data // getter, setter, toString
-public class CpCriteria {
+public class Criteria {
 
 	private int page; //조회하는 페이지
 	private int amount; //데이터 개수
+	
+	private String announce_title;
+	private String announce_content;
+	private String announce_start_date;
+	private String announce_end_date;
+		
 	
 	//검색에 필요한 키워드를 선언
 	private String searchLocation;
 
 	
 	//기본 생성자로 만들어지면 1, 10이 기본값이다.
-	public CpCriteria() {
+	public Criteria() {
 		this.page = 1;
 		this.amount = 8;
 	}
 	
 	//생성자에 매개변수가 전달되면 멤버변수를 초기화 함
-	public CpCriteria(int page, int amount) {
+	public Criteria(int page, int amount) {
 		this.page = page;
 		this.amount = amount;
 	}
