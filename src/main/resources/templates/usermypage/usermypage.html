@@ -19,19 +19,19 @@
 						<tbody>
 							<tr>
 								<th>이름</th>
-								<td>John Doe</td>
+								<td>[[${vo.user_name}]]</td>
 							</tr>
 							<tr>
 								<th>아이디</th>
-								<td>johndoe123</td>
+								<td>[[${vo.user_id}]]</td>
 							</tr>
 							<tr>
 								<th>이메일 주소</th>
-								<td>johndoe@example.com</td>
+								<td>[[${vo.user_email}]]</td>
 							</tr>
 							<tr>
 								<th>휴대전화 번호</th>
-								<td>123-456-7890</td>
+								<td>[[${vo.user_phone}]]</td>
 							</tr>
 							<!-- 다른 행들도 동일한 형식으로 추가 -->
 						</tbody>
@@ -39,11 +39,11 @@
 				</div>
 				<div class="btnbox btnbox02">
 					<a th:href="@{/}" class="btnfb7">확인</a>
-					<a th:href="@{usermypage_modify}" class="btn4d5">수정</a>
+					<a th:href="@{usermypage_modify_pw_check_view}" class="btn4d5">수정</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </th:block>
-
+<script th:src="@{/js/usermypage.js}"></script>
 </html>

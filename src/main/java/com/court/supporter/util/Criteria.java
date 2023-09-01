@@ -11,8 +11,14 @@ public class Criteria {
 	private int amount; //데이터 개수
 	
 	//검색에 필요한 키워드를 선언
+
+	private String announce_title;
+	private String aplicn_dtls_sts;
+	private String aplicn_dtls_startdate;
+	private String aplicn_dtls_enddate;
 	private String searchFaq;
 	private String searchNotice;
+
 
 	
 	//기본 생성자로 만들어지면 1, 10이 기본값이다.
