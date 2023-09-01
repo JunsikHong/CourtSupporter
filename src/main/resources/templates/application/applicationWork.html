@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/application.css}">
+<link rel="stylesheet" th:href="@{/css/applicationStateBar.css}">
+<th:block th:replace="~{./include/layout :: setContent(~{::.work})}">
+	<div class="work">
+		<div class="work-wrap">
+			<div class="pop_header">
+				<h1 class="tith5">경력 정보</h1>
+			</div>
+
+			<div class="accept-wrap">
+				<div class="accept-contents">
+					<div class="contents-inner">
+						<ol class="process">
+							<li class="first">
+								<span class="num">01.</span>
+								<span class="process-text">약관 동의</span>
+							</li>
+							<li>
+								<span class="num">02.</span>
+								<span class="process-text">기본 정보</span>
+							</li>
+							<li>
+								<span class="num">03.</span>
+								<span class="process-text">학력 정보</span>
+							</li>
+							<li class="current">
+								<span class="num">04.</span>
+								<span class="process-text">경력 정보</span>
+							</li>
+							<li>
+								<span class="num">05.</span>
+								<span class="process-text">자격증 정보</span>
+							</li>
+							<li class="last">
+								<span class="num">06.</span>
+								<span class="process-text">증빙서류</span>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+
+			<div id="pop_wrap">
+				<div style="padding: 20px 0 0 30px;">
+					<i class="required-img">
+						<span class="hidden">필수입력</span>
+					</i>
+					<span>는 필수 입력 사항 입니다.</span>
+				</div>
+				<form action="workForm" name="workForm" method="post" enctype="multipart/form-data">
+
+					<div class="pop_contents">
+						<table class="board_table topT">
+							<colgroup>
+								<col width="17%">
+								<col width="17%">
+								<col width="17%">
+								<col width="17%">
+								<col width="17%">
+								<col width="15%">
+							</colgroup>
+
+							<thead>
+								<div class="board_h">
+									<div class="board_total">*근무경력 사항</div>
+									<div class="board_search">
+										<a href="#" class="search_btn" onclick="popUp()">경력사항 입력</a>
+									</div>
+								</div>
+
+								<tr>
+									<th>회사명</th>
+									<th>기간</th>
+									<th>수행업무</th>
+									<th>부서/직책</th>
+									<th>관리</th>
+									<th>최종근무지</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr>
+									<td style="vertical-align: middle;">XX회사</td>
+									<td style="vertical-align: middle;">2023.01.01~2023.12.31</td>
+									<td style="vertical-align: middle;">수행업무 작성란</td>
+									<td style="vertical-align: middle;">부서명/직책명</td>
+									<td style="vertical-align: middle;">
+										<input type="button" value="수정" style="border: 1px solid #888888;" />
+										<input type="button" value="삭제" style="border: 1px solid #888888;" />
+									</td>
+									<td style="text-align:center; vertical-align: middle;" class="toptd">
+										<input type="radio" name="chk_info" value="">
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+					<div class="pop_contents">
+						<span class="sm_title">*활동경력</span>
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr class="uptr01">
+									<th class="">
+										<i class="required-img">
+											<span class="hidden">필수입력</span>
+										</i>
+										<span>활동경력</span>
+									</th>
+									<td><textarea
+											style="border: 1px solid #ddd; width: 95%; resize: none; height: 70px;"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="pop_contents">
+						<span class="sm_title">*특기사항</span>
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr class="uptr01">
+									<th class="">
+										<i class="required-img">
+											<span class="hidden">필수입력</span>
+										</i>
+										<span>특기사항</span>
+									</th>
+									<td><textarea
+											style="border: 1px solid #ddd; width: 95%; resize: none; height: 70px;"></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="pop_contents">
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr class="uptr02">
+									<th class="">파일 첨부</th>
+									<td class="">
+										<input type="file" style="border: none;">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="btnbox btnbox02">
+						<input type="button" class="btn4d5" value="이전" onclick="history.back()" />
+						<input type="submit" class="btnfb7" value="다음">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+<script th:inline="javascript">
+
+	function popUp() {
+		var popupWidth = 700;
+		var popupHeight = 500;
+		// window.screen.width  : 윈도우의 가로 크기
+		// window.screen.height : 윈도우의 세로 크기
+		var popupX = Math.round((window.screen.width / 2) - (popupWidth / 2));
+		var popupY = Math.round((window.screen.height / 2) - (popupHeight / 2));
+
+		// 윈도우 팝업창의 스타일 지정
+		var featureWindow = "width=" + popupWidth + ", height=" + popupHeight
+			+ ", left=" + popupX + ", top=" + popupY;
+		// open("경로", "이름", "옵션")
+		window.open("applicationWorkPopup", "학력사항 입력", featureWindow);
+	}
+
+</script>
+
+</html>

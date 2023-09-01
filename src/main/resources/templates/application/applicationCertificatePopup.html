@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/applicationPopup.css}">
+<th:block>
+	<div class="certificatePopup">
+		<div class="certificatePopup-wrap">
+			<div id="pop_wrap">
+
+				<form action="certificatePopupForm" name="certificatePopupForm" method="post">
+					<div class="pop_contents">
+						<span class="sm_title">*자격/면허 사항</span>
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr class="uptr02">
+									<th class="">종목/등급명</th>
+									<td>
+										<select class="selC" name="email_select" id="email_select" title="조력자 선택"
+											onchange="email_selects()" style="width: 140px;">
+											<option value='' selected="selected">선택하세요</option>
+											<option value='자격증명'>자격증명</option>
+											<option value='자격증명'>자격증명</option>
+											<option value='자격증명'>자격증명</option>
+										</select>
+									</td>
+								</tr>
+								<tr class="uptr01">
+									<th class="">발급기관</th>
+									<td><input type="text" name="visit_name" id="id_visit_name" title="신청기관명"></td>
+								</tr>
+								<tr class="uptr01">
+									<th class="">자격/면허 번호</th>
+									<td><input type="text" name="visit_name" id="id_visit_name" title="신청기관명"></td>
+								</tr>
+								
+								<tr class="uptr01">
+									<th class="">발급일</th>
+									<td><input type="text" name="visit_name" id="id_visit_name" title="신청기관명"></td>
+								</tr>
+								<tr class="uptr02">
+									<th class="">증빙서류</th>
+									<td class="">
+										<input type="file" style="border: none; width: 250px;">
+									</td>
+								</tr>
+								
+							</tbody>
+
+						</table>
+					</div>
+					
+					<div class="btnbox btnbox02">
+						<input type="submit" class="btnfb7" value="입력" onclick="window.close()"/>
+					</div>
+			</div>
+			</form>
+
+		</div>
+	</div>
+	</div>
+</th:block>
+
+</html>
