@@ -1,91 +1,93 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/noticeList.css}">
+<!--<link rel="stylesheet" th:href="@{/css/page.css}">-->
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.faqListWrap})}">
-	
-	
+
+
 	<!--contents-->
-    <div class="faqListWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
-      <div id="content">
+	<div class="faqListWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+		<div id="content">
 
-        <div id="contentsbox">
-          <div id="contentstitle">
-            <span class="FAQtitle">자주묻는질문(FAQ)</span>
-            <span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 자주묻는질문</span>
-          </div>
-          <div id="contents">
+			<div id="contentsbox">
+				<div id="contentstitle">
+					<span class="FAQtitle">자주묻는질문(FAQ)</span>
+					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 자주묻는질문</span>
+				</div>
+				<div id="contents">
 
-            <!--searchform-->
-            <form id="searchform" name="searchForm" action="" method="post">
-              <input type="hidden" id="faqSer" name="faqSer">
-              <input type="hidden" id="pageIndex" name="pageIndexr">
-              <input type="hidden" id="eSer" name="srchbub">
+					<!--searchform-->
+					<form id="searchform" name="searchForm" action="" method="post">
+						<input type="hidden" id="faqSer" name="faqSer">
+						<input type="hidden" id="pageIndex" name="pageIndexr">
+						<input type="hidden" id="eSer" name="srchbub">
 
-              <div class="searchTxt">
-                <input type="text" class="search">
-                <!-- 검색 버튼 -->
-                <button class="searchBtn">검색</button>
-              </div>
+						<!--<div class="searchbox">
+                  			<input type="text" name="search_gongji" id="search_gongji" class="waterMark" title="검색"
+                    		style="width: 150px;" maxlength="40" value="">
+                  			<a href=""><input type="button" value="검색" id="searchbtn" style="cursor: pointer;"></a>
+                		</div>-->
+						<div style="width: 100%; overflow: hidden;">
+							<div class="board_search_text">
+								<input type="text" id="searchFaq" name="searchFaq" placeholder="검색어 입력"
+									th:value="${pageVO.cri.searchFaq}">
+								<a href="javascript:goSearch()" class="search_btn">검색</a>
+							</div>
+						</div>
+
+						<!--table-->
+						<div class="tablebox">
+							<table>
+								<colgroup>
+									<col width="10%">
+									<col width="auto">
+									<col width="10%" class="adminmenu">
+								</colgroup>
+
+								<thead>
+									<tr style="background-color: rgb(226, 226, 226);">
+										<th scope="col" style="font-weight: bold;">번호</th>
+										<th scope="col" style="font-weight: bold;">제목</th>
+										<th scope="col" style="font-weight: bold;" class="adminmenu">선택</th>
+									</tr>
+								</thead>
+
+								<tbody>
+
+									<tr th:each="vo, status : ${list}">
+										<td class="left" style="text-align: center;">[[${vo.faq_proper_num}]]</td>
+										<td class="left" style="text-align: center;"><a
+												href="">[[${vo.faq_ask_content}]]</a></td>
+										<td class="adminmenu"><input type="checkbox"></td>
+									</tr>
 
 
-              <!--table-->
-              <div class="tablebox">
-                <table>
-                  <colgroup>
-                    <col width="auto">
-                  </colgroup>
+								</tbody>
+							</table>
+						</div>
 
-                  <thead>
-                    <tr style="background-color: rgb(226, 226, 226);">
-                      <th scope="col" style="font-weight: bold;">제목</th>
-                    </tr>
-                  </thead>
+						<!--pagination-->
+						<!--현재 페이지 부분을 strong으로 강조, 링크 없음-->
 
-                  <tbody>
+						<th:block th:replace="~{./include/faqPage :: pageNation( ${pageVO} )}"></th:block>
 
-                    <tr>
-                      <td class="left" style="text-align: center;"><a href="">이건 제목이에요</a></td>
-                    </tr>
-                    <tr>
-                      <td class="left" style="text-align: center;"><a href="">이건 제목이에요</a></td>
-                    </tr>
-                    <tr>
-                      <td class="left" style="text-align: center;"><a href="">이건 제목이에요</a></td>
-                    </tr>
-                    <tr>
-                      <td class="left" style="text-align: center;"><a href="">이건 제목이에요</a></td>
-                    </tr>
+						<!--pagination end-->
+						<div class="btnbox btnbox02 adminmenu">
+							<a href="faqRegist" class="btnfb7">글 작성</a>
+							<a href="#none" class="btn4d5" onclick="javascript:window.close();">삭제</a>
+						</div>
+					</form>
 
-                  </tbody>
-                </table>
-              </div>
+					<!--searchform end-->
+				</div>
+			</div>
 
-              <!--pagination-->
-              <!--현재 페이지 부분을 strong으로 강조, 링크 없음-->
-              <div id="paging">
-                <a href="" onclick=""><strong>1</strong></a>
-                <a href="" onclick="">2</a>
-                <a href="" onclick="">3</a>
-                <a href="" onclick="">4</a>
-                <a href="" onclick="">5</a>
-              </div>
-              <!--pagination end-->
-              <div class="btnbox btnbox02">
-                <a href="#none" class="btnfb7" onclick="javascript:goRegist();">글 작성</a>
-                <a href="#none" class="btn4d5" onclick="javascript:window.close();">삭제</a>
-              </div>
-            </form>
+		</div>
 
-            <!--searchform end-->
-          </div>
-        </div>
+	</div>
 
-      </div>
 
-    </div>
-	
-	
 </th:block>
 
 </html>

@@ -36,9 +36,9 @@
 
                     <tr class="firstTh">
                       <th scope="row">등록일</th>
-                      <td scope="left">2023.01.27</th>
+                      <td scope="left">2023.01.27</td>
                       <th scope="row">조회수</th>
-                      <td scope="left" aria-readonly="true">2023</th>
+                      <td scope="left" aria-readonly="true">2023</td>
                     </tr>
 
                     <tr class="firstTh">
@@ -47,6 +47,41 @@
                         <input type="button" value="파일첨부"> ???.???
                       </td>
                     </tr>
+                    <!-- 파일 첨부 
+									<tr class="firstTh">
+										<th class scope="row">첨부파일</th>
+										<td class="left" colspan="5" style="text-align: left;">
+											<input type="file" name="file" id="files" multiple>
+											 파일 이름을 나타낼 영역 
+											<div id="fileNames"></div>
+
+											 JavaScript
+											<script>
+												// 파일 입력 필드
+												const fileInput = document.getElementById('files');
+
+												// 파일 이름을 나타낼 영역
+												const fileNamesDisplay = document.getElementById('fileNames');
+
+												// 파일 입력 필드의 변경 이벤트 리스너 추가
+												fileInput.addEventListener('change', () => {
+													// 선택된 파일 목록 가져오기
+													const selectedFiles = fileInput.files;
+
+													// 파일 이름을 나타내는 문자열 초기화
+													let fileNames = '';
+
+													// 선택된 각 파일의 이름을 문자열에 추가
+													for (let i = 0; i < selectedFiles.length; i++) {
+														fileNames += selectedFiles[i].name + '<br>';
+													}
+
+													// 파일 이름을 나타낼 영역 업데이트
+													fileNamesDisplay.innerHTML = fileNames;
+												});
+											</script>
+										</td>
+									</tr> -->
 
                     <tr>
                       <td colspan="4" class="contents left" style="text-align: left;">
