@@ -9,7 +9,7 @@
 .basic-wrap, .education-wrap, .work-wrap, .certificate-wrap, .attachment-wrap {
 	width: 1280px;
 }
-
+* { outline: none; }
 main,article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
 hr{box-sizing:content-box;height:0}
 button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}

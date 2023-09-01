@@ -1,10 +1,7 @@
+
 package com.court.supporter.command;
 
 import java.time.LocalDateTime;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class TB_001VO {
 
@@ -21,6 +18,7 @@ public class TB_001VO {
 	private Integer user_proper_num;
 	private String user_pw;
 	private String user_name;
+	private String user_rrn;
 	private String user_birthdate;
 	private String user_email;
 	private String user_phone;
@@ -34,4 +32,12 @@ public class TB_001VO {
 	private String user_bank_holder;
 	private LocalDateTime user_joindate;
 	private String user_delete_yn;
+	//기본 정보 페이지 핸드폰 번호 분리
+	private String user_phone1;
+	private String user_phone2;
+	private String user_phone3;
+	//기본 정보 페이지 이메일 분리
+	private String user_email1;
+	private String user_email2;
 }
+

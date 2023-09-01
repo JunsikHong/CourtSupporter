@@ -1,3 +1,4 @@
+
 package com.court.supporter.command;
 
 import java.util.List;
@@ -33,3 +34,4 @@ public class TB_005VO {
    private Integer announce_proper_num;
    private String announce_title;
 }
+
