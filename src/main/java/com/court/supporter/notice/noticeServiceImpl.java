@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.court.supporter.command.noticeUploadVO;
-import com.court.supporter.command.noticeVO;
+import com.court.supporter.command.TB_016VO;
+import com.court.supporter.command.TB_003VO;
 import com.court.supporter.util.Criteria;
 
 @Service("noticeService")
@@ -42,7 +42,7 @@ public class noticeServiceImpl implements noticeService {
 	//하나의 메서드에서 여러 CRUD작업이 일어나는 경우에 한 부분이 에러가 발생하면 그 에러를 처리하고, 롤백처리를 대신랍니다.
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public int noticeRegist(noticeVO vo, List<MultipartFile> list) {
+	public int noticeRegist(TB_003VO vo, List<MultipartFile> list) {
 		
 		//sql 처리
 		int result = noticeMapper.noticeRegist(vo);
@@ -95,7 +95,7 @@ public class noticeServiceImpl implements noticeService {
 	}
 	
 	@Override
-	public ArrayList<noticeVO> noticeList(String writer, Criteria cri) {
+	public ArrayList<TB_003VO> noticeList(String writer, Criteria cri) {
 		
 		return noticeMapper.noticeList(writer, cri);
 	}
@@ -107,7 +107,7 @@ public class noticeServiceImpl implements noticeService {
 	}
 
 	@Override
-	public noticeVO noticeDetail(int notice_proper_num) {
+	public TB_003VO noticeDetail(int notice_proper_num) {
 		
 		return noticeMapper.noticeDetail(notice_proper_num);
 	}
@@ -115,7 +115,7 @@ public class noticeServiceImpl implements noticeService {
 	
 
 	@Override
-	public int noticeModify(noticeVO vo) {
+	public int noticeModify(TB_003VO vo) {
 		
 		return noticeMapper.noticeModify(vo);
 	}

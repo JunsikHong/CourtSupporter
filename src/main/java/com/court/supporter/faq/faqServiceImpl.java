@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.court.supporter.command.faqVO;
+import com.court.supporter.command.TB_004VO;
 import com.court.supporter.util.Criteria;
 
 @Service("faqService")
@@ -17,7 +17,7 @@ public class faqServiceImpl implements faqService{
 	private faqMapper faqMapper;
 	
 	@Override
-	public ArrayList<faqVO> faqList(String writer, Criteria cri) {
+	public ArrayList<TB_004VO> faqList(String writer, Criteria cri) {
 		
 		return faqMapper.faqList(writer, cri);
 	}
@@ -29,13 +29,13 @@ public class faqServiceImpl implements faqService{
 	}
 
 	@Override
-	public faqVO faqDetail(int faq_proper_num) {
+	public TB_004VO faqDetail(int faq_proper_num) {
 		
 		return faqMapper.faqDetail(faq_proper_num);
 	}
 
 	@Override
-	public int faqRegist(faqVO vo, List<MultipartFile> list) {
+	public int faqRegist(TB_004VO vo, List<MultipartFile> list) {
 		
 		int result = faqMapper.faqRegist(vo, list);
 		
@@ -43,7 +43,7 @@ public class faqServiceImpl implements faqService{
 	}
 
 	@Override
-	public int faqModify(faqVO vo) {
+	public int faqModify(TB_004VO vo) {
 		
 		return faqMapper.faqModify(vo);
 	}

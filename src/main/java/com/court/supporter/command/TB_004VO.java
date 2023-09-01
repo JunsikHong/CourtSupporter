@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class faqVO {
-
+public class TB_004VO {
+	//공지사항 테이블
 	private int faq_proper_num;
 	private String faq_ask_content; 
 	private String faq_ask_comment;

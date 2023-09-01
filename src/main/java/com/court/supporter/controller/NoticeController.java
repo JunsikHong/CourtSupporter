@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.court.supporter.command.faqVO;
-import com.court.supporter.command.noticeVO;
+import com.court.supporter.command.TB_004VO;
+import com.court.supporter.command.TB_003VO;
 import com.court.supporter.faq.faqService;
 import com.court.supporter.notice.noticeService;
 import com.court.supporter.util.Criteria;
@@ -42,7 +42,7 @@ public class NoticeController {
 		// 임시 로그인
 		String writer = "aaa";
 
-		ArrayList<noticeVO> list = noticeService.noticeList(writer, cri);
+		ArrayList<TB_003VO> list = noticeService.noticeList(writer, cri);
 
 		int total = noticeService.getTotal(writer, cri);
 		PageVO pageVO = new PageVO(cri, total);
@@ -61,7 +61,7 @@ public class NoticeController {
 	public String noticeDetail(@RequestParam("notice_proper_num") int notice_proper_num,
 							   Model model) {
 		
-		noticeVO vo = noticeService.noticeDetail(notice_proper_num);
+		TB_003VO vo = noticeService.noticeDetail(notice_proper_num);
 		
 		
 		
@@ -82,7 +82,7 @@ public class NoticeController {
 
 	// 공지사항 등록요청
 	@PostMapping("/noticeRegistForm")
-	public String noticeRegistForm(noticeVO vo, RedirectAttributes ra,
+	public String noticeRegistForm(TB_003VO vo, RedirectAttributes ra,
 								   @RequestParam("file") List<MultipartFile> list) {
 
 		System.out.println("1"+vo.toString());
@@ -133,7 +133,7 @@ public class NoticeController {
 		// 임시 로그인
 		String writer = "aaa";
 
-		ArrayList<faqVO> list = faqService.faqList(writer, cri);
+		ArrayList<TB_004VO> list = faqService.faqList(writer, cri);
 
 		int total = faqService.getTotal(writer, cri);
 		PageVO pageVO = new PageVO(cri, total);
@@ -163,7 +163,7 @@ public class NoticeController {
 
 	// faq 등록요청
 	@PostMapping("/faqRegistForm")
-	public String faqRegistForm(faqVO vo, RedirectAttributes ra, 
+	public String faqRegistForm(TB_004VO vo, RedirectAttributes ra, 
 								@RequestParam("file") List<MultipartFile> list) {
 
 		System.out.println(vo.toString());
