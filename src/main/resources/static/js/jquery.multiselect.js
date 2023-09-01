@@ -53,8 +53,8 @@ jQuery(function () {
 			$(this).html('');
 			from_sel.style.height=to_sel.style.height=rh+'px';
 			from_sel.style.width=to_sel.style.width=rw+'px';
-			var fb=$('<input type="button" value="&raquo;" style="width:40px">');
-			var bb=$('<input type="button" value="&laquo;" style="width:40px">');
+			var fb=$('<input type="button" class="pBtn" value="&raquo;" style="width:40px">');
+			var bb=$('<input type="button" class="mBtn" value="&laquo;" style="width:40px">');
 			mc.appendChild(fb.get(0));
 			mc.appendChild(document.createElement('br'));
 			mc.appendChild(bb.get(0));
@@ -89,7 +89,7 @@ jQuery(function () {
 						}
 					}
 					if (add) {
-						to_sel.appendChild($('<option value="'+key+'">'+list_names[list_options[key]]+'</option>').get(0));
+						to_sel.appendChild($('<option value="'+key+'" class="court_proper_num">'+list_names[list_options[key]]+'</option>').get(0));
 						o_lc.appendChild($('<input type="hidden" name="'+sel_name+'" value="'+key+'">').get(0));
 					}
 				}

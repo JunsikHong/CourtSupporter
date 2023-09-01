@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.court.supporter.application.service.ApplicationMapper">
+  
+  <!-- 기본 정보 페이지 - 신청인 기본 정보 불러오기 -->
+  <select id="getUserInfo" resultType="TB_001VO">
+  	select * from TB_001 where user_id = #{user_id}
+  </select>
+  
+  <!-- 기본 정보 페이지 - 주민번호 조회 -->
+  <select id="getUserRrn" resultType="String">
+  	select user_rrn from TB_001 where user_rrn = #{user_rrn}
+  </select>
+  
+  <!-- 기본 정보 - 조력자 분류 코드, 조력자 추가 정보, 희망 법원 등록 -->
+  <insert id="detailRegist" parameterType="TB_005VO">
+  	insert into TB_005(trial_fcltt_proper_num,
+  					   ligtn_case_carer_yn,
+					   ligtn_case_carer_etc,
+		               insrn_indst_carer_yn,
+		               insrn_indst_carer_etc,
+		               criminal_penalty_carer_yn,
+		               criminal_penalty_carer_etc,
+		               court_proper_num)
+	values(
+		   #{trial_fcltt_proper_num},
+		   #{ligtn_case_carer_yn},
+		   #{ligtn_case_carer_etc},
+           #{insrn_indst_carer_yn},
+           #{insrn_indst_carer_etc},
+           #{criminal_penalty_carer_yn},
+           #{criminal_penalty_carer_etc},
+		   #{court_proper_num})
+  </insert>
+  
+  <!-- 기본 정보 - 신청인 기본 정보 수정 -->
+  <update id="userInfoUpdate" parameterType="TB_001VO">
+  	update TB_001 set user_phone = #{user_phone},
+  					  user_email = #{user_email},
+  					  user_ar = #{user_ar},
+  					  user_ar_zonecode = #{user_ar_zonecode},
+  					  user_ar_jibun = #{user_ar_jibun},
+  					  user_ar_detail = #{user_ar_detail}
+  	where user_id = 'user1'
+  </update>
+  </mapper>

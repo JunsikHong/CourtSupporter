@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.court.supporter.faq.service.faqMapper">
+
+	<insert id="faqRegist" parameterType="TB_004VO">
+		INSERT INTO TB_004 (FAQ_ASK_CONTENT,
+							FAQ_ASK_COMMENT,
+							ADMIN_PROPER_NUM)
+		VALUES(#{FAQ_ASK_CONTENT},
+			   #{FAQ_ASK_COMMENT},
+			   #{ADMIN_PROPER_NUM}),
+		
+	</insert>
+	
+	<select id="faqList" resultType="TB_004VO">
+		select * from TB_004
+		
+		where 1=1
+		
+		<if test="cri.searchFaq !='' and cri.searchFaq != null">
+		and FAQ_ASK_CONTENT like concat('%',#{cri.searchFaq},'%') 
+		</if>
+		
+		order by
+		faq_proper_num desc
+		limit #{cri.pageStart}, #{cri.amount}
+		
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) as total from TB_004
+		
+	</select>
+
+
+
+</mapper>

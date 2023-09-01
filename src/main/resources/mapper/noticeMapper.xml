@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.court.supporter.notice.service.noticeMapper">
+
+	<!-- 글 등록 -->
+	<insert id="noticeRegist" parameterType="TB_003VO">
+		INSERT INTO TB_003 (notice_title,
+							notice_content,
+							notice_date,
+							admin_proper_num)
+		VALUES (#{notice_title},
+				#{notice_content},
+				NOW(),
+				#{admin_proper_num})
+		
+	</insert>
+	
+	<!-- 파일 등록 -->
+	
+	<!-- 데이터 목록 내용 가져오기 -->
+	<select id="noticeList" resultType="TB_003VO">
+		select * from TB_003
+		
+		where 1=1
+		
+		<if test="cri.searchNotice !='' and cri.searchNotice != null">
+		and NOTICE_TITLE like concat('%',#{cri.searchNotice},'%') 
+		</if>
+		
+		order by
+		notice_proper_num desc
+		limit #{cri.pageStart}, #{cri.amount}
+		
+	</select>
+	
+	<!-- 데이터 수량 계산 -->
+	<select id="getTotal" resultType="int">
+		select count(*) as total from TB_003
+		
+	</select>
+	
+	<!-- 글 상세내용 -->
+	
+
+
+</mapper>

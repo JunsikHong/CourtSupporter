@@ -19,18 +19,35 @@
 					<table class="annouonceTable">
 						<tbody class="board">
 							<tr> <!-- class="boardTitle" -->
-								<th class="title">제목</th>
-								<td colspan="2">2023년도 보호사건조력자 모집</td>
+								<th class="title">공고제목</th>
+								<td colspan="2">[[${result.announce_title}]]</td>
 							</tr>
 
 							<tr>
 								<th class="date">신청날짜</th>
-								<td colspan="2">2023-08-22</td>
+								<td colspan="2"><span
+										th:text="${#strings.substring(result.aplicn_dtls_date, 0, 10)}"></span></td>
 							</tr>
 
 							<tr>
 								<th class="viewCount">신청상태</th>
-								<td colspan="2">법원 대기중</td>
+								<td colspan="2">
+									<th:block th:if="${result.aplicn_dtls_sts == 'ING'}">
+										신청중
+									</th:block>
+									<th:block th:if="${result.aplicn_dtls_sts == 'examination'}">
+										심사중
+									</th:block>
+									<th:block th:if="${result.aplicn_dtls_sts == 'companion'}">
+										서류 반려
+									</th:block>
+									<th:block th:if="${result.aplicn_dtls_sts == 'REFERRAL'}">
+										불합격
+									</th:block>
+									<th:block th:if="${result.aplicn_dtls_sts == 'ACCEPT'}">
+										합격
+									</th:block>
+								</td>
 							</tr>
 
 							<tr>
@@ -67,7 +84,7 @@
 					</table>
 
 					<div class="btnbox btnbox02">
-						<a th:href="@{usermypage_applicationlist}" class="btnfb7" onclick="javascript:goRegist();">목록</a>
+						<a th:href="@{usermypage_applicationlist}" class="btnfb7">목록</a>
 					</div>
 				</div>
 			</div>

@@ -159,7 +159,8 @@ table{
 
 
 
-.btnbox{text-align: center;margin-top: 40px;}
-.btnbox .btnfb7{background-color: rgb(11, 38, 110);font-size: 18px;color: #FFF;height: 42px;line-height: 42px;display: inline-block;padding: 0 25px;vertical-align: middle;font-family:"ngB" !important;}
-.btnbox .btn4d5{background-color: #4d515b;font-size: 18px;color: #FFF;height: 42px;line-height: 42px;display: inline-block;padding: 0 25px;vertical-align: middle;font-family:"ngB" !important;}
-.btnbox02 a{width: 129px;box-sizing: border-box;}
+.btnbox{text-align: center; margin-top: 40px;}
+.btnbox .btnfb7{background-color: rgb(11, 38, 110); font-size: 18px;color: #FFF; height: 42px; line-height: 42px; display: inline-block; padding: 0 25px; vertical-align: middle; font-family:"ngB" !important;}
+.btnbox .btn4d5{background-color: #4d515b; font-size: 18px;color: #FFF; height: 42px; line-height: 42px; display: inline-block; padding: 0 25px; vertical-align: middle; font-family:"ngB" !important;}
+.btnbox02 a,.btnbox02 input{width: 129px; box-sizing: border-box; border: none; cursor:pointer;}
+.btnbox02 a:hover,.btnbox02 input:hover{text-decoration: underline;}

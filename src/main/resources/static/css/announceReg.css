@@ -54,7 +54,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 }
 .announceWrap{
  /* display: block; */ 
-  margin-top: 70px;
+  margin-top: 50px;
   margin-left : 140px;
   margin-right : 70px;
   /*border: 0.5px solid gray;*/
@@ -72,11 +72,13 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   width: 150px;  
  
   color: #424242;
-  border: 0.3px solid #BDBDBD; 
-  background-color: #E0E0E0  ;
+  border-top: 0.3px solid #BDBDBD;
+  border-bottom: 0.3px solid #BDBDBD;  
+  background-color: #E8E8E9; 
 }
 .board td {
-   border: 0.3px solid #BDBDBD; 
+   border-top: 0.3px solid #BDBDBD;
+   border-bottom: 0.3px solid #BDBDBD;  
    padding-left: 20px;
    padding-right: 20px;
    padding-bottom: 20px;
@@ -84,7 +86,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 .announceTit{
   width: 600px;
   height: 30px;
-  font-size: 18px;
+  font-size: 14px;
 }
 .datepicker1 {
   width: 120px;
@@ -157,7 +159,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 .fileInfo .limit {
   padding-top: 20px;
   border-top : 0.3px solid #E0E0E0 ;
-  border-bottom : 0.3px solid #E0E0E0 ;
+   border-bottom: 0.3px solid #BDBDBD;  
  } 
 .fileInfo .con {
   border-top : 0.3px solid #E0E0E0 ;
@@ -165,6 +167,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 }
 .fileInfo .fl {
 	padding-top: 20px;
+	
 }
 .fileInfo td {
 	padding-left: 20px;	
@@ -172,7 +175,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 	height: 15px;
 	line-height: 30px;
 	border: none;
-	border-right: 0.3px solid #BDBDBD; 
+	/*border-right: 0.3px solid #BDBDBD; */
 }
 
 .announceContent {
@@ -187,6 +190,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   margin-top: 25px;
   width: 800px;
   min-height: 500px;
+  font-size: 14px;
   text-align: left;
   resize: vertical;
   border: 0.3px solid gray;
@@ -215,6 +219,7 @@ text-decoration: none;
   border: none;
   background-color:  rgb(11, 38, 110);
   color: white;
+  cursor: pointer;
 }
 .listBtn{
   margin: 10px;

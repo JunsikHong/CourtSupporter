@@ -24,7 +24,7 @@
           <p>공고 수정</p>
         </div>
 
-        <form action="announceRegForm" name="announceForm" method="post">
+        <form action="/modifyForm" name="modifyForm" method="post"> <!-- modifyForm or th:action="@{/updateAnnounce}"-->
 
           <div class="modifyBox">
 
@@ -32,20 +32,20 @@
               <tbody class="board">
                 <tr >
                   <th><i class="required-img"><span class="hidden">필수입력</span></i> 제목</th>
-                  <td><input type="text" class="announceTit" name="announceTitle" required></td>
+                  <td><input type="text" class="announceTit" name="announceTitle" th:value="${vo.announce_title}"></td>
                 </tr>
                 
                 <tr>
                   <th>모집 시작일</th>
                   <td>
-                      <input type="text" class="datepicker1" name="announceStartDate" readonly placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" required>
+                      <input type="date" class="datepicker1" name="announceStartDate"  placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" >
                   </td>
                 </tr>
 
                 <tr>
                   <th>모집 종료일</th>
                   <td>
-                      <input type="text" class="datepicker2" name="announceEndDate" readonly placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" >
+                      <input type="date" class="datepicker2" name="announceEndDate"  placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" >
                   </td>
                 </tr>
 
@@ -83,7 +83,7 @@
                   <th class="con"><i class="required-img"><span class="hidden">필수입력</span></i> 내용</th>          
                   <td>
                     <div>
-                      <textarea name="announceContent" id="contentDetail" cols="30" rows="10" required></textarea>
+                      <textarea name="announceContent" id="contentDetail" cols="30" rows="10" ></textarea>
                     </div>
                     <!-- cols="30" rows="10" -->              
                     <!-- 서울가정법원 공무직 근로자(시설관리원)
@@ -105,7 +105,10 @@
           
         
         </form>
-      </div>
+       <!-- <div th:if="${param.msg}" class="msg">
+		    <p th:text="${param.msg}"></p>
+		</div>-->
+	 </div>
 
     </div>
 
@@ -138,29 +141,34 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script th:inline="javascript"> 
-   
-  $(function() {
-     $( ".datepicker1, .datepicker2" ).datepicker({
-         dateFormat: 'yy-mm-dd' //달력 날짜 형태
-           ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-           ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
-           ,changeYear: true //option값 년 선택 가능
-           ,changeMonth: true //option값  월 선택 가능
-           ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
-           ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
-           ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
-           ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
-           ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
-           ,minDate: "-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-           ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-                
-     });
-    
-    $(".datepicker1").datepicker('setDate', 'today'); //초기값은 오늘 날짜로 설정 
-    
-  });
-  
+     // 화면에 표시할 날짜 형식으로 변환
+        var formattedAnnounceStartDate = "${formattedAnnounceStartDate}";
+        var dateParts = formattedAnnounceStartDate.split("-");
+        var formattedStartDate = dateParts[0] + "-" + dateParts[1] + "-" + dateParts[2];
+        document.querySelector(".datepicker1").value = formattedStartDate;
+ 
 </script>
-
+<script th:inline="javascript"> 
+	
+	// 수정 기능
+	let modifyBtn = document.getElementById("modifyBtn");
+	modifyBtn.onclick = () => {
+		//이벤트가 a에 걸려있다 -> 기본 이벤트를 막아야 한다
+		event.preventDefault();
+		
+		document.actionForm.action = "modifyForm"; //action변경 
+		document.actionForm.submit();
+	}
+	
+	// 삭제 기능
+	let deleteBtn = document.getElementById("deleteBtn");
+	deleteBtn.onclick = () => {
+		//이벤트가 a에 걸려있다 -> 기본 이벤트를 막아야 한다
+		event.preventDefault();
+		
+		document.actionForm.action = "deleteForm"; //action변경 
+		document.actionForm.submit();
+	}
+</script>
 
 </html>

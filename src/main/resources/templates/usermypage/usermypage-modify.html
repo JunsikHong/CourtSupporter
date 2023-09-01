@@ -14,139 +14,169 @@
 				<div class="myinfo-modify-table-title-wrap">
 					<h3 class="myinfo-modify-table-title">회원정보 수정</h3>
 				</div>
-				<table class="tableT popT">
-					<colgroup>
-						<col width="20%">
-						<col width="80%">
-					</colgroup>
-					<tbody>
-						<tr class="uptr01">
-							<th class="">이름dd</th>
-							<td>John Doe</td>
-						</tr>
-						<tr class="uptr01">
-							<th class="">아이디</th>
-							<td>johndoe123</td>
-						</tr>
-						<tr class="uptr01">
-							<th class="">주민등록번호</th>
-							<td>
-								<p>990101-1*****</p>
-							</td>
-						</tr>
-						<tr class="uptr01">
-							<th class=""><i class="required-img">
-									<span class="hidden">필수입력</span>
-								</i> 비밀번호</th>
-							<td><button>비밀번호수정</button></td>
-						</tr>
-						<tr class="uptr04">
-							<th class=""><i class="required-img">
-									<span class="hidden">필수입력</span>
-								</i> 비밀번호 확인</th>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="myinfo-modify-table-title-wrap">
-					<h3 class="myinfo-modify-table-title">필수정보</h3>
-				</div>
-				<table class="tableT popT">
-					<colgroup>
-						<col width="20%">
-						<col width="80%">
-					</colgroup>
-					<tbody>
-						<tr class="uptr02">
-							<th class=""><i class="required-img">
-									<span class="hidden">필수입력</span>
-								</i> 이메일</th>
-							<td class="">
-								<input type="text" title="전자우편아이디" name="email1" id="email-user" maxlength="50"
-									onkeyup="javascript:lengthCheckKor(document.writeForm.email1, '50', '전자우편')">
-								<span>@</span> <input type="text" title="전자우편서비스" name="email2" id="email-provider"
-									maxlength="40"
-									onkeyup="javascript:lengthCheckKor(document.writeForm.email2, '40', '전자우편')">
-								<select class="selC" name="email_select" id="email_select" title="전자우편서비스선택"
-									onchange="email_selects()">
-									<option value='' selected="selected">선택하세요</option>
-									<option value='hanmail.net'>hanmail.net</option>
-									<option value='lycos.co.kr'>lycos.co.kr</option>
-									<option value='empal.com'>empal.com</option>
-									<option value='hotmail.com'>hotmail.com</option>
-									<option value='naver.com'>naver.com</option>
-									<option value='paran.com'>paran.com</option>
-									<option value='yahoo.co.kr'>yahoo.co.kr</option>
-									<option value='nate.com'>nate.com</option>
-									<option value=''>직접입력</option>
-								</select>
-							</td>
-						</tr>
-						<tr class="uptr04">
-							<th class=""><i class="required-img">
-									<span class="hidden">필수입력</span>
-								</i> 핸드폰번호</th>
-							<td><input title="핸드폰앞자리" name="hp_1" type="text"
-									onKeyUp="javascript:numCheck(document.writeForm.hp_1);" maxlength='3'>
-								<span>-</span> <input title="핸드폰중간자리" name="hp_2" type="text"
-									onKeyUp="javascript:numCheck(document.writeForm.hp_2);" maxlength='4'>
-								<span>-</span> <input title="핸드폰뒷자리" name="hp_3" type="text"
-									onKeyUp="javascript:numCheck(document.writeForm.hp_3);" maxlength='4'>
-							</td>
-						</tr>
-						<tr class="uptr02">
-							<th class=""><i class="required-img">
-									<span class="hidden">필수입력</span>
-								</i> 계좌정보</th>
-							<td class="">
-								<input type="text" title="계좌정보" name="accountnum" id="accountnum" maxlength="50">
-								<select class="selC" name="accountnum_select" id="account_select" title="계좌정보선택"
-									onchange="accountnum_selects()">
-									<option value='' selected="selected">선택하세요</option>
-									<option value='국민'>국민</option>
-									<option value='신한'>신한</option>
-									<option value='우리'>우리</option>
-									<option value='IBK'>IBK</option>
-									<option value='기업'>기업</option>
-									<option value='KEB'>KEB</option>
-									<option value='카카오뱅크'>카카오뱅크</option>
-									<option value='농협'>농협</option>
-									<option value=''>직접입력</option>
-								</select>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="myinfo-modify-table-title-wrap">
-					<h3 class="myinfo-modify-table-title">선택정보</h3>
-				</div>
-				<table class="tableT popT">
-					<colgroup>
-						<col width="20%">
-						<col width="80%">
-					</colgroup>
-					<tbody>
-						<tr class="uptr03">
-							<th class="">주소</th>
-							<td>
-								<input name="address" id="address" type="text" matlength="12" title="주소">
-								<button>주소검색</button>
-							</td>
-						</tr>
-						<tr class="uptr03">
-							<th class="">상세주소</th>
-							<td><input name="detail-address" id="detail-address" type="text" matlength="12"
-									title="상세주소"></td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="btnbox btnbox02">
-					<a href="#" class="btnfb7">수정</a>
-					<a th:href="@{usermypage}" class="btn4d5">취소</a>
-				</div>
+				<form name="usermypage_modify_confirm" action="usermypage_modify_confirm" method="post">
+					<input type="hidden" th:value="${vo.user_name}" name="user_name" id="user_name">
+					<input type="hidden" th:value="${vo.user_id}" name="user_id" id="user_id">
+					<input type="hidden" th:value="${vo.user_birthdate}" name="user_birthdate" id="user_birthdate">
+					<table class="tableT popT">
+						<colgroup>
+							<col width="20%">
+							<col width="80%">
+						</colgroup>
+						<tbody>
+							<tr class="uptr01">
+								<th class="">이름</th>
+								<td>[[${vo.user_name}]]</td>
+							</tr>
+							<tr class="uptr01">
+								<th class="">아이디</th>
+								<td>[[${vo.user_id}]]</td>
+							</tr>
+							<tr class="uptr01">
+								<th class="">생년월일</th>
+								<td>
+									<p>[[${vo.user_birthdate}]]</p>
+								</td>
+							</tr>
+							<tr class="uptr01">
+								<th class=""><i class="required-img">
+										<span class="hidden">필수입력</span>
+									</i> 비밀번호</th>
+								<td><input title="비밀번호" name="user_pw" type="password" th:value="${vo.user_pw}"></td>
+							</tr>
+							<tr class="uptr01">
+								<th class=""><i class="required-img">
+										<span class="hidden">필수입력</span>
+									</i> 비밀번호 확인</th>
+								<td><input title="비밀번호확인" name="password_check" type="password"
+										th:value="${vo.user_pw}">
+								</td>
+								<span class="password_check"></span>
+							</tr>
+						</tbody>
+					</table>
+					<div class="myinfo-modify-table-title-wrap">
+						<h3 class="myinfo-modify-table-title">필수정보</h3>
+					</div>
+					<table class="tableT popT">
+						<colgroup>
+							<col width="20%">
+							<col width="80%">
+						</colgroup>
+						<tbody>
+							<tr class="uptr02">
+								<th class=""><i class="required-img">
+										<span class="hidden">필수입력</span>
+									</i> 이메일</th>
+								<td id="user_email_input">
+									<input type="text" title="전자우편아이디" name="user_email1" id="user_email1" maxlength="50"
+										th:value="${#strings.substring(vo.user_email, 0, vo.user_email.indexOf('@'))}">
+									<span>@</span> <input type="text" title="전자우편서비스" name="user_email2" id="user_email2"
+										maxlength="40" th:value="${#strings.substringAfter(vo.user_email, '@')}">
+									<select class="selC" name="email_select" id="email_select" title="전자우편서비스선택">
+										<option value='' selected="selected">선택하세요</option>
+										<option value='hanmail.net'>hanmail.net</option>
+										<option value='lycos.co.kr'>lycos.co.kr</option>
+										<option value='empal.com'>empal.com</option>
+										<option value='hotmail.com'>hotmail.com</option>
+										<option value='naver.com'>naver.com</option>
+										<option value='paran.com'>paran.com</option>
+										<option value='yahoo.co.kr'>yahoo.co.kr</option>
+										<option value='nate.com'>nate.com</option>
+										<option value=''>직접입력</option>
+									</select>
+									<input type="hidden" name="user_email" id="user_email" value="">
+								</td>
+							</tr>
+							<tr class="uptr04">
+								<th class=""><i class="required-img">
+										<span class="hidden">필수입력</span>
+									</i> 휴대폰번호</th>
+								<td><input title="핸드폰앞자리" name="user_phone1" id="user_phone1" type="text" maxlength='3'
+										th:value="${#strings.substring(vo.user_phone, 0, 3)}">
+									<span>-</span> <input title="핸드폰중간자리" name="user_phone2" id="user_phone2" type="text" maxlength='4'
+										th:value="${#strings.substring(vo.user_phone, 4, 8)}">
+									<span>-</span> <input title="핸드폰뒷자리" name="user_phone3" id="user_phone3" type="text" maxlength='4'
+										th:value="${#strings.substring(vo.user_phone, 9, 13)}">
+								</td>
+								<input type="hidden" name="user_phone" id="user_phone" value="">
+							</tr>
+							<tr class="uptr02">
+								<th class=""><i class="required-img">
+										<span class="hidden">필수입력</span>
+									</i> 계좌정보</th>
+								<td class="">
+									<span>계좌번호</span>
+									<input type="text" title="계좌정보" name="user_bank_account" id="user_bank_account" maxlength="50"
+										th:value="${vo.user_bank_account}">
+									<div style="margin-top: 10px;">
+										<span style="margin-right: 15px;">은행명</span>
+										<input title="은행명" name="user_bank" type="text" id="user_bank"
+											th:value="${vo.user_bank}" style="width: 120px;">
+										<select class="selC" name="accountnum_select" id="account_select"
+											title="계좌정보선택">
+											<option value='' selected="selected">선택하세요</option>
+											<option value='국민'>국민</option>
+											<option value='신한'>신한</option>
+											<option value='우리'>우리</option>
+											<option value='IBK'>IBK</option>
+											<option value='기업'>기업</option>
+											<option value='KEB'>KEB</option>
+											<option value='카카오뱅크'>카카오뱅크</option>
+											<option value='농협'>농협</option>
+											<option value=''>직접입력</option>
+										</select>
+									</div>
+									<div style="margin-top: 10px;">
+										<span style="margin-right: 15px;">예금주</span>
+										<input title="예금주" name="user_bank_holder" type="text" id="user_bank_holder"
+											th:value="${vo.user_bank_holder}">
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="myinfo-modify-table-title-wrap">
+						<h3 class="myinfo-modify-table-title">선택정보</h3>
+					</div>
+					<table class="tableT popT">
+						<colgroup>
+							<col width="20%">
+							<col width="80%">
+						</colgroup>
+						<tbody>
+							<tr class="uptr03">
+								<th class="">우편번호</th>
+								<td>
+									<input name="user_ar_zonecode" id="address-zonecode" type="text" matlength="12" title="주소"
+										th:value="${vo.user_ar_zonecode}" style="width: 150px;" readonly>
+									<a class="btn4d5" id="address_kakao">주소검색</a>
+								</td>
+							</tr>
+							<tr class="uptr03">
+								<th class="">주소</th>
+								<td>
+									<input name="user_ar" id="address" type="text" matlength="12" title="주소"
+										th:value="${vo.user_ar}" style="width: 500px;" readonly>
+								</td>
+							</tr>
+							<tr class="uptr03">
+								<th class="">상세주소</th>
+								<td><input name="user_ar_detail" id="address_detail" type="text" matlength="12"
+										title="상세주소" th:value="${vo.user_ar_detail}" style="width: 400px;"></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btnbox btnbox02">
+						<button type="submit" class="btnfb7 subbtn">수정</button>
+						<a th:href="@{usermypage}" class="btn4d5">취소</a>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 </th:block>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script th:src="@{/js/usermypage-modify.js}"></script>
 
 </html>

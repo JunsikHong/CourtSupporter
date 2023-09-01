@@ -23,7 +23,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 .announceInner {
    display: block;
    /*margin-left: 280px;*/
-   margin: 0 auto;
+   margin: 0 auto;  
 }
 a{
   text-decoration: none;  
@@ -40,8 +40,11 @@ a{
   color: #2E2E2E;
 }
 .announceBox {
-  margin-top: 50px;
-  padding-bottom: 20px;
+   padding-bottom: 20px;
+   width: 70%;
+   /* */
+   margin: 0 auto;
+   margin-top: 50px;
 }
 .annouonceTable {
   width: 100%;
@@ -54,18 +57,20 @@ a{
 .annouonceTable td {
   /* border-bottom: 0.5px solid rgb(196, 196, 196); */
   vertical-align: middle;
-  padding: 10px;
+ /* padding: 10px;*/
 }
 .board th{  
-  width: 20%;
-  height: 40px;
-  line-height: 70px; 
+  width: 17%;
+  height: 50px;
+  line-height: 50px; 
   font-weight: 800;
   
  /* text-align: center;*/
   color: #424242;
-  border: 0.3px solid #BDBDBD; 
-  background-color: #E0E0E0  ;
+/*  border: 0.3px solid #BDBDBD; */
+  border-top: 0.3px solid #BDBDBD;
+  border-bottom: 0.3px solid #BDBDBD;  
+  background-color: #E8E8E9; /*#E0E0E0 ;*/ 
 }
 .board tr{
   /* width: 100%; */
@@ -75,7 +80,15 @@ a{
   /* width: 300px; */
   padding-left: 25px;
   height: 50px;  
-  border: 0.3px solid #BDBDBD; 
+  /*border: 0.3px solid #BDBDBD;*/
+  border-top: 0.3px solid #BDBDBD;
+  border-bottom: 0.3px solid #BDBDBD;   
+}
+.board .title {
+  border-top: 3px solid #848484;
+}
+.board .tdtitle {
+  border-top: 3px solid #848484;
 }
 .announceContent { 
   height: 350px;
@@ -105,7 +118,8 @@ a{
 .nextTable tr td a:hover{ 
   color:#0057a1; 
   text-decoration:underline; 
-  font-weight:bold; }
+  font-weight:bold; 
+}
 .nextTitle {
   text-decoration: none;
   color: rgb(97, 97, 97);

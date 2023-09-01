@@ -12,7 +12,7 @@
 
 .myinfo-applicationlist-wrap {
 	margin-left: 250px;
-	margin-bottom: 150px;
+	
 }
 
 .myinfo-applicationlist {
@@ -99,7 +99,7 @@
 }
 
 .board_search_date {
-	margin-left: 100px;
+	margin-left: 30px;
 	float: left;
 }
 
@@ -143,4 +143,19 @@ input[type='text'].datepicker {
 
 .date-content {
 	line-height: 30px;
+}
+
+.board_search_sts {
+	float: left;
+	margin-left: 30px;
+}
+.sts-content {
+	line-height: 30px;
+}
+
+.no_document_img {
+	display: block;
+	padding-top: 50px;
+	margin: 0 auto;
+	width: 200px;
 }

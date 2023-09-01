@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.court.supporter.usermypage.service.UserMypageMapper">
+	<!-- 사용자 정보 가져오기 -->
+	<select id="usermypage_getInfo">
+		select * from TB_001 where user_id = #{user_id}
+	</select>
+
+	<!-- 사용자 정보 수정 -->
+	<update id="usermypage_modifyInfo">
+		update TB_001
+		set user_id = #{user_id},
+		user_pw =
+		#{user_pw},
+		user_name = #{user_name},
+		user_birthdate =
+		#{user_birthdate},
+		user_email = #{user_email},
+		user_phone =
+		#{user_phone},
+		user_ar = #{user_ar},
+		user_ar_zonecode =
+		#{user_ar_zonecode},
+		user_ar_jibun = #{user_ar_jibun},
+		user_ar_detail =
+		#{user_ar_detail},
+		user_bank = #{user_bank},
+		user_bank_account =
+		#{user_bank_account},
+		user_bank_holder = #{user_bank_holder},
+		user_ar =
+		#{user_ar},
+		user_ar_zonecode = #{user_ar_zonecode},
+		user_ar_jibun =
+		#{user_ar_jibun},
+		user_ar_detail = #{user_ar_detail}
+		where user_id =
+		#{user_id}
+	</update>
+
+	<!-- 사용자 탈퇴 -->
+	<delete id="usermypage_withdrawl">
+		delete from TB_001 where user_id = #{user_id} and
+		user_pw = #{user_pw}
+	</delete>
+
+	<select id="usermypage_modify_pw_check">
+		select * from TB_001 where user_id = #{user_id} and
+		user_pw = #{user_pw}
+	</select>
+
+	<select id="usermypage_application_gettotal">
+		select count(*) as total
+		from ( select t5.*, t2.ANNOUNCE_PROPER_NUM as
+		t5_ANNOUNCE_PROPER_NUM, CONVERT(t5.aplicn_dtls_date, CHAR) AS
+		aplicn_dtls_date_as_varchar, t2.announce_title
+		from TB_005 as t5
+		left join
+		TB_002 as t2
+		on t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM) as result
+		where
+		user_id = #{user_id}
+		<if test="cri.announce_title != '' and cri.announce_title != null">
+			and announce_title like concat('%',
+			#{cri.announce_title}, '%')
+		</if>
+		<if
+			test="cri.aplicn_dtls_sts != '' and cri.aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%',
+			#{cri.aplicn_dtls_sts}, '%')
+		</if>
+		<if
+			test="cri.aplicn_dtls_startdate != '' and cri.aplicn_dtls_startdate != null">
+			<![CDATA[and aplicn_dtls_date >= #{cri.aplicn_dtls_startdate}]]>
+		</if>
+		<if
+			test="cri.aplicn_dtls_enddate != '' and cri.aplicn_dtls_enddate != null">
+			<![CDATA[and aplicn_dtls_date <= #{cri.aplicn_dtls_enddate}]]>
+		</if>
+	</select>
+
+	<select id="usermypage_application_getlist">
+		select result.*,
+           CONVERT(result.aplicn_dtls_date, CHAR) AS aplicn_dtls_date_as_varchar
+        from (
+            select t5.*, t2.announce_title
+             from TB_005 as t5
+             left join TB_002 as t2
+             on t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM
+        ) as result
+		where
+		user_id = #{user_id}
+
+		<if test="cri.announce_title != '' and cri.announce_title != null">
+			and announce_title like concat('%',
+			#{cri.announce_title}, '%')
+		</if>
+		<if
+			test="cri.aplicn_dtls_sts != '' and cri.aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%',
+			#{cri.aplicn_dtls_sts}, '%')
+		</if>
+		<if
+			test="cri.aplicn_dtls_startdate != '' and cri.aplicn_dtls_startdate != null">
+			<![CDATA[and aplicn_dtls_date >= #{cri.aplicn_dtls_startdate}]]>
+		</if>
+		<if
+			test="cri.aplicn_dtls_enddate != '' and cri.aplicn_dtls_enddate != null">
+			<![CDATA[and aplicn_dtls_date <= #{cri.aplicn_dtls_enddate}]]>
+		</if>
+		
+		order by result.aplcn_dtls_proper_num desc
+			
+		limit #{cri.pageStart}, #{cri.amount}
+	</select>
+	
+	<select id="usermypage_getapplicationdetail">	
+		select *, CONVERT(aplicn_dtls_date, CHAR) AS aplicn_dtls_date_as_varchar
+		from TB_005 as t5
+		left join TB_002 as t2
+		on t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM 
+		where user_id = #{user_id} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</select>
+	
+	<select id="usermypage_getnearapplicationdetail">
+	
+	</select>
+</mapper>
