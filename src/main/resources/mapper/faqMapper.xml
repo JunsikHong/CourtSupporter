@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.court.supporter.faq.faqMapper">
+<mapper namespace="com.court.supporter.faq.service.faqMapper">
 
-	<insert id="faqRegist" parameterType="faqVO">
+	<insert id="faqRegist" parameterType="TB_004VO">
 		INSERT INTO TB_004 (FAQ_ASK_CONTENT,
 							FAQ_ASK_COMMENT,
 							ADMIN_PROPER_NUM)
@@ -15,7 +15,7 @@
 		
 	</insert>
 	
-	<select id="faqList" resultType="faqVO">
+	<select id="faqList" resultType="TB_004VO">
 		select * from TB_004
 		
 		where 1=1
