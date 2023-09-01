@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class noticeUploadVO {
-
+public class TB_016VO {
+	//공지사항 업로드 테이블
 	private Integer upload_no;//pk
 	private String filename;//실제파일명
 	private String filepath;//폴더명
