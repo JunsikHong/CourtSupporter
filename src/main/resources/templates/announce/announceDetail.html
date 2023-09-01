@@ -35,17 +35,34 @@
           <tbody class="board">
             <tr> <!-- class="boardTitle" -->
               <th class="title">제목</th>
-              <td  colspan="2">서울가정법원 공무직 근로자(시설관리원) 채용시험 공고</td>
+              <td colspan="2" class="tdtitle">[[${vo.announce_title}]]</td>
             </tr>
 
+  			<tr>
+              <th class="startDate">모집 시작일</th>
+              <td colspan="2">
+				  <span th:text="${vo.announce_start_date}">[[${vo.announce_start_date}]]</span>
+              </td>              
+            </tr>
+            
             <tr>
-              <th class="date">등록일</th>
-              <td colspan="2">2023-08-22</td>              
+              <th class="modifyDate">모집 종료일</th>
+              <td colspan="2"><span th:text="${vo.announce_end_date}">[[${vo.announce_end_date}]]</span></td>              
+            </tr>
+            <tr>
+              <th class="startDate">최초 공고 등록</th>
+              <td colspan="2"><span th:text="${vo.announce_first_date}" id="formattedAnnounceFirstDate">[[${vo.announce_first_date}]]</span></td>              
+            </tr>
+            
+            <tr>
+              <th class="modifyDate">최종 수정 일시</th>
+              <td colspan="2"><span th:text="${vo.announce_last_date}">[[${vo.announce_last_date}]]</span></td>
+                            
             </tr>
 
             <tr>
               <th class="viewCount">조회수</th>
-              <td colspan="2">1</td>
+              <td colspan="2">0</td>
             </tr> 
 
             <tr>
@@ -56,7 +73,10 @@
             <tr class="announceContent">
               <th class="file">내용</th>
               <td class="innerContent">
-                <p>
+				  
+				  [[${vo.announce_content}]]
+				  
+                <!--<p>
                  서울가정법원 공무직 근로자(시설관리원)
                 </p>
                 <p>
@@ -69,7 +89,7 @@
 				<span>
 					2023.  8.  22.
 					서  울  가  정  법  원  장
-				</span>
+				</span>-->
               </td>
             </tr>        
           </tbody>
@@ -91,13 +111,13 @@
 
         <div>
           <button class="listBtn btn">
-            <a href="announceList">목록</a>
+            <a href="/announce/announceList">목록</a>
           </button>
           <button class="delBtn btn">
             <a href="#">삭제</a>
           </button>
           <button class="modifyBtn btn">
-            <a href="#">수정</a>
+            <a th:href="@{/announce/announceModify(announce_proper_num=${vo.announce_proper_num})}">수정</a>
           </button>
         </div>
       </div>
@@ -109,7 +129,29 @@
 </th:block>
 
 <script th:inline="javascript">
-   
+	
+        var rawAnnounceFirstDate = "${vo.announce_first_date}";
+        var formattedAnnounceFirstDate = rawAnnounceFirstDate.replace("T", " "); 
+
+        var options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        var announceDate = new Date(formattedAnnounceFirstDate);
+        var formattedDate = announceDate.toLocaleDateString('ko-KR', options);
+
+        document.getElementById("#formattedAnnounceFirstDate").innerText = formattedDate;          
+                
 </script>
    
+<script th:inline="javascript"> 
+	
+	// 삭제 기능
+	let deleteBtn = document.getElementById("deleteBtn");
+	deleteBtn.onclick = () => {
+		//이벤트가 a에 걸려있다 -> 기본 이벤트를 막아야 한다
+		event.preventDefault();
+		
+		document.actionForm.action = "deleteForm"; //action변경 
+		document.actionForm.submit();
+	}
+</script>
+
 </html>
