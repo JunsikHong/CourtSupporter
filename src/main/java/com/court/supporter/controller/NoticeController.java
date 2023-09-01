@@ -16,9 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.court.supporter.command.TB_004VO;
+import com.court.supporter.faq.service.faqService;
+import com.court.supporter.notice.service.noticeService;
 import com.court.supporter.command.TB_003VO;
-import com.court.supporter.faq.faqService;
-import com.court.supporter.notice.noticeService;
 import com.court.supporter.util.Criteria;
 import com.court.supporter.util.PageVO;
 

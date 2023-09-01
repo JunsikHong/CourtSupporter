@@ -1,4 +1,4 @@
-package com.court.supporter.notice;
+package com.court.supporter.notice.service;
 
 import java.util.ArrayList;
 import java.util.List;

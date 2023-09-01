@@ -1,4 +1,4 @@
-package com.court.supporter.notice;
+package com.court.supporter.notice.service;
 
 import java.io.File;
 import java.time.LocalDate;
