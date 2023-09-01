@@ -58,7 +58,7 @@ public class NoticeController {
 		
 		TB_003VO vo = noticeService.noticeDetail(notice_proper_num);
 		
-		
+		System.out.println(vo.toString());
 		
 		model.addAttribute("vo", vo);
 
@@ -112,9 +112,26 @@ public class NoticeController {
 
 	// 공지사항 수정 페이지
 	@GetMapping("/noticeModify")
-	public String noticeModify() {
+	public String noticeModify(@RequestParam("notice_proper_num") int notice_param_num, Model model) {
+		
+		TB_003VO vo = noticeService.noticeDetail(notice_param_num);
+		
+		model.addAttribute("vo",vo);
 
 		return "notice/noticeModify";
+	}
+	
+	//공지사항 수정 후 업데이트
+	@PostMapping("noticeUpdate")
+	public String noticeModify() {
+		return null;
+	}
+	
+	//공지사항 삭제
+	@GetMapping("noticeDelete")
+	public String noticeDelete(@RequestParam("notice_proper_num") int notice_proper_num) {
+		
+		return "redirect:/notice/noticeList";
 	}
 
 }

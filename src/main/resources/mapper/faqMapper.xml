@@ -5,16 +5,21 @@
 
 <mapper namespace="com.court.supporter.faq.service.faqMapper">
 
+	<!-- 글 등록 -->
 	<insert id="faqRegist" parameterType="TB_004VO">
 		INSERT INTO TB_004 (FAQ_ASK_CONTENT,
 							FAQ_ASK_COMMENT,
 							ADMIN_PROPER_NUM)
 		VALUES(#{FAQ_ASK_CONTENT},
 			   #{FAQ_ASK_COMMENT},
+			   now(),
 			   #{ADMIN_PROPER_NUM}),
 		
 	</insert>
 	
+	<!-- 파일 등록 -->
+	
+	<!-- 데이터 목록 내용 가져오기 -->
 	<select id="faqList" resultType="TB_004VO">
 		select * from TB_004
 		
@@ -30,10 +35,33 @@
 		
 	</select>
 	
+	<!-- 데이터 수량 계산 -->
 	<select id="getTotal" resultType="int">
 		select count(*) as total from TB_004
 		
 	</select>
+	
+	<!-- 글 상세내용 -->
+	<select id="faqDetail" resultType="TB_004VO">
+		select *, convert(faq_ask_date, char) as faq_ask_date_as_varchar
+		from TB_004
+		where faq_proper_num = #{faq_proper_num}
+	</select>
+	
+	<!-- 글 수정 업데이트 -->
+	
+	<update id="faqUpdate">
+		update TB_004
+		set	faq_ask_content = #{faq_ask_content},
+			faq_ask_comment = #{faq_ask_comment}
+		where faq_proper_num = #{faq_proper_num}
+	</update>
+	
+	<!-- 글 삭제 -->
+	
+	<delete id="faqDelete">
+		delete from TB_004 where faq_proper_num = #{faq_proper_num}
+	</delete>
 
 
 

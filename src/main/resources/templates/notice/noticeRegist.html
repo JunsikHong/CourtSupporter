@@ -1,15 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/noticeDetail.css}">
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.noticeRegistWrap})}">
 
 
 	<!--contents-->
-	<div class="noticeRegistWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+	<div class="noticeRegistWrap  mainWrap">
 
 		<div class="contentsbox" id="content">
-			<div class="contentsIn">
+			<div> <!--sidebar-->
+				<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+			</div>
+			<div id="contentsIn">
 				<div id="contentstitle">
 					<span class="noticetitle">공지사항</span>
 					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 공지사항</span>

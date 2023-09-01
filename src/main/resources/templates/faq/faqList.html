@@ -1,14 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/noticeList.css}">
-<!--<link rel="stylesheet" th:href="@{/css/page.css}">-->
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.faqListWrap})}">
 
 
 	<!--contents-->
-	<div class="faqListWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+	<div class="faqListWrap mainWrap">
 		<div id="content">
+			<div> <!--sidebar-->
+         		<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+      		</div>
 
 			<div id="contentsbox">
 				<div id="contentstitle">

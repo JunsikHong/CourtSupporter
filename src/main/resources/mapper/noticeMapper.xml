@@ -22,7 +22,8 @@
 	
 	<!-- 데이터 목록 내용 가져오기 -->
 	<select id="noticeList" resultType="TB_003VO">
-		select * from TB_003
+		select *, CONVERT(NOTICE_DATE, CHAR) AS NOTICE_DATE_as_varchar
+		from TB_003
 		
 		where 1=1
 		
@@ -44,6 +45,25 @@
 	
 	<!-- 글 상세내용 -->
 	
-
+	<select id="noticeDetail" resultType="TB_003VO">
+		select *, CONVERT(NOTICE_DATE, CHAR) AS NOTICE_DATE_as_varchar
+		from TB_003
+		where notice_proper_num = #{notice_proper_num}
+	</select>
+	
+	<!-- 글 수정 업데이트 -->
+	
+	<update id="noticeUpdate">
+		update TB_003
+		set notice_title = #{notice_title},
+			notice_content = #{notice_content}
+		where notice_proper_num = #{notice_proper_num}
+	</update>
+	
+	<!-- 글 삭제 -->
+	
+	<delete id="noticeDelete">
+		delete from TB_003 where notice_proper_num = #{notice_proper_num}
+	</delete>
 
 </mapper>

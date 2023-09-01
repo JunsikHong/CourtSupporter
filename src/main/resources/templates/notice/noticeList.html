@@ -1,14 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/noticeList.css}">
-<!--<link rel="stylesheet" th:href="@{/css/page.css}">-->
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.noticeListWrap})}">
 
 
 	<!--contents-->
-	<div class="noticeListWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+	<div class="noticeListWrap mainWrap">
 		<div id="content">
+			<div> <!--sidebar-->
+         		<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+      		</div>
 
 			<div id="contentsbox">
 				<div id="contentstitle">
@@ -44,7 +47,7 @@
 									<col width="10%">
 									<col width="auto">
 									<col width="15%">
-									<col width="10%"  class="adminmenu">
+									<col width="10%" class="adminmenu">
 								</colgroup>
 
 								<thead>
@@ -60,8 +63,10 @@
 
 									<tr th:each="vo, status : ${list}">
 										<td>[[${vo.notice_proper_num}]]</td>
-										<td class="left"><a th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num})}">[[${vo.notice_title}]]</a></td>
-										<td>[[${vo.notice_date}]]</td>
+										<td class="left">
+											<a th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num})}">[[${vo.notice_title}]]</a>
+										</td>
+										<td><span th:text="${#strings.substring(vo.notice_date, 0, 10)}"></span></td>
 										<td class="adminmenu"><input type="checkbox"></td>
 									</tr>
 
