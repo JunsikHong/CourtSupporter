@@ -1,4 +1,4 @@
-package com.court.supporter.faq;
+package com.court.supporter.faq.service;
 
 import java.util.ArrayList;
 import java.util.List;
