@@ -80,7 +80,7 @@ public class NoticeController {
 	public String noticeRegistForm(TB_003VO vo, RedirectAttributes ra,
 								   @RequestParam("file") List<MultipartFile> list) {
 
-		System.out.println("1"+vo.toString());
+		//System.out.println("1"+vo.toString());
 
 		list = list.stream().filter(t -> t.isEmpty() == false).toList();
 
@@ -98,7 +98,7 @@ public class NoticeController {
 			}
 		}
 
-		System.out.println("2"+vo.toString());
+		//System.out.println("2"+vo.toString());
 		int result = noticeService.noticeRegist(vo, list);
 
 		System.out.println("3"+vo.toString());
@@ -107,7 +107,7 @@ public class NoticeController {
 
 		ra.addFlashAttribute("msg", msg);
 
-		return "redirect:/notice/noticeList";
+		return "redirect:/notice/noticeRegist";
 	}
 
 	// 공지사항 수정 페이지
@@ -123,13 +123,20 @@ public class NoticeController {
 	
 	//공지사항 수정 후 업데이트
 	@PostMapping("noticeUpdate")
-	public String noticeModify() {
-		return null;
+	public String noticeUpdate(TB_003VO vo, RedirectAttributes ra) {
+		
+		String msg = "저장되었습니다.";
+		
+		System.out.println(vo.toString());
+		
+		return "notice/noticeRegist";
 	}
 	
 	//공지사항 삭제
 	@GetMapping("noticeDelete")
-	public String noticeDelete(@RequestParam("notice_proper_num") int notice_proper_num) {
+	public String noticeDelete(@RequestParam("notice_proper_num") int notice_proper_num, RedirectAttributes ra) {
+		
+		noticeService.noticeDelete(notice_proper_num);
 		
 		return "redirect:/notice/noticeList";
 	}

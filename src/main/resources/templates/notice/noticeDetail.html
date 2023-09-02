@@ -19,7 +19,7 @@
 					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 공지사항</span>
 				</div>
 				<div id="contents">
-					<form id="viewForm" action="noticeModify" method="post">
+					<form id="viewForm" action="" method="post">
 						<input type="hidden" id="pageIndex" name="pageIndex">
 						<input type="hidden" id="noticeSer" name="noticeSer">
 						<input type="hidden" id="srchbub" name="srchbub">
@@ -94,9 +94,9 @@
 						</div>
 
 						<div class="btnbox btnbox02">
-							<a href="noticeList" class="btnfb7" onclick="javascript:goRegist();">목록</a>
+							<a href="noticeList" class="btnfb7" onclick="">목록</a>
 							<a th:href="@{noticeModify(notice_proper_num=${vo.notice_proper_num})}" class="btn4d5">수정</a>
-							<button src="noticeDelete" class="" value="${vo.notice_proper_num}">삭제</button>
+							<a th:href="@{noticeDelete(notice_proper_num=${vo.notice_proper_num})}" class="btn4d5">삭제</a>
 						</div>
 
 

@@ -10,8 +10,12 @@
 	<div class="noticeListWrap mainWrap">
 		<div id="content">
 			<div> <!--sidebar-->
-         		<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
-      		</div>
+				<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+			</div>
+
+			<div th:if="${param.msg}">
+				<p th:text="${param.msg}"></p>
+			</div>
 
 			<div id="contentsbox">
 				<div id="contentstitle">
@@ -64,7 +68,8 @@
 									<tr th:each="vo, status : ${list}">
 										<td>[[${vo.notice_proper_num}]]</td>
 										<td class="left">
-											<a th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num})}">[[${vo.notice_title}]]</a>
+											<a
+												th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num})}">[[${vo.notice_title}]]</a>
 										</td>
 										<td><span th:text="${#strings.substring(vo.notice_date, 0, 10)}"></span></td>
 										<td class="adminmenu"><input type="checkbox"></td>
