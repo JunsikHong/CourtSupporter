@@ -28,7 +28,6 @@ public class NoticeController {
 	@Qualifier("noticeService")
 	private noticeService noticeService;
 
-
 	// 공지사항 목록
 	@GetMapping("/noticeList")
 	public String noticeList(Model model, Criteria cri) {
@@ -42,6 +41,7 @@ public class NoticeController {
 		int total = noticeService.getTotal(writer, cri);
 		PageVO pageVO = new PageVO(cri, total);
 
+		model.addAttribute("total", total);
 		model.addAttribute("list", list);
 		model.addAttribute("pageVO", pageVO);
 
@@ -58,6 +58,7 @@ public class NoticeController {
 		
 		TB_003VO vo = noticeService.noticeDetail(notice_proper_num);
 		
+		
 		System.out.println(vo.toString());
 		
 		model.addAttribute("vo", vo);
@@ -65,12 +66,11 @@ public class NoticeController {
 		return "notice/noticeDetail";
 	}
 
+	
 	// 공지사항 작성/등록 페이지
 	@GetMapping("/noticeRegist")
-	public String noticeRegist(Model model) {
+	public String noticeRegist() {
 
-		LocalDate date = LocalDate.now();
-		model.addAttribute("date", date);
 
 		return "notice/noticeRegist";
 	}
@@ -112,7 +112,8 @@ public class NoticeController {
 
 	// 공지사항 수정 페이지
 	@GetMapping("/noticeModify")
-	public String noticeModify(@RequestParam("notice_proper_num") int notice_param_num, Model model) {
+	public String noticeModify(@RequestParam("notice_proper_num") int notice_param_num,
+							   Model model) {
 		
 		TB_003VO vo = noticeService.noticeDetail(notice_param_num);
 		
@@ -121,20 +122,23 @@ public class NoticeController {
 		return "notice/noticeModify";
 	}
 	
-	//공지사항 수정 후 업데이트
-	@PostMapping("noticeUpdate")
+	//공지사항 수정(업데이트)
+	@PostMapping("/noticeUpdateForm")
 	public String noticeUpdate(TB_003VO vo, RedirectAttributes ra) {
+		System.out.println(vo.toString());
+		noticeService.noticeUpdate(vo);
 		
-		String msg = "저장되었습니다.";
+		String msg = "저장되었습니다.";//왜안됨?
 		
 		System.out.println(vo.toString());
 		
-		return "notice/noticeRegist";
+		return "redirect:/notice/noticeList";
 	}
 	
 	//공지사항 삭제
-	@GetMapping("noticeDelete")
-	public String noticeDelete(@RequestParam("notice_proper_num") int notice_proper_num, RedirectAttributes ra) {
+	@GetMapping("/noticeDelete")
+	public String noticeDelete(@RequestParam("notice_proper_num") int notice_proper_num, 
+							   RedirectAttributes ra) {
 		
 		noticeService.noticeDelete(notice_proper_num);
 		

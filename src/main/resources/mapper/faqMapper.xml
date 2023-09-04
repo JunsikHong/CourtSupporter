@@ -5,15 +5,16 @@
 
 <mapper namespace="com.court.supporter.faq.service.faqMapper">
 
-	<!-- 글 등록 -->
+	
 	<insert id="faqRegist" parameterType="TB_004VO">
-		INSERT INTO TB_004 (FAQ_ASK_CONTENT,
-							FAQ_ASK_COMMENT,
-							ADMIN_PROPER_NUM)
-		VALUES(#{FAQ_ASK_CONTENT},
-			   #{FAQ_ASK_COMMENT},
-			   now(),
-			   #{ADMIN_PROPER_NUM}),
+		INSERT INTO TB_004 (faq_ask_content,
+							faq_ask_comment,
+							faq_ask_date,
+							admin_proper_num)
+		VALUES (#{faq_ask_content},
+			   #{faq_ask_comment},
+			   NOW(),
+			   #{admin_proper_num})
 		
 	</insert>
 	
@@ -21,7 +22,8 @@
 	
 	<!-- 데이터 목록 내용 가져오기 -->
 	<select id="faqList" resultType="TB_004VO">
-		select * from TB_004
+		select *, CONVERT(faq_ask_date, CHAR) AS faq_ask_date 
+		from TB_004
 		
 		where 1=1
 		
@@ -37,7 +39,13 @@
 	
 	<!-- 데이터 수량 계산 -->
 	<select id="getTotal" resultType="int">
-		select count(*) as total from TB_004
+		select count(*) as total 
+		from TB_004
+		where 1=1
+		
+		<if test="cri.searchFaq !='' and cri.searchFaq != null">
+		and FAQ_ASK_CONTENT like concat('%',#{cri.searchFaq},'%') 
+		</if>
 		
 	</select>
 	

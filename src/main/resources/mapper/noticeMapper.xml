@@ -39,7 +39,13 @@
 	
 	<!-- 데이터 수량 계산 -->
 	<select id="getTotal" resultType="int">
-		select count(*) as total from TB_003
+		select count(*) as total 
+		from TB_003
+		where 1=1
+		
+		<if test="cri.searchNotice !='' and cri.searchNotice != null">
+		and NOTICE_TITLE like concat('%',#{cri.searchNotice},'%') 
+		</if>
 		
 	</select>
 	
@@ -50,6 +56,34 @@
 		from TB_003
 		where notice_proper_num = #{notice_proper_num}
 	</select>
+	<!-- 이전 글 -->
+	<!-- <select id="noticeGetNext" resultType="TB_003VO">
+		select * from TB_003 
+		where notice_proper_num = (select * from TB_003 
+								   where notice_proper_num > #{notice_proper_num 
+								   order by notice_proper_num asc
+								   limit 1)
+	</select> -->
+	<!-- 다음 글 -->
+	<!-- <select id="noticeGetPerv" resultType="TB_003VO">
+		select * from TB_003
+		where notice_proper_num = (select * from TB_003
+								   where notice_proper_num < #{notice_proper_num
+								   order by notice_proper_num desc
+								   limit 1)
+	</select> 
+	<select id="noticeGetPrev" resultType="TB_003VO">
+    <![CDATA[
+    SELECT * FROM TB_003
+    WHERE notice_proper_num = (
+        SELECT MAX(notice_proper_num)
+        FROM TB_003
+        WHERE notice_proper_num < #{notice_proper_num}
+    )
+    ]]>
+</select>
+	-->
+	
 	
 	<!-- 글 수정 업데이트 -->
 	

@@ -21,9 +21,9 @@
 				<div id="contents">
 
 					<!--searchform-->
-					<form id="searchform" name="searchForm" action="" method="post">
-						<input type="hidden" id="faqSer" name="faqSer">
-						<input type="hidden" id="pageIndex" name="pageIndexr">
+					<form id="searchform" name="searchForm" action="faqList" method="get">
+						<input type="hidden" name="page" value="1">
+						<input type="hidden" name="amount" th:value="${pageVO.amount}">
 						<input type="hidden" id="eSer" name="srchbub">
 
 						<!--<div class="searchbox">
@@ -35,7 +35,7 @@
 							<div class="board_search_text">
 								<input type="text" id="searchFaq" name="searchFaq" placeholder="검색어 입력"
 									th:value="${pageVO.cri.searchFaq}">
-								<a href="javascript:goSearch()" class="search_btn">검색</a>
+								<input type="submit" class="search_btn" value="검색">
 							</div>
 						</div>
 
@@ -60,8 +60,9 @@
 
 									<tr th:each="vo, status : ${list}">
 										<td class="left" style="text-align: center;">[[${vo.faq_proper_num}]]</td>
-										<td class="left" style="text-align: center;"><a
-												href="">[[${vo.faq_ask_content}]]</a></td>
+										<td class="left" style="text-align: center;">
+											<a th:href="@{faqDetail(faq_proper_num=${vo.faq_proper_num})}">[[${vo.faq_ask_content}]]</a>
+										</td>
 										<td class="adminmenu"><input type="checkbox"></td>
 									</tr>
 
@@ -78,7 +79,7 @@
 						<!--pagination end-->
 						<div class="btnbox btnbox02 adminmenu">
 							<a href="faqRegist" class="btnfb7">글 작성</a>
-							<a href="#none" class="btn4d5" onclick="javascript:window.close();">삭제</a>
+							<a href="#none" class="btn4d5" onclick="javascript:window.close();">일괄삭제</a>
 						</div>
 					</form>
 

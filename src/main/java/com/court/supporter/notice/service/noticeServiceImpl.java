@@ -50,18 +50,25 @@ public class noticeServiceImpl implements noticeService {
 		//업로드 처리
 		for(MultipartFile file : list) {
 			
-			//파일이름
+			//원본파일이름
 			String originName = file.getOriginalFilename();
+			
 			//브라우저 별로 파일의 경로가 다를 수 있기 때문에 \\기준으로 파일명만 잘라서 다시 저장
 			String filename = originName.substring(originName.lastIndexOf("\\")+1);
+			
 			//파일 사이즈
 			long size = file.getSize();
+			
 			//동일한 파일 재업로드시 기존파일을 덮어씌우므로 난수 이름으로 파일명을 바꿔서 올림
 			String uuid = UUID.randomUUID().toString();
+			
 			//날짜별로 폴더 생성
 			String filepath = makeFolder();
-			//세이브할 경로
+			
+			//파일 저장 경로 
 			String savepath = uploadPath+"/"+filepath+"/"+uuid+"_"+filename;
+			
+			
 			//이건 작동하는지 확인하기 위한 임시저장이므로 데이터베이스에 다시 저장해야 함
 			
 			
@@ -111,14 +118,29 @@ public class noticeServiceImpl implements noticeService {
 		
 		return noticeMapper.noticeDetail(notice_proper_num);
 	}
-
 	
-
+	@Override
+	public TB_003VO noticeGetNext(int notice_proper_num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public TB_003VO noticeGetPrev(int notice_proper_num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public int noticeModify(TB_003VO vo) {
 		
 		return noticeMapper.noticeModify(vo);
 	}
+	
+	@Override
+	public int noticeUpdate(TB_003VO vo) {
+		
+		return noticeMapper.noticeUpdate(vo);
+	}	
 
 	@Override
 	public void noticeDelete(int notice_proper_num) {
