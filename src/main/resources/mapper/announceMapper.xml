@@ -5,7 +5,8 @@
 
 <mapper	namespace="com.court.supporter.announce.service.AnnounceMapper">
 
-	<insert id="announceRegist" parameterType="TB_002VO"> <!-- 공고 등록 -->
+	<!-- 공고 등록 -->
+	<insert id="announceRegist" parameterType="TB_002VO" useGeneratedKeys="true" keyProperty="announce_proper_num">
 		insert into TB_002(announce_title,
 							announce_content,
 							announce_start_date,
@@ -22,7 +23,24 @@
 		);
 
 	</insert>
+	
+	<!-- 파일 정보 등록 -->
+	<insert id="announceFileRegist" parameterType="TB_017VO">		
+		
+		insert into TB_017(original_file_name,
+							file_path,
+							announce_proper_num,
+							announce_file_uuid				
+							)
+		values(#{original_file_name},
+				#{file_path},
+				#{announce_proper_num},
+				#{announce_file_uuid}
+				);
 
+	</insert>
+
+	<!-- 공고 조회 + 검색 -->
 	<select id="announce_getTotal">
 		select count(*) as total
 		from TB_002
@@ -67,12 +85,42 @@
 		limit #{cri.pageStart}, #{cri.amount}
 	</select>
 
-
-
-	<select id="getDetail" resultType="TB_002VO"> <!-- 공고 게시글 상세화면 -->
+	<!-- 공고 게시글 상세화면 -->
+	<select id="getDetail" resultType="TB_002VO">
 		select * from TB_002 where announce_proper_num = #{announce_proper_num}
 	</select>
 
+	<select id="getFileDetail" resultType="TB_017VO">
+		select * from TB_017 where announce_proper_num = #{announce_proper_num}
+	</select>
+	
+	
+	<!-- 이전 글 조회 <![CDATA[<]]>  &lt;  &gt;  -->
+	<select id="getPrev" resultType="TB_002VO">
+	     SELECT * FROM TB_002 WHERE announce_proper_num <![CDATA[<]]> #{announce_proper_num} ORDER BY announce_proper_num DESC LIMIT 1;
+	</select>
+	
+	<!-- 다음 글 조회 -->
+	<select id="getNext" resultType="TB_002VO">
+	    SELECT * FROM TB_002 WHERE announce_proper_num <![CDATA[>]]> #{announce_proper_num} ORDER BY announce_proper_num ASC LIMIT 1;
+	</select>
+	
+	
+	<!-- 공고 수정 -->
+	<update id="announceModify" parameterType="TB_002VO">
+		update TB_002 set announce_title = #{announce_title},
+						  announce_content = #{announce_content},
+						  announce_start_date = #{announce_start_date},
+						  announce_end_date = #{announce_end_date},
+						  announce_last_date = now()			  
+		where announce_proper_num = #{announce_proper_num}			 
+	</update>
+	
+	<!-- 공고 삭제 -->
+	<delete id="announceDelete">
+		delete from TB_002 where announce_proper_num = #{announce_proper_num}
+	</delete>	
+		
 
 
 </mapper>
