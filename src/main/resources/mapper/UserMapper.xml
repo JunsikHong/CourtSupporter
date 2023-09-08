@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.court.supporter.user.service.UserMapper">
+  	  <!-- 회원가입 -->
+  	<insert id="join" >
+  		insert into TB_001(user_proper_num,
+  						   user_id, 
+  						   user_pw, 
+  						   user_name, 
+  						   user_rrn, 
+  						   user_birthdate, 
+  						   user_email, 
+  						   user_phone, 
+  						   user_job, 
+  						   user_ar, 
+  						   user_ar_zonecode,
+  						   user_ar_jibun,
+  						   user_ar_detail,
+  						   user_bank,
+  						   user_bank_account,
+  						   user_bank_holder)
+  		values (#{user_proper_num},
+  				#{user_id}, 
+  				#{user_pw}, 
+ 				#{user_name}, 
+ 				#{user_rrn}, 
+ 				#{user_birthdate}, 
+ 				#{user_email}, 
+ 				#{user_phone}, 
+ 				#{user_job}, 
+ 				#{user_ar}, 
+ 				#{user_ar_zonecode},
+ 				#{user_ar_jibun},
+ 				#{user_ar_detail},
+ 				#{user_bank},
+ 				#{user_bank_account},
+ 				#{user_bank_holder});
+ 				
+ 		insert into TB_018(member_id, member_password, member_role)
+ 		values(#{user_id}, #{user_pw}, 'ROLE_USER');
+  	</insert>
+  	
+  	<select id="findByMemberId" resultType="TB_018VO">
+  		select * from TB_018 where member_id = #{memberId};
+  	</select>
+  </mapper>

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class TB_001VO {
 
 	private String user_id;
-	private Integer user_proper_num;
+	private String user_proper_num;
 	private String user_pw;
 	private String user_name;
 	private String user_rrn;
