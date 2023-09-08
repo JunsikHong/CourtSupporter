@@ -8,6 +8,23 @@
   background: transparent;
 }
 
+.mainWrap{
+	display: flex;
+	margin: 0 auto; 
+	padding-top: 150px; 
+	align-items: center; 
+	justify-content: center;
+}
+
+#content{
+	 width: 1280px;  
+	 position: relative;
+}
+
+#contentsIn{
+	margin-left: 250px;
+}
+
 textarea{
   resize: none;
 }
