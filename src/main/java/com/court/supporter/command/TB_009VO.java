@@ -1,3 +1,4 @@
+
 package com.court.supporter.command;
 
 import lombok.AllArgsConstructor;
@@ -15,7 +16,9 @@ public class TB_009VO {
 	private String file_code;
 	private String file_type;
 	private String original_file_name;
+	private String uuid;
 	private String file_path;
 	private Integer aplcn_dtls_proper_num;
 	private String user_id;
+	
 }
