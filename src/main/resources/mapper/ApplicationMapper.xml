@@ -12,7 +12,7 @@
   
   <!-- 기본 정보 페이지 - 주민번호 조회 -->
   <select id="getUserRrn" resultType="String">
-  	select user_rrn from TB_001 where user_rrn = #{user_rrn}
+  	select user_rrn from TB_001 where user_id = #{user_id} and user_name = #{user_name} and user_rrn = #{user_rrn}
   </select>
   
   <!-- 기본 정보 - 조력자 분류 코드, 조력자 추가 정보, 희망 법원 등록 -->
@@ -46,4 +46,181 @@
   					  user_ar_detail = #{user_ar_detail}
   	where user_id = 'user1'
   </update>
+  
+  <!-- 학력 정보 등록 -->
+  <insert id="educationRegist" parameterType="TB_006VO">
+  	insert into TB_006(edctn_school_name,
+  					   edctn_major,
+					   edctn_degree,
+		               edctn_admsn_date,
+		               edctn_grdtn_date,
+		               user_id)
+	values(
+		   #{edctn_school_name},
+		   #{edctn_major},
+		   #{edctn_degree},
+           #{edctn_admsn_date},
+           #{edctn_grdtn_date},
+		   #{user_id})
+  </insert>
+  
+  <!-- 학력 정보 페이지 - 입력한 학력 정보 불러오기 -->
+  <select id="getEducationList" resultType="TB_006VO">
+  	select * from TB_006 where user_id = #{user_id}
+  </select>
+  
+  <!-- 학력 정보 수정 팝업 - 학력 정보 데이터 불러오기 -->
+  <select id="getEducationInfo" resultType="TB_006VO">
+  	select * from TB_006 where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num}
+  </select>
+  
+  <!-- 학력 정보 페이지 - 학력 정보 수정 -->
+  <update id="educationModify" parameterType="TB_006VO">
+  	update TB_006 set edctn_school_name = #{edctn_school_name},
+  					  edctn_major = #{edctn_major},
+  					  edctn_degree = #{edctn_degree},
+  					  edctn_admsn_date = #{edctn_admsn_date},
+  					  edctn_grdtn_date = #{edctn_grdtn_date}
+  	where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num}
+  </update>
+  
+  <!-- 학력 정보 페이지 - 학력 정보 삭제 -->
+  <delete id="educationInfoDelete">
+  	delete from TB_006 where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num}
+  </delete>
+  
+  <!-- 학력 정보 페이지 - 최종 학력 입력 -->
+  <update id="finalEducation">
+	update TB_006 set edctn_final_yn = CASE
+		WHEN user_id = #{user_id} AND edctn_dtls_proper_num =
+		#{final_education_chk} THEN 'Y'
+		ELSE 'N'
+		END
+  </update>
+  
+  <!-- 학력 정보 페이지 - 학력 정보 첨부 파일 등록 -->
+  <insert id="educationAttachment" parameterType="TB_009VO">
+  	insert into TB_009(file_code,
+  					   file_type,
+		               original_file_name,
+		               uuid,
+		               file_path,
+		               aplcn_dtls_proper_num,
+		               user_id)
+	values(
+		   #{file_code},
+		   #{file_type},
+		   #{original_file_name},
+           #{uuid},
+           #{file_path},
+           #{aplcn_dtls_proper_num},
+		   #{user_id})
+  </insert>
+  
+  <!-- 경력 정보 등록 -->
+  <insert id="workRegist" parameterType="TB_007VO">
+  	insert into TB_007(company_name,
+  					   carer_type,
+					   work_start_date,
+		               work_end_date,
+		               work_description,
+		               work_department,
+		               work_position,
+		               aplcn_dtls_proper_num,
+		               user_id)
+	values(
+		   #{company_name},
+		   #{carer_type},
+		   #{work_start_date},
+           #{work_end_date},
+           #{work_description},
+           #{work_department},
+           #{work_position},
+           #{aplcn_dtls_proper_num},
+		   #{user_id})
+  </insert>
+  
+  <!-- 경력 정보 페이지 - 입력한 경력 정보 불러오기 -->
+  <select id="getWorkList" resultType="TB_007VO">
+  	select * from TB_007 where user_id = #{user_id}
+  </select>
+  
+  <!-- 경력 정보 수정 팝업 - 경력 정보 데이터 불러오기 -->
+  <select id="getWorkInfo" resultType="TB_007VO">
+  	select * from TB_007 where user_id = #{user_id} and aplcn_carer_proper_num = #{aplcn_carer_proper_num}
+  </select>
+  
+  <!-- 경력 정보 페이지 - 경력 정보 수정 -->
+  <update id="workModify" parameterType="TB_007VO">
+  	update TB_007 set company_name = #{company_name},
+  					  carer_type = #{carer_type},
+  					  work_start_date = #{work_start_date},
+  					  work_end_date = #{work_end_date},
+  					  work_description = #{work_description},
+  					  work_department = #{work_department},
+  					  work_position = #{work_position}
+  	where user_id = #{user_id} and aplcn_carer_proper_num = #{aplcn_carer_proper_num}
+  </update>
+  
+  <!-- 경력 정보 페이지 - 경력 정보 삭제 -->
+  <delete id="workInfoDelete">
+  	delete from TB_007 where user_id = #{user_id} and aplcn_carer_proper_num = #{aplcn_carer_proper_num}
+  </delete>
+  
+  <!-- 경력 정보 페이지 - 활동 경력, 특기 사항 등록 -->
+  <update id="workEtcRegist" parameterType="TB_007VO">
+  	update TB_007 set carer_description = #{carer_description},
+  					  special_note_description = #{special_note_description}
+  	where user_id = #{user_id} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+  </update>
+  
+  <!-- 경력 정보 페이지 - 활동 경력, 특기 사항 데이터 불러오기 -->
+  <select id="getWorkEtc" resultType="TB_007VO">
+  	select * from TB_007 
+  	where aplcn_carer_proper_num = 
+  	(SELECT MIN(aplcn_carer_proper_num) AS aplcn_carer_proper_num 
+  	 FROM tb_007 
+  	 WHERE aplcn_dtls_proper_num = #{aplcn_dtls_proper_num} and user_id = #{user_id})
+  </select>
+  
+  <!-- 자격증 정보 페이지 - 자격증 정보 등록 -->
+  <insert id="certificateRegist" parameterType="TB_008VO">
+  	insert into TB_008(crtfc_type,
+		               issue_agency,
+		               crtfc_number,
+		               issue_date,
+		               aplcn_dtls_proper_num,
+		               user_id)
+	values(
+		   #{crtfc_type},
+           #{issue_agency},
+           #{crtfc_number},
+           #{issue_date},
+           #{aplcn_dtls_proper_num},
+		   #{user_id})
+  </insert>
+  
+  <!-- 자격증 정보 페이지 - 입력한 자격증 정보 불러오기 -->
+  <select id="getCertificateList" resultType="TB_008VO">
+  	select * from TB_008 where user_id = #{user_id}
+  </select>
+  
+  <!-- 자격증 정보 수정 팝업 - 자격증 정보 데이터 불러오기 -->
+  <select id="getCertificateInfo" resultType="TB_008VO">
+  	select * from TB_008 where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num}
+  </select>
+  
+  <!-- 자격증 정보 페이지 - 자격증 정보 수정 -->
+  <update id="certificateModify" parameterType="TB_008VO">
+  	update TB_008 set crtfc_type = #{crtfc_type},
+  					  issue_agency = #{issue_agency},
+  					  crtfc_number = #{crtfc_number},
+  					  issue_date = #{issue_date}
+  	where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num}
+  </update>
+  
+  <!-- 자격증 정보 페이지 - 자격증 정보 삭제 -->
+  <delete id="certificateInfoDelete">
+  	delete from TB_008 where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num}
+  </delete>
   </mapper>

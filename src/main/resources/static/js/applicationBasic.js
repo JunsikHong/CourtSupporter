@@ -76,38 +76,45 @@ $(document).ready(function() {
         new daum.Postcode({
             oncomplete: function(data) { //선택시 입력값 세팅
             	console.log(data)
+            	console.log(data.jibunAddress)
             	document.getElementById("user_ar_zonecode").value = data.zonecode; // 우편번호 넣기
                 document.getElementById("user_ar").value = data.address; // 주소 넣기
                 document.querySelector("input[name=user_ar_detail]").focus(); //상세입력 포커싱
                 document.querySelector("input[name=user_ar_detail]").value = ''; //상세입력 초기화
-                document.querySelector("input[name=user_ar_jibun]").value = data.jibunAddress; //지번주소 
+                if(data.jibunAddress == '') {
+	                document.querySelector("input[name=user_ar_jibun]").value = data.autoJibunAddress; //지번주소 
+				} else {
+	                document.querySelector("input[name=user_ar_jibun]").value = data.jibunAddress; //지번주소 					
+				}
+				
             }
         }).open();
     });
 })
 function updateEmailDomain() {
-        var emailSelect = document.getElementById('email_select');
-        var emailDomainInput = document.getElementById('email-domain');
-        
-        var selectedOption = emailSelect.options[emailSelect.selectedIndex];
-        if (selectedOption.value !== '') {
-            emailDomainInput.value = selectedOption.value;
-        } else {
-            emailDomainInput.value = '';
-        }
+    var emailSelect = document.getElementById('email_select');
+    var emailDomainInput = document.getElementById('email-domain');
+    
+    var selectedOption = emailSelect.options[emailSelect.selectedIndex];
+    if (selectedOption.value !== '') {
+        emailDomainInput.value = selectedOption.value;
+    } else {
+        emailDomainInput.value = '';
     }
+}
 
 window.onload = function() {
 	$("#fetchDataButton").click(function() {
 		var rrn1 = document.getElementById("user_rrn1").value;
 		var rrn2 = document.getElementById("user_rrn2").value;
 		var rrn = rrn1 + '-' + rrn2;
+		var name = document.getElementById("user_name").value;
 
 		$.ajax({
 			url: "../application/fetchData",   // 데이터 조회를 위한 컨트롤러 경로
 			method: "POST",
 			contentType: "application/json",
-			data: JSON.stringify({ user_rrn: rrn }),
+			data: JSON.stringify({ user_id: 'user1', user_name: name, user_rrn: rrn }),
 			success: function(response) {
 				
 				const messageDisplay = $("#messageDisplay");
@@ -126,7 +133,16 @@ window.onload = function() {
 
 $(document).ready(function() {
 
-	
+	 $('#user_ar_zonecode, #user_ar').on('click', function() {
+		 $('#addressSearch').focus().css({'border': '1px solid red', 'color' : 'red'});
+		 $('#addressMsg').text("주소 수정을 원하시면 주소 검색을 진행해 주세요");
+	  });
+	  
+	 $('#addressSearch').on('click', function() {
+	    $('#addressSearch').css({'border': '1px solid #888888', 'color': ''});
+	    $('#addressMsg').text("");
+	  });
+	   
 	$('#basicForm').on('submit', function(e){
         e.preventDefault();
 
@@ -188,7 +204,76 @@ $(document).ready(function() {
 	        return false;
 	    } 
 	    
+	    $('#user_phone1, #user_phone2, #user_phone3').on('input', function() {
+	        $("#phoneMsg").text(""); 
+	        $('#phoneNum').focus();
+	        $('#user_phone1, #user_phone2, #user_phone3').css({'border': '', 'color' : ''});
+	    });
+		if ($('#user_phone1').val() === '' || $('#user_phone2').val() === '' || $('#user_phone3').val() === '') {
+			if ($('#user_phone1').val() === '') {
+				$('#user_phone1').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#phoneMsg').text("필수 입력 항목입니다.");
+			}
+			if ($('#user_phone2').val() === '') {
+				$('#user_phone2').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#phoneMsg').text("필수 입력 항목입니다.");
+			}
+			if ($('#user_phone3').val() === '') {
+				$('#user_phone3').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#phoneMsg').text("필수 입력 항목입니다.");
+				return false;
+			}
+			return false;
+		} else if (!/^\d{3}$/.test($('#user_phone1').val()) || !/^\d{3,4}$/.test($('#user_phone2').val()) || !/^\d{4}$/.test($('#user_phone3').val())) {
+			if (!/^\d{3}$/.test($('#user_phone1').val())) {
+				$('#user_phone1').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#phoneMsg').text("전화번호 형식이 아닙니다");
+			}
+			if (!/^\d{3,4}$/.test($('#user_phone2').val())) {
+				$('#user_phone2').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#phoneMsg').text("전화번호 형식이 아닙니다");
+			}
+			if (!/^\d{4}$/.test($('#user_phone3').val())) {
+				$('#user_phone3').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#phoneMsg').text("전화번호 형식이 아닙니다");
+				return false;
+			}
+			return false;
+		}
 	    
+		$('#email-user, #email-domain').on('input', function() {
+			$("#emailMsg").text(""); // 선택 값이 변경되면 메시지 삭제
+			$('#emailInfo').focus();
+			$('#email-user, #email-domain').css({ 'border': '', 'color': '' });
+		});
+		$('#email_select').on('change', function() {
+			$("#emailMsg").text(""); // 선택 값이 변경되면 메시지 삭제
+			$('#emailInfo').focus();
+			$('#email-user, #email-domain').css({ 'border': '', 'color': '' });
+		});
+		if ($('#email-user').val() === '' || $('#email-domain').val() === '') {
+			if ($('#email-user').val() === '') {
+				$('#email-user').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#emailMsg').text("필수 입력 항목입니다.");
+			}
+			if ($('#email-domain').val() === '') {
+				$('#email-domain').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#emailMsg').text("필수 입력 항목입니다.");
+				return false;
+			}
+			return false;
+		} else if (!/^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*$/.test($('#email-user').val()) || !/^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\.[A-Za-z]{2,}$/.test($('#email-domain').val())) {
+			if (!/^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*$/.test($('#email-user').val())) {
+				$('#email-user').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#emailMsg').text("이메일 형식이 아닙니다");
+			}
+			if (!/^[A-Za-z0-9]+([-_.][A-Za-z0-9]+)*\.[A-Za-z]{2,}$/.test($('#email-domain').val())) {
+				$('#email-domain').focus().css({ 'border': '1px solid red', 'color': 'red' });
+				$('#emailMsg').text("이메일 형식이 아닙니다");
+				return false;
+			}
+			return false;
+		}
 		
 		/* 추가 정보 유효성 검사 */
 		$("[name='ligtn_case_carer_yn']").on('click', function() {
@@ -202,23 +287,24 @@ $(document).ready(function() {
 	    $("[name='criminal_penalty_carer_yn']").on('click', function() {
 	        $('#radioMsg3').text("");
 	    });
-		if($("input[name=ligtn_case_carer_yn]:radio:checked").length < 1) {
-			$("[name='ligtn_case_carer_yn']").focus();
-			$('#radioMsg1').text("필수 선택 항목입니다.");
+	    if($("input[name=ligtn_case_carer_yn]:radio:checked").length < 1 || $("input[name=insrn_indst_carer_yn]:radio:checked").length < 1 || $("input[name=criminal_penalty_carer_yn]:radio:checked").length < 1) {
+			if ($("input[name=ligtn_case_carer_yn]:radio:checked").length < 1) {
+				$("[name='ligtn_case_carer_yn']").focus();
+				$('#radioMsg1').text("필수 선택 항목입니다.");
+			}
+
+			if ($("input[name=insrn_indst_carer_yn]:radio:checked").length < 1) {
+				$("[name='insrn_indst_carer_yn']").focus();
+				$('#radioMsg2').text("필수 선택 항목입니다.");
+			}
+
+			if ($("input[name=criminal_penalty_carer_yn]:radio:checked").length < 1) {
+				$("[name='criminal_penalty_carer_yn']").focus();
+				$('#radioMsg3').text("필수 선택 항목입니다.");
+				return false;
+			}
 			return false;
-		} 
-		
-		if($("input[name=insrn_indst_carer_yn]:radio:checked").length < 1) {
-			$("[name='insrn_indst_carer_yn']").focus();
-			$('#radioMsg2').text("필수 선택 항목입니다.");
-			return false;
-		} 
-		
-		if($("input[name=criminal_penalty_carer_yn]:radio:checked").length < 1) {
-			$("[name='criminal_penalty_carer_yn']").focus();
-			$('#radioMsg3').text("필수 선택 항목입니다.");
-			return false;
-		} 
+		}
 		
 		document.basicForm.submit();
 	});

@@ -50,7 +50,7 @@ fieldset, blockquote, iframe, button{ border:none; }
 .board_total{color: #222222;font-size: 16px;display: inline-block;letter-spacing: -0.5px;line-height: 29px;}
 .board_search{font-size: 0;width: 80%;text-align: right; position:absolute; top:0; right:10px;}
 .board_search input,.board_search select{padding-left: 5px;border: 1px #c4c4c4 solid;height: 30px;line-height: 30px;color: #777777;font-size: 15px;box-sizing: border-box;vertical-align: top;width: 42.5%;}
-.search_btn{float: right; display: inline-block;background: rgb(11,38,110);color: #FFF;font-size: 13px;font-family:"ngB" !important;height: 30px; margin-bottom: 5px; line-height: 30px;width: 100px;text-align: center;vertical-align: top;}
+.popup_btn{float: right; display: inline-block;background: rgb(11,38,110);color: #FFF;font-size: 13px;font-family:"ngB" !important;height: 30px; margin-bottom: 5px; line-height: 30px;width: 100px;text-align: center;vertical-align: top;}
 .board_table{width: 100%;border-top: 1px #333333 solid;border-bottom: 1px #959595 solid;margin-top: 5px;}
 .board_table th{font-weight: bold; background-color: #f3f3f3; font-size: 16px;color: #555555;padding: 12px 0;border-bottom: 1px #959595 solid;letter-spacing: -0.7px;}
 .board_table td{font-size: 15px;color: #555555;padding: 10px 0;border-bottom: 1px #ebebeb solid;text-align: center;word-break: keep-all;letter-spacing: -0.7px;}
@@ -63,6 +63,14 @@ fieldset, blockquote, iframe, button{ border:none; }
 .Tth01,.pnTt01{width: 15%;}
 .Tth03{width: 15%;}
 .board_viewT .viewth{padding-left: 35px;}
+
+/* file 업로드 */
+.filePlusBtn{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 10px;float: right;vertical-align: middle;font-family:"ngB" !important;}
+.fileDeleteBtn{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 5px;vertical-align: middle;font-family:"ngB" !important;}
+.file-label {position: relative;}
+.fileAddBtn {background-color: rgb(11, 38, 110);display: inline-block;padding: 7px 10px 3px;color: #fff;height: 20px;vertical-align: middle;font-family:"ngB" !important;cursor: pointer;}
+#file-input {position: absolute;top: -9999px;}
+.file-container{margin: 5px}
 
 /* popup 관련 */
 .popT .uptr06 input{width: auto;}
