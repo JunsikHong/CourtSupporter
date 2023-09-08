@@ -1,31 +1,29 @@
-.usermypage-applicationlist {
+.adminmypage-evaluationlist {
 	display: flex;
 	justify-content: center;
 	margin-top: 150px;
 }
 
-.usermypage-applicationlist-wrap {
+.adminmypage-evaluationlist-wrap {
 	width: 1280px;
 	position: relative;
-	margin-bottom: 150px;
 }
 
-.myinfo-applicationlist-wrap {
-	margin-left: 250px;
-	
-}
-
-.myinfo-applicationlist {
+.user-applicationlist {
 	border-bottom: 3px solid black;
 }
 
-.myinfo-applicationlist h3 {
+.user-applicationlist-wrap {
+	margin-left: 250px;
+}
+
+.user-applicationlist h3 {
 	font-size: 25px;
 	font-weight: 550;
 	padding-bottom: 15px;
 }
 
-.myinfo-applicationlist-title {
+.user-applicationlist-title {
 	margin: 15px 0;
 }
 
@@ -151,11 +149,4 @@ input[type='text'].datepicker {
 }
 .sts-content {
 	line-height: 30px;
-}
-
-.no_document_img {
-	display: block;
-	padding-top: 50px;
-	margin: 0 auto;
-	width: 200px;
 }

@@ -17,8 +17,8 @@ public class TB_006VO {
 	private String edctn_school_name;
 	private String edctn_major;
 	private String edctn_degree;
-	private LocalDateTime edctn_admsn_date;
-	private LocalDateTime edctn_grdtn_date;
+	private String edctn_admsn_date;
+	private String edctn_grdtn_date;
 	private String edctn_final_yn;
 	private Integer aplcn_dtls_proper_num;
 	private String user_id;

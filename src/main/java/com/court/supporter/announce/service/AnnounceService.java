@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import com.court.supporter.command.TB_002VO;
 import com.court.supporter.util.Criteria;

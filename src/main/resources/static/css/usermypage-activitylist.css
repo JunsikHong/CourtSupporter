@@ -134,8 +134,7 @@
 }
 
 .board_search_date {
-	margin-left: 100px;
-	float: left;
+	margin-bottom: 20px;
 }
 
 .board_search input,
@@ -169,13 +168,19 @@
 }
 
 input[type='text'].datepicker {
-	width: 100px;
+	width: 120px;
 	background: url('/img/calander.png');
 	background-repeat: no-repeat;
-	background-position-x: 75px;
+	background-position-x: 90px;
 	background-position-y: 5px;
 }
 
 .date-content {
+	line-height: 30px;
+}
+
+.board_search_sts {
+	float: right;
+	margin-right: 20px;
 	line-height: 30px;
 }

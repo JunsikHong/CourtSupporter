@@ -3,16 +3,16 @@
 <th:block th:fragment="setContent(content)">
 
 
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>재판조력자선발</title>
-      <link rel="stylesheet" th:href="@{/css/reset.css}">
-      <link rel="stylesheet" th:href="@{/css/head.css}">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-      <link rel="stylesheet" th:href="@{/css/page.css}">
-   </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>재판조력자선발</title>
+		<link rel="stylesheet" th:href="@{/css/reset.css}">
+		<link rel="stylesheet" th:href="@{/css/head.css}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+			integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+		<link rel="stylesheet" th:href="@{/css/page.css}">
+	</head>
 
 
 	<body>
@@ -36,20 +36,26 @@
 					<!--메인메뉴-->
 					<div class="menu-wrap">
 						<ul class="menus">
-							<li class="menu01">
-								<span class="">조력자등재신청</span>
-							</li>
-							<li class="menu02">
-								<span class="">조력자신청안내</span>
-							</li>
+							<a th:href="@{/application/applicationAgree}">
+								<li class="menu01">
+									<span class="">조력자등재신청</span>
+								</li>
+							</a>
+							<a th:href="@{/}">
+								<li class="menu02">
+									<span class="">조력자신청안내</span>
+								</li>
+							</a>
 							<a th:href="@{/usermypage/usermypage}">
 								<li class="menu03">
 									<span class="">My Page</span>
 								</li>
 							</a>
-							<li class="menu04">
-								<span class="">공지사항</span>
-							</li>
+							<a th:href="@{/announce/announceList}">
+								<li class="menu04">
+									<span class="">공지사항</span>
+								</li>
+							</a>
 						</ul>
 					</div>
 				</div>
@@ -110,6 +116,18 @@
 		</footer>
 
 	</body>
+	<script>
+		function handleScroll() {
+			var scrollY = window.scrollY || window.pageYOffset;
+			var head_menu_wrap = document.querySelector(".header-menu-wrap");
+			if(scrollY >= 20) {
+				head_menu_wrap.style.top = "0px";
+			} else {
+				head_menu_wrap.style.top = "60px";
+			}
+		}
+		window.addEventListener("scroll", handleScroll);
+	</script>
 </th:block>
 
 </html>
