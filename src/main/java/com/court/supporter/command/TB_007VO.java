@@ -1,3 +1,4 @@
+
 package com.court.supporter.command;
 
 import lombok.AllArgsConstructor;
@@ -24,5 +25,5 @@ public class TB_007VO {
 	private Integer aplcn_dtls_proper_num;
 	private String user_id;
 	
-	
 }
+

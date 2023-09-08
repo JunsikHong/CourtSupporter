@@ -17,7 +17,8 @@
   
   <!-- 기본 정보 - 조력자 분류 코드, 조력자 추가 정보, 희망 법원 등록 -->
   <insert id="detailRegist" parameterType="TB_005VO">
-  	insert into TB_005(trial_fcltt_proper_num,
+  	insert into TB_005(aplcn_dtls_proper_num,
+  					   trial_fcltt_proper_num,
   					   ligtn_case_carer_yn,
 					   ligtn_case_carer_etc,
 		               insrn_indst_carer_yn,
@@ -26,6 +27,7 @@
 		               criminal_penalty_carer_etc,
 		               court_proper_num)
 	values(
+		   #{aplcn_dtls_proper_num},
 		   #{trial_fcltt_proper_num},
 		   #{ligtn_case_carer_yn},
 		   #{ligtn_case_carer_etc},

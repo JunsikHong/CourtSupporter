@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.court.supporter.adminmypage.service.AdminMypageMapper">
+
+	<select id="adminmypage_authcheck">
+		select *
+		from TB_018
+		where member_id = #{member_id}
+	</select>
+
+	<select id="adminmypage_juris_getapplicationtotal">
+		select count(*) as total
+		from TB_005 as t5
+		left join TB_002 as t2
+		on t5.announce_proper_num = t2.announce_proper_num
+		where aplicn_dtls_sts = 'examination'
+		<if test="announce_title != '' and announce_title != null">
+			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+		</if>
+		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+		</if>
+	</select>
+
+	<select id="adminmypage_juris_getapplicationlist">
+		select *,
+		CONVERT(t5.aplicn_dtls_date, CHAR) AS aplicn_dtls_date_as_varchar
+		from TB_005 as t5
+		left join TB_002 as t2
+		on t5.announce_proper_num = t2.announce_proper_num
+		where aplicn_dtls_sts = 'examination'
+		<if test="announce_title != '' and announce_title != null">
+			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+		</if>
+		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+		</if>
+	</select>
+
+	<select id="adminmypage_court_getapplicationtotal">
+		select count(*) as total
+		from TB_005 as t5
+		left join TB_002 as t2
+		on t5.announce_proper_num = t2.announce_proper_num
+		where aplicn_dtls_sts = 'pass'
+		<if test="announce_title != '' and announce_title != null">
+			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+		</if>
+		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+		</if>
+	</select>
+
+	<select id="adminmypage_court_getapplicationlist">
+		select *,
+		CONVERT(t5.aplicn_dtls_date, CHAR) AS aplicn_dtls_date_as_varchar
+		from TB_005 as t5
+		left join TB_002 as t2
+		on t5.announce_proper_num = t2.announce_proper_num
+		where aplicn_dtls_sts = 'pass'
+		<if test="announce_title != '' and announce_title != null">
+			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+		</if>
+		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+		</if>
+	</select>
+
+	<select id="adminmypage_admin_getapplicationtotal">
+		select count(*) as total
+		from TB_005 as t5
+		left join TB_002 as t2
+		on t5.announce_proper_num = t2.announce_proper_num
+		where 1 = 1
+		<if test="announce_title != '' and announce_title != null">
+			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+		</if>
+		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+		</if>
+	</select>
+
+	<select id="adminmypage_admin_getapplicationlist">
+		select *,
+		CONVERT(t5.aplicn_dtls_date, CHAR) AS aplicn_dtls_date_as_varchar
+		from TB_005 as t5
+		left join TB_002 as t2
+		on t5.announce_proper_num = t2.announce_proper_num
+		where 1 = 1
+		<if test="announce_title != '' and announce_title != null">
+			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+		</if>
+		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+		</if>
+	</select>
+
+</mapper>

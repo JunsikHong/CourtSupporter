@@ -28,4 +28,16 @@ public class TB_002VO {
 	private Integer admin_proper_num;	//관리자 계정 고유번호
 	private Integer trial_fcltt_proper_num; //재판조력자 고유번호
 	
+	private String announceStatus; //모집여부
+		
+	private String savepath;
+	private String originName;
+	private String filename;
+	private int prevNum;
+	private int nextNum;
+
+	private String previousPost;
+	private String nextPost;
+	
+	
 }

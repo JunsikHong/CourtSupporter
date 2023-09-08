@@ -3,14 +3,13 @@
    
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet"> 
   
   <link rel="stylesheet" th:href="@{/css/announceList.css}">
   <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
   <link rel="stylesheet" th:href="@{/css/page.css}">
+  
 <th:block th:replace="~{./include/layout :: setContent(~{:: .announceList})}">
-
 
   <div class="announceList"> <!-- 가장 큰 박스 -->
     
@@ -30,12 +29,28 @@
         	 <input type="hidden" name="page" value="1">
 			 <input type="hidden" name="amount" th:value="${pageVO.amount}"> 
                  
+             <div class="searchWrap">
+				  
 	          <div class="searchTxt" > <!-- th:value="${pageVO.cri.announce_title}"  name="announceSearch"-->
-	             <input type="text" class="search" name="announce_title" placeholder="검색어 입력" th:value="${pageVO.cri.announce_title}"> <!-- keyword th:value="${pageVO.cri.announceContent}"-->
+		         <div class="searchdateselect">
+		          <label for="startDate" >모집기간 선택</label>				 
+				 </div>
+	         
+	          	 <input type="date" class="searchStartDate" name="announce_start_date" id="startDate">
+	          	 <!--<label for="endDate">모집종료일</label>-->
+	          	  <label for="startDate" >   ~  </label>	
+	        	 <input type="date" class="searchEndDate" name="announce_end_date" id="endDate">
+	         	 <select id="searchOption">
+					 <option value="announceAll">전체</option>
+					 <option value="announce_title">제목</option>
+					 <option value="announce_content">내용</option>
+				 </select> 
+				 
+	             <input type="text" class="search" name="keyword" placeholder="검색어 입력" > <!-- keyword   ${pageVO.cri.announce_title}   th:value="${pageVO.cri.announceContent}"-->
 	             <!-- 검색 버튼 -->
-	             <button type="submit" id="searchBtn" onclick="getSearch()"  class="searchBtn">검색</button>        
+	             <button type="submit" id="searchBtn"  class="searchBtn">검색</button>        
 	          </div>      
-      
+    		</div>    
 	      
 	          <!-- 게시판 -->
 	          <div class="announceBoard">
@@ -49,9 +64,11 @@
 					 	 <input type="checkbox" class="allCheck">
 					  </th>-->
 	                  <th>번호</th>
+	                  <th>모집여부</th>
 	                  <th>제목</th>
-	                  <th>작성일</th>
-	                  <th>조회</th>
+	                  <th class="regdate">작성일</th>
+	                  <!--<th>공고 모집일</th>-->
+	                  <!--<th>조회</th>-->
 	                </tr>
 	      
 	                <tbody>  <!-- 게시판 글 목록-->
@@ -63,8 +80,18 @@
 							<span th:text="${vo.announce_proper_num}"></span> <!--[[${vo.announce_proper_num}]]-->
 						</td>
 						
+						<td class="hirebox">
+							<span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>
+						</td>
+						
 	                    <td class="contentTitle"> <!--[[${vo.announce_title}]]-->
-	                      <a th:href="@{announceDetail(announce_proper_num=${vo.announce_proper_num})}"  th:text="${vo.announce_title}"></a>
+	                    	<!--<div class="hirebox">-->
+							 <!-- <span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>-->
+							<!--</div>-->
+							<!--<div class="titlebox">-->
+		                      <a th:href="@{announceDetail(announce_proper_num=${vo.announce_proper_num})}"  th:text="${vo.announce_title}"></a>	
+							<!--</div>-->
+	                    	
 	                    </td>
 	                    
 	                    <td class="contentDate">
@@ -72,7 +99,7 @@
 							<!--${#temporals.format(vo.announce_first_date, 'yyyy-MM-dd')}-->
 						</td>
 						
-	                    <td class="contentViews"><span id="viewCount">0</span></td>
+	                    <!--<td class="contentViews"><span id="viewCount">0</span></td>-->
 	                  </tr>
 	               
 	                </tbody>
@@ -89,7 +116,7 @@
 	     
 	      
 	       	<div class="registBox"> <!--float 쓰면 이동이 안 됨-->        
-	          <button class="registBtn">
+	          <button class="registBtn" id="registBtn">
 	            <a href="/announce/announceReg">글 작성</a>
 	          </button>       
 	        </div>
@@ -107,13 +134,10 @@
 
 </th:block>
 
+
+
 <script th:inline="javascript"> 
 
-	//데이터 핸들링 - 공고 개수 처리
-//	function handleChange() {	
-//		document.searchForm.amount.value = event.target.value;
-//		document.searchForm.submit();
-//	}
     //검색
     var searchBtn = document.getElementById("searchBtn");
   	searchBtn.onclick = () => {
@@ -121,15 +145,48 @@
 	    document.searchForm.submit();
   	}
 
-
 </script>
 
+<script th:inline="javascript">
 
-<script th:inline="javascript"> //화면에서 선택 삭제 DB에서도 삭제해야함
+	var admin = "admin_proper_num";
+	//var user = "admin";
+	//관리자가 아닐시 버튼 숨김
+	var registBtn = document.getElementById("registBtn");
+	if (admin_proper_num === "1") {
+	    //관리자일 경우 모든 버튼을 보이게
+	    registBtn.style.display = "block";	    
+	} else {
+	    //관리자 제외 버튼을 숨김
+	    registBtn.style.display = "none";	    
+	}	
+		
+</script>
+
+<script th:inline="javascript">
+
+	var searchOption = document.querySelector("#searchOption");
+	var search = document.querySelector(".search");		
 	
-	//삭제 클릭시 정말 삭제하는지 물어보는 알림창 떠야함
+	document.querySelector("#searchOption").addEventListener("change", function() {
+    var selectValue = this.value; 
+
+    var searchInput = document.querySelector(".search");
+    
+	    if (selectValue === "announce_title") {
+	        searchInput.setAttribute("name", "announce_title");	       
+	    } else if (selectValue === "announce_content") {
+	        searchInput.setAttribute("name", "announce_content");
+	    } else if( selectValue === "announce_start_date") {
+			searchInput.setAttribute("name", "announce_start_date");
+		} else if(selectValue === "announce_end_date") {
+			searchInput.setAttribute("name", "announce_end_date");
+		}
+	});
+
 	
-	
+	//게시판화면에서 체크박스 -> 삭제 클릭시 정말 삭제하는지 물어보는 알림창 떠야함
+	//화면에서 선택 삭제 DB에서도 삭제해야함	
 	/*var chk = document.querySelectorAll('input[class="check"]');
 	var del = document.getElementById("del");
 	del.onclick = function() {

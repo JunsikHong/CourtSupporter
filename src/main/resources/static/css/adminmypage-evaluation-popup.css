@@ -1,0 +1,187 @@
+/******************************************************************/
+/* wrap */
+#popup-wrap {
+	width: 1860px;
+	margin: 0 auto;
+}
+
+/******************************************************************/
+/* announce title */
+.announce-section {
+	height: 80px;
+	margin-top: 30px;
+}
+
+.announce-title {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/******************************************************************/
+/* evaluation-line1 */
+.evaluation-line1 {
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+/******************************************************************/
+/* evaluation target section */
+.evaluation-target-section {
+	float: left;
+}
+
+.evaluation-target-section h3 {
+	margin-bottom: 10px;
+}
+
+.evaluation-target-table {
+	width: 500px;
+	height: 140px;
+	border: 1px solid rgb(221, 221, 221);
+}
+
+.evaluation-target-table td {
+	vertical-align: middle;
+	padding-left: 20px;
+
+}
+
+.evaluation-target-line1,
+.evaluation-target-line2,
+.evaluation-target-line3,
+.evaluation-target-line4 {
+	border: 1px solid rgb(221, 221, 221);
+}
+
+.evaluation-target-line1 td:nth-child(1),
+.evaluation-target-line2 td:nth-child(1),
+.evaluation-target-line3 td:nth-child(1),
+.evaluation-target-line4 td:nth-child(1) {
+	border-right: 1px solid rgb(221, 221, 221);
+}
+
+/******************************************************************/
+/* evaluation file section */
+.evaluation-file-section {
+	float: right;
+}
+
+.evaluation-file-section h3 {
+	margin-bottom: 10px;
+}
+
+.evaluation-file-table1 {
+	width: 1300px;
+}
+
+.evaluation-file-line1 td {
+	vertical-align: middle;
+	text-align: center;
+	border-right: 1px solid white;
+}
+
+.evaluation-file-line1 {
+	height: 35px;
+	position: sticky;
+	top: 0;
+	background-color: rgb(170, 170, 170);
+}
+
+.evaluation-file-line2 {
+	height: 35px;
+	background-color: rgb(228, 228, 228);
+	border-bottom: 1px solid white;
+}
+
+.evaluation-file-line2 td {
+	vertical-align: middle;
+	text-align: center;
+	border-right: 1px solid white;
+}
+
+/******************************************************************/
+/* evaluation section */
+.evaluation-section h3 {
+	margin-bottom: 10px;
+}
+
+
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	height: 500px;
+}
+
+.tg td {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+
+.tg th {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+
+.tg .tg-266k {
+	background-color: rgb(170, 170, 170);
+	border-color: inherit;
+	text-align: left;
+	vertical-align: top
+}
+
+.tg .tg-0pky {
+	border-color: inherit;
+	text-align: left;
+	vertical-align: top
+}
+
+/******************************************************************/
+/* button */
+.btnbox {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.btnbox .btnfb7 {
+	background-color: rgb(11, 38, 110);
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox .btn4d5 {
+	background-color: #4d515b;
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox02 input {
+	width: 129px;
+	box-sizing: border-box;
+}

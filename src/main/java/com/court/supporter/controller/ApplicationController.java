@@ -81,6 +81,7 @@ public class ApplicationController {
 	//학력사항 입력 화면으로 이동
 	@PostMapping("/basicForm")
 	public String education(TB_001VO tb_001vo, TB_005VO tb_005vo, TB_010VO tb_010vo) {
+		tb_005vo.setAplcn_dtls_proper_num(1);
 		//기본 정보 등록
 		applicationService.basicRegist(tb_001vo, tb_005vo, tb_010vo);
 		
