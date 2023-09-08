@@ -13,6 +13,7 @@
    font-size: 25px;
    font-weight: 550;
    padding-bottom: 15px;
+   padding-left: 2px;
    border-bottom: 3px solid #090C5F;     
 }
 
@@ -25,13 +26,14 @@
    font-size: 18px;
    font-weight: 550;
    padding: 10px 0;
+   padding-left: 3px;
 }
 
 .myapplication-title {
    border-bottom: 1px solid #090C5F;/* #777*/
    font-size: 18px;
    font-weight: 550;
-   padding: 10px 0;
+   padding: 10px 0;   
 }
 
 .myinfo-content {
@@ -47,6 +49,9 @@
 
 .myinfo-content li:hover {
    background-color:#FD2B2A; /* rgb(227, 0, 0);*/
+}
+.myinfo-content a:hover {
+   color: white;	
 }
 
 .myapplication-content {

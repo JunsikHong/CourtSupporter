@@ -5,6 +5,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
+  <script th:src="@{/js/announceModify.js}"></script>
+
   <link rel="stylesheet" th:href="@{/css/announceModify.css}">
   <!--<link rel="stylesheet" th:href="@{/css/layout-usermypage-side.css}">-->
 
@@ -24,70 +26,61 @@
           <p>공고 수정</p>
         </div>
 
-        <form action="/modifyForm" name="modifyForm" method="post"> <!-- modifyForm or th:action="@{/updateAnnounce}"-->
-
+        <form action="announceModifyForm" name="modifyForm" method="post" enctype="multipart/form-data"> <!-- modifyForm or th:action="@{/updateAnnounce}"-->
+			<input type="hidden" name="announce_proper_num" th:value="${vo.announce_proper_num}"> <!-- 실제 값을 여기에 넣어야 합니다 -->
+			
           <div class="modifyBox">
 
             <table>
               <tbody class="board">
-                <tr >
-                  <th><i class="required-img"><span class="hidden">필수입력</span></i> 제목</th>
-                  <td><input type="text" class="announceTit" name="announceTitle" th:value="${vo.announce_title}"></td>
+                <tr id="topborder">
+                  <th id="topborder"><i class="required-img"><span class="hidden">필수입력</span></i> 제목</th>
+                  <td id="topborder"><input type="text" class="announceTit" name="announce_title" th:value="${vo.announce_title}"></td>
                 </tr>
                 
                 <tr>
-                  <th>모집 시작일</th>
-                  <td>
-                      <input type="date" class="datepicker1" name="announceStartDate"  placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" >
+                  <th id="border"><i class="required-img"><span class="hidden">필수입력</span></i> 모집 시작일</th>
+                  <td id="border">
+                      <input type="date" class="datepicker1" name="announce_start_date"  placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" th:value="${vo.announce_start_date}">
                   </td>
                 </tr>
 
                 <tr>
-                  <th>모집 종료일</th>
-                  <td>
-                      <input type="date" class="datepicker2" name="announceEndDate"  placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" >
+                  <th id="border"><i class="required-img"><span class="hidden">필수입력</span></i> 모집 종료일</th>
+                  <td id="border">
+                      <input type="date" class="datepicker2" name="announce_end_date"  placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}" th:value="${vo.announce_end_date}" >
                   </td>
                 </tr>
 
-                <tr>
-                  <th class="file">첨부파일</th>
-                  <td><input type="file" class="announceFile" name="announceFileName" ></td>                               
-                </tr>
-
-              <!--  <tr class="fileBtnBox">
-                  <th></th>
+                 <tr>
+                  <th class="announceFile">첨부파일</th>
                   <td>
-                    <button type="button" class="fileBtn">파일찾기</button>
-                    <button type="button" class="add">+</button>
-                    <button type="button" class="delete">-</button>
-                  </td>      
-                </tr>-->
-                
-
-                 <tr class="fileInfo">
+					  <div class="file" id="fileList">
+						  <a href="#this" onclick="addFile()" class="add" >파일추가</a>
+						  
+						  <div class="file">
+							  <input type="file" name="announce_file" class="file"> <!-- class="announceFile" id="file"-->
+							  <a href="#this" name="file-delete" class="delete">삭제</a>
+						  </div>	
+					  </div>
+                  </td><!--announceFile-->                               
+                </tr>     
+                    
+				<tr class="fileInfo" id="border">
                   <th class="limit"></th>              
-                  <td class="fl">첨부 파일 용량 제한 : 20MB</td>
-                </tr>
-
-                <tr class="fileInfo">
-                  <th class="limit"></th>              
-                  <td>첨부 용량 초과시 작성내용이 초기화될 수 있으니 주의바랍니다.</td>              
-                </tr>
-
-                <tr class="fileInfo">
-                  <th class="con"></th>              
-                  <td>첨부 가능한 파일 확장자명 : hwp, doc, docx, ppt, pptx, xls, xlsx, txt, csv, jpg, jpeg, gif, png, bmp, pdf</td>               
-                </tr>
+                  <td class="fl">
+					  <p>첨부 파일 용량 제한 : 20MB</p>
+					  <p>첨부 가능한 파일 확장자명 : pdf</p> <!--hwp, doc, docx, ppt, pptx, xls, xlsx, txt, csv, jpg, jpeg, gif, png, bmp, -->
+					  <p>첨부 용량 초과시 작성내용이 초기화될 수 있으니 주의바랍니다.</p>
+				  </td>
+                </tr>            
               
-                <tr class="announceContent">    
+                <tr class="announceContent" id="border">    
                   <th class="con"><i class="required-img"><span class="hidden">필수입력</span></i> 내용</th>          
                   <td>
                     <div>
-                      <textarea name="announceContent" id="contentDetail" cols="30" rows="10" ></textarea>
-                    </div>
-                    <!-- cols="30" rows="10" -->              
-                    <!-- 서울가정법원 공무직 근로자(시설관리원)
-                    채용시험 시행계획 공고 -->
+                      <textarea name="announce_content" id="contentDetail" cols="30" rows="10" th:value="${vo.announce_content}">[[${vo.announce_content}]]</textarea>
+                    </div>              
                   </td>
                 </tr>
 
@@ -95,9 +88,9 @@
             </table>
                   
             <div class="btnBox">      
-                <input type="submit" class="registBtn btn" value="수정">
-                 <button class="listBtn btn">
-		            <a href="announceList">취소</a>
+                <input type="submit" class="modifyBtn btn" id="modifyBtn" value="수정">
+                 <button class="listBtn btn" id="listBtn">
+		            <a th:href="@{/announce/announceList}">취소</a>
 		        </button>       
                <!-- <input type="button" class="listBtn btn" value="취소">     -->     
             </div>
@@ -116,22 +109,33 @@
 
 </th:block>
 
-<script th:inline="javascript">
+<script th:inline="javascript"> //event.preventDefault(); 
 
-  function check() {
-    if(announceForm.announceTitle.value == ""){
+  let modifyBtn = document.getElementById("modifyBtn");  
+  modifyBtn.onclick = () => {
+	  
+    if(modifyForm.announce_title.value == ""){
       alert("제목을 입력하세요.");
-      announceForm.announceTitle.focus();
+      modifyForm.announce_title.focus();    
       return false;      
-    } else if(announceForm.announceContent.value == "") {
+	} else if(modifyForm.announce_start_date.value == "") {
+      alert("모집 시작일을 선택하세요.");
+      modifyForm.announce_start_date.focus();      
+      return false;
+    } else if(modifyForm.announce_end_date.value == "") {
+      alert("모집 종료일을 선택하세요.");
+      modifyForm.announce_end_date.focus();      
+      return false;
+    } else if(modifyForm.announce_content.value == "") {
       alert("내용을 입력하세요.");
-      announceForm.announceContent.focus();
+      modifyForm.announce_content.focus();      
       return false;
     } else {
-      alert("정상적으로 수정되었습니다.");
+      alert("정상적으로 등록되었습니다.");     
       return true;
     }
-  } 
+  }    
+  
 </script>
 
 <!-- jQuery -->
@@ -141,33 +145,44 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script th:inline="javascript"> 
-     // 화면에 표시할 날짜 형식으로 변환
-        var formattedAnnounceStartDate = "${formattedAnnounceStartDate}";
-        var dateParts = formattedAnnounceStartDate.split("-");
-        var formattedStartDate = dateParts[0] + "-" + dateParts[1] + "-" + dateParts[2];
-        document.querySelector(".datepicker1").value = formattedStartDate;
- 
+    //작성취소 - 목록으로 돌아가기
+	let listBtn = document.getElementById("listBtn");
+	listBtn.onclick = () => {
+		event.preventDefault();
+		window.location.href = "/announce/announceList";
+	}
+        
 </script>
 <script th:inline="javascript"> 
 	
-	// 수정 기능
-	let modifyBtn = document.getElementById("modifyBtn");
-	modifyBtn.onclick = () => {
-		//이벤트가 a에 걸려있다 -> 기본 이벤트를 막아야 한다
-		event.preventDefault();
+	var contentDetail = document.getElementById("contentDetail");
+	contentDetail.innerHTML = contentDetail.innerHTML.replace(/\n/g, "<br>");
+
+	//파일 첨부 및 삭제
+	$(document).ready(function() {
+		$("a[name='file-delete']").on("click", function(e) {
+			e.preventDefault();
+			deleteFile($(this));
+		})
+	});
+		  
+	function addFile(){ // id='fileList'
 		
-		document.actionForm.action = "modifyForm"; //action변경 
-		document.actionForm.submit();
+		 var str = "<div class='file' id='fileList'>";
+		    str += "<div class='file' style='margin-right: 5px;'>";
+		    str += "<input type='file' name='announce_file' class='file'>";
+		    str += "<a href='#this' name='file-delete' class='delete'>삭제</a>";
+		    str += "</div></div>";
+		
+		$("#fileList").append(str);
+		$("a[name='file-delete']").on("click", function(e) {
+			e.preventDefault();
+			deleteFile($(this));
+		});
 	}
 	
-	// 삭제 기능
-	let deleteBtn = document.getElementById("deleteBtn");
-	deleteBtn.onclick = () => {
-		//이벤트가 a에 걸려있다 -> 기본 이벤트를 막아야 한다
-		event.preventDefault();
-		
-		document.actionForm.action = "deleteForm"; //action변경 
-		document.actionForm.submit();
+	function deleteFile(obj) {
+		obj.parent().remove();		
 	}
 </script>
 

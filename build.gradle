@@ -49,6 +49,7 @@ dependencies {
 	
 	//aws
 	implementation 'software.amazon.awssdk:aws-sdk-java:2.20.43'
+
 }
 
 tasks.named('test') {
