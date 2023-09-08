@@ -19,23 +19,32 @@
 					<table class="annouonceTable">
 						<tbody class="board">
 							<tr> <!-- class="boardTitle" -->
-								<th class="title">제목</th>
-								<td colspan="2">2023년 김모씨 납치사건</td>
+								<th class="title">재판번호</th>
+								<td colspan="2">[[${result.judgement_num}]]</td>
 							</tr>
 
 							<tr>
-								<th class="date">활동날짜</th>
-								<td colspan="2">2023-08-22</td>
+								<th class="date">선정일</th>
+								<td colspan="2"><span th:text="${#strings.substring(result.chosen_date, 0, 10)}"></span>
+								</td>
 							</tr>
 
 							<tr>
-								<th class="viewCount">재판번호</th>
-								<td colspan="2">11-23455</td>
+								<th class="viewCount">출석일자</th>
+								<td colspan="2"><span
+										th:text="${#strings.substring(result.attendance_date, 0, 10)}"></span></td>
 							</tr>
 
 							<tr>
-								<th class="file">첨부파일</th>
-								<td>채용공고.hwp</td>
+								<th class="file">완료여부</th>
+								<td>
+									<th:block th:if="${result.act_complete_yn == 'Y'}">
+										완료
+									</th:block>
+									<th:block th:if="${result.act_complete_yn == 'N'}">
+										미완료
+									</th:block>
+								</td>
 							</tr>
 
 							<tr class="announceContent">
@@ -51,19 +60,6 @@
 							</tr>
 						</tbody>
 
-					</table>
-
-					<table class="nextTable">
-						<tbody>
-							<tr>
-								<td class="nextContent">다음글</td>
-								<td colspan="3">
-									<a class="nextTitle" href="#">
-										서울가정법원 공무직 근로자(환경관리원) 채용시험 공고
-									</a>
-								</td>
-							</tr>
-						</tbody>
 					</table>
 
 					<div class="btnbox btnbox02">
