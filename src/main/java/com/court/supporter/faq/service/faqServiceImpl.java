@@ -35,9 +35,9 @@ public class faqServiceImpl implements faqService{
 	}
 
 	@Override
-	public int faqRegist(TB_004VO vo, List<MultipartFile> list) {
+	public int faqRegist(TB_004VO vo) {
 		
-		int result = faqMapper.faqRegist(vo, list);
+		int result = faqMapper.faqRegist(vo);
 		
 		return result;
 	}
@@ -49,10 +49,17 @@ public class faqServiceImpl implements faqService{
 	}
 
 	@Override
+	public int faqUpdate(TB_004VO vo) {
+		// TODO Auto-generated method stub
+		return faqMapper.faqUpdate(vo);
+	}
+	
+	@Override
 	public void faqDelete(int faq_proper_num) {
 		faqMapper.faqDelete(faq_proper_num);
 		
 	}
+
 
 	
 

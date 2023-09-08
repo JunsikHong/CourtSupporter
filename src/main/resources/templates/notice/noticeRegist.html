@@ -1,15 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/noticeDetail.css}">
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.noticeRegistWrap})}">
 
 
 	<!--contents-->
-	<div class="noticeRegistWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+	<div class="noticeRegistWrap  mainWrap">
 
 		<div class="contentsbox" id="content">
-			<div class="contentsIn">
+			<div> <!--sidebar-->
+				<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+			</div>
+			<div id="contentsIn">
 				<div id="contentstitle">
 					<span class="noticetitle">공지사항</span>
 					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 공지사항</span>
@@ -23,9 +27,7 @@
 							<table>
 								<colgroup>
 									<col style="width: 20%;">
-									<col style="width: 20%;">
-									<col style="width: 20%;">
-									<col style="width: 20%;">
+									<col style="width: 80%;">
 								</colgroup>
 								<tbody>
 
@@ -36,9 +38,7 @@
 
 									<tr class="firstTh">
 										<th scope="row">등록일</th>
-										<td scope="left" read th:text="${date}"></td>
-										<th scope="row">조회수</th>
-										<td scope="left">0</th>
+										<td scope="left">등록되는 시간을 기준으로 합니다</td>
 									</tr>
 
 									<!-- 파일 첨부 -->
@@ -80,7 +80,7 @@
 									<tr>
 										<td colspan="4" class="contents left" style="text-align: left;">
 											<p class="textArea">
-												<textarea name="notice_content" id="noticeRegist" cols="30" rows="10"
+												<textarea name="noticecontent" id="noticeRegist" cols="30" rows="10"
 													style="width: 99%; height: 200px;"></textarea>
 											</p>
 										</td>
@@ -94,7 +94,7 @@
 
 						<div class="btnbox btnbox02">
 							<input type="submit" class="btnfb7" value="등록">
-							<a href="#none" class="btn4d5" onclick="javascript:window.close();">취소</a>
+							<a href="noticeList" class="btn4d5" onclick="">취소</a>
 
 						</div>
 
@@ -110,5 +110,31 @@
 
 
 </th:block>
+<script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        // TextArea에서 텍스트를 가져옵니다.
+        const textarea = document.getElementById('noticeRegist');
+        const text = textarea.value;
+        
+        // 줄 바꿈 문자를 br 태그로 변환합니다.
+        const textWithHtmlLineBreaks = text.replace(/\n/g, '<br>');
+        
+        // 변환된 텍스트를 hidden input에 저장하거나 서버로 직접 전송할 수 있습니다.
+        // 이 예제에서는 hidden input에 저장합니다.
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'notice_content';
+        hiddenInput.value = textWithHtmlLineBreaks;
+        
+        // Form에 hidden input을 추가합니다.
+        this.appendChild(hiddenInput);
+        
+        // Form을 서버로 제출합니다.
+        this.submit();
+    });
+</script>
+
 
 </html>
