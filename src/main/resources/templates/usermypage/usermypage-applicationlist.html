@@ -26,11 +26,11 @@
 						<div class="board_search">
 							<div class="board_search_date">
 								<span class="date-content">기간별 검색</span>
-								<input type="text" class="datepicker" name="aplicn_dtls_startdate" readonly
+								<input type="text" class="datepicker datepicker1" name="aplicn_dtls_startdate" readonly
 									placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"
 									th:value="${pageVO.cri.aplicn_dtls_startdate}">
 								<span class="date-content">부터</span>
-								<input type="text" class="datepicker" name="aplicn_dtls_enddate" readonly
+								<input type="text" class="datepicker datepicker2" name="aplicn_dtls_enddate" readonly
 									placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"
 									th:value="${pageVO.cri.aplicn_dtls_enddate}">
 								<span class="date-content">까지</span>
@@ -121,19 +121,22 @@
 								</td>
 								<td></td>
 								<td>
-									<th:block th:if="${vo.aplicn_dtls_sts == 'ING'}">
+									<th:block th:if="${vo.aplicn_dtls_sts == '01'}">
 										신청중
 									</th:block>
-									<th:block th:if="${vo.aplicn_dtls_sts == 'examination'}">
+									<th:block th:if="${vo.aplicn_dtls_sts == '02'}">
 										심사중
 									</th:block>
-									<th:block th:if="${vo.aplicn_dtls_sts == 'companion'}">
+									<th:block th:if="${vo.aplicn_dtls_sts == '03'}">
 										서류 반려
 									</th:block>
-									<th:block th:if="${vo.aplicn_dtls_sts == 'REFERRAL'}">
+									<th:block th:if="${vo.aplicn_dtls_sts == '04'}">
+										1차 합격
+									</th:block>
+									<th:block th:if="${vo.aplicn_dtls_sts == '05'}">
 										불합격
 									</th:block>
-									<th:block th:if="${vo.aplicn_dtls_sts == 'ACCEPT'}">
+									<th:block th:if="${vo.aplicn_dtls_sts == '06'}">
 										합격
 									</th:block>
 								</td>
@@ -148,5 +151,22 @@
 		</div>
 	</div>
 </th:block>
+<!-- jQuery UI (Datepicker가 포함된 전체 jQuery UI 라이브러리) -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script th:inline="javascript">
+	// jQuery UI Datepicker를 활성화
+	$(function () {
+		$(".datepicker").datepicker({
+			dateFormat: 'yy-mm-dd', // 날짜 형식 지정 (yyyy-mm-dd)
+			onSelect: function (dateText) {
+				// 날짜가 선택되면 선택된 날짜를 해당 입력 필드에 삽입
+				$(this).val(dateText);
+			}
+		});
+	});
+</script>
+
 
 </html>

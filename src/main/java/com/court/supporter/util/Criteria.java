@@ -10,15 +10,29 @@ public class Criteria {
 	private int page; //조회하는 페이지
 	private int amount; //데이터 개수
 	
-
+	//공고
 	private String announce_title;
 	private String announce_content;
 	private String announce_start_date;
 	private String announce_end_date;
+	
+	//신청
 	private String aplicn_dtls_sts;
 	private String aplicn_dtls_startdate;
 	private String aplicn_dtls_enddate;
+	
+	//활동
+	private String judgement_num;
+	private String act_complete_yn;
+	private String chosen_startdate;
+	private String chosen_enddate;
+	private String attendance_startdate;
+	private String attendance_enddate;
+	
+	//FAQ
 	private String searchFaq;
+	
+	//공지
 	private String searchNotice;
 
 	

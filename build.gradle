@@ -50,6 +50,10 @@ dependencies {
 	
 	//jwt lib
 	implementation 'com.auth0:java-jwt:4.4.0'
+	
+	//aws
+	implementation 'software.amazon.awssdk:aws-sdk-java:2.20.43'
+
 }
 
 tasks.named('test') {

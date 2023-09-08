@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/application.css}">
 <link rel="stylesheet" th:href="@{/css/applicationStateBar.css}">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script th:src="@{/js/applicationEducation.js}"></script>
 <th:block th:replace="~{./include/layout :: setContent(~{::.education})}">
 	<div class="education">
 		<div class="education-wrap">
@@ -43,7 +45,7 @@
 			</div>
 
 			<div id="pop_wrap">
-				<form action="educationForm" name="educationForm" method="post" enctype="multipart/form-data">
+				<form action="educationForm" id="educationForm" name="educationForm" method="post" enctype="multipart/form-data">
 					<div class="pop_contents">
 						<table class="board_table topT">
 							<colgroup>
@@ -60,7 +62,7 @@
 								<div class="board_h">
 									<div class="board_total">*학력 사항</div>
 									<div class="board_search">
-										<a href="#" class="search_btn" onclick="popUp()">학력사항 입력</a>
+										<a href="#" class="popup_btn" onclick="popUp()">학력사항 입력</a>
 									</div>
 								</div>
 
@@ -74,23 +76,24 @@
 									<th>최종학력</th>
 								</tr>
 							</thead>
-							<tbody>
-
-								<tr>
-									<td style="vertical-align: middle;">XX대학교</td>
-									<td style="vertical-align: middle;">컴퓨터 공학</td>
-									<td style="vertical-align: middle;">대학교 졸업</td>
-									<td style="vertical-align: middle;">2023.01</td>
-									<td style="vertical-align: middle;">2023.08</td>
+							<tbody id="educationList">
+								<input type="hidden" id="final_education_chk" name="final_education_chk">
+								<tr th:each="vo : ${list}" class="educationListRow">
+									<input type="hidden" id="edctn_dtls_proper_num" name="edctn_dtls_proper_num" th:value="${vo.edctn_dtls_proper_num}">
+									<td style="vertical-align: middle;">[[${vo.edctn_school_name}]]</td>
+									<td style="vertical-align: middle;">[[${vo.edctn_major}]]</td>
+									<td style="vertical-align: middle;">[[${vo.edctn_degree}]]</td>
+									<td style="vertical-align: middle;">[[${vo.edctn_admsn_date}]]</td>
+									<td style="vertical-align: middle;">[[${vo.edctn_grdtn_date}]]</td>
 									<td style="vertical-align: middle;">
-										<input type="button" value="수정" style="border: 1px solid #888888;" />
-										<input type="button" value="삭제" style="border: 1px solid #888888;" />
+										<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />
+										<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />
 									</td>
 									<td style="text-align:center; vertical-align: middle;" class="toptd">
-										<input type="radio" name="chk_info" value="">
+										<input type="radio" name="edctn_final_yn" value="" th:checked="${vo.edctn_final_yn == 'Y'}">
 									</td>
 								</tr>
-
+								
 							</tbody>
 						</table>
 					</div>
@@ -103,17 +106,24 @@
 							</colgroup>
 							<tbody>
 								<tr class="uptr02">
-									<th class="">파일 첨부</th>
-									<td class="">
-										<input type="file" style="border: none;">
+									<th>파일 첨부</th>
+									<td id="fileAddList">
+										<div class="file-container">
+										  <label for="file-input" class="file-label">
+										    <input type="file" id="file-input" name="file" style="display: none;">
+										    <span class="fileAddBtn">파일선택</span>
+										  </label>
+										  <input class="upload-name" value="" disabled="disabled" style="border: none;">
+										  <input type="button" class="filePlusBtn" value="파일추가" style="color: #fff; width: 150px;">
+										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="btnbox btnbox02">
-						<input type="button" class="btn4d5" value="이전" onclick="history.back()" />
-						<input type="submit" class="btnfb7" value="다음">
+						<input type="button" class="btn4d5" value="이전" onclick="location.href = 'applicationBasic'" />
+						<input type="submit" id="educationSubmit" class="btnfb7" value="다음">
 					</div>
 				</form>
 			</div>
@@ -124,24 +134,5 @@
 	</div>
 
 </th:block>
-
-<script th:inline="javascript">
-
-	function popUp() {
-		var popupWidth = 700;
-		var popupHeight = 500;
-		// window.screen.width  : 윈도우의 가로 크기
-		// window.screen.height : 윈도우의 세로 크기
-		var popupX = Math.round((window.screen.width / 2) - (popupWidth / 2));
-		var popupY = Math.round((window.screen.height / 2) - (popupHeight / 2));
-
-		// 윈도우 팝업창의 스타일 지정
-		var featureWindow = "width=" + popupWidth + ", height=" + popupHeight
-			+ ", left=" + popupX + ", top=" + popupY;
-		// open("경로", "이름", "옵션")
-		window.open("applicationEducationPopup", "학력사항 입력", featureWindow);
-	}
-
-</script>
 
 </html>

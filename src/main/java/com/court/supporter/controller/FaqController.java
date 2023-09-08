@@ -1,5 +1,6 @@
 package com.court.supporter.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class FaqController {
 			int total = faqService.getTotal(writer, cri);
 			PageVO pageVO = new PageVO(cri, total);
 
+			model.addAttribute("total", total);
 			model.addAttribute("list", list);
 			model.addAttribute("pageVO", pageVO);
 
@@ -51,7 +53,12 @@ public class FaqController {
 
 		// faq 글 내용
 		@GetMapping("/faqDetail")
-		public String faqDetail() {
+		public String faqDetail(@RequestParam("faq_proper_num") int faq_proper_num,
+								Model model) {
+			
+			TB_004VO vo = faqService.faqDetail(faq_proper_num);
+			
+			model.addAttribute("vo",vo);
 
 			return "faq/faqDetail";
 		}
@@ -59,30 +66,19 @@ public class FaqController {
 		// faq 작성/등록 페이지
 		@GetMapping("/faqRegist")
 		public String faqRegist() {
-
+			
+	
 			return "faq/faqRegist";
 		}
 
 		// faq 등록요청
 		@PostMapping("/faqRegistForm")
-		public String faqRegistForm(TB_004VO vo, RedirectAttributes ra, 
-									@RequestParam("file") List<MultipartFile> list) {
+		public String faqRegistForm(TB_004VO vo, RedirectAttributes ra) {
 
 			System.out.println(vo.toString());
-			System.out.println(ra.toString());
 
-			list = list.stream().filter(t -> t.isEmpty() == false).toList();
 
-			for (MultipartFile file : list) {
-				if (file.getContentType().contains("") == false) {
-
-					ra.addFlashAttribute("", "");
-
-					return "redirect:/faq/faqList";
-				}
-			}
-
-			int result = faqService.faqRegist(vo, list);
+			int result = faqService.faqRegist(vo);
 
 			String msg = result == 1 ? "등록되었습니다." : "등록실패";
 
@@ -93,9 +89,39 @@ public class FaqController {
 
 		// faq 수정 페이지
 		@GetMapping("/faqModify")
-		public String faqModify() {
+		public String faqModify(@RequestParam("faq_proper_num") int faq_proper_num,
+								Model model) {
 
+			TB_004VO vo = faqService.faqDetail(faq_proper_num);
+			
+			model.addAttribute("vo", vo);
+			
 			return "faq/faqModify";
+		}
+		
+		//faq 수정(업데이트)
+		@PostMapping("/faqUpdateForm")
+		public String faqUpdate(TB_004VO vo, RedirectAttributes ra) {
+			
+			System.out.println(vo.toString());
+			
+			int result = faqService.faqUpdate(vo);
+			
+			String msg = result == 1 ? "등록되었습니다." : "등록실패";
+
+			ra.addFlashAttribute("msg", msg);
+			
+			return "redirect:/faq/faqList";
+		}
+		
+		//faq 삭제
+		@GetMapping("/faqDelete")
+		public String faqDelete(@RequestParam("faq_proper_num") int faq_proper_num,
+								RedirectAttributes ra) {
+			
+			faqService.faqDelete(faq_proper_num);
+			
+			return "redirect:/faq/faqList";
 		}
 
 }

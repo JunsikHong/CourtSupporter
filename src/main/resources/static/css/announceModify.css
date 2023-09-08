@@ -33,7 +33,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   font-weight: 800;
   padding-left: 5px;
   padding-bottom: 15px;
-  border-bottom: 3px solid #424242;
+  border-bottom: 3px solid #090C5F;
   color: #2E2E2E;
 }
 .required-img {
@@ -54,44 +54,45 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   overflow: hidden;
 }
 .modifyBox{
-/*  display: block;  
-  margin-top: 70px;
-  box-sizing: border-box;*/
-  margin-top: 70px;
+  margin-top: 50px;
   margin-left : 140px;
   margin-right : 70px;
 }
 
-.board th {
-/*  text-align: left;
-  padding: 15px;
-  font-weight: 700; */
-  
-  text-align: center;
-  padding: 15px;
-  font-weight: 700; 
+.board th {  
+   text-align: center;
+   padding: 10px;
+   height: 30px;
+   font-weight: 700; 
  /* height: 30px;*/
-  line-height: 40px;
-  width: 150px;  
+   line-height: 40px;
+   width: 130px;  
  
-  color: #424242;
- /* border: 0.3px solid #BDBDBD; */
-  border-top: 0.3px solid #BDBDBD;
-  border-bottom: 0.3px solid #BDBDBD;  
-   background-color: #E8E8E9; 
+   color: #424242; 
+ /*  border-top: 0.3px solid #BDBDBD;
+   border-bottom: 0.3px solid  #090C5F;*/
+   /*background-color: #E8E8E9; */
+   background-color: #EAEBF8;
 }
 .board td {
-/*   border: 0.3px solid #BDBDBD; */
-   border-top: 0.3px solid #BDBDBD;
-   border-bottom: 0.3px solid #BDBDBD;  
+  /* border-top: 0.3px solid #BDBDBD;
+   border-bottom: 0.3px solid #BDBDBD;*/  
    padding-left: 20px;
    padding-right: 20px;
-   padding-bottom: 20px;
+   /*padding-bottom: 20px;*/
+}
+#topborder {
+	border-top: 2px solid #222A61; 
+	border-bottom: 0.3px solid #AEAFBF;
+}
+#border{
+	border-bottom: 0.3px solid #AEAFBF;
 }
 .announceTit{
   width: 600px;
   height: 30px;
   font-size: 14px;
+  padding-left: 15px;
 }
 .datepicker1 {
   width: 120px;
@@ -107,59 +108,50 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   width: 450px;
   height: 30px;
 }
-.fileBtnBox {
-  width: 10px;
-}
-.fileBtn {
-  margin-bottom: 30px;
-  width: 100px;
-  height: 30px;
-  line-height: 30px;
 
-  font-size: 14px;  
-  font-weight: 500;
-  border: none;
-  background-color:  rgb(11, 38, 110);
-  color: white;  
+.file {
+  margin-bottom: 5px;  
 }
-
 .add{
-  margin-bottom: 30px;
-  width: 50px;
-  height: 30px;
-  line-height: 30px;
-
+  display: inline-block; 
+  margin-bottom: 10px;  
+  
+  height: 20px;
+  line-height: 20px;
+  padding: 5px 7px 5px 7px;
+  margin-top: 10px;
   font-size: 14px;  
   font-weight: 500;
   border: none;
   background-color:  rgb(11, 38, 110);
-  color: white;  
+  color: white; 
+}
+.file > a:hover {
+  text-decoration: none; 	
 }
 .delete{
   margin-bottom: 30px;
-  width: 50px;
-  height: 30px;
-  line-height: 30px;
+  padding: 3px;
+  width: 40px;
+  height: 25px;
+  line-height: 25px;
 
   font-size: 14px;  
   font-weight: 500;
-  border: none;
-  background-color:  rgb(11, 38, 110);
-  color: white;  
+ 
+  border: 0.5px solid rgb(11, 38, 110);
+  border-radius: 5px;
+  color:  rgb(11, 38, 110);  
+  text-decoration: none;
 }
 
-
-.fileInfo .limit {
-  padding-top: 20px;
-  border-top : 0.3px solid #E0E0E0 ;
-  border-bottom : 0.3px solid #E0E0E0 ;
- } 
 .fileInfo .con {
-  border-top : 0.3px solid #E0E0E0 ;
+  /*border-top : 0.3px solid #E0E0E0 ;*/
   padding-bottom: 20px;
 }
 .fileInfo .fl {
 	padding-top: 20px;
+	padding-bottom: 20px;
 }
 .fileInfo td {
 	padding-left: 20px;	
@@ -178,17 +170,20 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 }
 #contentDetail{
   margin-top: 25px;
+  margin-bottom: 20px;
   width: 800px;
   min-height: 500px;  
   text-align: left;
   resize: vertical;
   border: 0.3px solid gray;
+  white-space: pre-line;
 }
 
 .btnBox{
   margin-top: 70px;
   margin-bottom: 100px;
   text-align: center;
+  /*display: flex;*/  
 
 }
 .btn > a{
@@ -198,7 +193,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   text-decoration: none;
 }
 
-.registBtn{
+.modifyBtn{
   margin: 10px;
   width: 150px;
   height: 50px;
@@ -206,9 +201,12 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   font-size: 18px;
   /* font-weight: 500; */
   /* padding: 10px;   */
+  
+  /*vertical-align: middle;*/
   border: none;
   background-color:  rgb(11, 38, 110);
   color: white;
+  cursor: pointer;
 }
 .listBtn{
   margin: 10px;

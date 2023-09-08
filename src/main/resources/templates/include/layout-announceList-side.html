@@ -4,29 +4,18 @@
    <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
 
    <div class="usermypage-sidemenu-wrap">
-      <p class="usermypage-title">공고 게시판</p>
+      <p class="usermypage-title">알림 · 뉴스</p>
       <div class="usermypage-sidemenu">
          <div class="usermypage-myinfo">
-            <h3 class="myinfo-title">모집 공고</h3>
+            <h3 class="myinfo-title">공지사항</h3>
             <ul class="myinfo-content">
-               <li>재판 조력자 공고</li>
-               <li>공무직 근로자 채용 공고</li>
-               <li>입찰 공고</li>
-               <li>정책연구원 연구주제 공모</li>
+
+			   <li><a th:href="@{/announce/announceList}">모집공고</a></li>
+			   <li><a th:href="@{/application/applicationAgree}">등재신청</a></li>
+               <li><a th:href="@{/notice/noticeList}">공지사항</a></li>            
+               <li><a th:href="@{/faq/faqList}">FAQ</a></li>
             </ul>
          </div>
-         <div class="usermypage-myapplication">
-            <h3 class="myapplication-title">공고</h3>
-            <ul class="myapplication-content">
-               <li>입법예고</li>
-               <li>행정예고</li>
-               <li>공시송달</li>
-               <li>대법원 공직자윤리위원회</li>
-            </ul>
-         </div>
+
       </div>
    </div>
-
-</th:block>
-
-</html>
