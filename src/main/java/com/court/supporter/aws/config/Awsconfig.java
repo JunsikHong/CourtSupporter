@@ -13,6 +13,7 @@ import software.amazon.awssdk.services.s3.S3Client;
 
 @Configuration
 public class Awsconfig {
+
 	
 	//엑세스키
 	@Value("${aws_access_key_id}")
@@ -56,3 +57,4 @@ public class Awsconfig {
 		return awsLambda;
 	}
 }
+
