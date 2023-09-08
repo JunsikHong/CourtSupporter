@@ -1,15 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/noticeDetail.css}">
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.faqDetailWrap})}">
 
 
 	<!--contents-->
-	<div class="faqDetailWrap" style="width:1280px; margin: 0 auto; padding-top: 150px;">
+	<div class="faqDetailWrap mainWrap">
 
 		<div class="contentsbox" id="content">
-			<div class="contentsIn">
+			<div> <!--sidebar-->
+         		<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+      		</div>
+			<div id="contentsIn">
 				<div id="contentstitle">
 					<span class="FAQtitle">자주묻는질문(FAQ)</span>
 					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 자주묻는질문</span>
@@ -17,8 +21,8 @@
 				<div id="contents">
 					<form id="viewForm" action="#" method="post">
 						<input type="hidden" id="pageIndex" name="pageIndex">
-						<input type="hidden" id="noticeSer" name="noticeSer">
-						<input type="hidden" id="srchbub" name="srchbub">
+						<input type="hidden" id="faqSer" name="faqSer">
+						<input type="hidden" name="faq_proper_num" th:value="${faq_proper_num}">
 						<div class="tablebox">
 							<table>
 								<colgroup>
@@ -29,11 +33,11 @@
 
 									<tr class="firstTh">
 										<th class scope="row">질문</th>
-										<td class="left" colspan="5">서비스중단안내</td>
+										<td class="left" colspan="5">[[${vo.faq_ask_content}]]</td>
 									</tr>
 									<tr>
 										<td colspan="4" class="contents left" style="text-align: left;">
-											<p class="textArea">css<br>css<br>css<br>css<br>css<br>css<br></p>
+											<p class="textArea">[[${vo.faq_ask_comment}]]</p>
 										</td>
 									</tr>
 
@@ -45,8 +49,8 @@
 
 						<div class="btnbox btnbox02">
 							<a href="faqList" class="btnfb7" onclick="javascript:goRegist();">목록</a>
-							<a href="#none" class="btn4d5" onclick="javascript:window.close();">수정</a>
-							<a href="#none" class="btn4d5" onclick="javascript:window.close();">삭제</a>
+							<a th:href="@{faqModify(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5" onclick="javascript:window.close();">수정</a>
+							<a th:href="@{faqDelete(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5" onclick="javascript:window.close();">삭제</a>
 
 						</div>
 

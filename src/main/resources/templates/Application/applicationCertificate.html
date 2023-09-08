@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/application.css}">
 <link rel="stylesheet" th:href="@{/css/applicationStateBar.css}">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script th:src="@{/js/applicationCertificate.js}"></script>
 <th:block th:replace="~{./include/layout :: setContent(~{::.certificate})}">
 	<div class="certificate">
 		<div class="certificate-wrap">
@@ -60,7 +62,7 @@
 								<div class="board_h">
 									<div class="board_total">*자격 및 면허사항</div>
 									<div class="board_search">
-										<a href="#" class="search_btn" onclick="popUp()" style="width: 140px;">자격 및 면허사항
+										<a href="#" class="popup_btn" onclick="popUp()" style="width: 140px;">자격 및 면허사항
 											입력</a>
 									</div>
 								</div>
@@ -73,16 +75,17 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<tbody>
-
-								<tr>
-									<td style="vertical-align: middle;">자격증명</td>
-									<td style="vertical-align: middle;">XX협회</td>
-									<td style="vertical-align: middle;">123-4567890-12</td>
-									<td style="vertical-align: middle;">2023.01</td>
+							<tbody id="certificateList">
+								<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num">
+								<tr th:each="vo : ${list}" class="certificateListRow">
+									<input type="hidden" id="aplcn_crtfc_proper_num" name="aplcn_crtfc_proper_num" th:value="${vo.aplcn_crtfc_proper_num}">
+									<td style="vertical-align: middle;">[[${vo.crtfc_type}]]</td>
+									<td style="vertical-align: middle;">[[${vo.issue_agency}]]</td>
+									<td style="vertical-align: middle;">[[${vo.crtfc_number}]]</td>
+									<td style="vertical-align: middle;">[[${vo.issue_date}]]</td>
 									<td style="vertical-align: middle;">
-										<input type="button" value="수정" style="border: 1px solid #888888;" />
-										<input type="button" value="삭제" style="border: 1px solid #888888;" />
+										<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />
+										<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />
 									</td>
 								</tr>
 
@@ -102,24 +105,5 @@
 	</div>
 
 </th:block>
-
-<script th:inline="javascript">
-
-	function popUp() {
-		var popupWidth = 700;
-		var popupHeight = 500;
-		// window.screen.width  : 윈도우의 가로 크기
-		// window.screen.height : 윈도우의 세로 크기
-		var popupX = Math.round((window.screen.width / 2) - (popupWidth / 2));
-		var popupY = Math.round((window.screen.height / 2) - (popupHeight / 2));
-
-		// 윈도우 팝업창의 스타일 지정
-		var featureWindow = "width=" + popupWidth + ", height=" + popupHeight
-			+ ", left=" + popupX + ", top=" + popupY;
-		// open("경로", "이름", "옵션")
-		window.open("applicationCertificatePopup", "자격 및 면허사항 입력", featureWindow);
-	}
-
-</script>
 
 </html>

@@ -1,12 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/applicationPopup.css}">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script th:src="@{/js/applicationEducationPopup.js}"></script>
 <th:block>
 	<div class="educationPopup">
 		<div class="educationPopup-wrap">
 			<div id="pop_wrap">
 
-				<form action="educationPopupForm" name="educationPopupForm" method="post">
+				<form action="educationPopupForm" id="educationPopupForm" name="educationPopupForm" method="post">
 					<div class="pop_contents">
 						<span>*학력사항 입력</span>
 						<table class="tableT popT">
@@ -22,7 +24,7 @@
 										</i>
 										<span>학교명</span>
 									</th>
-									<td><input type="text" name="EDCTN_SCHOOL_NAME" id="" title="학교명"></td>
+									<td><input type="text" name="edctn_school_name" id="edctn_school_name" title="학교명"></td>
 								</tr>
 								<tr class="uptr01">
 									<th class="">
@@ -31,7 +33,7 @@
 										</i>
 										<span>학과(전공)</span>
 									</th>
-									<td><input type="text" name="EDCTN_MAJOR" id="" title="학과(전공)"></td>
+									<td><input type="text" name="edctn_major" id="edctn_major" title="학과(전공)"></td>
 								</tr>
 								<tr class="uptr02">
 									<th class="">
@@ -41,7 +43,7 @@
 										<span>학위</span>
 									</th>
 									<td>
-										<select class="selC" name="EDCTN_DEGREE" id="" title="학위" style="width: 140px;">
+										<select class="selC" name="edctn_degree" id="edctn_degree" title="학위" style="width: 140px;">
 											<option value='' selected="selected">선택하세요</option>
 											<option value='대학교 재학'>대학교 재학</option>
 											<option value='대학교 휴학'>대학교 휴학</option>
@@ -54,18 +56,18 @@
 										<i class="required-img">
 											<span class="hidden">필수입력</span>
 										</i>
-										<span>입학 년월</span>
+										<span>입학일</span>
 									</th>
-									<td><input type="text" name="EDCTN_ADMSN_DATE" id="" title="입학 년월"></td>
+									<td><input type="text" name="edctn_admsn_date" id="edctn_admsn_date" title="입학일" pattern="\d{4}-\d{2}-\d{2}"></td>
 								</tr>
 								<tr class="uptr01">
 									<th class="">
 										<i class="required-img">
 											<span class="hidden">필수입력</span>
 										</i>
-										<span>졸업 년월</span>
+										<span>졸업일</span>
 									</th>
-									<td><input type="text" name="EDCTN_GRDTN_DATE" id="" title="졸업 년월"></td>
+									<td><input type="text" name="edctn_grdtn_date" id="edctn_grdtn_date" title="졸업일" pattern="\d{4}-\d{2}-\d{2}"></td>
 								</tr>
 
 							</tbody>
@@ -79,7 +81,7 @@
 						<span>는 필수 입력 사항 입니다.</span>
 					</div>
 					<div class="btnbox btnbox02">
-						<input type="submit" class="btnfb7" value="입력" onclick="window.close()" />
+						<input type="submit" class="btnfb7" id="popupClose" value="입력"/>
 					</div>
 			</div>
 			</form>

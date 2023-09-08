@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/application.css}">
 <link rel="stylesheet" th:href="@{/css/applicationStateBar.css}">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script th:src="@{/js/applicationWork.js}"></script>
 <th:block th:replace="~{./include/layout :: setContent(~{::.work})}">
 	<div class="work">
 		<div class="work-wrap">
@@ -54,19 +56,18 @@
 					<div class="pop_contents">
 						<table class="board_table topT">
 							<colgroup>
-								<col width="17%">
-								<col width="17%">
-								<col width="17%">
-								<col width="17%">
-								<col width="17%">
-								<col width="15%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
 							</colgroup>
 
 							<thead>
 								<div class="board_h">
 									<div class="board_total">*근무경력 사항</div>
 									<div class="board_search">
-										<a href="#" class="search_btn" onclick="popUp()">경력사항 입력</a>
+										<a href="#" class="popup_btn" onclick="popUp()">경력사항 입력</a>
 									</div>
 								</div>
 
@@ -76,22 +77,19 @@
 									<th>수행업무</th>
 									<th>부서/직책</th>
 									<th>관리</th>
-									<th>최종근무지</th>
 								</tr>
 							</thead>
-							<tbody>
-
-								<tr>
-									<td style="vertical-align: middle;">XX회사</td>
-									<td style="vertical-align: middle;">2023.01.01~2023.12.31</td>
-									<td style="vertical-align: middle;">수행업무 작성란</td>
-									<td style="vertical-align: middle;">부서명/직책명</td>
+							<tbody id="workList">
+								<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num">
+								<tr th:each="vo : ${list}" class="workListRow">
+									<input type="hidden" id="aplcn_carer_proper_num" name="aplcn_carer_proper_num" th:value="${vo.aplcn_carer_proper_num}">
+									<td style="vertical-align: middle;">[[${vo.company_name}]]</td>
+									<td style="vertical-align: middle;">[[${vo.work_start_date}]]~[[${vo.work_end_date}]]</td>
+									<td style="vertical-align: middle;">[[${vo.work_description}]]</td>
+									<td style="vertical-align: middle;">[[${vo.work_department}]]/[[${vo.work_position}]]</td>
 									<td style="vertical-align: middle;">
-										<input type="button" value="수정" style="border: 1px solid #888888;" />
-										<input type="button" value="삭제" style="border: 1px solid #888888;" />
-									</td>
-									<td style="text-align:center; vertical-align: middle;" class="toptd">
-										<input type="radio" name="chk_info" value="">
+										<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />
+										<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />
 									</td>
 								</tr>
 
@@ -114,8 +112,8 @@
 										</i>
 										<span>활동경력</span>
 									</th>
-									<td><textarea
-											style="border: 1px solid #ddd; width: 95%; resize: none; height: 70px;"></textarea>
+									<td><textarea name="carer_description"
+											style="border: 1px solid #ddd; width: 95%; resize: none; height: 70px;">[[${vo.carer_description}]]</textarea>
 									</td>
 								</tr>
 							</tbody>
@@ -137,8 +135,8 @@
 										</i>
 										<span>특기사항</span>
 									</th>
-									<td><textarea
-											style="border: 1px solid #ddd; width: 95%; resize: none; height: 70px;"></textarea>
+									<td><textarea name="special_note_description"
+											style="border: 1px solid #ddd; width: 95%; resize: none; height: 70px;">[[${vo.special_note_description}]]</textarea>
 									</td>
 								</tr>
 							</tbody>
@@ -171,23 +169,5 @@
 	</div>
 </th:block>
 
-<script th:inline="javascript">
-
-	function popUp() {
-		var popupWidth = 700;
-		var popupHeight = 500;
-		// window.screen.width  : 윈도우의 가로 크기
-		// window.screen.height : 윈도우의 세로 크기
-		var popupX = Math.round((window.screen.width / 2) - (popupWidth / 2));
-		var popupY = Math.round((window.screen.height / 2) - (popupHeight / 2));
-
-		// 윈도우 팝업창의 스타일 지정
-		var featureWindow = "width=" + popupWidth + ", height=" + popupHeight
-			+ ", left=" + popupX + ", top=" + popupY;
-		// open("경로", "이름", "옵션")
-		window.open("applicationWorkPopup", "학력사항 입력", featureWindow);
-	}
-
-</script>
 
 </html>

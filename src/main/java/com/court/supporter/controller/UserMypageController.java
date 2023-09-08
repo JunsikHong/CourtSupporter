@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.court.supporter.command.TB_001VO;
 import com.court.supporter.command.TB_002VO;
 import com.court.supporter.command.TB_005VO;
+import com.court.supporter.command.TB_006VO;
+import com.court.supporter.command.TB_007VO;
+import com.court.supporter.command.TB_008VO;
+import com.court.supporter.command.TB_009VO;
+import com.court.supporter.command.TB_010VO;
+import com.court.supporter.command.TB_011VO;
+import com.court.supporter.command.TB_012VO;
+import com.court.supporter.command.TB_014VO;
 import com.court.supporter.usermypage.service.UserMypageService;
 import com.court.supporter.util.Criteria;
 import com.court.supporter.util.PageVO;
@@ -26,6 +35,7 @@ import com.court.supporter.util.PageVO;
 public class UserMypageController {
 
 	@Autowired
+	@Qualifier("userMypageService")
 	private UserMypageService userMypageService;
 	
 	// 사용자 정보 화면
@@ -118,55 +128,88 @@ public class UserMypageController {
 		return "/usermypage/usermypage-applicationlist";
 	}
 
+	// 사용자 신청 현황 상세
 	@GetMapping("/usermypage_applicationdetail")
 	public String usermypage_applicationdetail(Model model, TB_005VO vo) {
 		String user_id = "sampleuser";
 		vo.setUser_id(user_id);
-		TB_005VO result = userMypageService.usermypage_getapplicationdetail(vo);
-		model.addAttribute("result", result);
+		TB_001VO tb_001VO = userMypageService.usermypage_getInfo(user_id);
+		TB_005VO tb_005VO = userMypageService.usermypage_getapplicationdetail1(vo);
+		TB_006VO tb_006VO = userMypageService.usermypage_getapplicationdetail2(vo);
+		ArrayList<TB_007VO> tb_007VOlist = userMypageService.usermypage_getapplicationdetail3(vo);
+		ArrayList<TB_008VO> tb_008VOlist = userMypageService.usermypage_getapplicationdetail4(vo);
+		ArrayList<TB_009VO> tb_009VOlist = userMypageService.usermypage_getapplicationdetail5(vo);
+		TB_010VO tb_010VO = userMypageService.usermypage_getapplicationdetail6(vo);
+		ArrayList<TB_011VO> tb_011VOlist = userMypageService.usermypage_getapplicationdetail7(vo);
+		model.addAttribute("tb_001VO", tb_001VO);
+		model.addAttribute("tb_005VO", tb_005VO);
+		model.addAttribute("tb_006VO", tb_006VO);
+		model.addAttribute("tb_007VOlist", tb_007VOlist);
+		model.addAttribute("tb_008VOlist", tb_008VOlist);
+		model.addAttribute("tb_009VOlist", tb_009VOlist);
+		model.addAttribute("tb_010VO", tb_010VO);
+		model.addAttribute("tb_011VOlist", tb_011VOlist);
 		return "/usermypage/usermypage-applicationdetail";
 	}
+	
 	////////////////////////////////////////////////////////////////////////////////////////
 	
 	// 사용자 활동 내역 리스트
 	@GetMapping("/usermypage_activitylist")
-	public String usermypage_activitylist() {
-
+	public String usermypage_activitylist(Model model, Criteria cri) {
+		String user_id = "sampleuser";
+		ArrayList<TB_012VO> list = userMypageService.usermypage_activity_getlist(user_id, cri);
+		int total = userMypageService.usermypage_activity_gettotal(user_id, cri);		
+		PageVO pageVO = new PageVO(cri, total);
+		model.addAttribute("total", total);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("list", list);
 		return "/usermypage/usermypage-activitylist";
 	}
 
 	// 사용자 활동 내역 상세
 	@GetMapping("/usermypage_activitydetail")
-	public String usermypage_activitydetail() {
-
+	public String usermypage_activitydetail(Model model, TB_012VO vo) {
+		String user_id = "sampleuser";
+		vo.setUser_id(user_id);
+		TB_012VO result = userMypageService.usermypage_getactivitydetail(vo);
+		model.addAttribute("result", result);
 		return "/usermypage/usermypage-activitydetail";
 	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////
 
-	// 사용자 활동 내역 수정
-	@GetMapping("/usermypage_activitymodify")
-	public String usermypage_activitymodify() {
-
-		return "/usermypage/usermypage-activitymodify";
-	}
-
-	// 사용자 중지
-	@GetMapping("/usermypage_pause")
-	public String usermypage_pause() {
-
+	// 사용자 중지 리스트
+	@GetMapping("/usermypage_pauselist")
+	public String usermypage_pause(Model model, Criteria cri) {
+		int user_proper_num = 123456;
+		ArrayList<TB_014VO> list = userMypageService.usermypage_pauselist(user_proper_num, cri);
+		int total = userMypageService.usermypage_pausetotal(user_proper_num, cri);
+		PageVO pageVO = new PageVO(cri, total);
+		model.addAttribute("total", total);
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("list", list);
 		return "/usermypage/usermypage-pause";
 	}
 
 	// 사용자 중지 상세
 	@GetMapping("/usermypage_pausedetail")
-	public String usermypage_pausedetail() {
-
+	public String usermypage_pausedetail(Model model, TB_014VO vo) {
+		int user_proper_num = 123456;
+		vo.setUser_proper_num(user_proper_num);
+		TB_014VO result = userMypageService.usermypage_getpausedetail(vo);
+		model.addAttribute("result", result);
 		return "/usermypage/usermypage-pausedetail";
 	}
-
-	// 사용자 해제
-	@GetMapping("/usermypage_cancel")
-	public String usermypage_cancel() {
-
-		return "/usermypage/usermypage-cancel";
+	
+	// 사용자 중지/해제 신청
+	@PostMapping("/usermypage_pauseapplication")
+	public String usermypage_pauseapplication(TB_014VO vo) {
+		int user_proper_num = 123456;
+		vo.setUser_proper_num(user_proper_num);
+		System.out.println(vo.getAccept_act_yn());
+		int result = userMypageService.usermypage_pauseapplication(vo);
+		return "redirect:/usermypage/usermypage_pauselist";
 	}
+
 }

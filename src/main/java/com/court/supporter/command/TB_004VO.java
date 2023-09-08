@@ -16,6 +16,6 @@ public class TB_004VO {
 	private int faq_proper_num;
 	private String faq_ask_content; 
 	private String faq_ask_comment;
-	private LocalDateTime faq_ask_date;
+	private String faq_ask_date;
 	private int admin_proper_num;
 }

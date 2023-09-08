@@ -20,59 +20,84 @@
 						<tbody class="board">
 							<tr> <!-- class="boardTitle" -->
 								<th class="title">제목</th>
-								<td colspan="2">2023년도 보호사건조력자 모집</td>
+								<td colspan="2">[[${result.accept_proper_num}]]</td>
 							</tr>
 
 							<tr>
-								<th class="date">신청날짜</th>
-								<td colspan="2">2023-08-22</td>
+								<th class="viewCount">선발날짜</th>
+								<td colspan="2"><span th:text="${#strings.substring(result.accept_date, 0, 10)}"></span>
+								</td>
 							</tr>
 
 							<tr>
-								<th class="viewCount">신청상태</th>
-								<td colspan="2">법원 대기중</td>
+								<th class="date">중지/해제상태</th>
+								<td colspan="2">
+									<th:block th:if="${result.accept_act_yn == 'Y'}">
+										활동중
+									</th:block>
+									<th:block th:if="${result.accept_act_yn == 'N'}">
+										중지
+									</th:block>
+								</td>
 							</tr>
 
 							<tr>
-								<th class="file">첨부파일</th>
-								<td>채용공고.hwp</td>
+								<th class="file">중지/해제신청</th>
+								<td>
+									<form action="usermypage_pauseapplication" method="post">
+										<th:block th:if="${result.accept_act_yn == 'Y'}">
+											<input type="hidden" name="accept_act_yn"
+												th:value="${result.accept_act_yn}">
+											<button type="submit" class="acceptbtn" name="accept_proper_num"
+												th:value="${result.accept_proper_num}"
+												onclick="confirmAndSubmit(this)">중지신청</button>
+										</th:block>
+										<th:block th:if="${result.accept_act_yn == 'N'}">
+											<input type="hidden" name="accept_act_yn"
+												th:value="${result.accept_act_yn}">
+											<button type="submit" class="acceptbtn" name="accept_proper_num"
+												th:value="${result.accept_proper_num}"
+												onclick="confirmAndSubmit(this)">재활동신청</button>
+										</th:block>
+									</form>
+								</td>
 							</tr>
 
 							<tr class="announceContent">
 								<th>내용</th>
 								<td class="innerContent">
-									<p>
-										서울가정법원 공무직 근로자(시설관리원)
-									</p>
-									<p>
-										채용시험 시행계획 공고
-									</p>
+									[[${result.accept_etc}]]
 								</td>
 							</tr>
 						</tbody>
 
-					</table>
-
-					<table class="nextTable">
-						<tbody>
-							<tr>
-								<td class="nextContent">다음글</td>
-								<td colspan="3">
-									<a class="nextTitle" href="#">
-										서울가정법원 공무직 근로자(환경관리원) 채용시험 공고
-									</a>
-								</td>
-							</tr>
-						</tbody>
 					</table>
 
 					<div class="btnbox btnbox02">
-						<a th:href="@{usermypage_pause}" class="btnfb7" onclick="javascript:goRegist();">목록</a>
+						<a th:href="@{/usermypage/usermypage_pauselist}" class="btnfb7"
+							onclick="javascript:goRegist();">목록</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </th:block>
+<script>
+	function confirmAndSubmit(button) {
+		var accept_act_yn = button.previousElementSibling.value;
+		var message;
+
+		if (accept_act_yn === 'Y') {
+			message = "중지 신청을 하시겠습니까?";
+		} else {
+			message = "재활동 신청을 하시겠습니까?";
+		}
+
+		if (confirm(message)) {
+			// 확인을 누를 경우에만 form을 submit합니다.
+			button.form.submit();
+		}
+	}
+</script>
 
 </html>

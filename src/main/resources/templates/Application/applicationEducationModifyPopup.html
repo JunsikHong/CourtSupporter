@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/applicationPopup.css}">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script th:src="@{/js/applicationEducationPopup.js}"></script>
+<th:block>
+	<div class="educationPopup">
+		<div class="educationPopup-wrap">
+			<div id="pop_wrap">
+
+				<form action="educationModifyPopupForm" id="educationModifyPopupForm" name="educationModifyPopupForm" method="post">
+					<div class="pop_contents">
+						<span>*학력사항 입력</span>
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<input type="hidden" id="edctn_dtls_proper_num" name="edctn_dtls_proper_num" th:value="${vo.edctn_dtls_proper_num}">
+								<tr class="uptr01">
+									<th>
+										<i class="required-img">
+											<span class="hidden">필수입력</span>
+										</i>
+										<span>학교명</span>
+									</th>
+									<td><input type="text" name="edctn_school_name" id="edctn_school_name" title="학교명" th:value="${vo.edctn_school_name}"></td>
+								</tr>
+								<tr class="uptr01">
+									<th class="">
+										<i class="required-img">
+											<span class="hidden">필수입력</span>
+										</i>
+										<span>학과(전공)</span>
+									</th>
+									<td><input type="text" name="edctn_major" id="edctn_major" title="학과(전공)" th:value="${vo.edctn_major}"></td>
+								</tr>
+								<tr class="uptr02">
+									<th class="">
+										<i class="required-img">
+											<span class="hidden">필수입력</span>
+										</i>
+										<span>학위</span>
+									</th>
+									<td>
+										<select class="selC" name="edctn_degree" id="edctn_degree" title="학위" style="width: 140px;">
+											<!--<option value='' selected="selected">선택하세요</option>-->
+											<option value='대학교 재학' th:selected="${vo.edctn_degree == '대학교 재학'}">대학교 재학</option>
+											<option value='대학교 휴학' th:selected="${vo.edctn_degree == '대학교 휴학'}">대학교 휴학</option>
+											<option value='대학교 졸업' th:selected="${vo.edctn_degree == '대학교 졸업'}">대학교 졸업</option>
+										</select>
+									</td>
+								</tr>
+								<tr class="uptr01">
+									<th class="">
+										<i class="required-img">
+											<span class="hidden">필수입력</span>
+										</i>
+										<span>입학일</span>
+									</th>
+									<td><input type="text" name="edctn_admsn_date" id="edctn_admsn_date" title="입학일" th:value="${vo.edctn_admsn_date}" pattern="\d{4}-\d{2}-\d{2}"></td>
+								</tr>
+								<tr class="uptr01">
+									<th class="">
+										<i class="required-img">
+											<span class="hidden">필수입력</span>
+										</i>
+										<span>졸업일</span>
+									</th>
+									<td><input type="text" name="edctn_grdtn_date" id="edctn_grdtn_date" title="졸업일" th:value="${vo.edctn_grdtn_date}" pattern="\d{4}-\d{2}-\d{2}"></td>
+								</tr>
+
+							</tbody>
+
+						</table>
+					</div>
+					<div style="padding-left: 40px;">
+						<i class="required-img">
+							<span class="hidden">필수입력</span>
+						</i>
+						<span>는 필수 입력 사항 입니다.</span>
+					</div>
+					<div class="btnbox btnbox02">
+						<input type="submit" class="btnfb7" id="educationModifyBtn" value="수정"/>
+					</div>
+			</div>
+			</form>
+
+		</div>
+	</div>
+	</div>
+</th:block>
+
+</html>
