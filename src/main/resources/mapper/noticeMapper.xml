@@ -6,7 +6,7 @@
 <mapper namespace="com.court.supporter.notice.service.noticeMapper">
 
 	<!-- 글 등록 -->
-	<insert id="noticeRegist" parameterType="TB_003VO">
+	<insert id="noticeRegist" parameterType="TB_003VO" useGeneratedKeys="true" keyProperty="notice_proper_num">
 		INSERT INTO TB_003 (notice_title,
 							notice_content,
 							notice_date,
@@ -19,6 +19,16 @@
 	</insert>
 	
 	<!-- 파일 등록 -->
+	<insert id="noticeFileRegist" parameterType="TB_016VO">
+		INSERT INTO TB_016 (file_path,
+							notice_file_uuid,
+							original_file_name,
+							notice_proper_num)
+		VALUES (#{file_path},
+				#{notice_file_uuid},
+				#{original_file_name},
+				#{notice_proper_num})
+	</insert>
 	
 	<!-- 데이터 목록 내용 가져오기 -->
 	<select id="noticeList" resultType="TB_003VO">
@@ -54,6 +64,12 @@
 	<select id="noticeDetail" resultType="TB_003VO">
 		select *, CONVERT(NOTICE_DATE, CHAR) AS NOTICE_DATE_as_varchar
 		from TB_003
+		where notice_proper_num = #{notice_proper_num}
+	</select>
+	
+	<!-- 파일목록 가져오기 -->
+	<select id="noticeFileDetail" resultType="TB_016VO">
+		select * from TB_016
 		where notice_proper_num = #{notice_proper_num}
 	</select>
 	<!-- 이전 글 -->

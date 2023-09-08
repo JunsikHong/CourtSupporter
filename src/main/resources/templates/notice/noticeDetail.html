@@ -51,12 +51,14 @@
 
 									<tr class="firstTh">
 										<th class scope="row">첨부파일</th>
-										<td class="left" colspan="5" style="text-align: left;">???.???</td>
+										<td class="left" colspan="5" style="text-align: left;" th:each="vo : ${filevo}">
+											<a th:href="@{'https://court-supporter-project-t4.s3.ap-northeast-2.amazonaws.com/' + ${vo.file_path} + ${vo.notice_file_uuid} + '_' + ${vo.original_file_name}}">[[${vo.original_file_name}]]</a><br>
+										</td>
 									</tr>
 
 									<tr>
 										<td colspan="4" class="contents left" style="text-align: left;">
-											<p class="textArea">[[${vo.notice_content}]]</p>
+											<pre th:utext="${vo.notice_content}"/>
 										</td>
 									</tr>
 

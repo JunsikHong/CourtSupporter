@@ -23,6 +23,8 @@ public interface noticeMapper {
 	public void noticeFileRegist(TB_016VO vo); //파일등록
 	
 	public TB_003VO noticeDetail(int notice_proper_num); //멀티파일 업로드 추가해야 함
+	public List<TB_016VO> noticeFileDetail(int notice_proper_num);
+	
 	public TB_003VO noticeGetNext(int notice_proper_num);
 	public TB_003VO noticeGetPerv(int notice_proper_num);
 	

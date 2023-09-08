@@ -22,7 +22,7 @@ form  table tbody thead tr th td {
 }
 
 .adminmenu {
-	display: none;
+	/*display: none;*/
 }
 
 table th, 
@@ -143,6 +143,7 @@ input, select {
    width: 54px;
    text-align: center;
    vertical-align: top;
+   cursor:pointer;
 }
 
 
@@ -202,4 +203,4 @@ table{
 .btnbox .btnfb7{background-color: rgb(11, 38, 110); font-size: 17px; color: #FFF;height: 42px; line-height: 42px; display: inline-block; padding: 0 5px; text-align: center; vertical-align: middle;font-family:"ngB" !important;}
 .btnbox .btn4d5{background-color: #4d515b; font-size: 17px; color: #FFF;height: 42px; line-height: 42px; display: inline-block; padding: 0 5px; text-align: center; vertical-align: middle; font-family:"ngB" !important;}
 .btnbox02 a,.btnbox02 input{width: 129px; box-sizing: border-box; border: none; cursor:pointer;}
-.btnbox02 a:hover,.btnbox02 input:hover{text-decoration: underline;}
+.btnbox02 a:hover,.btnbox02 input:hover{text-decoration: underline; }
