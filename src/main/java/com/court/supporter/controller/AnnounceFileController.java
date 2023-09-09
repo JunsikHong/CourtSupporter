@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/download")
 public class AnnounceFileController { //첨부파일 다운로드 컨트롤러
 	
-	@Value("${project.upload.path}")
-	private String uploadPath;
-	
-	
+
 	@GetMapping("/{announce_file_proper_num}")	
 	public byte[] downloadFile(@PathVariable Integer announce_file_proper_num) throws IOException {
 		

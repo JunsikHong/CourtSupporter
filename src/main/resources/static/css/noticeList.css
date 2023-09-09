@@ -22,7 +22,7 @@ form  table tbody thead tr th td {
 }
 
 .adminmenu {
-	/*display: none;*/
+	display: none;
 }
 
 table th, 

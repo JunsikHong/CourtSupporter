@@ -27,11 +27,9 @@
 							<table>
 								<colgroup>
 									<col style="width: 20%;">
+									<col style="width: auto;">
+									<col style="width: 20%;">
 									<col style="width: 30%;">
-									<col style="width: 15%;">
-									<col style="width: 15%;">
-									<col style="width: 10%;">
-									<col style="width: 10%;">
 								</colgroup>
 								<tbody>
 
@@ -97,8 +95,10 @@
 
 						<div class="btnbox btnbox02">
 							<a href="noticeList" class="btnfb7" onclick="">목록</a>
-							<a th:href="@{noticeModify(notice_proper_num=${vo.notice_proper_num})}" class="btn4d5">수정</a>
-							<a th:href="@{noticeDelete(notice_proper_num=${vo.notice_proper_num})}" class="btn4d5">삭제</a>
+							<span class="adminmenu">
+								<a th:href="@{noticeModify(notice_proper_num=${vo.notice_proper_num})}" class="btn4d5">수정</a>
+								<a th:href="@{noticeDelete(notice_proper_num=${vo.notice_proper_num})}" class="btn4d5">삭제</a>
+							</span>
 						</div>
 
 
