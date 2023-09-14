@@ -41,7 +41,7 @@ public class UserMypageController {
 	// 사용자 정보 화면
 	@GetMapping("/usermypage")
 	public String usermypage(Model model) {
-		String user_id = "sampleuser";
+		String user_id = "user100";
 		model.addAttribute("vo", userMypageService.usermypage_getInfo(user_id));
 		return "/usermypage/usermypage";
 	}

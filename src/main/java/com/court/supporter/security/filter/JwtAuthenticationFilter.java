@@ -33,12 +33,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		token.ifPresent(t -> {
 			Authentication authentication = jwtValidator.getAuthentication(t);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
-			
-			// 세션에 세션 ID 저장
-	        HttpSession session = request.getSession();
-	        if (session != null) {
-	            session.setAttribute("JWT_SESSION_ID", session.getId());
-	        }
 		});
 		
 		filterChain.doFilter(request, response);

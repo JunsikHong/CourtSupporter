@@ -56,7 +56,7 @@ public class ApplicationController {
 	//기본 정보 화면
 	@GetMapping("/applicationBasic")
 	public String basicForm(Model model) {
-		String user_id = "user1";
+		String user_id = "user2";
 		//신청인 정보 가져오기
 		TB_001VO vo = applicationService.getUserInfo(user_id);
 		

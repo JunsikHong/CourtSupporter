@@ -23,7 +23,7 @@ public class JwtValidator {
 	
 	public Authentication getAuthentication(String accessToken) {
 		Claims claims = getTokenClaims(accessToken);
-		DefaultUserDetails defaultUserDetails = new DefaultUserDetails(userService.findByMemberId(claims.get("id", String.class)));
+		DefaultUserDetails defaultUserDetails = new DefaultUserDetails(userService.findByMemberProperNum(claims.get("member_proper_num", String.class)));
 		return new UsernamePasswordAuthenticationToken(defaultUserDetails, "", defaultUserDetails.getAuthorities());
 	}
 	

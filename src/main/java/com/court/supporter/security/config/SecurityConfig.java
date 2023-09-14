@@ -39,12 +39,16 @@ public class SecurityConfig {
 		http.cors().configurationSource(corsConfigurationSource());
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); //세션인증 기반을 사용하지 않고, JWT 사용해서 인증
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-		http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); //모든 요청 전부 허용
+		http.authorizeHttpRequests(auth -> auth.antMatchers("/announce/announceReg", "/announce/announceModify", "/announce/announceModify", "/announce/announceModify").hasRole("ADMIN")
+											   .antMatchers("/announce/announceList", "/announce/announceDetail").permitAll() 
+											   .anyRequest().permitAll()); //모든 요청 전부 허용
 		
-		//로그인 시도 AuthenticationManager 필요
-//		AuthenticationManager authenticationManager = authenticationManager(http.getSharedObject(AuthenticationConfiguration.class));
-//		System.out.println(authenticationManager);
-		
+		http.logout()
+			.logoutUrl("/logout")
+			.logoutSuccessUrl("/")
+			.invalidateHttpSession(true)
+			.deleteCookies("Authorization", "Refresh")
+			.permitAll();
 		return http.build();
 	}
 	

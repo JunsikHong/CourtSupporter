@@ -35,10 +35,6 @@ public class UserController {
 		String pw = bCryptPasswordEncoder.encode(tb_001vo.getUser_pw());
 		tb_001vo.setUser_pw(pw);
 		
-		//uuid 생성
-		UUID uuid = UUID.randomUUID();
-		tb_001vo.setUser_proper_num(uuid.toString());
-		
 		return ResponseEntity.ok(userService.join(tb_001vo));
 	}
 	
