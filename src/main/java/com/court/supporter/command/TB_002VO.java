@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TB_002VO {
 
-	private Integer announce_proper_num; //공고고유번호
+	private String announce_proper_num; //공고고유번호
 	private String announce_title; //공고 제목
 	private String announce_content;	//공고 내용	
 	
