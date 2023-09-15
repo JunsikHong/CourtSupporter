@@ -5,19 +5,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
-  <script th:src="@{/js/announceModify.js}"></script>
+<!-- <script th:src="@{/js/announceModify.js}"></script>-->
 
   <link rel="stylesheet" th:href="@{/css/announceModify.css}">
-  <!--<link rel="stylesheet" th:href="@{/css/layout-usermypage-side.css}">-->
+  <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
+  
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- jQuery UI (Datepicker가 포함된 전체 jQuery UI 라이브러리) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<!-- Summernote 스크립트 -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+<!-- Summernote 스타일 -->
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css">
 
 <th:block th:replace="~{./include/layout :: setContent(~{:: .announceModify})}">
 
   <div class="announceModify"> <!-- container -->
     
     <div class="announceModify-wrap"> <!-- innerBox -->
-       <!--<div> sidebar
-         <th:block th:replace="~{./include/layout-usermypage-side}"></th:block>
-      </div>-->
+    
+       <div> <!--sidebar-->
+         <th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+      </div>
 
       <!-- 본문 -->
       <div class="announceInner">
@@ -31,7 +47,7 @@
 			
           <div class="modifyBox">
 
-            <table>
+            <table class="modifyTable">
               <tbody class="board">
                 <tr id="topborder">
                   <th id="topborder"><i class="required-img"><span class="hidden">필수입력</span></i> 제목</th>
@@ -52,16 +68,36 @@
                   </td>
                 </tr>
 
+				<tr class="uptr02">
+					<th class="tableT">
+						<i class="required-img"><span class="hidden">필수입력</span></i>
+						<span >조력자 선택</span> <!--name="trial_fcltt_proper_num"-->
+					</th>
+					<td class="tableT popT">					
+						<select class="selC" name="trial_fcltt_mainclasifi_code" id="mainSelect" title="조력자 선택"
+							onchange="selectChange()">
+						</select><span id="msg0" style="color: red;"></span>
+							
+						<select class="selC" name="trial_fcltt_clasifi_code" id="firstSelect" title="조력자 선택"
+							onchange="selectChange2()" >
+						</select><span id="msg1" style="color: red;"></span>
+						
+						<select class="selC" name="trial_fcltt_sbcls_code" id="secondSelect" title="조력자 선택">
+						</select><span id="msg2" style="color: red;"></span>
+					</td>
+				</tr>
+
+
                  <tr>
                   <th class="announceFile">첨부파일</th>
                   <td>
 					  <div class="file" id="fileList">
-						  <a href="#this" onclick="addFile()" class="add" >파일추가</a>
+						 <a href="#this" onclick="addFile()" class="add" >파일추가</a>
 						  
-						  <div class="file">
-							  <input type="file" name="announce_file" class="file"> <!-- class="announceFile" id="file"-->
-							  <a href="#this" name="file-delete" class="delete">삭제</a>
-						  </div>	
+					 	 <div class="file">
+							<input type="file" name="file" multiple class="sel">							
+							<a href="#this" name="file-delete" class="delete">삭제</a>
+						 </div>	
 					  </div>
                   </td><!--announceFile-->                               
                 </tr>     
@@ -78,8 +114,8 @@
                 <tr class="announceContent" id="border">    
                   <th class="con"><i class="required-img"><span class="hidden">필수입력</span></i> 내용</th>          
                   <td>
-                    <div>
-                      <textarea name="announce_content" id="contentDetail" cols="30" rows="10" th:value="${vo.announce_content}">[[${vo.announce_content}]]</textarea>
+                    <div class="contentBox">
+                      <textarea name="announce_content" id="summernote" cols="30" rows="10" th:value="${vo.announce_content}">[[${vo.announce_content}]]</textarea>
                     </div>              
                   </td>
                 </tr>
@@ -98,9 +134,7 @@
           
         
         </form>
-       <!-- <div th:if="${param.msg}" class="msg">
-		    <p th:text="${param.msg}"></p>
-		</div>-->
+       
 	 </div>
 
     </div>
@@ -108,6 +142,8 @@
   </div>
 
 </th:block>
+
+<script th:src="@{/js/announceModify.js}"></script>
 
 <script th:inline="javascript"> //event.preventDefault(); 
 
@@ -138,12 +174,6 @@
   
 </script>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<!-- jQuery UI (Datepicker가 포함된 전체 jQuery UI 라이브러리) -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <script th:inline="javascript"> 
     //작성취소 - 목록으로 돌아가기
 	let listBtn = document.getElementById("listBtn");
@@ -152,38 +182,6 @@
 		window.location.href = "/announce/announceList";
 	}
         
-</script>
-<script th:inline="javascript"> 
-	
-	var contentDetail = document.getElementById("contentDetail");
-	contentDetail.innerHTML = contentDetail.innerHTML.replace(/\n/g, "<br>");
-
-	//파일 첨부 및 삭제
-	$(document).ready(function() {
-		$("a[name='file-delete']").on("click", function(e) {
-			e.preventDefault();
-			deleteFile($(this));
-		})
-	});
-		  
-	function addFile(){ // id='fileList'
-		
-		 var str = "<div class='file' id='fileList'>";
-		    str += "<div class='file' style='margin-right: 5px;'>";
-		    str += "<input type='file' name='announce_file' class='file'>";
-		    str += "<a href='#this' name='file-delete' class='delete'>삭제</a>";
-		    str += "</div></div>";
-		
-		$("#fileList").append(str);
-		$("a[name='file-delete']").on("click", function(e) {
-			e.preventDefault();
-			deleteFile($(this));
-		});
-	}
-	
-	function deleteFile(obj) {
-		obj.parent().remove();		
-	}
 </script>
 
 </html>
