@@ -21,7 +21,14 @@
 			<!-- 로그인 -->
 			<div class="header-login-wrap">
 				<div class="login-wrap">
-					<p>로그인</p>
+					<form th:action="@{/logout}" method="post">
+					<p th:if="${session.token}">
+						<a href="#" onclick="this.parentNode.parentNode.submit(); return false;">로그아웃</a>
+    				</p>
+					</form>
+					<p th:unless="${session.token}">
+						<a href="http://localhost:3000/login">로그인</a>
+					</p>
 				</div>
 			</div>
 			<!-- 고정헤더 -->

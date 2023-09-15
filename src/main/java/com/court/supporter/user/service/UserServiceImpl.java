@@ -25,11 +25,11 @@ public class UserServiceImpl implements UserService {
       return userMapper.findByMemberId(memberId).orElseThrow(RuntimeException::new);
    }
 
-   //세션에서 claims 받을 때 claims의 proper_num로 회원 찾기
-   @Override
-   public TB_018VO findByMemberProperNum(String memberProperNum) {
-      return userMapper.findByMemberProperNum(memberProperNum).orElseThrow(RuntimeException::new);
-   }
+	//세션에서 claims 받을 때 claims의 proper_num로 회원 찾기
+	@Override
+	public TB_018VO findByMemberProperNum(String memberProperNum) {
+		return userMapper.findByMemberProperNum(memberProperNum).orElseThrow(RuntimeException::new);
+	}
 
 }
 

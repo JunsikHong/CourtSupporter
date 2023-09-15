@@ -44,6 +44,7 @@ public class UserMypageController {
 	public String usermypage(Model model) {
 		String user_proper_num = "23091400001";
 		model.addAttribute("vo", userMypageService.usermypage_getInfo(user_proper_num));
+
 		return "/usermypage/usermypage";
 	}
 	
