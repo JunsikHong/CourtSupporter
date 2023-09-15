@@ -73,22 +73,22 @@
 						<!--   <div class="menuBox"> 게시판 상자 안에 있어야 함. 임시 div -->
 						<ul class="announceMenu">
 							<li> <!-- class="on" name=""-->
-								<a th:href="@{/announce/announceList}" class="menu" id="menu_1" data-category-id="" >전체</a>
+								<a href="#" class="menu" id="menu_1" data-category-id="" >전체</a>
 							</li>
 							<li class="" >
-								<a th:href="@{/announce/announceTrialList/10}" class="menu" id="menu_2" data-category-id="10" name="">조력자</a>
+								<a href="#" class="menu" id="menu_2" data-category-id="10" name="">조력자</a>
 							</li>
 							<li class="" >
-								<a th:href="@{/announce/announceTrialList/20}" class="menu" id="menu_3" data-category-id="20" name="">통번역인</a>
+								<a href="#" class="menu" id="menu_3" data-category-id="20" name="">통번역인</a>
 							</li>
 							<li class="" >
-								<a th:href="@{/announce/announceTrialList/30}" class="menu" id="menu_4" data-category-id="30" name="">조정위원</a>
+								<a href="#" class="menu" id="menu_4" data-category-id="30" name="">조정위원</a>
 							</li>
 							<li class="" >
-								<a th:href="@{/announce/announceTrialList/40}" class="menu" id="menu_5" data-category-id="40" name="">전문시말위원</a>
+								<a href="#" class="menu" id="menu_5" data-category-id="40" name="">전문시말위원</a>
 							</li>
 							<li class="">
-								<a th:href="@{/announce/announceTrialList/50}" class="menu" id="menu_6" data-category-id="50" name="">상담위원</a>
+								<a href="#" class="menu" id="menu_6" data-category-id="50" name="">상담위원</a>
 							</li>							
 						</ul>
 
@@ -125,9 +125,9 @@
 										<!--<div class="hirebox">-->
 										<!-- <span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>-->
 										<!--</div>-->										
-										<a th:href="@{announceDetail(announce_proper_num=${vo.announce_proper_num})}"
-											th:text="${vo.announce_title}"></a>	
-										<!--<a th:href="@{announceDetail(trial_fcltt_proper_num=${vo.trial_fcltt_proper_num})}"
+										<a th:href="@{announceDetail(announce_proper_num=${vo.trial_fcltt_proper_num(10)})}"
+											th:text="${vo.announce_title}"></a>
+										<!--<a th:href="@{announceDetail(trial_fcltt_proper_num=${vo.trial_fcltt_proper_num(10)})}"
 										th:text="${vo.announce_title}"></a>-->
 									</td>
 
@@ -146,18 +146,16 @@
 
 					</div>
 
-
 					<!-- <div>
-				 <button type="button"  name="check" id="del"> 삭제 </button>
-			 </div>-->
-
+							 <button type="button"  name="check" id="del"> 삭제 </button>
+						 </div>-->
 					<!--<th:block th:if="${member_role == 'admin'}">-->
 						<div class="registBox"> <!--float 쓰면 이동이 안 됨-->
 							<button class="registBtn" id="registBtn">
 								<a href="/announce/announceReg">글 작성</a>
 							</button>
 						</div>						
-				<!--	</th:block>-->
+					<!--</th:block>-->
 
 					<!--페이지네이션-->
 					<th:block th:replace="~{./include/announcePage :: pageNation(${pageVO})}"></th:block>
@@ -207,8 +205,6 @@
 	});
 
 </script>
-
-							
 <script th:inline="javascript"> //조력자 고유번호를 받아서 공고 조회
 	
 	var menuList = document.querySelectorAll('.announceMenu li');	
@@ -225,81 +221,20 @@
 		  	if (category === '') {
                 window.location.href = '/announce/announceList'; // 전체 메뉴의 경우
             } else if(category === '10') {
-                window.location.href = '/announce/announceTrialList/' + category;
+                window.location.href = '/announce/announceList/' + category;
             } else if(category === '20') {
-                window.location.href = '/announce/announceTrialList/' + category;
+                window.location.href = '/announce/announceList/' + category;
             } else if(category === '30') {
-                window.location.href = '/announce/announceTrialList/' + category;
+                window.location.href = '/announce/announceList/' + category;
             } else if(category === '40') {
-                window.location.href = '/announce/announceTrialList/' + category;
+                window.location.href = '/announce/announceList/' + category;
             } else if(category === '50') {
-                window.location.href = '/announce/announceTrialList/' + category;
-            }	  
-				    		  
+                window.location.href = '/announce/announceList/' + category;
+            }				    		  
 		  	 
-		});
-		  			 
+		});		  			 
 	});
-		  	
-		  	
-		  	
-		  	/*
-		  	$.ajax({
-				  url: 'http://localhost:8788/announce/announceList',
-				  methode: 'get', 
-				  data: {trial_fcltt_proper_num:trialValue},
-				  success: function(response) {
-					  console.log(data);
-				  },
-				  error: function(error) {
-					  console.error('Error:', error);
-					  }
-			});
-				 
-		  	var trialValue = $(this).val();	
-		  	$('.menu').click(function() {				 
-				 var trialValue = $(this).val(); //attr('val');	
-				 			  
-			  });
-		  	fetch('/announce/announceList') 
-		  	.then( response => response.json() )
-		  	.then(data => {
-				  console.log(data);
-			 })
-			 .catch(error => {
-				 console.error('Error:', error);
-			 });
-			 
-			 
-		  	var category = this.getAttribute('data-category-id');
-		  	if (category === '') {
-                window.location.href = '/announce/announceList'; // 전체 메뉴의 경우
-            } else if(category === '10') {
-                window.location.href = '/announce/announceList/' + category;
-            } else if(category === '20') {
-                window.location.href = '/announce/announceList/' + category;
-            } else if(category === '30') {
-                window.location.href = '/announce/announceList/' + category;
-            } else if(category === '40') {
-                window.location.href = '/announce/announceList/' + category;
-            }else if(category === '50') {
-                window.location.href = '/announce/announceList/' + category;
-            }	  
-            
-		  	fetch('/announce/announceList/' + category) 
-		  	.then( response => response.json() )
-		  	.then(data => {
-				  console.log(data);
-			 })
-			 .catch(error => {
-				 console.error('Error:', error);
-			 });*/		  
-
-	
-	
 </script>
-
-
 
 <script th:inline="javascript">
 

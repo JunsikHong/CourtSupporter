@@ -16,6 +16,10 @@ public class Criteria {
 	private String announce_start_date;
 	private String announce_end_date;
 	
+	//검색
+	private String searchOption;
+	private String searchKeyword;
+	
 	//신청
 	private String aplicn_dtls_sts;
 	private String aplicn_dtls_startdate;
