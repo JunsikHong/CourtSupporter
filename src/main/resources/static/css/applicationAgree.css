@@ -10,28 +10,6 @@
   margin: 0 auto;
 }
 
-main,article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
-hr{box-sizing:content-box;height:0}
-button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}
-button{overflow:visible}
-button,select{text-transform:none}
-html input[type=button],input[type=reset],input[type=submit]{cursor:pointer}
-button[disabled],html input[disabled]{cursor:default}
-button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
-input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}
-
-html,body,input,select,textarea,table,td,th,p,div,h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,a,form, label,strong,small,span{font-family:"ng","Nanum Gothic",sans-serif;line-height:1.5em; vertical-align: baseline;}
-html,body,h1,h2,h3,h4,h5,h6,p,ul,li,dt,dl,dd,a,img, input,ol,fieldset, form, label, legend, caption, tbody, tfoot,table, td, tr, th,
-article, aside, canvas, details, embed,figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video,div, span,
-object, iframe,abbr, address, big, cite, code,del, dfn, em, img, ins, small, strike, strong, sub, sup, var, center{margin:0; padding:0;border: 0;font-size: 100%;vertical-align: baseline;}
-a{text-decoration:none; color:inherit; display:inline-block;  cursor:pointer;}
-a{text-decoration:none;}
-ul, dl{list-style:none;}
-img, input, select{border:none; vertical-align:middle;}
-.clearfix{zoom:1}
-.clearfix:after{clear:both; display:block; content:""; height:0px; visibility:hidden;}
-.ellipsis{width:100%; overflow:hidden; text-overflow:ellipsis;white-space:nowrap;}
-h1,h2,h3,h4,h5,h6,strong,b,th {font-family:'ngB','ng','Malgun Gothic';letter-spacing:-1px;font-weight:normal;}
 /* table */
 table {border-collapse:collapse; border-spacing: 0;}
 th, td { border-collapse:collapse; border-spacing: 0; vertical-align:middle;}

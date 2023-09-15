@@ -26,6 +26,7 @@ public class TB_005VO {
    private Integer trial_fcltt_proper_num;
    private Integer court_proper_num;
    private String user_id;
+
    //멀티셀렉트 값
    private List<Integer> court_proper_num_list;
    

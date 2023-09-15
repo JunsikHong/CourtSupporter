@@ -36,6 +36,7 @@ public interface ApplicationMapper {
 	//학력 정보 페이지 - 입력한 학력 정보 불러오기
 	public ArrayList<TB_006VO> getEducationList(TB_006VO tb_006vo);
 	//학력 정보 수정 팝업 - 학력 정보 데이터 불러오기
+
 	public TB_006VO getEducationInfo(TB_006VO tb_006vo);
 	//학력 정보 페이지 - 학력 정보 수정
 	public void educationModify(TB_006VO tb_006vo);
@@ -44,6 +45,7 @@ public interface ApplicationMapper {
 	//학력,경력,자격증 정보 파일 수정
 	public List<TB_009VO> getFilepath(@Param("uuid") List<String> uuid, @Param("tb_009vo") TB_009VO tb_009vo);
 	public void fileDelete(@Param("uuid") List<String> uuid, @Param("tb_009vo") TB_009VO tb_009vo);
+
 	//학력 정보 페이지 - 최종 학력 입력
 	public void finalEducation(@Param("final_education_chk") String final_education_chk, 
 							   @Param("user_id") String user_id);
@@ -56,6 +58,7 @@ public interface ApplicationMapper {
 	//경력 정보 페이지 - 입력한 경력 정보 불러오기
 	public ArrayList<TB_007VO> getWorkList(TB_007VO tb_007vo);
 	//경력 정보 수정 팝업 - 경력 정보 데이터 불러오기
+
 	public TB_007VO getWorkInfo(TB_007VO tb_007vo);
 	//경력 정보 페이지 - 경력 정보 수정
 	public void workModify(TB_007VO tb_007vo);
@@ -65,15 +68,18 @@ public interface ApplicationMapper {
 	public void workEtcRegist(TB_007VO tb_007vo);
 	//경력 정보 페이지 - 활동 경력, 특기 사항 데이터 불러오기
 	public TB_007VO getWorkEtc(TB_007VO tb_007vo);
+
 	//자격증 정보 페이지 - 자격증 정보 등록
 	public void certificateRegist(TB_008VO tb_008vo);
 	//자격증 정보 페이지 - 입력한 자격증 정보 불러오기
 	public ArrayList<TB_008VO> getCertificateList(TB_008VO tb_008vo);
 	//자격증 정보 수정 팝업 - 자격증 정보 데이터 불러오기
+
 	public TB_008VO getCertificateInfo(TB_008VO tb_008vo);
 	//자격증 정보 페이지 - 자격증 정보 수정
 	public void certificateModify(TB_008VO tb_008vo);
 	//자격증 정보 페이지 - 자격증 정보 삭제
 	public void certificateInfoDelete(TB_008VO tb_008vo);
 	
+
 }

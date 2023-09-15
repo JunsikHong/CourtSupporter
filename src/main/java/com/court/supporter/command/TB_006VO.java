@@ -21,6 +21,7 @@ public class TB_006VO {
 	private String aplcn_dtls_proper_num;
 	private String user_id;
 	private String user_proper_num;
+
 	//최종학력 체크
 	private String final_education_chk;
 }

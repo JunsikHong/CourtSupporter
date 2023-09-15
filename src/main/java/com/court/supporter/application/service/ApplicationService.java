@@ -67,6 +67,4 @@ public interface ApplicationService {
 	public void certificateModify(TB_008VO tb_008vo);
 	//자격증 정보 페이지 - 자격증 정보 삭제
 	public void certificateInfoDelete(TB_008VO tb_008vo);
-	
-	
 }
