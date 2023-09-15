@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
 	const arrowElements = document.querySelectorAll('.arrow');
 	
@@ -30,3 +31,4 @@ function popUp() {
 	var featureWindow = "width=" + popupWidth + ", height=" + popupHeight + ", left=" + popupX + ", top=" + popupY;
 	window.open("adminmypage_evaluation_popup", "자격 및 면허사항 입력", featureWindow);
 }
+

@@ -232,4 +232,5 @@
 		set aplcn_dtls_sts = '08'
 		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</update>
+
 </mapper>

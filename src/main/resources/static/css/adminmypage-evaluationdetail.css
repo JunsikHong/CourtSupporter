@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
 	padding: 0;
 	margin: 0;
@@ -485,4 +486,475 @@ textarea {
 	width: 1px;
 	height: 1px;
 	overflow: hidden;
+=======
+* {
+	padding: 0;
+	margin: 0;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+* {
+	margin: 0 auto;
+}
+
+.adminmypage-evaluationdetail {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+.adminmypage-evaluationdetail-wrap {
+	width: 1280px;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+}
+
+.announceTitle {
+	font-size: x-large;
+	font-weight: 800;
+	padding: 20px;
+	text-align: center;
+	border-bottom: 3px solid rgb(109, 109, 109);
+	box-sizing: border-box;
+	margin-bottom: 50px;
+}
+
+#member_id {
+	font-weight: 300;
+	color: rgb(171, 171, 171);
+	font-size: 17px;
+	text-align: right;
+}
+/***********************************************/
+/*arrow*/
+.arrow-wrap {
+	margin-bottom: 15px;
+	margin-top: 15px;
+	float: right;
+	margin-right: 20px;
+}
+
+.arrow {
+	vertical-align: middle;
+	width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.arrow-up {
+	border-bottom: 15px solid rgb(212, 212, 212);
+}
+
+.arrow-down {
+	border-top: 15px solid rgb(212, 212, 212);
+}
+/***********************************************/
+/*myinfo*/
+.myinfoSection {
+	margin-bottom: 80px;
+	border: 1px solid rgb(230, 230, 230);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.myinfoSection h3 {
+	float: left;
+	font-size: 23px;
+	font-weight: bold;
+	margin: 15px 20px;
+}
+
+.myinfoTable {
+	width: 100%;
+	font-size: 16px;
+	border-top: 2px solid rgb(230, 230, 230);
+}
+
+.myinfoLine1,
+.myinfoLine2 {
+	border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.myinfoLine1 td:nth-child(1),
+.myinfoLine1 td:nth-child(3),
+.myinfoLine2 td:nth-child(1),
+.myinfoLine2 td:nth-child(3),
+.myinfoLine3 td:nth-child(1) {
+	width: 20%;
+	height: 70px;
+	vertical-align: middle;
+	font-weight: bold;
+	padding-left: 20px;
+	background-color: rgb(255, 252, 238);
+}
+
+.myinfoLine1 td:nth-child(2),
+.myinfoLine1 td:nth-child(4),
+.myinfoLine2 td:nth-child(2),
+.myinfoLine2 td:nth-child(4) {
+	padding-left: 20px;
+	vertical-align: middle;
+	width: 30%;
+}
+
+.myinfoLine3 td:nth-child(2) {
+	padding-left: 20px;
+	vertical-align: middle;
+}
+
+/***********************************************/
+/*detail*/
+.detailSection {
+	margin-bottom: 20px;
+	border: 1px solid rgb(230, 230, 230);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.detailSection h3 {
+	float: left;
+	font-size: 23px;
+	font-weight: bold;
+	margin: 15px 20px;
+}
+
+.detailTable {
+	width: 100%;
+	font-size: 16px;
+	border-top: 2px solid rgb(230, 230, 230);
+}
+
+.detailLine1,
+.detailLine2,
+.detailLine3,
+.detailLine4 {
+	border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.detailLine1 td:nth-child(1),
+.detailLine1 td:nth-child(3),
+.detailLine2 td:nth-child(1),
+.detailLine2 td:nth-child(3),
+.detailLine3 td:nth-child(1),
+.detailLine4 td:nth-child(1),
+.detailLine5 td:nth-child(1) {
+	width: 20%;
+	height: 70px;
+	vertical-align: middle;
+	font-weight: bold;
+	padding-left: 20px;
+	background-color: rgb(255, 252, 238);
+}
+
+.detailLine1 td:nth-child(2),
+.detailLine1 td:nth-child(4),
+.detailLine2 td:nth-child(2),
+.detailLine2 td:nth-child(4) {
+	padding-left: 20px;
+	vertical-align: middle;
+	width: 30%;
+}
+
+.detailLine3 td:nth-child(2),
+.detailLine4 td:nth-child(2),
+.detailLine5 td:nth-child(2) {
+	padding-left: 20px;
+	vertical-align: middle;
+}
+
+textarea {
+	width: 90%;
+	height: 60px;
+	resize: none;
+	margin-top: 10px;
+	font-size: 18px;
+}
+
+.inputbox {
+	padding: 10px 0;
+}
+/***********************************************/
+/*courtTable*/
+.courtSection {
+	margin-bottom: 80px;
+	border: 1px solid rgb(230, 230, 230);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.courtSection h3 {
+	float: left;
+	font-size: 23px;
+	font-weight: bold;
+	margin: 15px 20px;
+}
+
+.courtTable {
+	width: 100%;
+	font-size: 16px;
+	border-top: 2px solid rgb(230, 230, 230);
+}
+
+.courtHead {
+	height: 50px;
+	text-align: center;
+	font-weight: bold;
+	background-color: rgb(255, 252, 238);
+}
+
+.courtHead th {
+	vertical-align: middle;
+}
+
+.courtBody {
+	height: 50px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.courtBody td {
+	vertical-align: middle;
+}
+
+/***********************************************/
+/*edctn*/
+.edctnSection {
+	margin-bottom: 20px;
+	border: 1px solid rgb(230, 230, 230);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.edctnSection h3 {
+	float: left;
+	font-size: 23px;
+	font-weight: bold;
+	margin: 15px 20px;
+}
+
+.edctnTable {
+	width: 100%;
+	font-size: 16px;
+	border-top: 2px solid rgb(230, 230, 230);
+}
+
+.edctnLine1,
+.edctnLine2 {
+	border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.edctnLine1 td:nth-child(1),
+.edctnLine1 td:nth-child(3),
+.edctnLine2 td:nth-child(1),
+.edctnLine2 td:nth-child(3) {
+	width: 20%;
+	height: 70px;
+	vertical-align: middle;
+	font-weight: bold;
+	padding-left: 20px;
+	background-color: rgb(255, 252, 238);
+}
+
+.edctnLine1 td:nth-child(2),
+.edctnLine1 td:nth-child(4),
+.edctnLine2 td:nth-child(2),
+.edctnLine2 td:nth-child(4) {
+	padding-left: 20px;
+	vertical-align: middle;
+	width: 30%;
+}
+
+/***********************************************/
+/*carerTable*/
+.carerSection {
+	margin-bottom: 20px;
+	border: 1px solid rgb(230, 230, 230);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.carerSection h3 {
+	float: left;
+	font-size: 23px;
+	font-weight: bold;
+	margin: 15px 20px;
+}
+
+.carerTable {
+	width: 100%;
+	font-size: 16px;
+	border-top: 2px solid rgb(230, 230, 230);
+}
+
+.carerHead {
+	height: 50px;
+	text-align: center;
+	font-weight: bold;
+	background-color: rgb(255, 252, 238);
+}
+
+.carerHead th {
+	vertical-align: middle;
+}
+
+.carerBody {
+	height: 50px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.carerBody td {
+	vertical-align: middle;
+}
+
+/***********************************************/
+/*crtfcTable*/
+.crtfcSection {
+	margin-bottom: 20px;
+	border: 1px solid rgb(230, 230, 230);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.crtfcSection h3 {
+	float: left;
+	font-size: 23px;
+	font-weight: bold;
+	margin: 15px 20px;
+}
+
+.crtfcTable {
+	width: 100%;
+	font-size: 16px;
+	border-top: 2px solid rgb(230, 230, 230);
+}
+
+.crtfcHead {
+	height: 50px;
+	text-align: center;
+	font-weight: bold;
+	background-color: rgb(255, 252, 238);
+}
+
+.crtfcHead th {
+	vertical-align: middle;
+}
+
+.crtfcBody {
+	height: 50px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.crtfcBody td {
+	vertical-align: middle;
+}
+
+/***********************************************/
+/*attachTable*/
+.attachSection {
+	padding: 0 20px;
+}
+
+.attachTitle {
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+
+.attachTable {
+	width: 100%;
+	font-size: 16px;
+	border-top: 2px solid rgb(230, 230, 230);
+	border-bottom: 2px solid rgb(230, 230, 230);
+	margin-bottom: 80px;
+}
+
+.attachTable td:nth-child(1) {
+	width: 20%;
+	vertical-align: middle;
+	font-weight: bold;
+	padding-left: 20px;
+	background-color: rgb(255, 252, 238);
+}
+
+.attachTable td:nth-child(2) {
+	padding-left: 20px;
+
+}
+
+.attachTable-content {
+	margin: 10px 0;
+}
+
+.documentY {
+	width: 15px;
+	height: 15px;
+}
+
+/***********************************************/
+.btnbox {
+	text-align: center;
+	margin: 40px 0;
+}
+
+.btnbox .btnfb7 {
+	background-color: rgb(11, 38, 110);
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox .btn4d5 {
+	background-color: #4d515b;
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox02 a {
+	width: 129px;
+	box-sizing: border-box;
+}
+
+.required-img {
+	display: inline-block;
+	font-size: 10px;
+	color: #ec464d;
+	width: 10px;
+	height: 10px;
+	background: url(https://www.gov.kr/2017/img/page/ico_fa_asterisk.png) no-repeat 0 0;
+}
+
+.required-img .hidden {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+>>>>>>> e0e526ef03fe86baffaa1ce97181072a37d75824
 }

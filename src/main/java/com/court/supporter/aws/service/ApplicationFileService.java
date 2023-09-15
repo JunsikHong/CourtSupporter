@@ -110,7 +110,7 @@ public class ApplicationFileService {
 	//------------------------------------------------------------------------------------------------------------------------------------
     //s3 파일 삭제
 	public void ApplicationFileDelete(List<String> keyNames) {
-
+		System.out.println(keyNames.toString());
         ArrayList<ObjectIdentifier> keys = new ArrayList<>();
         for(String file : keyNames) {
         	//삭제할 객체

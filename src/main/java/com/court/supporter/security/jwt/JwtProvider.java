@@ -15,8 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
-	
-	private static final Long ACCESS_TOKEN_VALIDATION_SECOND = 60L * 60 * 24 * 1000; // 하루
+   private static final Long ACCESS_TOKEN_VALIDATION_SECOND = 60L * 60 * 1000; // 한시간
     private static final Long REFRESH_TOKEN_VALIDATION_SECOND = 60L * 60 * 24 * 30 * 1000; // 한 달
     private static final String BEARER_TYPE = "bearer";
     
@@ -35,7 +34,8 @@ public class JwtProvider {
     //id 데이터 저장한 클레임 객체 얻기
     public Claims getClaims(DefaultUserDetails defaultUserDetails) {
         Claims claims = Jwts.claims();
-        claims.put("id", defaultUserDetails.getUsername());
+        claims.put("member_proper_num", defaultUserDetails.getUsername());
+        claims.put("member_role", defaultUserDetails.getAuthorities());
         return claims;
     }
     
@@ -50,5 +50,5 @@ public class JwtProvider {
                 .setExpiration(new Date(now + validationSecond))
                 .compact();
     }
-
 }
+

@@ -20,9 +20,10 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
    position: relative;
 }
 .announceInner{
-  /* display: block;*/
+/*   display: block;
+   margin: 0 auto; */
    margin-left: 250px;
-   margin-bottom: 150px;
+   margin-bottom: 250px;
    min-height: 800px;
 }
 
@@ -35,8 +36,8 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 /*  padding: 20px;*/
   padding-left: 5px;
   padding-bottom: 15px;
-  border-bottom: 3px solid #090C5F; /* #424242;*/
-  color: #090C5F;/*2E2E2E*/
+  border-bottom: 3px solid #081247;  /* #090C5F; *//* #424242;*/
+  color:  #2E2E2E; /* #081247;*/  /*  08124E #090C5F;2E2E2E*/
 }
 .announceTitle > p {
   font-size: x-large;
@@ -63,7 +64,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 	margin-bottom: 30px;
 	
 	height: 100px;
-	background-color: #EAEBF8;
+	background-color: #F2F2F2; /* #EAEBF8*/
 }
 .searchTxt {
   margin-top: 15px;
@@ -116,12 +117,55 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
     background-color:  rgb(11, 38, 110);
     color: white;  
 }
+/***********************************************/
+.announceMenu {
+  margin-bottom: 30px;
+ /* width: 1029px;*/
+  height: 60px;
+  text-align: center;
+  justify-content: center;
+  border-bottom: 2px solid #081247;
+  background-color: #F2F2F2;
+  color:#515151;
+}
+.announceMenu > li {
+   /*inline-block */
+  float: left;
+  width: 167.6px;
+  height: 60px;
+  line-height: 60px; 
+  border-radius: 3px;  
+ /* background-color: #F2F2F2;*/
+  /*border: 2px solid #F2F2F2;*/
+  text-align: center; 
+  vertical-align: middle; 
+}
+.announceMenu > li > a { 
+  text-align: center; 
+  
+  text-decoration: none;
+  display: block; 
+  /*font-weight: 600;*/
+  text-decoration: none;  
+}
+.announceMenu .list > li.on {
+   /* width: 143px;
+  height: 53px;*/
+  border-radius: 3px;
+  border-bottom: 2px solid #081247;
+  background-color: #FFFFFF;
+  color: #081247;;
+  font-weight: bold;
+
+}
+
+
 
 /***********************************************/
 
 .announceBoard{
   /*border-top: 3px solid #848484;*/
-  border-top: 3px solid #090C5F;
+  /*border-top: 2px solid #081247;*/   /* #08124E;*/ /* #6E6E6E;*/ /* #090C5F;*/
   width: 100%; 
   overflow: hidden;
 }
@@ -139,9 +183,10 @@ td {
 .boardTitle th {
   height: 15px;
   line-height: 15px; 
-  border-bottom: 1px solid #090C5F; /* rgb(160, 160, 160);*/
+  border-top: 2px solid #081247;
+  border-bottom: 1px solid #848484; /* #090C5F;*/ /* rgb(160, 160, 160);*/
   padding: 15px;
-  background-color: #EAEBF8;
+  background-color:  #F2F2F2;  /* #EAEBF8;*/
   box-sizing: border-box;
 /*  background-color: rgb(226, 226, 226);*/
   /*background-color:  rgb(214, 221, 238);*/
@@ -152,9 +197,9 @@ td {
 	text-align: center;
 }
 .hireIcon {
-	border: 1px solid #090C5F;
+	border: 1px solid #081247;    /* #848484; *//* #090C5F;*/
 	border-radius: 3px;
-	color: #090C5F;
+	color:  #08124E;  /* #848484; *//* #090C5F;*/
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 14px;
@@ -251,7 +296,6 @@ td {
   	justify-content: flex-end;	
 }
 .registBtn{
-
   margin-top: 20px;
   margin-bottom: 20px;
   padding-left: 11px; 
@@ -269,7 +313,8 @@ td {
   vertical-align: middle;
   font-family:"ngB" !important;
 }
-.registBtn > a{
+.registBtn > a {
+	font-family: "Noto Sans KR", sans-serif;
   color: white;
 }
 .registBtn > a:hover{

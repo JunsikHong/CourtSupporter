@@ -1,3 +1,4 @@
+
 package com.court.supporter.command;
 
 import java.time.LocalDateTime;
@@ -22,3 +23,4 @@ public class TB_012VO {
 	private String user_proper_num;
 	
 }
+

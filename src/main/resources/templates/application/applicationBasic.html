@@ -146,6 +146,7 @@
 								<col width="80%">
 							</colgroup>
 							<tbody>
+								<input type="hidden" id="user_proper_num" name="user_proper_num" th:value="${tb_001vo.user_proper_num}"/>
 								<tr class="uptr01">
 									<th class="">
 										<i class="required-img">
@@ -153,7 +154,7 @@
 										</i>
 										<span>이름</span>
 									</th>
-									<td><input type="text" id="user_name" name="user_name" title="이름" th:value="${vo.user_name}" readonly></td>
+									<td><input type="text" id="user_name" name="user_name" title="이름" th:value="${tb_001vo.user_name}" readonly></td>
 								</tr>
 								<tr class="uptr04">
 									<th class="">
@@ -176,11 +177,11 @@
 										</i>
 										<span id="phoneNum">휴대폰번호</span>
 									</th>
-									<td><input title="핸드폰앞자리" id="user_phone1" name="user_phone1" type="text" maxlength='3' th:value="${#strings.substringBefore(vo.user_phone, '-')}">
+									<td><input title="핸드폰앞자리" id="user_phone1" name="user_phone1" type="text" maxlength='3' th:value="${#strings.substringBefore(tb_001vo.user_phone, '-')}">
 										<span>-</span> 
-										<input title="핸드폰중간자리" id="user_phone2" name="user_phone2" type="text" maxlength='4' th:value="${#strings.substringBefore(#strings.substringAfter(vo.user_phone, '-'), '-')}">
+										<input title="핸드폰중간자리" id="user_phone2" name="user_phone2" type="text" maxlength='4' th:value="${#strings.substringBefore(#strings.substringAfter(tb_001vo.user_phone, '-'), '-')}">
 										<span>-</span> 
-										<input title="핸드폰뒷자리" id="user_phone3" name="user_phone3" type="text" maxlength='4' th:value="${#strings.substringAfter(#strings.substringAfter(vo.user_phone, '-'), '-')}">
+										<input title="핸드폰뒷자리" id="user_phone3" name="user_phone3" type="text" maxlength='4' th:value="${#strings.substringAfter(#strings.substringAfter(tb_001vo.user_phone, '-'), '-')}">
 										<span id="phoneMsg" style="color: red;"></span>
 									</td>
 								</tr>
@@ -193,19 +194,19 @@
 										<span id="emailInfo">이메일</spanid="phoneNum">
 									</th>
 									<td class="">
-										<input type="text" title="이메일아이디" name="user_email1" id="email-user" maxlength="50" th:value="${vo.user_email.substring(0, vo.user_email.indexOf('@'))}">
+										<input type="text" title="이메일아이디" name="user_email1" id="email-user" maxlength="50" th:value="${tb_001vo.user_email.substring(0, tb_001vo.user_email.indexOf('@'))}">
 										<span>@</span> 
-										<input type="text" title="이메일뒷자리" name="user_email2" id="email-domain" maxlength="40" th:value="${vo.user_email.substring(vo.user_email.indexOf('@') + 1)}">
+										<input type="text" title="이메일뒷자리" name="user_email2" id="email-domain" maxlength="40" th:value="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1)}">
 										<select class="selC" name="email_select" id="email_select" title="전자우편서비스선택" onchange="updateEmailDomain()">
 											<option value='' selected="selected" disabled style='display: none;'>선택하세요</option>
-											<option value='hanmail.net' th:selected="${vo.user_email.substring(vo.user_email.indexOf('@') + 1) == 'hanmail.net'}">hanmail.net</option>
-											<option value='lycos.co.kr' th:selected="${vo.user_email.substring(vo.user_email.indexOf('@') + 1) == 'lycos.co.kr'}">lycos.co.kr</option>
-											<option value='empal.com' th:selected="${vo.user_email.substring(vo.user_email.indexOf('@') + 1) == 'empal.com'}">empal.com</option>
-											<option value='hotmail.com' th:selected="${vo.user_email.substring(vo.user_email.indexOf('@') + 1) == 'hotmail.com'}">hotmail.com</option>
-											<option value='naver.com' th:selected="${vo.user_email.substring(vo.user_email.indexOf('@') + 1) == 'naver.com'}">naver.com</option>
-											<option value='paran.com' th:selected="${vo.user_email.substring(vo.user_email.indexOf('@') + 1) == 'paran.com'}">paran.com</option>
-											<option value='yahoo.co.kr' th:selected="${vo.user_email.substring(vo.user_email.indexOf('@') + 1) == 'yahoo.co.kr'}">yahoo.co.kr</option>
-											<option value='nate.com' th:selected="${vo.user_email.substring(vo.user_email.indexOf('@') + 1) == 'nate.com'}">nate.com</option>
+											<option value='hanmail.net' th:selected="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1) == 'hanmail.net'}">hanmail.net</option>
+											<option value='lycos.co.kr' th:selected="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1) == 'lycos.co.kr'}">lycos.co.kr</option>
+											<option value='empal.com' th:selected="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1) == 'empal.com'}">empal.com</option>
+											<option value='hotmail.com' th:selected="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1) == 'hotmail.com'}">hotmail.com</option>
+											<option value='naver.com' th:selected="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1) == 'naver.com'}">naver.com</option>
+											<option value='paran.com' th:selected="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1) == 'paran.com'}">paran.com</option>
+											<option value='yahoo.co.kr' th:selected="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1) == 'yahoo.co.kr'}">yahoo.co.kr</option>
+											<option value='nate.com' th:selected="${tb_001vo.user_email.substring(tb_001vo.user_email.indexOf('@') + 1) == 'nate.com'}">nate.com</option>
 											<option value=''>직접입력</option>
 										</select>
 										<span id="emailMsg" style="color: red;"></span>
@@ -213,14 +214,11 @@
 								</tr>
 								<tr class="uptr01" style="border: none;">
 									<th class="" rowspan="3">
-										<!--<i class="required-img">
-											<span class="hidden">필수입력</span>
-										</i>-->
 										<span>주소</span>
 									</th>
 									<td style="border-bottom: none;">
 										<span>우편번호 : </span>
-										<input type="text" id="user_ar_zonecode" name="user_ar_zonecode" title="우편번호" th:value="${vo.user_ar_zonecode}" readonly>
+										<input type="text" id="user_ar_zonecode" name="user_ar_zonecode" title="우편번호" th:value="${tb_001vo.user_ar_zonecode}" readonly>
 										<button type="button" id="addressSearch"
 											style="border: 1px solid #888888; border-radius: 3px; height: 30px; vertical-align: middle;">주소검색</button>
 										<span id="addressMsg" style="color: red;"></span>
@@ -230,14 +228,14 @@
 								<tr class="uptr01">
 									<td style="border-bottom: none;">
 										<span style="letter-spacing: 4.8px;">주소 : </span>
-										<input type="text" id="user_ar" name="user_ar" title="주소" th:value="${vo.user_ar}" readonly>
+										<input type="text" id="user_ar" name="user_ar" title="주소" th:value="${tb_001vo.user_ar}" readonly>
 									</td>
 								</tr>
 								<tr class="uptr01">
 									<td>
 										<span>상세주소 : </span>
-										<input type="text" name="user_ar_detail" title="상세주소" th:value="${vo.user_ar_detail}">
-										<input type="hidden" name="user_ar_jibun" th:value="${vo.user_ar_jibun}">
+										<input type="text" name="user_ar_detail" title="상세주소" th:value="${tb_001vo.user_ar_detail}">
+										<input type="hidden" name="user_ar_jibun" th:value="${tb_001vo.user_ar_jibun}">
 									</td>
 								</tr>
 							</tbody>
@@ -271,36 +269,36 @@
 								<tr>
 									<td style="vertical-align: middle;">소송사건 당사자 경력</td>
 									<td style="text-align:center; vertical-align: middle;" class="toptd">
-										<input type="radio" name="ligtn_case_carer_yn" value="y">예
-										<input type="radio" name="ligtn_case_carer_yn" value="n">아니오
+										<input type="radio" name="ligtn_case_carer_yn" value="Y" th:checked="${tb_005vo?.ligtn_case_carer_yn == 'Y'}">예
+										<input type="radio" name="ligtn_case_carer_yn" value="N" th:checked="${tb_005vo?.ligtn_case_carer_yn == 'N'}">아니오
 										<div id="radioMsg1" style="color: red;"></div>
 									</td>
 									<td><textarea
-											name="ligtn_case_carer_etc" style="border: 1px solid #ddd; width: 95%; resize: none; height: 100px;"></textarea>
+											name="ligtn_case_carer_etc" style="border: 1px solid #ddd; width: 95%; resize: none; height: 100px;">[[${tb_005vo?.ligtn_case_carer_etc}]]</textarea>
 									</td>
 								</tr>
 
 								<tr>
 									<td style="vertical-align: middle;">보험업계 자문 경력</td>
 									<td style="text-align:center; vertical-align: middle;" class="toptd">
-										<input type="radio" name="insrn_indst_carer_yn" value="y">예
-										<input type="radio" name="insrn_indst_carer_yn" value="n">아니오
+										<input type="radio" name="insrn_indst_carer_yn" value="Y" th:checked="${tb_005vo?.insrn_indst_carer_yn == 'Y'}">예
+										<input type="radio" name="insrn_indst_carer_yn" value="N" th:checked="${tb_005vo?.insrn_indst_carer_yn == 'N'}">아니오
 										<div id="radioMsg2" style="color: red;"></div>
 									</td>
 									<td><textarea
-											name="insrn_indst_carer_etc" style="border: 1px solid #ddd; width: 95%; resize: none; height: 100px;"></textarea>
+											name="insrn_indst_carer_etc" style="border: 1px solid #ddd; width: 95%; resize: none; height: 100px;">[[${tb_005vo?.insrn_indst_carer_etc}]]</textarea>
 									</td>
 								</tr>
 
 								<tr>
 									<td style="vertical-align: middle;">형사처벌 받은 경력</td>
 									<td style="text-align:center; vertical-align: middle;" class="toptd">
-										<input type="radio" name="criminal_penalty_carer_yn" value="y">예
-										<input type="radio" name="criminal_penalty_carer_yn" value="n">아니오
+										<input type="radio" name="criminal_penalty_carer_yn" value="Y" th:checked="${tb_005vo?.criminal_penalty_carer_yn == 'Y'}">예
+										<input type="radio" name="criminal_penalty_carer_yn" value="N" th:checked="${tb_005vo?.criminal_penalty_carer_yn == 'N'}">아니오
 										<div id="radioMsg3" style="color: red;"></div>
 									</td>
 									<td><textarea
-											name="criminal_penalty_carer_etc" style="border: 1px solid #ddd; width: 95%; resize: none; height: 100px;"></textarea>
+											name="criminal_penalty_carer_etc" style="border: 1px solid #ddd; width: 95%; resize: none; height: 100px;">[[${tb_005vo?.criminal_penalty_carer_etc}]]</textarea>
 									</td>
 								</tr>
 
@@ -318,5 +316,30 @@
 	</div>
 
 </th:block>
-
+<script th:inline="javascript">
+	
+	var selected = /*[[${#strings.substring(tb_005vo?.trial_fcltt_proper_num, 1, 5)}]]*/ "";
+	var selected2 = /*[[${#strings.substring(tb_005vo?.trial_fcltt_proper_num, 5, 7)}]]*/ "";
+	var selected3;
+	var court = "[[${tb_005vo?.court_proper_num}]]";
+	
+	if(selected2 === "03") {
+		selected3 = "0103001"
+	} else if(selected2 === "04") {
+		selected3 = "0103002"
+	} else if(selected2 === "05") {
+		selected3 = "0103011"
+	} else if(selected2 === "06") {
+		selected3 = "0103012"
+	} else if(selected2 === "07") {
+		selected3 = "0103013"
+	} else if(selected2 === "14") {
+		selected3 = "0301001"
+	} else if(selected2 === "15") {
+		selected3 = "0301002"
+	} else {
+		selected3 = "0000000"
+	}
+	
+</script>
 </html>

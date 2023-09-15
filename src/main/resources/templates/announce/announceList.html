@@ -1,151 +1,305 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet"> 
-  
-  <link rel="stylesheet" th:href="@{/css/announceList.css}">
-  <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
-  <link rel="stylesheet" th:href="@{/css/page.css}">
-  
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/announceList.css}">
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
+<link rel="stylesheet" th:href="@{/css/page.css}">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- jQuery UI (Datepicker가 포함된 전체 jQuery UI 라이브러리) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<!--<script th:src="@{/js/announceList.js}"></script>-->
+
 <th:block th:replace="~{./include/layout :: setContent(~{:: .announceList})}">
 
-  <div class="announceList"> <!-- 가장 큰 박스 -->
-    
-     <div class="announceList-wrap"> <!-- 다음으로 감싸는 박스-->
+	<div class="announceList"> <!-- 가장 큰 박스 -->
 
-      <div> <!--sidebar-->
-         <th:block th:replace="~{./include/layout-announceList-side}"></th:block>
-      </div>
-      
-      <div class="announceInner"> <!-- 공고게시판 -->
-         
-          <div class="announceTitle"> <!-- 게시판 타이틀 -->
-            <p>모집 공고</p>
-          </div>
-    
-          <form action="/announce/announceList" name="searchForm" class="searchBox" method="get"> <!-- 검색창 action="searchForm"or announceList  class="searchBox" -->
-        	 <input type="hidden" name="page" value="1">
-			 <input type="hidden" name="amount" th:value="${pageVO.amount}"> 
-                 
-             <div class="searchWrap">
-				  
-	          <div class="searchTxt" > <!-- th:value="${pageVO.cri.announce_title}"  name="announceSearch"-->
-		         <div class="searchdateselect">
-		          <label for="startDate" >모집기간 선택</label>				 
-				 </div>
-	         
-	          	 <input type="date" class="searchStartDate" name="announce_start_date" id="startDate">
-	          	 <!--<label for="endDate">모집종료일</label>-->
-	          	  <label for="startDate" >   ~  </label>	
-	        	 <input type="date" class="searchEndDate" name="announce_end_date" id="endDate">
-	         	 <select id="searchOption">
-					 <option value="announceAll">전체</option>
-					 <option value="announce_title">제목</option>
-					 <option value="announce_content">내용</option>
-				 </select> 
-				 
-	             <input type="text" class="search" name="keyword" placeholder="검색어 입력" > <!-- keyword   ${pageVO.cri.announce_title}   th:value="${pageVO.cri.announceContent}"-->
-	             <!-- 검색 버튼 -->
-	             <button type="submit" id="searchBtn"  class="searchBtn">검색</button>        
-	          </div>      
-    		</div>    
-	      
-	          <!-- 게시판 -->
-	          <div class="announceBoard">
-	           
-	            <table class="board"> <!-- 공고게시판 -->
-	              <thead>
-	      
-	                <tr class="boardTitle" >  <!-- 게시판 상단부분 (분류) -->
-	                
-				     <!-- <th>  맨 앞쪽에 다 넣어야함  
-					 	 <input type="checkbox" class="allCheck">
-					  </th>-->
-	                  <th>번호</th>
-	                  <th>모집여부</th>
-	                  <th>제목</th>
-	                  <th class="regdate">작성일</th>
-	                  <!--<th>공고 모집일</th>-->
-	                  <!--<th>조회</th>-->
-	                </tr>
-	      
-	                <tbody>  <!-- 게시판 글 목록-->
-	                  <tr th:each="vo : ${list}"> <!--boardContent-->
-	                  <!--<td>  맨 앞쪽에 다 넣어야함  
-						 <input type="checkbox" class="chk">
-					  </td>-->
-	                    <td class="contentNumber">
-							<span th:text="${vo.announce_proper_num}"></span> <!--[[${vo.announce_proper_num}]]-->
-						</td>
-						
-						<td class="hirebox">
-							<span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>
-						</td>
-						
-	                    <td class="contentTitle"> <!--[[${vo.announce_title}]]-->
-	                    	<!--<div class="hirebox">-->
-							 <!-- <span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>-->
-							<!--</div>-->
-							<!--<div class="titlebox">-->
-		                      <a th:href="@{announceDetail(announce_proper_num=${vo.announce_proper_num})}"  th:text="${vo.announce_title}"></a>	
-							<!--</div>-->
-	                    	
-	                    </td>
-	                    
-	                    <td class="contentDate">
-							<span th:text="${vo.announce_first_date.substring(0,10)}"></span>
-							<!--${#temporals.format(vo.announce_first_date, 'yyyy-MM-dd')}-->
-						</td>
-						
-	                    <!--<td class="contentViews"><span id="viewCount">0</span></td>-->
-	                  </tr>
-	               
-	                </tbody>
-	      
-	              </thead>
-	            </table>
-	      
-	          </div>
-	        
-	        
-	     	<!-- <div>
+		<div class="announceList-wrap"> <!-- 다음으로 감싸는 박스-->
+
+			<div> <!--sidebar-->
+				<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+			</div>
+
+			<div class="announceInner"> <!-- 공고게시판 -->
+
+				<div class="announceTitle"> <!-- 게시판 타이틀 -->
+					<p>모집 공고</p>
+				</div>
+
+				<form action="/announce/announceList" name="searchForm" class="searchBox" method="get">
+					<!-- 검색창 action="searchForm"or announceList  class="searchBox" -->
+					<input type="hidden" name="page" value="1">
+					<input type="hidden" name="amount" th:value="${pageVO.amount}">
+
+					<div class="searchWrap">
+
+						<div class="searchTxt"> <!-- th:value="${pageVO.cri.announce_title}"  name="announceSearch"-->
+							<div class="searchdateselect">
+								<label for="startDate">모집기간 선택</label>
+							</div>
+
+							<input type="date" class="searchStartDate" name="announce_start_date" id="startDate"
+								th:value="${pageVO.cri.announce_start_date}">
+							<!--<label for="endDate">모집종료일</label>-->
+							<label for="startDate"> ~ </label>
+							<input type="date" class="searchEndDate" name="announce_end_date" id="endDate"
+								th:value="${pageVO.cri.announce_end_date}">
+							<select id="searchOption" name="searchOption">
+								<option value="announceAll" th:selected="${pageVO.cri.searchOption == 'announceAll'}">전체
+								</option>
+								<option value="announce_title"
+									th:selected="${pageVO.cri.searchOption == 'announce_title'}">제목</option>
+								<option value="announce_content"
+									th:selected="${pageVO.cri.searchOption == 'announce_content'}">내용</option>
+							</select>
+
+							<input type="text" class="search" name="searchKeyword" placeholder="검색어 입력"
+								th:value="${pageVO.cri.searchKeyword}">
+							<!-- 검색 버튼 -->
+							<button type="submit" id="searchBtn" class="searchBtn">검색</button>
+						</div>
+					</div>
+
+					<!-- 게시판 -->
+					<div class="announceBoard">
+
+						<!--   <div class="menuBox"> 게시판 상자 안에 있어야 함. 임시 div -->
+						<ul class="announceMenu">
+							<li> <!-- class="on" name=""-->
+								<a th:href="@{/announce/announceList}" class="menu" id="menu_1" data-category-id="" >전체</a>
+							</li>
+							<li class="" >
+								<a th:href="@{/announce/announceTrialList/10}" class="menu" id="menu_2" data-category-id="10" name="">조력자</a>
+							</li>
+							<li class="" >
+								<a th:href="@{/announce/announceTrialList/20}" class="menu" id="menu_3" data-category-id="20" name="">통번역인</a>
+							</li>
+							<li class="" >
+								<a th:href="@{/announce/announceTrialList/30}" class="menu" id="menu_4" data-category-id="30" name="">조정위원</a>
+							</li>
+							<li class="" >
+								<a th:href="@{/announce/announceTrialList/40}" class="menu" id="menu_5" data-category-id="40" name="">전문시말위원</a>
+							</li>
+							<li class="">
+								<a th:href="@{/announce/announceTrialList/50}" class="menu" id="menu_6" data-category-id="50" name="">상담위원</a>
+							</li>							
+						</ul>
+
+
+						<table class="board" id="menuData" > <!-- 공고게시판 -->
+							<thead>
+
+								<tr class="boardTitle"> <!-- 게시판 상단부분 (분류) -->
+
+						      <!--<th>맨 앞쪽에 다 넣어야함  
+								 	 <input type="checkbox" class="allCheck">
+								  </th>-->
+									<th>번호</th>
+									<th>모집여부</th>
+									<th>제목</th>
+									<th class="regdate">작성일</th>
+									<!--<th>공고 모집일</th>-->
+									<!--<th>조회</th>-->
+								</tr>
+
+							<tbody> <!-- 게시판 글 목록-->
+								<tr th:each="vo, iterStat : ${list}"> <!--boardContent-->
+								  <!--<td><input type="checkbox" class="chk"></td>-->
+								  
+									<td class="contentNumber">
+										<span th:text="${list.size() - iterStat.count+1}"></span><!--  th:text="${vo.announce_proper_num}"-->							
+									</td>
+
+									<td class="hirebox">
+										<span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>
+									</td>
+
+									<td class="contentTitle">
+										<!--<div class="hirebox">-->
+										<!-- <span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>-->
+										<!--</div>-->										
+										<a th:href="@{announceDetail(announce_proper_num=${vo.announce_proper_num})}"
+											th:text="${vo.announce_title}"></a>	
+										<!--<a th:href="@{announceDetail(trial_fcltt_proper_num=${vo.trial_fcltt_proper_num})}"
+										th:text="${vo.announce_title}"></a>-->
+									</td>
+
+									<td class="contentDate">
+										<span th:text="${vo.announce_first_date.substring(0,10)}"></span>
+										<!--${#temporals.format(vo.announce_first_date, 'yyyy-MM-dd')}-->
+									</td>
+
+									<!--<td class="contentViews"><span id="viewCount">0</span></td>-->
+								</tr>
+
+							</tbody>
+
+							</thead>
+						</table>
+
+					</div>
+
+
+					<!-- <div>
 				 <button type="button"  name="check" id="del"> 삭제 </button>
 			 </div>-->
-	     
-	      
-	       	<div class="registBox"> <!--float 쓰면 이동이 안 됨-->        
-	          <button class="registBtn" id="registBtn">
-	            <a href="/announce/announceReg">글 작성</a>
-	          </button>       
-	        </div>
-	        
-	        <!--페이지네이션-->
-	        <th:block th:replace="~{./include/announcePage :: pageNation(${pageVO})}"></th:block>
 
-         </form>
-         
-       </div>
-       
-     </div>
-     
-  </div>
+					<!--<th:block th:if="${member_role == 'admin'}">-->
+						<div class="registBox"> <!--float 쓰면 이동이 안 됨-->
+							<button class="registBtn" id="registBtn">
+								<a href="/announce/announceReg">글 작성</a>
+							</button>
+						</div>						
+				<!--	</th:block>-->
+
+					<!--페이지네이션-->
+					<th:block th:replace="~{./include/announcePage :: pageNation(${pageVO})}"></th:block>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
 
 </th:block>
 
 
 
-<script th:inline="javascript"> 
+<script th:inline="javascript">
 
-    //검색
-    var searchBtn = document.getElementById("searchBtn");
-  	searchBtn.onclick = () => {
-	    event.preventDefault();
-	    document.searchForm.submit();
-  	}
+	//검색
+	var searchBtn = document.getElementById("searchBtn");
+	searchBtn.onclick = () => {
+		event.preventDefault();
+		document.searchForm.submit();
+	}
 
 </script>
+
+<script th:inline="javascript">
+	//공고 검색
+	var searchOption = document.querySelector("#searchOption");
+	var search = document.querySelector(".search");
+
+	document.querySelector("#searchOption").addEventListener("change", function () {
+		var selectValue = this.value;
+
+		var searchInput = document.querySelector(".search");
+
+		if (selectValue === "announce_title") {
+			searchInput.setAttribute("name", "announce_title");
+		} else if (selectValue === "announce_content") {
+			searchInput.setAttribute("name", "announce_content");
+		} else if (selectValue === "announce_start_date") {
+			searchInput.setAttribute("name", "announce_start_date");
+		} else if (selectValue === "announce_end_date") {
+			searchInput.setAttribute("name", "announce_end_date");
+		}
+	});
+
+</script>
+
+							
+<script th:inline="javascript"> //조력자 고유번호를 받아서 공고 조회
+	
+	var menuList = document.querySelectorAll('.announceMenu li');	
+	
+	menuList.forEach(item => {		
+		var menu = item.querySelector('.menu');
+	    		 
+	 	menu.addEventListener('click', function() {			 
+		    menuList.forEach(item => item.classList.remove('on'));		    
+		    item.classList.add('on');
+		    
+		   	var category = this.getAttribute('data-category-id');
+		  	
+		  	if (category === '') {
+                window.location.href = '/announce/announceList'; // 전체 메뉴의 경우
+            } else if(category === '10') {
+                window.location.href = '/announce/announceTrialList/' + category;
+            } else if(category === '20') {
+                window.location.href = '/announce/announceTrialList/' + category;
+            } else if(category === '30') {
+                window.location.href = '/announce/announceTrialList/' + category;
+            } else if(category === '40') {
+                window.location.href = '/announce/announceTrialList/' + category;
+            } else if(category === '50') {
+                window.location.href = '/announce/announceTrialList/' + category;
+            }	  
+				    		  
+		  	 
+		});
+		  			 
+	});
+		  	
+		  	
+		  	
+		  	/*
+		  	$.ajax({
+				  url: 'http://localhost:8788/announce/announceList',
+				  methode: 'get', 
+				  data: {trial_fcltt_proper_num:trialValue},
+				  success: function(response) {
+					  console.log(data);
+				  },
+				  error: function(error) {
+					  console.error('Error:', error);
+					  }
+			});
+				 
+		  	var trialValue = $(this).val();	
+		  	$('.menu').click(function() {				 
+				 var trialValue = $(this).val(); //attr('val');	
+				 			  
+			  });
+		  	fetch('/announce/announceList') 
+		  	.then( response => response.json() )
+		  	.then(data => {
+				  console.log(data);
+			 })
+			 .catch(error => {
+				 console.error('Error:', error);
+			 });
+			 
+			 
+		  	var category = this.getAttribute('data-category-id');
+		  	if (category === '') {
+                window.location.href = '/announce/announceList'; // 전체 메뉴의 경우
+            } else if(category === '10') {
+                window.location.href = '/announce/announceList/' + category;
+            } else if(category === '20') {
+                window.location.href = '/announce/announceList/' + category;
+            } else if(category === '30') {
+                window.location.href = '/announce/announceList/' + category;
+            } else if(category === '40') {
+                window.location.href = '/announce/announceList/' + category;
+            }else if(category === '50') {
+                window.location.href = '/announce/announceList/' + category;
+            }	  
+            
+		  	fetch('/announce/announceList/' + category) 
+		  	.then( response => response.json() )
+		  	.then(data => {
+				  console.log(data);
+			 })
+			 .catch(error => {
+				 console.error('Error:', error);
+			 });*/		  
+
+	
+	
+</script>
+
+
 
 <script th:inline="javascript">
 
@@ -154,58 +308,13 @@
 	//관리자가 아닐시 버튼 숨김
 	var registBtn = document.getElementById("registBtn");
 	if (admin_proper_num === "1") {
-	    //관리자일 경우 모든 버튼을 보이게
-	    registBtn.style.display = "block";	    
+		//관리자일 경우 모든 버튼을 보이게
+		registBtn.style.display = "block";
 	} else {
-	    //관리자 제외 버튼을 숨김
-	    registBtn.style.display = "none";	    
-	}	
-		
-</script>
-
-<script th:inline="javascript">
-
-	var searchOption = document.querySelector("#searchOption");
-	var search = document.querySelector(".search");		
-	
-	document.querySelector("#searchOption").addEventListener("change", function() {
-    var selectValue = this.value; 
-
-    var searchInput = document.querySelector(".search");
-    
-	    if (selectValue === "announce_title") {
-	        searchInput.setAttribute("name", "announce_title");	       
-	    } else if (selectValue === "announce_content") {
-	        searchInput.setAttribute("name", "announce_content");
-	    } else if( selectValue === "announce_start_date") {
-			searchInput.setAttribute("name", "announce_start_date");
-		} else if(selectValue === "announce_end_date") {
-			searchInput.setAttribute("name", "announce_end_date");
-		}
-	});
-
-	
-	//게시판화면에서 체크박스 -> 삭제 클릭시 정말 삭제하는지 물어보는 알림창 떠야함
-	//화면에서 선택 삭제 DB에서도 삭제해야함	
-	/*var chk = document.querySelectorAll('input[class="check"]');
-	var del = document.getElementById("del");
-	del.onclick = function() {
-		for(var i = 0; i < chk.length; i++){
-			if( chk[i].checked == true ){
-				chk[i].parentElement.parentElement.remove();
-			}
-		}
+		//관리자 제외 버튼을 숨김
+		registBtn.style.display = "none";
 	}
-	var all = document.querySelector(".allCheck");
-	all.onclick = function() {
-		if( all.checked == true ) {
-			for(var i = 0; all.length; i++) {				
-				all[i].checked == true;
-			}
-		} else {
-			all[i].checked == false;
-		}	
-		
-	}*/
+
 </script>
+
 </html>

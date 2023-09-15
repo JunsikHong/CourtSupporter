@@ -125,3 +125,77 @@ $(document).ready(function() {
 		});
 	});
 })
+
+
+/* 파일 수정 */
+window.onload = function() {
+	$("#certificateForm").on('submit', function(e) {
+
+		var uuids = [];
+		const elements = document.getElementsByClassName("uuid");
+		console.log(elements)
+		for(var i = 0; i < elements.length; i++) {
+			
+			uuids.push(elements[i].value);
+			console.log(uuids);
+		}
+		
+		$.ajax({
+			url: "../application/certificateFileModify",
+			method: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(uuids),
+			success: function(data) {
+				console.log(data)
+				
+			},
+			error: function(error) {
+				console.error(error);
+			}
+		});
+	})
+}
+
+/* 파일 첨부 추가 */
+$(document).ready(function() {
+	var idx = 1;
+	$(document).on("click", ".filePlusBtn", function() {
+		var str = "";
+		str += '<div class="file-container">';
+		str += '<label for="file-input-' + idx + '" class="file-label">';
+		str += '<input type="hidden" class="fileAdd" style="border: none;" value="' + idx + '">';
+		str += '<input type="file" id="file-input-' + idx + '" name="file" style="display: none;">';
+		str += '<span class="fileAddBtn">파일선택</span>';
+		str += '</label>';
+		str += '<input class="upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
+		str += '</div>';
+		
+		$("#fileAddList").append(str);
+		idx++;
+	});
+	
+	
+	
+})
+/* 파일 첨부 추가 삭제 */
+$(document).ready(function() {
+	$(document).on("click", ".fileDeleteBtn, .fileDeleteBtn2", function() {
+		$(this).parent().remove();
+	});
+	
+})
+/* 파일 업로드 */
+$(document).ready(function() {
+
+   $(document).on("change", 'input[type=file]', function() {
+	   
+  	var fileInput = $(this);
+  	var fileName = fileInput.val().split('\\').pop();
+  	fileInput.parent().next().val(fileName);
+  	$(this).next().css('display', 'none');
+  	$(this).parent().next().next().css('display', '');
+  	
+  });
+  
+});

@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/applicationPopup.css}">
 <script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script th:src="@{/js/applicationEducationPopup.js}"></script>
 <th:block>
 	<div class="educationPopup">
@@ -59,7 +61,7 @@
 										</i>
 										<span>입학일</span>
 									</th>
-									<td><input type="text" name="edctn_admsn_date" id="edctn_admsn_date" title="입학일" th:value="${vo.edctn_admsn_date}" pattern="\d{4}-\d{2}-\d{2}"></td>
+									<td><input type="text" class="datepicker" name="edctn_admsn_date" id="edctn_admsn_date" title="입학일" th:value="${vo.edctn_admsn_date}" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"></td>
 								</tr>
 								<tr class="uptr01">
 									<th class="">
@@ -68,7 +70,7 @@
 										</i>
 										<span>졸업일</span>
 									</th>
-									<td><input type="text" name="edctn_grdtn_date" id="edctn_grdtn_date" title="졸업일" th:value="${vo.edctn_grdtn_date}" pattern="\d{4}-\d{2}-\d{2}"></td>
+									<td><input type="text" class="datepicker" name="edctn_grdtn_date" id="edctn_grdtn_date" title="졸업일" th:value="${vo.edctn_grdtn_date}" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"></td>
 								</tr>
 
 							</tbody>

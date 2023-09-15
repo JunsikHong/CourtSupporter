@@ -76,7 +76,7 @@ function educationInfo() {
 		
 	})
 	childPopup.close();
-	}, 35);
+	}, 40);
 		
 }
 
@@ -99,7 +99,7 @@ $(document).ready(function() {
 			url: "../application/educationInfoDelete",
 			method: "POST",
 			contentType: "application/json",
-			data: JSON.stringify({ user_id: 'user1', edctn_dtls_proper_num: edctn_dtls_proper_num }),
+			data: JSON.stringify({edctn_dtls_proper_num: edctn_dtls_proper_num }),
 			success: function(data) {
 				console.log(data)
 				$("#educationList").children(".educationListRow").remove();
@@ -133,12 +133,34 @@ $(document).ready(function() {
 	});
 })
 
-/* 최종 학력 입력 */
+/* 최종 학력 입력 & 파일 수정 */
 window.onload = function() {
 	$("#educationForm").on('submit', function() {
+		
 		var finalEducation = $('input[name="edctn_final_yn"]:checked').closest('tr').find('input[type="hidden"]').val();
-			
 		$('#final_education_chk').val(finalEducation);
+		
+		var uuids = [];
+		const elements = document.getElementsByClassName("uuid");
+		console.log(elements)
+		for(var i = 0; i < elements.length; i++) {
+			uuids.push(elements[i].value);
+		}
+		
+		$.ajax({
+			url: "../application/educationFileModify",
+			method: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(uuids),
+			success: function(data) {
+				console.log(data)
+				
+			},
+			error: function(error) {
+				console.error(error);
+			}
+		});
+		
 	})
 }
 
@@ -154,7 +176,7 @@ $(document).ready(function() {
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
 		str += '<input class="upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
-		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px">';
+		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
 		$("#fileAddList").append(str);
@@ -166,20 +188,22 @@ $(document).ready(function() {
 })
 /* 파일 첨부 추가 삭제 */
 $(document).ready(function() {
-	$(document).on("click", ".fileDeleteBtn", function() {
+	$(document).on("click", ".fileDeleteBtn, .fileDeleteBtn2", function() {
 		$(this).parent().remove();
 	});
+	
 })
 /* 파일 업로드 */
 $(document).ready(function() {
-  $('.upload-name').click(function() {
-    $('#file-input').click();
-  });
 
    $(document).on("change", 'input[type=file]', function() {
 	   
   	var fileInput = $(this);
   	var fileName = fileInput.val().split('\\').pop();
   	fileInput.parent().next().val(fileName);
+  	$(this).next().css('display', 'none');
+  	$(this).parent().next().next().css('display', '');
+  	
   });
+  
 });

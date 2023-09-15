@@ -391,4 +391,5 @@
 		and user_proper_num =
 		#{user_proper_num}
 	</update>
+
 </mapper>
