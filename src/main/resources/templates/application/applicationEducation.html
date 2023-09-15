@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/application.css}">
+<link rel="stylesheet" th:href="@{/css/applicationStateBar.css}">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script th:src="@{/js/applicationEducation.js}"></script>
+<th:block th:replace="~{./include/layout :: setContent(~{::.education})}">
+	<div class="education">
+		<div class="education-wrap">
+			<div class="pop_header">
+				<h1 class="tith5">학력 정보</h1>
+			</div>
+
+			<div class="accept-wrap">
+				<div class="accept-contents">
+					<div class="contents-inner">
+						<ol class="process">
+							<li class="first">
+								<span class="num">01.</span>
+								<span class="process-text">약관 동의</span>
+							</li>
+							<li>
+								<span class="num">02.</span>
+								<span class="process-text">기본 정보</span>
+							</li>
+							<li class="current">
+								<span class="num">03.</span>
+								<span class="process-text">학력 정보</span>
+							</li>
+							<li>
+								<span class="num">04.</span>
+								<span class="process-text">경력 정보</span>
+							</li>
+							<li>
+								<span class="num">05.</span>
+								<span class="process-text">자격증 정보</span>
+							</li>
+							<li class="last">
+								<span class="num">06.</span>
+								<span class="process-text">증빙서류</span>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+
+			<div id="pop_wrap">
+				<form action="educationForm" id="educationForm" name="educationForm" method="post" enctype="multipart/form-data">
+					<div class="pop_contents">
+						<table class="board_table topT">
+							<colgroup>
+								<col width="15%">
+								<col width="15%">
+								<col width="15%">
+								<col width="15%">
+								<col width="15%">
+								<col width="15%">
+								<col width="10%">
+							</colgroup>
+
+							<thead>
+								<div class="board_h">
+									<div class="board_total">*학력 사항</div>
+									<div class="board_search">
+										<a href="#" class="popup_btn" onclick="popUp()">학력사항 입력</a>
+									</div>
+								</div>
+
+								<tr>
+									<th>학교명</th>
+									<th>학과전공</th>
+									<th>학위</th>
+									<th>입학일</th>
+									<th>졸업일</th>
+									<th>관리</th>
+									<th>최종학력</th>
+								</tr>
+							</thead>
+							<tbody id="educationList">
+								<input type="hidden" id="final_education_chk" name="final_education_chk">
+								<tr th:each="vo : ${list}" class="educationListRow">
+									<input type="hidden" id="edctn_dtls_proper_num" name="edctn_dtls_proper_num" th:value="${vo.edctn_dtls_proper_num}">
+									<td style="vertical-align: middle;">[[${vo.edctn_school_name}]]</td>
+									<td style="vertical-align: middle;">[[${vo.edctn_major}]]</td>
+									<td style="vertical-align: middle;">[[${vo.edctn_degree}]]</td>
+									<td style="vertical-align: middle;">[[${vo.edctn_admsn_date}]]</td>
+									<td style="vertical-align: middle;">[[${vo.edctn_grdtn_date}]]</td>
+									<td style="vertical-align: middle;">
+										<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />
+										<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />
+									</td>
+									<td style="text-align:center; vertical-align: middle;" class="toptd">
+										<input type="radio" name="edctn_final_yn" value="" th:checked="${vo.edctn_final_yn == 'Y'}">
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+
+					<div class="pop_contents">
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr class="uptr02">
+									<th>파일 첨부</th>
+									<td id="fileAddList">
+										  <input type="button" class="filePlusBtn" value="파일추가" style="color: #fff; width: 150px;">
+										<div class="file-container">
+											<div th:each="vo : ${fileList}">
+										  <label for="file-input" class="file-label">
+										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
+										  </label>
+										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
+										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;">
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="btnbox btnbox02">
+						<input type="button" class="btn4d5" value="이전" onclick="location.href = 'applicationBasic'" />
+						<input type="submit" id="educationSubmit" class="btnfb7" value="다음">
+					</div>
+				</form>
+			</div>
+
+
+
+		</div>
+	</div>
+
+</th:block>
+
+</html>

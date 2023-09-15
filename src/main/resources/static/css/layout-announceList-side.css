@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+.notice-sidemenu-wrap {
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 200px;
+   height: 400px;
+   z-index: 10;
+}
+
+.mainTitle {
+   font-size: 25px;
+   font-weight: 600;
+   padding-bottom: 15px;
+   padding-left: 2px;
+   color: #2E2E2E;
+   border-bottom: 3px solid #081247; /* #090C5F;*/     
+}
+
+.notice-sidemenu {
+   border-bottom: 3px solid #081247;
+}
+
+.notice-title {
+   border-bottom: 1px solid #081247; /* #777*/
+   font-size: 18px;
+   font-weight: 550;
+   color: #424242;
+   padding: 10px 0;
+   padding-left: 3px;
+}
+
+.myapplication-title {
+   border-bottom: 1px solid #081247;/* #777*/
+   font-size: 18px;
+   font-weight: 550;
+   padding: 10px 0;   
+}
+
+notice-content {
+   background-color: #F2F2F2; /* #EAEBF8; *//* rgb(232, 232, 232);*/ 
+}
+
+.notice-content li {
+   margin: 0 auto;
+   padding: 10px;
+   font-size: 13px;
+   color: #585858;
+   border-bottom: 1px solid white;
+    background-color: #F2F2F2;
+}
+
+.notice-content li:hover {
+   background-color:#FD2B2A; /* rgb(227, 0, 0);*/
+}
+.notice-content a:hover {
+   color: white;	
+}
+
+.myapplication-content {
+   background-color: rgb(232, 232, 232);
+}
+
+.myapplication-content li {
+   margin: 0 auto;
+   padding: 10px;
+   font-size: 13px;
+   border-bottom: 1px solid white;
+}
+
+.myapplication-content li:hover {
+   background-color:#FD2B2A; /* rgb(227, 0, 0);*/
+}

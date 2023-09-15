@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/usermypage-withdrawl.css}">
+<th:block th:replace="~{./include/layout :: setContent(~{::.usermypage-withdrawl})}">
+	<div class="usermypage-withdrawl">
+		<div class="usermypage-withdrawl-wrap">
+			<!-- 네비게이션바 -->
+			<th:block th:replace="~{./include/layout-usermypage-side :: layout-usermypage-side}">
+			</th:block>
+			<div class="myinfo-withdrawl-wrap">
+				<div class="myinfo-withdrawl">
+					<h3>회원탈퇴</h3>
+				</div>
+				<div class="myinfo-withdrawl-table-title-wrap">
+					<h3 class="myinfo-withdrawl-table-title">회원탈퇴 신청</h3>
+				</div>
+				<div class="withdrawl-wrap">
+					<div class="withdrawl-left">
+						<img th:src="@{/img/withdrawl.png}" alt="withdrawl">
+					</div>
+					<div class="withdrawl-right">
+						<ul>
+							<li><i class="required-img">
+									<span class="hidden">필수입력</span>
+								</i> 회원탈퇴는 신청 후 즉시 처리되며, 회원정보는 5일 이내에 모두 삭제됩니다.</li>
+							<li style="color: red; font-weight: bold;"><i class="required-img">
+									<span class="hidden">필수입력</span>
+								</i> 회원탈퇴 후 재가입은 5일 이후부터 가능합니다.</li>
+							<li><i class="required-img">
+									<span class="hidden">필수입력</span>
+								</i> 회원탈퇴 시 기존 조력자 신청 내역은 삭제됩니다.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="btnbox btnbox02">
+					<a href="#none" class="btnfb7 subbtn">회원탈퇴 신청</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</th:block>
+<script th:src="@{/js/usermypage-withdrawl.js}"></script>
+
+</html>

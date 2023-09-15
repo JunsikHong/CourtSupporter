@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="layout-usermypage-side">
+   <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
+
+   <div class="notice-sidemenu-wrap">
+      <p class="mainTitle">알림 · 뉴스</p>
+      <div class="notice-sidemenu">
+         <div class="usermypage-myinfo">
+            <h3 class="notice-title">공지사항</h3>
+            <ul class="notice-content">
+
+			   <li><a th:href="@{/announce/announceList}">모집공고</a></li>
+			   <li><a th:href="@{/application/applicationAgree}">등재신청</a></li>
+               <li><a th:href="@{/notice/noticeList}">공지사항</a></li>            
+               <li><a th:href="@{/faq/faqList}">FAQ</a></li>
+            </ul>
+         </div>
+
+      </div>
+   </div>

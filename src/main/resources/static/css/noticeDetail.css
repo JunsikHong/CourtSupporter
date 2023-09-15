@@ -1,0 +1,184 @@
+@charset "UTF-8";form  table tbody thead tr th td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+.mainWrap{
+	display: flex;
+	margin: 0 auto; 
+	padding-top: 150px; 
+	align-items: center; 
+	justify-content: center;
+}
+
+#content{
+	 width: 1280px;  
+	 position: relative;
+}
+
+
+#contentsIn{
+	margin-left: 250px;
+}
+
+textarea{
+  resize: none;
+}
+
+a{
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+a{
+  text-decoration: none;
+  color: #333;
+}
+
+p{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+.container{
+  width: 1280px;
+  position:relative;
+  overflow: hidden;
+  margin:100px auto;
+}
+
+.container .leftmenu{
+  width: 20%;
+  min-height: 500px;
+  float: left;
+  background-color: rgb(11, 38, 110);
+}
+
+.container .contentsbox{
+  float: right;
+  width: 77%;
+  padding-left: 3%;
+  display: block;
+}
+
+.container .contentsbox .contentsIn{
+  margin-top: 20px;
+  width: 100%;
+  height: 1203px;
+  line-height: 1;
+  font-size: 12px;
+  color: #666666;
+  float:left;
+  width: 750px;
+  min-height: 500px;
+}
+
+#contentstitle{
+  padding: 20px;
+  border-bottom: 3px solid gray;
+
+}
+
+#contentstitle > .noticetitle,
+#contentstitle > .FAQtitle {
+  font-size: x-large;
+  font-weight: 800;
+
+}
+
+#contents {
+  margin-top: 2em;
+  min-height: 300px;
+  line-height: 1.3em;
+}
+
+
+#contents .tablebox{
+  position: relative;
+}
+
+#contents .tablebox table{
+  width: 100%;
+  border-top: 2px solid #545861;
+  border-bottom: 2px solid #545861;
+}
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#contents .tablebox table tr.firstTh th {
+  border-bottom: 1px solid #e3e3e3;
+}
+
+#contents .tablebox table th,
+#contents .tablebox table td {
+  padding: 1em;
+  display: table-cell;
+  vertical-align: middle;
+  letter-spacing: .03em;
+  line-height: 1.3em;
+}
+
+#contents .tableBox table td.left, 
+#contents .tableBox table th.left {
+  text-align: left;
+  color: #666;
+  font-weight: normal;
+  display: table-cell;
+}
+
+#contents .tablebox table th {
+  padding-top: 9px;
+  padding-bottom: 7px;
+}
+
+#contents .tablebox table td {
+  padding-top: 9px;
+  padding-bottom: 7px;
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid #e3e3e3;
+  color: #666;
+}
+
+
+#contents .tablebox table .contents {
+  padding: 1.5em 0;
+  border-bottom: 1px solid #545861;
+  line-height: 1.8em;
+}
+
+#contents .tablebox table .contents p .textArea {
+  padding: 0 1.5em;
+}
+
+#contents .tableBox table .tableListBox{
+  margin: 2em 0;
+  border-top: 1px solid #545861;
+}
+
+
+
+.btnbox{text-align: center; margin-top: 40px;}
+.btnbox .btnfb7{background-color: rgb(11, 38, 110); font-size: 18px;color: #FFF; height: 42px; line-height: 42px; display: inline-block; padding: 0 25px; vertical-align: middle; font-family:"ngB" !important;}
+.btnbox .btn4d5{background-color: #4d515b; font-size: 18px;color: #FFF; height: 42px; line-height: 42px; display: inline-block; padding: 0 25px; vertical-align: middle; font-family:"ngB" !important;}
+.btnbox02 a,.btnbox02 input{width: 129px; box-sizing: border-box; border: none; cursor:pointer;}
+.btnbox02 a:hover,.btnbox02 input:hover{text-decoration: underline;}

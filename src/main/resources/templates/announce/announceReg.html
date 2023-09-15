@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/announceReg.css}">
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- jQuery UI (Datepicker가 포함된 전체 jQuery UI 라이브러리) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<!-- Summernote 스크립트 -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+<!-- Summernote 스타일 -->
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+
+
+<th:block th:replace="~{./include/layout :: setContent(~{:: .announceReg})}">
+
+	<div class="announceReg"> <!-- container -->
+
+		<div class="announceReg-wrap"> <!-- innerBox -->
+
+			<div> <!--sidebar-->
+     <th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+      </div>
+
+			<!-- 본문 -->
+			<div class="announceInner">
+
+				<div class="announceTitle"> <!-- 게시판 타이틀 -->
+					<p>공고 등록</p>
+				</div>
+
+				<form action="announceRegForm" name="announceForm" method="post" enctype="multipart/form-data">
+
+					<div class="announceWrap">
+
+						<table class="regTable">
+							<tbody class="board">
+								<tr id="topborder">
+									<th id="topborder"><i class="required-img"><span class="hidden">필수입력</span></i> 제목
+									</th>
+									<td id="topborder"><input type="text" class="announceTit" name="announce_title">
+									</td> <!--required-->
+								</tr>
+
+								<tr>
+									<th id="border"><i class="required-img"><span class="hidden">필수입력</span></i> 모집 시작일
+									</th>
+									<td id="border">
+										<input type="date" class="datepicker1" name="announce_start_date"
+											placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}">
+									</td>
+								</tr>
+
+								<tr>
+									<th id="border"><i class="required-img"><span class="hidden">필수입력</span></i> 모집 종료일
+									</th>
+									<td id="border">
+										<input type="date" class="datepicker2" name="announce_end_date"
+											placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}">
+									</td>
+								</tr>
+
+						<!--<table class="tableT popT">-->
+								<!--<colgroup>
+									<col width="20%">
+									<col width="80%">
+								</colgroup>-->
+						<!--<tbody>-->
+									<!--<th class="tableT popT"><span>*조력자 선택</span></th>-->
+									<tr class="uptr02">
+										<th class="tableT">
+											<i class="required-img"><span class="hidden">필수입력</span></i>
+											<span >조력자 선택</span> <!--name="trial_fcltt_proper_num"-->
+										</th>
+										<td class="tableT popT">					
+											<select class="selC" name="trial_fcltt_mainclasifi_code" id="mainSelect" title="조력자 선택"
+												onchange="selectChange()">
+											</select><span id="msg0" style="color: red;"></span>
+												
+											<select class="selC" name="trial_fcltt_clasifi_code" id="firstSelect" title="조력자 선택"
+												onchange="selectChange2()" >
+											</select><span id="msg1" style="color: red;"></span>
+											
+											<select class="selC" name="trial_fcltt_sbcls_code" id="secondSelect" title="조력자 선택">
+											</select><span id="msg2" style="color: red;"></span>
+										</td>
+									</tr>
+							<!--</tbody>
+							</table>-->
+
+
+								<tr>
+									<th class="announceFile">첨부파일</th>
+									<td>
+										<div class="file" id="fileList">
+											<a href="#this" onclick="addFile()" class="add">파일추가</a>
+
+											<div class="file">
+												<input type="file" name="file" multiple class="sel">
+												<!-- class="announceFile" id="file"-->
+												<a href="#this" name="file-delete" class="delete">삭제</a>
+											</div>
+										</div>
+									</td><!--announceFile-->
+								</tr>
+
+
+								<tr class="fileInfo" id="border">
+									<th class="limit"></th>
+									<td class="fl">
+										<p>첨부 파일 용량 제한 : 20MB</p>
+										<p>첨부 가능한 파일 확장자명 : pdf</p>
+										<!--hwp, doc, docx, ppt, pptx, xls, xlsx, txt, csv, jpg, jpeg, gif, png, bmp, -->
+										<p>첨부 용량 초과시 작성내용이 초기화될 수 있으니 주의바랍니다.</p>
+									</td>
+								</tr>
+
+								<tr class="announceContent" id="border">
+									<th class="con"><i class="required-img"><span class="hidden">필수입력</span></i> 내용</th>
+									<td>
+										<div class="contentBox">
+											<textarea  id="summernote" name="announce_content"></textarea>
+											
+											<!--<textarea id="summernote" name="announce_content" class="contentDetail" cols="30" rows="10" ></textarea>-->
+										
+										</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+
+						<div class="btnBox">
+							<input type="submit" id="registBtn" class="registBtn btn" value="등록">
+							<button class="listBtn btn" id="listBtn">
+								<a th:href="@{/announce/announceList}">취소</a>
+							</button>
+						</div>
+					</div>
+
+
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+
+</th:block>
+
+<script th:src="@{/js/announceReg.js}"></script>
+
+</html>

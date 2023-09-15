@@ -1,0 +1,234 @@
+.agree {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+.agree .agree-wrap {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+/* table */
+table {border-collapse:collapse; border-spacing: 0;}
+th, td { border-collapse:collapse; border-spacing: 0; vertical-align:middle;}
+/* form */
+form, fieldset { display:inline; }
+textarea{vertical-align:top; text-align:left; border:none;}
+fieldset, blockquote, iframe, button{ border:none; }
+
+.agree .agree-title {
+  border-bottom: 1px solid rgb(51, 51, 51);
+  /* margin: 0 auto; */
+  padding-bottom: 10px;
+}
+
+.agree .agree-title h1 {
+  margin-top: 20px;
+  line-height: 1.3;
+  letter-spacing: -1px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* contents */
+.agree .accept-contents {
+  padding-top: 20px;
+}
+
+.agree .accept-contents .contents-inner {
+  max-width: 100%;
+  padding-bottom: 50px;
+}
+
+/*  --> process */
+.agree .accept-contents .contents-inner .process {
+  display: table;
+  width: 100%;
+  margin-top: 0;
+}
+
+.agree .accept-contents .contents-inner .process li {
+  display: table-cell;
+  position: relative;
+  width: 15%;
+  height: 66px;
+  padding-left: 60px;
+  background: rgb(238, 238, 238);
+  color: rgb(66, 66, 66);
+  vertical-align: middle;
+}
+
+.agree .accept-contents .contents-inner .process li:not(.last)::after {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 17px;
+  height: 66px;
+  background: url(https://www.gov.kr/2017/img/page/step_after.gif) 0px 0px no-repeat;
+}
+
+.agree .accept-contents .contents-inner .process li.current {
+  background: #034273;
+  color: #fff;
+}
+
+.agree .accept-contents .contents-inner .process li.current:not(.first)::before {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -17px;
+  width: 17px;
+  height: 66px;
+  background: url(https://www.gov.kr/2017/img/page/step_before_on.gif) 0px 0px no-repeat;
+}
+
+.agree .accept-contents .contents-inner .process li.current:not(.last)::after {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 17px;
+  height: 66px;
+  background: url(https://www.gov.kr/2017/img/page/step_after_on.gif) no-repeat 0 0;
+}
+
+.agree .accept-contents .contents-inner .process li .num {
+  font-weight: bold;
+  font-size: 24px;
+  /* font-size: 2.4rem; */
+  position: absolute;
+  top: 18px;
+  left: 17px;
+}
+
+.agree .accept-contents .contents-inner .process li .process-text {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: -2px;
+
+}
+
+/* -- process */
+.agree .accept-contents .contents-inner .accept-all-check {
+  position: relative;
+  margin-top: 15px;
+  border-top: 0;
+  font-size: 16px;
+  padding-top: 5px;
+  margin: 30px 0 20px;
+}
+
+.agree .accept-contents .contents-inner .accept-all-check .all-check {
+  opacity: 0;
+  position: absolute;
+}
+
+.agree .accept-contents .contents-inner .accept-all-check label {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -1px;
+  font-weight: normal;
+}
+
+.agree .accept-contents .contents-inner .accept-all-check label span {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  background: url(https://www.gov.kr/2017/img/common/check_radio_sheet.png) left top no-repeat;
+}
+
+.agree .agree-cont-wrap .agree-tit {
+  font-weight: bold;
+  padding: 15px 20px;
+  background: #f5f5f5;
+  border: 1px solid #c2c2c2;
+  border-bottom: 1px solid #d3d3d3;
+  color: #034273;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -2px;
+  margin-top: 25px;
+}
+
+.agree .agree-cont-wrap .agree-cont {
+  overflow-y: auto;
+  border: 1px solid #c2c2c2;
+  border-top: none;
+  padding: 20px;
+  height: 200px;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -2px;
+  color: #333;
+}
+
+.agree .agree-cont-wrap .check-area {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -2px;
+  color: #333;
+}
+
+.agree .agree-cont-wrap .check-area .list {
+  display: inline-block;
+}
+
+.agree .agree-cont-wrap input[type="radio"].custorm {
+  opacity: 0;
+  position: absolute;
+}
+
+input[type="radio"].custorm+label span {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  background: url(https://www.gov.kr/2017/img/common/check_radio_sheet.png) -48px top no-repeat;
+  cursor: pointer;
+}
+
+.btnbox {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.btnbox .btnfb7 {
+  background-color: rgb(11, 38, 110);
+  font-size: 18px;
+  color: #FFF;
+  height: 42px;
+  line-height: 42px;
+  display: inline-block;
+  padding: 0 25px;
+  vertical-align: middle;
+  font-family: "ngB" !important;
+}
+
+.btnbox .btn4d5 {
+  background-color: #4d515b;
+  font-size: 18px;
+  color: #FFF;
+  height: 42px;
+  line-height: 42px;
+  display: inline-block;
+  padding: 0 25px;
+  vertical-align: middle;
+  font-family: "ngB" !important;
+}
+
+.btnbox02 input {
+  width: 129px;
+  box-sizing: border-box;
+}

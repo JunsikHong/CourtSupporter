@@ -1,0 +1,67 @@
+.usermypage-sidemenu-wrap {
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 200px;
+   height: 400px;
+   z-index: 10;
+}
+
+.usermypage-title {
+   font-size: 25px;
+   font-weight: 550;
+   padding-bottom: 15px;
+   border-bottom: 3px solid black;
+}
+
+.usermypage-sidemenu {
+   border-bottom: 3px solid black;
+}
+
+.myinfo-title {
+   border-bottom: 1px solid #777;
+   font-size: 18px;
+   font-weight: 550;
+   padding: 10px 0;
+}
+
+.myapplication-title {
+   border-bottom: 1px solid #777;
+   font-size: 18px;
+   font-weight: 550;
+   padding: 10px 0;
+}
+
+.myinfo-content {
+   background-color: rgb(232, 232, 232);
+}
+
+.myinfo-content li {
+   margin: 0 auto;
+   padding: 10px;
+   font-size: 13px;
+   border-bottom: 1px solid white;
+}
+
+.myinfo-content li:hover {
+   background-color: rgb(227, 0, 0);
+}
+
+.myapplication-content {
+   background-color: rgb(232, 232, 232);
+}
+
+.myapplication-content li {
+   margin: 0 auto;
+   padding: 10px;
+   font-size: 13px;
+   border-bottom: 1px solid white;
+}
+
+.myapplication-content li:hover {
+   background-color: rgb(227, 0, 0);
+}
+
+.hide {
+   display: none;
+}

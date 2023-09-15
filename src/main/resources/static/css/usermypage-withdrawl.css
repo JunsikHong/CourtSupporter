@@ -1,0 +1,108 @@
+.usermypage-withdrawl {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+.usermypage-withdrawl-wrap {
+	width: 1280px;
+	position: relative;
+	margin-bottom: 150px;
+}
+
+.myinfo-withdrawl-wrap {
+	margin-left: 250px;
+	margin-bottom: 150px;
+}
+
+.myinfo-withdrawl {
+	border-bottom: 3px solid black;
+}
+
+.myinfo-withdrawl h3 {
+	font-size: 25px;
+	font-weight: 550;
+	padding-bottom: 15px;
+}
+
+.myinfo-withdrawl-table-title {
+	margin: 15px 0;
+}
+
+.withdrawl-wrap {
+	overflow: hidden;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.withdrawl-left {
+	float: left;
+	margin: 25px;
+	padding: 25px;
+	border-right: 1px solid rgb(227, 227, 227);
+}
+
+.withdrawl-right {
+	float: left;
+	margin: 25px;
+	padding-left: 15px;
+}
+
+.withdrawl-right ul {
+	padding: 30px 0;
+}
+
+.withdrawl-right li {
+	margin: 10px 0;
+}
+
+.btnbox {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.btnbox .btnfb7 {
+	background-color: rgb(11, 38, 110);
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox .btn4d5 {
+	background-color: #4d515b;
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox02 a {
+	width: 200px;
+	box-sizing: border-box;
+}
+
+.required-img {
+  display: inline-block;
+  font-size: 10px;
+  color: #ec464d;
+  width: 10px;
+  height: 10px;
+  background: url(https://www.gov.kr/2017/img/page/ico_fa_asterisk.png) no-repeat 0 0;
+}
+
+.required-img .hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

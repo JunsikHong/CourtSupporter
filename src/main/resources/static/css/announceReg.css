@@ -1,0 +1,246 @@
+/*@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}*/
+
+*{ padding: 0; margin: 0; }
+ul, li { list-style: none; } 
+*{ margin: 0 auto; }
+
+body{font-family: 'Noto Sans KR', sans-serif;}
+
+.announceReg {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 150px;
+}
+
+.announceReg-wrap{
+   width: 1280px;
+   position: relative;
+}
+.announceInner { 
+   margin-left: 250px;
+  /* display: block;*/
+}
+
+/***********************************************/
+
+.announceTitle{
+  font-size: x-large;
+  font-weight: 550;
+  padding-left: 5px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #081247; /* #424242;*/
+  color:  #2E2E2E;   /* #2E2E2E;*/  
+}
+.required-img {
+  display: inline-block;
+  font-size: 10px;
+  color: #ec464d;
+  width: 10px;
+  height: 10px;
+  background: url(https://www.gov.kr/2017/img/page/ico_fa_asterisk.png) no-repeat 0 0;
+}
+.required-img .hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.announceWrap{
+  margin-top: 50px; 
+  width: 100%;  
+}
+.regTable {
+	width: 100%;
+}
+.tableT {
+	padding-left: 20px;
+    height: 30px;    
+	border-bottom: 0.3px solid #AEAFBF;
+}
+.popT select {
+	display: inline-block;
+	height: 30px; 
+	padding-left: 10px;
+}
+.board th {
+  text-align: center;
+  padding: 10px;
+  height: 30px;
+  font-weight: 700; 
+  line-height: 40px;
+  width: 130px;  
+ 
+  color: #424242; /* #332E3B */
+  /*border-top: 0.3px solid #AEAFBbF; */  /*#BDBDBD;*/
+  /*border-bottom: 0.3px solid #AEAFBF; */
+  background-color: #F2F2F2; /* #EAEBF8;*/ /*#E8E8E9; */
+}
+.board td {
+   /*border-top: 0.3px solid #AEAFBF;
+   border-bottom: 0.3px solid #AEAFBF;  */
+   /*padding-left: 20px;
+   padding-right: 20px;*/
+   /*padding-bottom: 20px;*/
+}
+#topborder {
+	border-top: 2px solid #081247; 
+	border-bottom: 0.3px solid #AEAFBF;
+	padding-left: 20px;
+    padding-right: 20px;
+} 
+#border{
+  border-bottom: 0.3px solid #AEAFBF;/* #AEAFBF;*/
+  padding-left: 20px;
+   padding-right: 20px;
+}
+.announceTit{
+  width: 600px;
+  height: 30px;
+  font-size: 14px;
+  padding-left: 15px;
+}
+.datepicker1 {
+  width: 120px;
+  height: 30px;
+  text-align: center;
+}
+.datepicker2 {
+  width: 120px;
+  height: 30px;
+  text-align: center;
+}
+.announceFile{ 
+  /*height: 30px;*/
+  border-bottom: none;  
+  /*margin-bottom: 5px;*/
+}
+
+.file {
+  margin-bottom: 5px;  
+}
+.add{
+  display: inline-block; 
+  margin-bottom: 10px;  
+  
+  height: 20px;
+  line-height: 20px;
+  padding: 3px 7px 5px 7px;
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 14px;  
+  font-weight: 500;
+  border: none;
+  background-color:  rgb(11, 38, 110);
+  color: white; 
+}
+.file > a:hover {
+  text-decoration: none; 	
+}
+.sel {margin-left: 20px; margin-bottom: 8px;  }
+.delete{
+  margin-bottom: 30px;
+  padding: 3px;
+  width: 40px;
+  height: 25px;
+  line-height: 25px;
+  margin-left: 20px;
+  font-size: 14px;  
+  font-weight: 500;
+ 
+  border: 0.5px solid rgb(11, 38, 110);
+  border-radius: 5px;
+  color:  rgb(11, 38, 110);  
+  text-decoration: none;
+}
+
+/*.fileInfo .limit {
+  padding-top: 20px;
+  border-top : 0.3px solid #E0E0E0 ;
+   border-bottom: 0.3px solid #BDBDBD;  
+ } */
+.fileInfo .con {
+  /*border-top : 0.3px solid #E0E0E0 ;*/
+  padding-bottom: 20px;
+}
+.fileInfo .fl {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.fileInfo td {
+	padding-left: 20px;	
+	color: rgb(120, 120, 120);
+	height: 15px;
+	line-height: 30px;
+	border: none;
+	/*border-right: 0.3px solid #BDBDBD; */
+}
+.announceContent {
+  padding-top: 30px;
+  
+}
+.announceContent .con {
+ /* border-top:  0.3px solid gray ;*/
+  vertical-align: middle; 
+  /*height: 500px;  */
+}
+.contentBox td {
+	padding-left: 0;
+}
+
+/*.contentDetail{
+  margin-top: 25px;
+  margin-bottom: 20px;
+  width: 800px;
+  min-height: 500px;
+  font-size: 14px;
+  text-align: left;
+  resize: vertical;
+  border: 0.3px solid gray;
+  text-align: left; 
+  white-space: pre-line;
+}*/
+
+.btnBox{
+  margin-top: 70px;
+  margin-bottom: 100px;
+  text-align: center;
+  text-decoration: none;
+}
+.btn > a{
+  color: white;
+}
+.btn > a:hover{
+  text-decoration: none;
+}
+.registBtn{
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 10px;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  /* font-weight: 500; */
+  /* padding: 10px;   */
+  border: none;
+  background-color:  rgb(11, 38, 110);
+  color: white;
+  cursor: pointer;
+}
+.listBtn{
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 10px;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;  
+  border: none;
+  background-color: rgb(124, 124, 124);
+  color: white;
+  text-decoration: none;
+}

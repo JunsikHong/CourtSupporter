@@ -1,0 +1,336 @@
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
+
+*{ padding: 0; margin: 0; }
+ul, li { list-style: none; } 
+*{ margin: 0 auto; }
+
+body{ font-family: 'Noto Sans KR', sans-serif;}
+
+.announceList {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 150px;
+}
+.announceList-wrap{
+   width: 1280px;
+   position: relative;
+}
+.announceInner{
+/*   display: block;
+   margin: 0 auto; */
+   margin-left: 250px;
+   margin-bottom: 250px;
+   min-height: 800px;
+}
+
+
+/***********************************************/
+
+.announceTitle{ /* rgb(11, 38, 110); */  
+  font-size: x-large;
+  font-weight: 800;
+/*  padding: 20px;*/
+  padding-left: 5px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #081247;  /* #090C5F; *//* #424242;*/
+  color:  #2E2E2E; /* #081247;*/  /*  08124E #090C5F;2E2E2E*/
+}
+.announceTitle > p {
+  font-size: x-large;
+  font-weight: 700;
+}
+.contentTitle a:hover{ 
+  color:#004B8C; 
+  text-decoration:underline; 
+  font-weight:bold; 
+}
+/***********************************************/
+.searchBox {
+/*  margin-left: 20px;*/
+  margin-bottom: 30px;
+  height: 50px;
+  line-height: 50px;
+  /* border: 0.5px solid rgb(167, 166, 166); */
+  box-sizing: border-box;
+}
+.searchWrap {
+	padding-top: 30px;
+	padding-bottom: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	
+	height: 100px;
+	background-color: #F2F2F2; /* #EAEBF8*/
+}
+.searchTxt {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.searchdateselect{
+	display: inline-block;
+	padding:0;	
+	padding-right: 8px;
+	font-size: 14px;
+}
+#searchOption {
+	width: 70px;
+	height: 30px;
+	margin-right: 10px;
+}
+.searchStartDate {
+  width: 100px;
+  height: 26px;
+  margin-right: 5px;
+}
+.searchEndDate {
+  width: 100px;
+  height: 26px;
+  margin-right: 30px;
+  margin-left: 5px;
+}
+
+.search {
+  width: 200px;
+  height: 30px;
+  /*padding-top: 3px;*/
+  padding-left: 5px;
+  border: 0.3px solid #BDBDBD;
+}
+.searchBtn {
+    /*margin-top: 10px;*/
+    margin-left: 5px;
+  /*  padding-top: 2px;
+    padding-bottom: 2px;*/
+    width: 70px;
+    height: 31px;
+    line-height: 28px;
+
+	cursor: pointer;
+    font-size: 14px;  
+    font-weight: 500;
+    border: 0.3px solid rgb(11, 38, 110);
+    background-color:  rgb(11, 38, 110);
+    color: white;  
+}
+/***********************************************/
+.announceMenu {
+  margin-bottom: 30px;
+ /* width: 1029px;*/
+  height: 60px;
+  text-align: center;
+  justify-content: center;
+  border-bottom: 2px solid #081247;
+  background-color: #F2F2F2;
+  color:#515151;
+}
+.announceMenu > li {
+   /*inline-block */
+  float: left;
+  width: 167.6px;
+  height: 60px;
+  line-height: 60px; 
+  border-radius: 3px;  
+ /* background-color: #F2F2F2;*/
+  /*border: 2px solid #F2F2F2;*/
+  text-align: center; 
+  vertical-align: middle; 
+}
+.announceMenu > li > a { 
+  text-align: center; 
+  
+  text-decoration: none;
+  display: block; 
+  /*font-weight: 600;*/
+  text-decoration: none;  
+}
+.announceMenu .list > li.on {
+   /* width: 143px;
+  height: 53px;*/
+  border-radius: 3px;
+  border-bottom: 2px solid #081247;
+  background-color: #FFFFFF;
+  color: #081247;;
+  font-weight: bold;
+
+}
+
+
+
+/***********************************************/
+
+.announceBoard{
+  /*border-top: 3px solid #848484;*/
+  /*border-top: 2px solid #081247;*/   /* #08124E;*/ /* #6E6E6E;*/ /* #090C5F;*/
+  width: 100%; 
+  overflow: hidden;
+}
+.board{
+  width: 100%;
+}
+table {
+  border-collapse: collapse;
+  table-layout: auto;
+}
+td {
+  padding: 5px 0; 
+/*  width: 20%;  */
+}
+.boardTitle th {
+  height: 15px;
+  line-height: 15px; 
+  border-top: 2px solid #081247;
+  border-bottom: 1px solid #848484; /* #090C5F;*/ /* rgb(160, 160, 160);*/
+  padding: 15px;
+  background-color:  #F2F2F2;  /* #EAEBF8;*/
+  box-sizing: border-box;
+/*  background-color: rgb(226, 226, 226);*/
+  /*background-color:  rgb(214, 221, 238);*/
+}
+.hirebox {
+	width: 140px;
+	margin : 0;
+	text-align: center;
+}
+.hireIcon {
+	border: 1px solid #081247;    /* #848484; *//* #090C5F;*/
+	border-radius: 3px;
+	color:  #08124E;  /* #848484; *//* #090C5F;*/
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 14px;
+	padding: 2px 3px 2px 3px;	
+}
+.allCheck {
+	width: 10px;
+	/*padding: 10px;*/
+}
+.board td {
+  border-bottom: 1px solid rgb(160, 160, 160);
+}
+.boardContent{
+  border-bottom: 0.5px solid rgb(167, 166, 166);
+}
+.boardContent > td {
+  height: 30px;
+  line-height: 30px; 
+  border-bottom: 1px solid rgb(167, 166, 166);
+  border-radius: 0;
+  /* padding: 13px 5px; */
+}
+.contentNumber {
+  text-align: center;
+  width: 80px;
+/*  width: 10%;*/
+  font-size : 15px;
+  color: #424242;
+}
+.titlebox{
+	width: 700px;
+}
+.contentTitle {
+  /*width: 50%;  */
+  width: 792px;
+  text-align: left;
+  padding-left: 5px;
+  padding-right: 70px;
+  
+  overflow: hidden;
+  white-space: nowrap;
+  height: 50px;
+  line-height: 50px; 
+  box-sizing: border-box;
+}
+.contentTitle > a{
+  text-decoration: none;
+  color: #42464A; /* rgb(75, 75, 75);*/
+  font-weight: 700;  
+}
+.contentDate{
+  /*width: 15%;*/
+   width: 150px;
+  text-align: center;
+  font-size : 15px;
+  color: #42464A; /*424242*/
+}
+.contentViews{
+  width: 10%;
+  text-align: center;
+  font-size : 15px;
+  color: #42464A;
+}
+.btn {  
+  margin-top: 20px;
+  margin-bottom: 80px;
+  padding-left: 11px; 
+  padding-right: 10px; 
+  width: 70px;
+  height: 30px;
+  line-height: 29.5px;
+
+  font-size: 14px;  
+  font-weight: 500;
+  border: none;
+  background-color:  rgb(11, 38, 110);
+  
+  vertical-align: middle;
+  font-family:"ngB" !important;
+}
+.btn > a{
+  color: white;
+}
+.btn > a:hover{
+  text-decoration: none;
+}
+
+
+.registBox {
+	width: 80px;
+	/*display: block;	*/
+/*	 text-align: right;*/
+	display: flex;
+  	justify-content: flex-end;	
+}
+.registBtn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 11px; 
+  padding-right: 10px; 
+  width: 70px;
+  height: 30px;
+  line-height: 29.5px;
+
+  font-size: 14px;  
+  font-weight: 500;
+  border: none;
+  background-color:  rgb(11, 38, 110);
+  
+  cursor: pointer;
+  vertical-align: middle;
+  font-family:"ngB" !important;
+}
+.registBtn > a {
+	font-family: "Noto Sans KR", sans-serif;
+  color: white;
+}
+.registBtn > a:hover{
+  text-decoration: none;
+}
+/***********************************************/
+
+.pageBox {
+  text-decoration: none;
+  text-align: center;  
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 50px;
+}
+.pageBox > a {
+  margin: 5px;
+  text-decoration: none;
+  color: rgb(83, 83, 83);
+}

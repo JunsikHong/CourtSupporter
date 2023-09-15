@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="layout-usermypage-side">
+   <link rel="stylesheet" th:href="@{/css/layout-usermypage-side.css}">
+         <div class="usermypage-sidemenu-wrap">
+            <p class="usermypage-title">My Page</p>
+            <div class="usermypage-sidemenu menu">
+               <div class="usermypage-myapplication">
+                  <h3 class="myapplication-title">나의 신청현황</h3>
+                  <ul class="myapplication-content">
+                     <a th:href="@{usermypage_applicationlist}"><li>신청현황</li></a>
+                  </ul>
+               </div>
+               <div class="usermypage-myapplication menu">
+                  <h3 class="myapplication-title">나의 활동내역</h3>
+                  <ul class="myapplication-content">
+                     <a th:href="@{usermypage_activitylist}"><li>활동내역</li></a>
+                  </ul>
+               </div>
+               <div class="usermypage-myinfo menu">
+                  <h3 class="myinfo-title">나의 정보관리</h3>
+                  <ul class="myinfo-content">
+                     <a th:href="@{usermypage}"><li>회원정보</li></a>
+                     <a th:href="@{usermypage_withdrawl}"><li>회원탈퇴</li></a>
+                  </ul>
+               </div>
+               <div class="usermypage-myinfo menu">
+                  <h3 class="myinfo-title">중지/해제신청 관리</h3>
+                  <ul class="myinfo-content">
+                     <a th:href="@{usermypage_pauselist}"><li>중지신청내역</li></a>
+                  </ul>
+               </div>
+            </div>
+         </div>
+
+      </th:block>
+
+</html >

@@ -1,0 +1,203 @@
+form  table tbody thead tr th td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+.mainWrap{
+	display: flex;
+	margin: 0 auto; 
+	padding-top: 150px; 
+	align-items: center; 
+	justify-content: center;
+}
+
+#content{
+	 width: 1280px;  
+	 position: relative;
+}
+
+
+table th, 
+table td {
+  padding: 1em;
+  display: table-cell;
+  vertical-align: middle;
+  letter-spacing: .03em;
+  line-height: 1.3em;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+table th, 
+table td {
+  padding-top: 9px;
+  padding-bottom: 7px;
+}
+
+table th, 
+table th {
+  padding-top: 9px;
+  padding-bottom: 7px;
+}
+
+table td {
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid #e3e3e3;
+  color: #666;
+}
+
+table td.left, 
+table th.left {
+  text-align: left;
+  color: #666;
+  font-weight: normal;
+  display: table-cell;
+}
+
+a{
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+a{
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+.leftmenu{
+  width: 20%;
+  float: left;
+  background-color: rgb(11, 38, 110);
+}
+
+#content{
+  margin-top: 20px;
+  line-height: 1;
+  font-size: 12px;
+  color: #666666;
+
+}
+
+#contentsbox{
+  margin-left: 250px;
+  
+  min-height: 500px;
+  
+}
+
+#contentstitle{
+  padding: 20px;
+  border-bottom: 3px solid gray;
+
+}
+
+#contentstitle > .noticetitle,
+#contentstitle > .FAQtitle {
+  font-size: x-large;
+  font-weight: 800;
+
+}
+
+.board_search_text {
+	float: right;
+	padding-bottom: 10px;
+}
+
+.board_search_text input,
+.board_search_text select {
+   padding-left: 5px;
+   border: 1px #c4c4c4 solid;
+   height: 30px;
+   line-height: 30px;
+   color: #777777;
+   font-size: 15px;
+   box-sizing: border-box;
+   vertical-align: top;
+
+}
+
+.search_btn {
+   display: inline-block;
+   background: #555555;
+   color: #FFF;
+   font-size: 13px;
+   font-family: "ngB" !important;
+   height: 30px;
+   line-height: 30px;
+   width: 54px;
+   text-align: center;
+   vertical-align: top;
+   cursor:pointer;
+}
+
+
+
+
+#contents {
+  margin-top: 2em;
+  min-height: 300px;
+  line-height: 1.3em;
+}
+
+#contents .searchbox {
+  margin-bottom: 1em;
+  text-align: right;
+}
+
+#contents .searchbox input {
+  margin-left: 5px;
+}
+
+#contents .tablebox {
+  position: relative;
+}
+
+#contents .tablebox table {
+  width: 100%;
+  border-top: 2px solid #545861;
+  border-bottom: 2px solid #545861;
+}
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#contents #paging {
+  width: 100%;
+  text-align: center;
+  margin-top: 19px;
+  margin-bottom: 35px;
+  font-size: 17px;
+}
+
+#contents #paging a {
+  margin-right: 1px;
+  margin-left: 2px;
+  color: #222;
+}
+
+#contents #paging strong {
+  margin-left: 2px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.btnbox{text-align: right; margin-top: 40px;}
+.btnbox .btnfb7{background-color: rgb(11, 38, 110); font-size: 17px; color: #FFF;height: 42px; line-height: 42px; display: inline-block; padding: 0 5px; text-align: center; vertical-align: middle;font-family:"ngB" !important;}
+.btnbox .btn4d5{background-color: #4d515b; font-size: 17px; color: #FFF;height: 42px; line-height: 42px; display: inline-block; padding: 0 5px; text-align: center; vertical-align: middle; font-family:"ngB" !important;}
+.btnbox02 a,.btnbox02 input{width: 129px; box-sizing: border-box; border: none; cursor:pointer;}
+.btnbox02 a:hover,.btnbox02 input:hover{text-decoration: underline; }
