@@ -1,7 +1,5 @@
 package com.court.supporter.controller;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,6 +27,7 @@ public class UserController {
 	private final UserService userService;
 	private final UserLoginService userLoginService;
 	
+	// 회원가입
 	@PostMapping("/joinForm")
 	public ResponseEntity<Integer> join(@RequestBody @Validated TB_001VO tb_001vo) {
 		//비밀번호 암호화
@@ -38,6 +37,8 @@ public class UserController {
 		return ResponseEntity.ok(userService.join(tb_001vo));
 	}
 	
+	
+	// 로그인
 	@PostMapping("/login")
 	public ResponseEntity<JwtToken> login(@RequestBody TB_018VO tb_018vo) {
 		return ResponseEntity.ok(userLoginService.login(tb_018vo));
