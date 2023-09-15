@@ -49,9 +49,10 @@
 
 						<div class="btnbox btnbox02">
 							<a href="faqList" class="btnfb7" onclick="javascript:goRegist();">목록</a>
-							<a th:href="@{faqModify(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5" onclick="javascript:window.close();">수정</a>
-							<a th:href="@{faqDelete(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5" onclick="javascript:window.close();">삭제</a>
-
+							<span class="adminmenu">
+								<a th:href="@{faqModify(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5" onclick="javascript:window.close();">수정</a>
+								<a th:href="@{faqDelete(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5" onclick="javascript:window.close();">삭제</a>
+							</span>
 						</div>
 
 

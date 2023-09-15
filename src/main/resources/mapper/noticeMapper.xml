@@ -6,17 +6,31 @@
 <mapper namespace="com.court.supporter.notice.service.noticeMapper">
 
 	<!-- 글 등록 -->
-	<insert id="noticeRegist" parameterType="TB_003VO" useGeneratedKeys="true" keyProperty="notice_proper_num">
-		INSERT INTO TB_003 (notice_title,
+	<insert id="noticeRegist" parameterType="TB_003VO">
+		INSERT INTO TB_003 (notice_proper_num,
+						    notice_title,
 							notice_content,
 							notice_date,
 							admin_proper_num)
-		VALUES (#{notice_title},
+		select coalesce 
+					((select max(notice_proper_num)+1 
+       					from TB_003
+         				where cast(substring(notice_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+      					, concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')
+   					),
+				#{notice_title},
 				#{notice_content},
 				NOW(),
-				#{admin_proper_num})
+				#{admin_proper_num}
 		
 	</insert>
+	
+	<select id="getnoticepropernum">
+		select notice_proper_num
+			from TB_003
+			where admin_proper_num = #{admin_proper_num}
+			order by notice_proper_num desc limit 1
+	</select>
 	
 	<!-- 파일 등록 -->
 	<insert id="noticeFileRegist" parameterType="TB_016VO">

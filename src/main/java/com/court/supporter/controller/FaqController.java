@@ -53,7 +53,7 @@ public class FaqController {
 
 		// faq 글 내용
 		@GetMapping("/faqDetail")
-		public String faqDetail(@RequestParam("faq_proper_num") int faq_proper_num,
+		public String faqDetail(@RequestParam("faq_proper_num") String faq_proper_num,
 								Model model) {
 			
 			TB_004VO vo = faqService.faqDetail(faq_proper_num);
@@ -89,7 +89,7 @@ public class FaqController {
 
 		// faq 수정 페이지
 		@GetMapping("/faqModify")
-		public String faqModify(@RequestParam("faq_proper_num") int faq_proper_num,
+		public String faqModify(@RequestParam("faq_proper_num") String faq_proper_num,
 								Model model) {
 
 			TB_004VO vo = faqService.faqDetail(faq_proper_num);
@@ -116,7 +116,7 @@ public class FaqController {
 		
 		//faq 삭제
 		@GetMapping("/faqDelete")
-		public String faqDelete(@RequestParam("faq_proper_num") int faq_proper_num,
+		public String faqDelete(@RequestParam("faq_proper_num") String faq_proper_num,
 								RedirectAttributes ra) {
 			
 			faqService.faqDelete(faq_proper_num);

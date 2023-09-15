@@ -16,5 +16,5 @@ public class TB_016VO {
 	private String file_path;//파일 저장 경로
 	private String notice_file_uuid;//UUID
 	private String original_file_name;//원본파일이름
-	private Integer notice_proper_num;//공지 고유 번호
+	private String notice_proper_num;//공지 고유 번호
 }

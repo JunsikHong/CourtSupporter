@@ -1,9 +1,12 @@
 package com.court.supporter.controller;
 
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.court.supporter.notice.service.noticeService;
+import com.court.supporter.adminmypage.service.AdminMypageService;
 import com.court.supporter.aws.service.NoticeFileService;
 import com.court.supporter.command.TB_003VO;
 import com.court.supporter.command.TB_016VO;
@@ -34,14 +38,21 @@ public class NoticeController {
 	@Autowired
 	@Qualifier("noticeFileService")
 	private NoticeFileService noticeFileService;
+	
+	@Autowired
+	@Qualifier("adminMypageService")
+	private AdminMypageService adminMypageService;
 
 	// 공지사항 목록
 	@GetMapping("/noticeList")
 	public String noticeList(Model model, Criteria cri) {
-
+		String member_id="admin";
+		String member_role = adminMypageService.adminmypage_authcheck(member_id);
 		// 로그인 기능을 만들어서 계정 분류에 따라 버튼이 다르게 나와야함
 		// 임시 로그인
 		String writer = "aaa";
+		
+		System.out.println(member_role);
 
 		ArrayList<TB_003VO> list = noticeService.noticeList(writer, cri);
 
@@ -52,6 +63,7 @@ public class NoticeController {
 		model.addAttribute("list", list);
 		model.addAttribute("pageVO", pageVO);
 		
+		model.addAttribute("member_role",member_role);
 
 		System.out.println(pageVO.toString());
 		System.out.println(total);
@@ -61,23 +73,46 @@ public class NoticeController {
 
 	// 공지사항 글 내용
 	@GetMapping("/noticeDetail")
-	public String noticeDetail(@RequestParam("notice_proper_num") int notice_proper_num,
+	public String noticeDetail(@RequestParam("notice_proper_num") String notice_proper_num,
 							   Model model) {
+		String member_id="admin";
+		String member_role = adminMypageService.adminmypage_authcheck(member_id);
 		
 		TB_003VO vo = noticeService.noticeDetail(notice_proper_num);
 		//
-		
+		System.out.println(member_role);
 		
 		System.out.println("스타트");
 		
+		Map<TB_016VO,String> file = new HashMap<TB_016VO, String>();
+		
 		List<TB_016VO> filevo = noticeService.noticeFileDetail(notice_proper_num);
+		
+		for(int i =0; i< filevo.size();i++) {
+			String url = URLEncoder.encode(filevo.get(i).getOriginal_file_name());
+			file.put(filevo.get(i), filevo.get(i).getOriginal_file_name());
+			filevo.get(i).setOriginal_file_name(url);
+			
+
+		}
 		System.out.println(filevo.toString());
+		
+		List<String> file_name = new ArrayList<>();
+		
+//		for(TB_016VO filepath : filevo) {
+//			
+//		}
+		
 		
 		
 		System.out.println(vo.toString());
 		
 		model.addAttribute("vo", vo);
 		model.addAttribute("filevo", filevo);
+		
+		model.addAttribute("file",file);
+		
+		model.addAttribute("member_role",member_role);
 
 		return "notice/noticeDetail";
 	}
@@ -134,10 +169,10 @@ public class NoticeController {
 
 	// 공지사항 수정 페이지
 	@GetMapping("/noticeModify")
-	public String noticeModify(@RequestParam("notice_proper_num") int notice_param_num,
+	public String noticeModify(@RequestParam("notice_proper_num") String notice_proper_num,
 							   Model model) {
 		
-		TB_003VO vo = noticeService.noticeDetail(notice_param_num);
+		TB_003VO vo = noticeService.noticeDetail(notice_proper_num);
 		
 		model.addAttribute("vo",vo);
 
@@ -162,7 +197,7 @@ public class NoticeController {
 				return "redirect:/notice/noticeList";
 			}
 		}
-
+		
 		//파일 업로드하고 저장경로를 리스트로 받음
 		List<String> filelist = noticeFileService.noticeFileRegist(list);
 		
@@ -178,8 +213,9 @@ public class NoticeController {
 	
 	//공지사항 삭제
 	@GetMapping("/noticeDelete")
-	public String noticeDelete(@RequestParam("notice_proper_num") int notice_proper_num, 
+	public String noticeDelete(@RequestParam("notice_proper_num") String notice_proper_num, 
 							   RedirectAttributes ra) {
+		
 		
 		noticeService.noticeDelete(notice_proper_num);
 		
