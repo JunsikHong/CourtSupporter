@@ -123,7 +123,7 @@ public class ApplicationController {
 	
 	//학력사항 수정 팝업창
 	@GetMapping("/applicationEducationModifyPopup")
-	public String educationModifyPopupForm(TB_006VO tb_006vo, Model model, @RequestParam("data") int data) {
+	public String educationModifyPopupForm(TB_006VO tb_006vo, Model model, @RequestParam("data") String data) {
 		String user_id = "user1";
 		
 		tb_006vo.setEdctn_dtls_proper_num(data);
@@ -177,7 +177,7 @@ public class ApplicationController {
 	@GetMapping("/applicationWork")
 	public String workForm(TB_007VO tb_007vo, Model model) {
 		String user_id = "user1";
-		tb_007vo.setAplcn_dtls_proper_num(1);
+		tb_007vo.setAplcn_dtls_proper_num("");
 		TB_007VO vo = applicationService.getWorkEtc(tb_007vo.getAplcn_dtls_proper_num(), user_id);
 		
 		ArrayList<TB_007VO> list = applicationService.getWorkList(user_id);
@@ -197,7 +197,7 @@ public class ApplicationController {
 	@PostMapping("/workPopupForm")
 	public String workPopup(TB_007VO tb_007vo) {
 		tb_007vo.setUser_id("user1");
-		tb_007vo.setAplcn_dtls_proper_num(1);
+		tb_007vo.setAplcn_dtls_proper_num("");
 		applicationService.workRegist(tb_007vo);
 		return "redirect:/application/applicationWork";
 	}
@@ -212,10 +212,10 @@ public class ApplicationController {
 	
 	//경력사항 수정 팝업창
 	@GetMapping("/applicationWorkModifyPopup")
-	public String workModifyPopupForm(TB_007VO tb_007vo, Model model, @RequestParam("data") int data) {
+	public String workModifyPopupForm(TB_007VO tb_007vo, Model model, @RequestParam("data") String data) {
 		String user_id = "user1";
 		
-		tb_007vo.setAplcn_carer_proper_num(data);
+		tb_007vo.setAplcn_carer_proper_num("");
 		
 		//경력 정보 불러오기
 		TB_007VO vo = applicationService.getWorkInfo(user_id, tb_007vo.getAplcn_carer_proper_num());
@@ -245,7 +245,7 @@ public class ApplicationController {
 	@PostMapping("/workForm")
 	public String certificate(TB_007VO tb_007vo) {
 		tb_007vo.setUser_id("user1");
-		tb_007vo.setAplcn_dtls_proper_num(1);
+		tb_007vo.setAplcn_dtls_proper_num("");
 		applicationService.workEtcRegist(tb_007vo);
 		return "redirect:/application/applicationCertificate";
 	}
@@ -271,7 +271,7 @@ public class ApplicationController {
 	@PostMapping("/certificatePopupForm")
 	public String certificatePopup(TB_008VO tb_008vo) {
 		tb_008vo.setUser_id("user1");
-		tb_008vo.setAplcn_dtls_proper_num(1);
+		tb_008vo.setAplcn_dtls_proper_num("");
 		applicationService.certificateRegist(tb_008vo);
 		return "redirect:/application/applicationCertificate";
 	}
@@ -286,7 +286,7 @@ public class ApplicationController {
 	
 	//자격증 정보 수정 팝업창
 	@GetMapping("/applicationCertificateModifyPopup")
-	public String certificateModifyPopupForm(TB_008VO tb_008vo, Model model, @RequestParam("data") int data) {
+	public String certificateModifyPopupForm(TB_008VO tb_008vo, Model model, @RequestParam("data") String data) {
 		String user_id = "user1";
 		
 		tb_008vo.setAplcn_crtfc_proper_num(data);

@@ -78,9 +78,9 @@ li {
 }
 
 .myinfoTable {
+	border-collapse: collapse;
 	width: 100%;
 	font-size: 16px;
-	border-top: 2px solid rgb(230, 230, 230);
 }
 
 .myinfoLine1,
@@ -98,7 +98,8 @@ li {
 	vertical-align: middle;
 	font-weight: bold;
 	padding-left: 20px;
-	background-color: rgb(255, 252, 238);
+	background-color: #034273;
+	color: white;
 }
 
 .myinfoLine1 td:nth-child(2),
@@ -108,11 +109,13 @@ li {
 	padding-left: 20px;
 	vertical-align: middle;
 	width: 30%;
+	background-color: rgb(228, 228, 228);
 }
 
 .myinfoLine3 td:nth-child(2) {
 	padding-left: 20px;
 	vertical-align: middle;
+	background-color: rgb(228, 228, 228);
 }
 
 /***********************************************/
@@ -157,7 +160,8 @@ li {
 	vertical-align: middle;
 	font-weight: bold;
 	padding-left: 20px;
-	background-color: rgb(255, 252, 238);
+	background-color: #034273;
+	color: white;
 }
 
 .detailLine1 td:nth-child(2),
@@ -167,6 +171,7 @@ li {
 	padding-left: 20px;
 	vertical-align: middle;
 	width: 30%;
+	background-color: rgb(228, 228, 228);
 }
 
 .detailLine3 td:nth-child(2),
@@ -174,6 +179,7 @@ li {
 .detailLine5 td:nth-child(2) {
 	padding-left: 20px;
 	vertical-align: middle;
+	background-color: rgb(228, 228, 228);
 }
 
 textarea {
@@ -214,7 +220,9 @@ textarea {
 	height: 50px;
 	text-align: center;
 	font-weight: bold;
-	background-color: rgb(255, 252, 238);
+	background-color: #034273;
+	color: white;
+	height: 70px;
 }
 
 .courtHead th {
@@ -229,6 +237,8 @@ textarea {
 
 .courtBody td {
 	vertical-align: middle;
+	background-color: rgb(228, 228, 228);
+	height: 70px;
 }
 
 /***********************************************/
@@ -268,7 +278,8 @@ textarea {
 	vertical-align: middle;
 	font-weight: bold;
 	padding-left: 20px;
-	background-color: rgb(255, 252, 238);
+	background-color: #034273;
+	color: white;
 }
 
 .edctnLine1 td:nth-child(2),
@@ -278,6 +289,7 @@ textarea {
 	padding-left: 20px;
 	vertical-align: middle;
 	width: 30%;
+	background-color: rgb(228, 228, 228);
 }
 
 /***********************************************/
@@ -307,7 +319,9 @@ textarea {
 	height: 50px;
 	text-align: center;
 	font-weight: bold;
-	background-color: rgb(255, 252, 238);
+	background-color: #034273;
+	color: white;
+	height: 70px;
 }
 
 .carerHead th {
@@ -322,6 +336,8 @@ textarea {
 
 .carerBody td {
 	vertical-align: middle;
+	background-color: rgb(228, 228, 228);
+	height: 70px;
 }
 
 /***********************************************/
@@ -351,7 +367,9 @@ textarea {
 	height: 50px;
 	text-align: center;
 	font-weight: bold;
-	background-color: rgb(255, 252, 238);
+	background-color: #034273;
+	color: white;
+	height: 70px;
 }
 
 .crtfcHead th {
@@ -359,13 +377,15 @@ textarea {
 }
 
 .crtfcBody {
-	height: 50px;
+	height: 70px;
 	text-align: center;
 	vertical-align: middle;
 }
 
 .crtfcBody td {
 	vertical-align: middle;
+	background-color: rgb(228, 228, 228);
+	height: 50px;
 }
 
 /***********************************************/
@@ -392,7 +412,8 @@ textarea {
 	vertical-align: middle;
 	font-weight: bold;
 	padding-left: 20px;
-	background-color: rgb(255, 252, 238);
+	background-color: #034273;
+	color: white;
 }
 
 .attachTable td:nth-child(2) {

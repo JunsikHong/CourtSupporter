@@ -114,7 +114,7 @@
 						<tbody>
 
 							<tr th:each="vo, status : ${list}">
-								<td>[[${status.count}]]</td>
+								<td><span th:text="${list.size() - status.count} + 1"></span></td>
 								<td style="text-align:left">
 									<a
 										th:href="@{/usermypage/usermypage_activitydetail (act_proper_num = ${vo.act_proper_num})}">[[${vo.judgement_num}]]</a>

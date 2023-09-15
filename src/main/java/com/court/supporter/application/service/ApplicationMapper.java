@@ -33,14 +33,14 @@ public interface ApplicationMapper {
 	public ArrayList<TB_006VO> getEducationList(String user_id);
 	//학력 정보 수정 팝업 - 학력 정보 데이터 불러오기
 	public TB_006VO getEducationInfo(@Param("user_id") String user_id, 
-									 @Param("edctn_dtls_proper_num") int edctn_dtls_proper_num);
+									 @Param("edctn_dtls_proper_num") String edctn_dtls_proper_num);
 	//학력 정보 페이지 - 학력 정보 수정
 	public void educationModify(TB_006VO tb_006vo);
 	//학력 정보 페이지 - 학력 정보 삭제
-	public void educationInfoDelete(@Param("edctn_dtls_proper_num") int edctn_dtls_proper_num, 
+	public void educationInfoDelete(@Param("edctn_dtls_proper_num") String edctn_dtls_proper_num, 
 									@Param("user_id") String user_id);
 	//학력 정보 페이지 - 최종 학력 입력
-	public void finalEducation(@Param("final_education_chk") int final_education_chk, 
+	public void finalEducation(@Param("final_education_chk") String final_education_chk, 
 							   @Param("user_id") String user_id);
 	//학력 정보 페이지 - 학력 정보 첨부 파일 등록
 	public void educationAttachment(TB_009VO tb_009vo);
@@ -50,16 +50,16 @@ public interface ApplicationMapper {
 	public ArrayList<TB_007VO> getWorkList(String user_id);
 	//경력 정보 수정 팝업 - 경력 정보 데이터 불러오기
 	public TB_007VO getWorkInfo(@Param("user_id") String user_id,
-								@Param("aplcn_carer_proper_num") int aplcn_carer_proper_num);
+								@Param("aplcn_carer_proper_num") String aplcn_carer_proper_num);
 	//경력 정보 페이지 - 경력 정보 수정
 	public void workModify(TB_007VO tb_007vo);
 	//경력 정보 페이지 - 경력 정보 삭제
-	public void workInfoDelete(@Param("aplcn_carer_proper_num") int aplcn_carer_proper_num, 
+	public void workInfoDelete(@Param("aplcn_carer_proper_num") String aplcn_carer_proper_num, 
 							   @Param("user_id") String user_id);
 	//경력 정보 페이지 - 활동 경력, 특기 사항 등록
 	public void workEtcRegist(TB_007VO tb_007vo);
 	//경력 정보 페이지 - 활동 경력, 특기 사항 데이터 불러오기
-	public TB_007VO getWorkEtc(@Param("aplcn_dtls_proper_num") int aplcn_dtls_proper_num,
+	public TB_007VO getWorkEtc(@Param("aplcn_dtls_proper_num") String aplcn_dtls_proper_num,
 							   @Param("user_id") String user_id);
 	//자격증 정보 페이지 - 자격증 정보 등록
 	public void certificateRegist(TB_008VO tb_008vo);
@@ -67,10 +67,10 @@ public interface ApplicationMapper {
 	public ArrayList<TB_008VO> getCertificateList(String user_id);
 	//자격증 정보 수정 팝업 - 자격증 정보 데이터 불러오기
 	public TB_008VO getCertificateInfo(@Param("user_id") String user_id, 
-									   @Param("aplcn_crtfc_proper_num") int aplcn_crtfc_proper_num);
+									   @Param("aplcn_crtfc_proper_num") String aplcn_crtfc_proper_num);
 	//자격증 정보 페이지 - 자격증 정보 수정
 	public void certificateModify(TB_008VO tb_008vo);
 	//자격증 정보 페이지 - 자격증 정보 삭제
-	public void certificateInfoDelete(@Param("aplcn_crtfc_proper_num") int aplcn_crtfc_proper_num, 
+	public void certificateInfoDelete(@Param("aplcn_crtfc_proper_num") String aplcn_crtfc_proper_num, 
 									  @Param("user_id") String user_id);
 }

@@ -17,6 +17,7 @@
  	color: #555;
  }
 
+/***********************************************************************/
  /* 상단 메뉴 바 스타일 */
  .header-menu-wrap {
  	background-color: white;
@@ -27,7 +28,7 @@
  	right: 0;
  	margin: 0 auto;
  	width: 1280px;
- 	height: 100px;
+ 	height: 330px;
  	z-index: 1000;
  	overflow: hidden;
  }
@@ -44,18 +45,13 @@
 
  /* 메뉴 스타일 */
  .menu-wrap {
- 	line-height: 100px;
  	float: right;
  }
 
  .menus {
+	line-height: 100px;
  	list-style: none;
  	display: flex;
- 	margin: 0;
- 	padding: 0;
- }
-
- .menus li {
  	margin: 0;
  	padding: 0;
  }
@@ -68,6 +64,37 @@
  	margin: 0 60px;
  }
 
+
+/***********************************************************************/
+ /* 상단 상세메뉴 바 스타일 */
+ .detail-menus {
+	 display: flex;
+	 border-left: 2px solid rgb(219, 219, 219);
+ }
+ 
+.detail-menus h3 {
+	font-weight: 550;
+	font-size: 20px;
+	padding-bottom: 40px;
+	color: #333;
+	margin: 0 60px;
+}
+
+
+.detail-menus li {
+	font-size: 17px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+}
+
+.detail-menus li:hover {
+	color: rgb(0, 64, 128);
+	cursor: pointer;
+}
+
+/***********************************************************************/
  /* 푸터 스타일 */
  footer {
  	background-color: #dadada;

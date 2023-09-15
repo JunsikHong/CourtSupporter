@@ -92,7 +92,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	
 	//학력 정보 수정 팝업 - 학력 정보 데이터 불러오기
 	@Override
-	public TB_006VO getEducationInfo(String user_id, int edctn_dtls_proper_num) {
+	public TB_006VO getEducationInfo(String user_id, String edctn_dtls_proper_num) {
 		return applicationMapper.getEducationInfo(user_id, edctn_dtls_proper_num);
 	}
 		
@@ -104,13 +104,13 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//학력 정보 페이지 - 학력 정보 삭제
 	@Override
-	public void educationInfoDelete(int edctn_dtls_proper_num, String user_id) {
+	public void educationInfoDelete(String edctn_dtls_proper_num, String user_id) {
 		applicationMapper.educationInfoDelete(edctn_dtls_proper_num, user_id);
 	}
 
 	//학력 정보 페이지 - 최종 학력 입력
 	@Override
-	public void finalEducation(int final_education_chk, String user_id) {
+	public void finalEducation(String final_education_chk, String user_id) {
 		applicationMapper.finalEducation(final_education_chk, user_id);
 	}
 	
@@ -141,7 +141,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//경력 정보 수정 팝업 - 경력 정보 데이터 불러오기
 	@Override
-	public TB_007VO getWorkInfo(String user_id, int aplcn_carer_proper_num) {
+	public TB_007VO getWorkInfo(String user_id, String aplcn_carer_proper_num) {
 		return  applicationMapper.getWorkInfo(user_id, aplcn_carer_proper_num);
 	}
 
@@ -153,7 +153,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//경력 정보 페이지 - 경력 정보 삭제
 	@Override
-	public void workInfoDelete(int aplcn_carer_proper_num, String user_id) {
+	public void workInfoDelete(String aplcn_carer_proper_num, String user_id) {
 		applicationMapper.workInfoDelete(aplcn_carer_proper_num, user_id);
 	}
 
@@ -165,7 +165,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//경력 정보 페이지 - 활동 경력, 특기 사항 데이터 불러오기
 	@Override
-	public TB_007VO getWorkEtc(int aplcn_dtls_proper_num, String user_id) {
+	public TB_007VO getWorkEtc(String aplcn_dtls_proper_num, String user_id) {
 		return applicationMapper.getWorkEtc(aplcn_dtls_proper_num, user_id);
 	}
 
@@ -184,7 +184,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//자격증 정보 수정 팝업 - 자격증 정보 데이터 불러오기
 	@Override
-	public TB_008VO getCertificateInfo(String user_id, int aplcn_crtfc_proper_num) {
+	public TB_008VO getCertificateInfo(String user_id, String aplcn_crtfc_proper_num) {
 		return applicationMapper.getCertificateInfo(user_id, aplcn_crtfc_proper_num);
 	}
 
@@ -197,7 +197,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//자격증 정보 페이지 - 자격증 정보 삭제
 	@Override
-	public void certificateInfoDelete(int aplcn_crtfc_proper_num, String user_id) {
+	public void certificateInfoDelete(String aplcn_crtfc_proper_num, String user_id) {
 		applicationMapper.certificateInfoDelete(aplcn_crtfc_proper_num, user_id);
 		
 	}

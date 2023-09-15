@@ -26,8 +26,8 @@ public class UserMypageServiceImpl implements UserMypageService{
 	
 	//사용자 정보 가져오기
 	@Override
-	public TB_001VO usermypage_getInfo(String user_id) {
-		return userMypageMapper.usermypage_getInfo(user_id);
+	public TB_001VO usermypage_getInfo(String user_proper_num) {
+		return userMypageMapper.usermypage_getInfo(user_proper_num);
 	}
 
 	//사용자 정보 수정
@@ -44,7 +44,6 @@ public class UserMypageServiceImpl implements UserMypageService{
 
 	@Override
 	public int usermypage_modify_pw_check(TB_001VO vo) {
-		System.out.println(vo.getUser_pw());
 		TB_001VO result = userMypageMapper.usermypage_modify_pw_check(vo);
 		System.out.println(result.getUser_pw());	
 		if(vo.getUser_pw().equals(result.getUser_pw())) {
@@ -56,14 +55,14 @@ public class UserMypageServiceImpl implements UserMypageService{
 
 	//신청 리스트 총합 구하기
 	@Override
-	public int usermypage_application_gettotal(String user_id, Criteria cri) {
-		return userMypageMapper.usermypage_application_gettotal(user_id, cri);
+	public int usermypage_application_gettotal(String user_proper_num, Criteria cri) {
+		return userMypageMapper.usermypage_application_gettotal(user_proper_num, cri);
 	}
 
 	//신청 리스트 목록 구하기
 	@Override
-	public ArrayList<TB_005VO> usermypage_application_getlist(String user_id, Criteria cri) {
-		return userMypageMapper.usermypage_application_getlist(user_id, cri);
+	public ArrayList<TB_005VO> usermypage_application_getlist(String user_proper_num, Criteria cri) {
+		return userMypageMapper.usermypage_application_getlist(user_proper_num, cri);
 	}
 
 	//사용자 신청 상세 정보 가져오기
@@ -110,14 +109,14 @@ public class UserMypageServiceImpl implements UserMypageService{
 	
 	//활동 리스트 총합 구하기
 	@Override
-	public int usermypage_activity_gettotal(String user_id, Criteria cri) {
-		return userMypageMapper.usermypage_activity_gettotal(user_id, cri);
+	public int usermypage_activity_gettotal(String user_proper_num, Criteria cri) {
+		return userMypageMapper.usermypage_activity_gettotal(user_proper_num, cri);
 	}
 	
 	//활동 리스트 목록 구하기
 	@Override
-	public ArrayList<TB_012VO> usermypage_activity_getlist(String user_id, Criteria cri) {
-		return userMypageMapper.usermypage_activity_getlist(user_id, cri);
+	public ArrayList<TB_012VO> usermypage_activity_getlist(String user_proper_num, Criteria cri) {
+		return userMypageMapper.usermypage_activity_getlist(user_proper_num, cri);
 	}
 
 	//사용자 활동 상세 정보 가져오기
@@ -134,13 +133,13 @@ public class UserMypageServiceImpl implements UserMypageService{
 
 	//사용자 중지 리스트 총합구하기
 	@Override
-	public int usermypage_pausetotal(int user_proper_num, Criteria cri) {
+	public int usermypage_pausetotal(String user_proper_num, Criteria cri) {
 		return userMypageMapper.usermypage_pausetotal(user_proper_num, cri);
 	}
 
 	//사용자 중지 리스트 가져오기
 	@Override
-	public ArrayList<TB_014VO> usermypage_pauselist(int user_proper_num, Criteria cri) {
+	public ArrayList<TB_014VO> usermypage_pauselist(String user_proper_num, Criteria cri) {
 		return userMypageMapper.usermypage_pauselist(user_proper_num, cri);
 	}
 

@@ -6,9 +6,9 @@
 <mapper namespace="com.court.supporter.adminmypage.service.AdminMypageMapper">
 
 	<select id="adminmypage_authcheck">
-		select *
+		select member_role
 		from TB_018
-		where member_id = #{member_id}
+		where member_proper_num = #{member_proper_num}
 	</select>
 
 	<select id="adminmypage_juris_getapplicationtotal">
@@ -16,9 +16,14 @@
 		from TB_005 as t5
 		left join TB_002 as t2
 		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts = 'examination'
+		where aplicn_dtls_sts = '03'
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if
+			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%',
+			#{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -34,9 +39,14 @@
 		from TB_005 as t5
 		left join TB_002 as t2
 		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts = 'examination'
+		where aplicn_dtls_sts = '03'
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if
+			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%',
+			#{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -51,9 +61,14 @@
 		from TB_005 as t5
 		left join TB_002 as t2
 		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts = 'pass'
+		where aplicn_dtls_sts = '05'
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if
+			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%',
+			#{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -69,9 +84,14 @@
 		from TB_005 as t5
 		left join TB_002 as t2
 		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts = 'pass'
+		where aplicn_dtls_sts = '05'
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if
+			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%',
+			#{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -89,6 +109,11 @@
 		where 1 = 1
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
+		</if>
+		<if
+			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%',
+			#{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -108,6 +133,11 @@
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
 		</if>
+		<if
+			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%',
+			#{aplicn_dtls_sts}, '%')
+		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
 		</if>
@@ -116,4 +146,90 @@
 		</if>
 	</select>
 
+	<select id="adminmypage_getapplicationdetail">
+		select *
+		from TB_005
+		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</select>
+	
+	<select id="adminmypage_checkannounceenddate">
+		select *
+		from TB_002
+		where announce_proper_num = #{announce_proper_num}
+	</select>
+	
+	<select id="adminmypage_checkevaluatecomplete">
+		select *
+		from TB_005
+		where announce_proper_num = #{announce_proper_num}
+	</select>
+	
+	<insert id="adminmypage_evaluate">
+		insert into TB_013 (
+			evaluate_proper_num,
+			all_career_score,
+			jrsdc_career_score,
+			office_score,
+			certificate_score,
+			adjust_score,
+			evaluate_score,
+			review_etc,
+			admin_proper_num,
+			aplcn_dtls_proper_num,
+			user_id,
+			user_proper_num
+		) select
+			coalesce (
+				(select max(evaluate_proper_num)+1 
+		 		 from TB_013 
+         		 where cast(substring(evaluate_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+				 , concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
+			#{all_career_score},
+			#{jrsdc_career_score},
+			#{office_score},
+			#{certificate_score},
+			#{adjust_score},
+			#{evaluate_score},
+			#{review_etc},
+			#{admin_proper_num},
+			#{aplcn_dtls_proper_num},
+			#{user_id},
+			#{user_proper_num}
+	</insert>
+
+	<update id="adminmypage_juris_companion_evaluate">
+		update TB_005
+		set aplcn_dtls_sts = '04'
+		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</update>
+
+	<update id="adminmypage_court_referral_evaluate">
+		update TB_005
+		set aplcn_dtls_sts = '07'
+		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</update>
+	
+	<update id="adminmypage_juris_examination_evaluate">
+		update TB_005
+		set aplcn_dtls_sts = '03'
+		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</update>
+	
+	<update id="adminmypage_court_examination_evaluate">
+		update TB_005
+		set aplcn_dtls_sts = '06'
+		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</update>
+	
+	<update id="adminmypage_juris_pass_evaluate">
+		update TB_005
+		set aplcn_dtls_sts = '05'
+		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</update>
+	
+	<update id="adminmypage_court_accept_evaluate">
+		update TB_005
+		set aplcn_dtls_sts = '08'
+		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</update>
 </mapper>
