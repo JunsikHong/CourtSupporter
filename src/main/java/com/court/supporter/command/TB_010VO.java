@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TB_010VO {
 
-	private Integer trial_fcltt_proper_num;
+	private String trial_fcltt_proper_num;
+	private String trial_fcltt_mainclasifi_code;
 	private String trial_fcltt_clasifi_code;
 	private String trial_fcltt_sbcls_code;
 	private String trial_fcltt_description;

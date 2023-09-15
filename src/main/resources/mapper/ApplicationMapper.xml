@@ -7,25 +7,44 @@
   
   <!-- 기본 정보 페이지 - 신청인 기본 정보 불러오기 -->
   <select id="getUserInfo" resultType="TB_001VO">
-  	select * from TB_001 where user_id = #{user_id}
+  	select * from TB_001 where user_proper_num = #{user_proper_num}
+  </select>
+  
+  <!-- 기본 정보 페이지 - tb_005vo 데이터 가져오기 -->
+  <select id="getApplicationBasicInfo" resultType="TB_005VO">
+  	select * from TB_005 where user_proper_num = #{user_proper_num} and announce_proper_num = #{announce_proper_num}
   </select>
   
   <!-- 기본 정보 페이지 - 주민번호 조회 -->
   <select id="getUserRrn" resultType="String">
-  	select user_rrn from TB_001 where user_id = #{user_id} and user_name = #{user_name} and user_rrn = #{user_rrn}
+  	select user_rrn from TB_001 where user_proper_num = #{user_proper_num} and user_name = #{user_name} and user_rrn = #{user_rrn}
+  </select>
+  
+  <!-- user_id 불러오기 -->
+  <select id="getuser_id">
+  	select user_id
+  	from TB_001
+  	where user_proper_num = #{user_proper_num}
   </select>
   
   <!-- 기본 정보 - 조력자 분류 코드, 조력자 추가 정보, 희망 법원 등록 -->
   <insert id="detailRegist" parameterType="TB_005VO">
-  	insert into TB_005(trial_fcltt_proper_num,
+  	insert into TB_005(aplcn_dtls_proper_num,
+  					   trial_fcltt_proper_num,
   					   ligtn_case_carer_yn,
 					   ligtn_case_carer_etc,
 		               insrn_indst_carer_yn,
 		               insrn_indst_carer_etc,
 		               criminal_penalty_carer_yn,
 		               criminal_penalty_carer_etc,
-		               court_proper_num)
-	values(
+		               user_proper_num,
+		               court_proper_num,
+		               announce_proper_num,
+		               user_id)
+	select coalesce (
+      			(select max(aplcn_dtls_proper_num)+1 from TB_005 
+      			where cast(substring(aplcn_dtls_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d')), 
+      			concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
 		   #{trial_fcltt_proper_num},
 		   #{ligtn_case_carer_yn},
 		   #{ligtn_case_carer_etc},
@@ -33,7 +52,11 @@
            #{insrn_indst_carer_etc},
            #{criminal_penalty_carer_yn},
            #{criminal_penalty_carer_etc},
-		   #{court_proper_num})
+           #{user_proper_num},
+		   #{court_proper_num},
+		   #{announce_proper_num},
+		   #{user_id}
+		   
   </insert>
   
   <!-- 기본 정보 - 신청인 기본 정보 수정 -->
@@ -44,34 +67,42 @@
   					  user_ar_zonecode = #{user_ar_zonecode},
   					  user_ar_jibun = #{user_ar_jibun},
   					  user_ar_detail = #{user_ar_detail}
-  	where user_id = 'user1'
+  	where user_proper_num = #{user_proper_num}
   </update>
   
   <!-- 학력 정보 등록 -->
   <insert id="educationRegist" parameterType="TB_006VO">
-  	insert into TB_006(edctn_school_name,
+  	insert into TB_006(edctn_dtls_proper_num,
+  					   edctn_school_name,
   					   edctn_major,
 					   edctn_degree,
 		               edctn_admsn_date,
 		               edctn_grdtn_date,
-		               user_id)
-	values(
+		               aplcn_dtls_proper_num,
+		               user_id,
+		               user_proper_num)
+	select coalesce (
+      			(select max(edctn_dtls_proper_num)+1 from TB_006 
+      			where cast(substring(edctn_dtls_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d')), 
+      			concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
 		   #{edctn_school_name},
 		   #{edctn_major},
 		   #{edctn_degree},
            #{edctn_admsn_date},
            #{edctn_grdtn_date},
-		   #{user_id})
+           #{aplcn_dtls_proper_num},
+		   #{user_id},
+		   #{user_proper_num}
   </insert>
   
   <!-- 학력 정보 페이지 - 입력한 학력 정보 불러오기 -->
   <select id="getEducationList" resultType="TB_006VO">
-  	select * from TB_006 where user_id = #{user_id}
+  	select * from TB_006 where user_id = #{user_id} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </select>
   
   <!-- 학력 정보 수정 팝업 - 학력 정보 데이터 불러오기 -->
   <select id="getEducationInfo" resultType="TB_006VO">
-  	select * from TB_006 where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num}
+  	select * from TB_006 where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </select>
   
   <!-- 학력 정보 페이지 - 학력 정보 수정 -->
@@ -81,12 +112,54 @@
   					  edctn_degree = #{edctn_degree},
   					  edctn_admsn_date = #{edctn_admsn_date},
   					  edctn_grdtn_date = #{edctn_grdtn_date}
-  	where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num}
+  	where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </update>
   
   <!-- 학력 정보 페이지 - 학력 정보 삭제 -->
   <delete id="educationInfoDelete">
-  	delete from TB_006 where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num}
+  	delete from TB_006 where user_id = #{user_id} and edctn_dtls_proper_num = #{edctn_dtls_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+  </delete>
+  
+  <!-- 학력,경력,자격증 정보 파일 수정 -->
+  <select id="getFilepath" resultType="TB_009VO">
+  <choose>
+    <when test="uuid != null and !uuid.isEmpty()">
+      SELECT * FROM TB_009 WHERE uuid NOT IN
+      <foreach collection="uuid" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+      AND aplcn_dtls_proper_num = #{tb_009vo.aplcn_dtls_proper_num}
+      AND file_type = #{tb_009vo.file_type}
+      AND user_id = #{tb_009vo.user_id}
+    </when>
+    <otherwise>
+      SELECT * FROM TB_009
+      WHERE aplcn_dtls_proper_num = #{tb_009vo.aplcn_dtls_proper_num}
+      AND file_type = #{tb_009vo.file_type}
+      AND user_id = #{tb_009vo.user_id}
+    </otherwise>
+  </choose>
+  </select>
+  
+  <delete id="fileDelete">
+	  <choose>
+	    <when test="uuid != null and !uuid.isEmpty()">
+	      DELETE FROM TB_009
+	      WHERE uuid NOT IN
+	      <foreach collection="uuid" item="item" open="(" close=")" separator=",">
+	        #{item}
+	      </foreach>
+	      AND aplcn_dtls_proper_num = #{tb_009vo.aplcn_dtls_proper_num}
+	      AND file_type = #{tb_009vo.file_type}
+	      AND user_id = #{tb_009vo.user_id}
+	    </when>
+	    <otherwise>
+	      DELETE FROM TB_009
+	      WHERE aplcn_dtls_proper_num = #{tb_009vo.aplcn_dtls_proper_num}
+	        AND file_type = #{tb_009vo.file_type}
+	        AND user_id = #{tb_009vo.user_id}
+	    </otherwise>
+	  </choose>
   </delete>
   
   <!-- 학력 정보 페이지 - 최종 학력 입력 -->
@@ -98,28 +171,40 @@
 		END
   </update>
   
-  <!-- 학력 정보 페이지 - 학력 정보 첨부 파일 등록 -->
-  <insert id="educationAttachment" parameterType="TB_009VO">
-  	insert into TB_009(file_code,
+  <!-- 학력,경력,자격증 정보 등록된 첨부 파일 불러오기 -->
+  <select id="fileList" resultType="TB_009VO">
+  	select * from TB_009 where user_id = #{user_id} and file_type = #{file_type} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+  </select>
+  
+  <!-- 학력,경력,자격증 정보 첨부 파일 등록 -->
+  <insert id="attachmentRegist" parameterType="TB_009VO">
+  	insert into TB_009(aplcn_atch_file_proper_num,
+  					   file_code,
   					   file_type,
 		               original_file_name,
 		               uuid,
 		               file_path,
 		               aplcn_dtls_proper_num,
-		               user_id)
-	values(
+		               user_id,
+		               user_proper_num)
+	select coalesce (
+      			(select max(aplcn_atch_file_proper_num)+1 from TB_009 
+      			where cast(substring(aplcn_atch_file_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d')), 
+      			concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
 		   #{file_code},
 		   #{file_type},
 		   #{original_file_name},
            #{uuid},
            #{file_path},
            #{aplcn_dtls_proper_num},
-		   #{user_id})
+		   #{user_id},
+		   #{user_proper_num}
   </insert>
   
   <!-- 경력 정보 등록 -->
   <insert id="workRegist" parameterType="TB_007VO">
-  	insert into TB_007(company_name,
+  	insert into TB_007(aplcn_carer_proper_num,
+  					   company_name,
   					   carer_type,
 					   work_start_date,
 		               work_end_date,
@@ -127,8 +212,12 @@
 		               work_department,
 		               work_position,
 		               aplcn_dtls_proper_num,
-		               user_id)
-	values(
+		               user_id,
+		               user_proper_num)
+	select coalesce (
+      			(select max(aplcn_carer_proper_num)+1 from TB_007 
+      			where cast(substring(aplcn_carer_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d')), 
+      			concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
 		   #{company_name},
 		   #{carer_type},
 		   #{work_start_date},
@@ -137,17 +226,18 @@
            #{work_department},
            #{work_position},
            #{aplcn_dtls_proper_num},
-		   #{user_id})
+		   #{user_id},
+		   #{user_proper_num}
   </insert>
   
   <!-- 경력 정보 페이지 - 입력한 경력 정보 불러오기 -->
   <select id="getWorkList" resultType="TB_007VO">
-  	select * from TB_007 where user_id = #{user_id}
+  	select * from TB_007 where user_id = #{user_id} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </select>
   
   <!-- 경력 정보 수정 팝업 - 경력 정보 데이터 불러오기 -->
   <select id="getWorkInfo" resultType="TB_007VO">
-  	select * from TB_007 where user_id = #{user_id} and aplcn_carer_proper_num = #{aplcn_carer_proper_num}
+  	select * from TB_007 where user_id = #{user_id} and aplcn_carer_proper_num = #{aplcn_carer_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </select>
   
   <!-- 경력 정보 페이지 - 경력 정보 수정 -->
@@ -160,11 +250,12 @@
   					  work_department = #{work_department},
   					  work_position = #{work_position}
   	where user_id = #{user_id} and aplcn_carer_proper_num = #{aplcn_carer_proper_num}
+  			 and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </update>
   
   <!-- 경력 정보 페이지 - 경력 정보 삭제 -->
   <delete id="workInfoDelete">
-  	delete from TB_007 where user_id = #{user_id} and aplcn_carer_proper_num = #{aplcn_carer_proper_num}
+  	delete from TB_007 where user_id = #{user_id} and aplcn_carer_proper_num = #{aplcn_carer_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </delete>
   
   <!-- 경력 정보 페이지 - 활동 경력, 특기 사항 등록 -->
@@ -179,35 +270,41 @@
   	select * from TB_007 
   	where aplcn_carer_proper_num = 
   	(SELECT MIN(aplcn_carer_proper_num) AS aplcn_carer_proper_num 
-  	 FROM tb_007 
+  	 FROM TB_007 
   	 WHERE aplcn_dtls_proper_num = #{aplcn_dtls_proper_num} and user_id = #{user_id})
   </select>
   
   <!-- 자격증 정보 페이지 - 자격증 정보 등록 -->
   <insert id="certificateRegist" parameterType="TB_008VO">
-  	insert into TB_008(crtfc_type,
+  	insert into TB_008(aplcn_crtfc_proper_num,
+  					   crtfc_type,
 		               issue_agency,
 		               crtfc_number,
 		               issue_date,
 		               aplcn_dtls_proper_num,
-		               user_id)
-	values(
+		               user_id,
+		               user_proper_num)
+	select coalesce (
+      			(select max(aplcn_crtfc_proper_num)+1 from TB_008
+      			where cast(substring(aplcn_crtfc_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d')), 
+      			concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
 		   #{crtfc_type},
            #{issue_agency},
            #{crtfc_number},
            #{issue_date},
            #{aplcn_dtls_proper_num},
-		   #{user_id})
+		   #{user_id},
+		   #{user_proper_num}
   </insert>
   
   <!-- 자격증 정보 페이지 - 입력한 자격증 정보 불러오기 -->
   <select id="getCertificateList" resultType="TB_008VO">
-  	select * from TB_008 where user_id = #{user_id}
+  	select * from TB_008 where user_id = #{user_id} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </select>
   
   <!-- 자격증 정보 수정 팝업 - 자격증 정보 데이터 불러오기 -->
   <select id="getCertificateInfo" resultType="TB_008VO">
-  	select * from TB_008 where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num}
+  	select * from TB_008 where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </select>
   
   <!-- 자격증 정보 페이지 - 자격증 정보 수정 -->
@@ -216,11 +313,13 @@
   					  issue_agency = #{issue_agency},
   					  crtfc_number = #{crtfc_number},
   					  issue_date = #{issue_date}
-  	where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num}
+  	where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </update>
   
   <!-- 자격증 정보 페이지 - 자격증 정보 삭제 -->
   <delete id="certificateInfoDelete">
-  	delete from TB_008 where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num}
+  	delete from TB_008 where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </delete>
+  
+  
   </mapper>

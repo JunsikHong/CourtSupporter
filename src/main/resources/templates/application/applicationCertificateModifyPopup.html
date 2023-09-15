@@ -2,13 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/applicationPopup.css}">
 <script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script th:src="@{/js/applicationCertificatePopup.js}"></script>
 <th:block>
 	<div class="certificatePopup">
 		<div class="certificatePopup-wrap">
 			<div id="pop_wrap">
 
-				<form action="certificateModifyPopupForm" id="workModifyPopupForm" name="certificateModifyPopupForm" method="post">
+				<form action="certificateModifyPopupForm" id="certificateModifyPopupForm" name="certificateModifyPopupForm" method="post">
 					<div class="pop_contents">
 						<span class="sm_title">*자격/면허 사항</span>
 						<table class="tableT popT">
@@ -40,14 +42,9 @@
 								
 								<tr class="uptr01">
 									<th class="">발급일</th>
-									<td><input type="text" name="issue_date" id="issue_date" title="발급일" th:value="${vo.issue_date}"></td>
+									<td><input type="text" class="datepicker" name="issue_date" id="issue_date" title="발급일" th:value="${vo.issue_date}" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"></td>
 								</tr>
-								<tr class="uptr02">
-									<th class="">증빙서류</th>
-									<td class="">
-										<input type="file" style="border: none; width: 250px;">
-									</td>
-								</tr>
+								
 								
 							</tbody>
 
@@ -55,7 +52,7 @@
 					</div>
 					
 					<div class="btnbox btnbox02">
-						<input type="submit" class="btnfb7" id="popupClose" value="입력"/>
+						<input type="submit" class="btnfb7" id="certificateModifyBtn" value="입력"/>
 					</div>
 			</div>
 			</form>

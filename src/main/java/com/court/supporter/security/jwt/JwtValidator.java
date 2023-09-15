@@ -17,21 +17,23 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class JwtValidator {
-	
-	private final Key key;
-	private final UserService userService;
-	
-	public Authentication getAuthentication(String accessToken) {
-		Claims claims = getTokenClaims(accessToken);
-		DefaultUserDetails defaultUserDetails = new DefaultUserDetails(userService.findByMemberId(claims.get("id", String.class)));
-		return new UsernamePasswordAuthenticationToken(defaultUserDetails, "", defaultUserDetails.getAuthorities());
-	}
-	
-	private Claims getTokenClaims(String token) {
-		return Jwts.parserBuilder()
-				.setSigningKey(key)
-				.build()
-				.parseClaimsJws(token)
-				.getBody();
-	}
+   
+   private final Key key;
+   private final UserService userService;
+   
+   public Authentication getAuthentication(String accessToken) {
+      Claims claims = getTokenClaims(accessToken);
+      System.out.println("claims: " + claims.get("member_proper_num", String.class));
+      DefaultUserDetails defaultUserDetails = new DefaultUserDetails(userService.findByMemberProperNum(claims.get("member_proper_num", String.class)));
+      return new UsernamePasswordAuthenticationToken(defaultUserDetails, "", defaultUserDetails.getAuthorities());
+   }
+   
+   private Claims getTokenClaims(String token) {
+      return Jwts.parserBuilder()
+            .setSigningKey(key)
+            .build()
+            .parseClaimsJws(token)
+            .getBody();
+   }
 }
+
