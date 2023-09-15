@@ -92,3 +92,5 @@ fieldset, blockquote, iframe, button{ border:none; }
 /* 필수 입력 아이콘 */
 .required-img {display: inline-block;font-size: 10px;color: #ec464d;width: 10px;height: 10px;background: url(https://www.gov.kr/2017/img/page/ico_fa_asterisk.png) no-repeat 0 0;}
 .required-img .hidden {position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;}
+
+#date1, #date2{width: 100px}

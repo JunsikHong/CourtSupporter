@@ -12,12 +12,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TB_008VO {
 
-	private Integer aplcn_crtfc_proper_num;
+	private String aplcn_crtfc_proper_num;
 	private String crtfc_type;
 	private String issue_agency;
 	private String crtfc_number;
 	private String issue_date;
-	private Integer aplcn_dtls_proper_num;
+	private String aplcn_dtls_proper_num;
 	private String user_id;
+	private String user_proper_num;
 }
 

@@ -1,6 +1,5 @@
 $(document).ready(function() {
-
-
+	
 	var firstSelect_a = ["시가등(소송)", "경매", "공사비등", "측량", "문서/인영/필적", "번역/통역"];
 	var firstSelect_b = ["통역", "번역/통역", "통번역"];
 	var firstSelect_c = ["조정위원", "외부연계조정위원"];
@@ -20,26 +19,28 @@ $(document).ready(function() {
 	var supporterId = "01";
 	if (supporterId == "01") {
 		for (i = 0; i < firstSelect_a.length; i++) {
-			$('#firstSelect').append("<option value='" + firstSelect_a_id[i] + "'>" + firstSelect_a[i] + "</option>");
+			$('#firstSelect').append("<option value='" + firstSelect_a_id[i] + "'" + (selected === firstSelect_a_id[i] ? " selected" : "") + ">" + firstSelect_a[i] + "</option>");
 		}
 	} else if (supporterId == "02") {
 		for (i = 0; i < firstSelect_b.length; i++) {
-			$('#firstSelect').append("<option value='" + firstSelect_b_id[i] + "'>" + firstSelect_b[i] + "</option>");
+			$('#firstSelect').append("<option value='" + firstSelect_b_id[i] + "'" + (selected === firstSelect_b_id[i] ? " selected" : "") + ">" + firstSelect_b[i] + "</option>");
 		}
 	} else if (supporterId == "03") {
 		for (i = 0; i < firstSelect_c.length; i++) {
-			$('#firstSelect').append("<option value='" + firstSelect_c_id[i] + "'>" + firstSelect_c[i] + "</option>");
+			$('#firstSelect').append("<option value='" + firstSelect_c_id[i] + "'" + (selected === firstSelect_c_id[i] ? " selected" : "") + ">" + firstSelect_c[i] + "</option>");
 		}
 	} else if (supporterId == "04") {
 		for (i = 0; i < firstSelect_d.length; i++) {
-			$('#firstSelect').append("<option value='" + firstSelect_d_id[i] + "'>" + firstSelect_d[i] + "</option>");
+			$('#firstSelect').append("<option value='" + firstSelect_d_id[i] + "'" + (selected === firstSelect_d_id[i] ? " selected" : "") + ">" + firstSelect_d[i] + "</option>");
 		}
 	} else if (supporterId == "05") {
 		for (i = 0; i < firstSelect_e.length; i++) {
-			$('#firstSelect').append("<option value='" + firstSelect_e_id[i] + "'>" + firstSelect_e[i] + "</option>");
+			$('#firstSelect').append("<option value='" + firstSelect_e_id[i] + "'" + (selected === firstSelect_e_id[i] ? " selected" : "") + ">" + firstSelect_e[i] + "</option>");
 		}
 	}
-
+	if(selected === "0103" || selected == "0301") {
+		selectChange();
+	}
 })
 
 function selectChange() {
@@ -57,12 +58,12 @@ function selectChange() {
 	if (str == "0103") {
 		secondSelect.style = 'none';
 		for (i = 0; i < secondSelect_a.length; i++) {
-			$('#secondSelect').append("<option value='" + secondSelect_a_id[i] + "'>" + secondSelect_a[i] + "</option>");
+			$('#secondSelect').append("<option value='" + secondSelect_a_id[i] + "'" + (selected3 === secondSelect_a_id[i] ? " selected" : "") + ">" + secondSelect_a[i] + "</option>");
 		}
 	} else if (str == "0301") {
 		secondSelect.style = 'none';
 		for (i = 0; i < secondSelect_b.length; i++) {
-			$('#secondSelect').append("<option value='" + secondSelect_b_id[i] + "'>" + secondSelect_b[i] + "</option>");
+			$('#secondSelect').append("<option value='" + secondSelect_b_id[i] + "'" + (selected3 === secondSelect_b_id[i] ? " selected" : "") + ">" + secondSelect_b[i] + "</option>");
 		}
 	} else {
 		secondSelect.style.display = 'none';
@@ -109,12 +110,13 @@ window.onload = function() {
 		var rrn2 = document.getElementById("user_rrn2").value;
 		var rrn = rrn1 + '-' + rrn2;
 		var name = document.getElementById("user_name").value;
+		var proper_num = document.getElementById("user_proper_num").value;
 
 		$.ajax({
 			url: "../application/fetchData",   // 데이터 조회를 위한 컨트롤러 경로
 			method: "POST",
 			contentType: "application/json",
-			data: JSON.stringify({ user_id: 'user1', user_name: name, user_rrn: rrn }),
+			data: JSON.stringify({ user_proper_num: proper_num, user_name: name, user_rrn: rrn }),
 			success: function(response) {
 				
 				const messageDisplay = $("#messageDisplay");

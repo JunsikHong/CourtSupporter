@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/applicationPopup.css}">
 <script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script th:src="@{/js/applicationCertificatePopup.js}"></script>
 <th:block>
 	<div class="certificatePopup">
@@ -39,14 +41,9 @@
 								
 								<tr class="uptr01">
 									<th class="">발급일</th>
-									<td><input type="text" name="issue_date" id="issue_date" title="발급일"></td>
+									<td><input type="text" class="datepicker" name="issue_date" id="issue_date" title="발급일" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"></td>
 								</tr>
-								<tr class="uptr02">
-									<th class="">증빙서류</th>
-									<td class="">
-										<input type="file" style="border: none; width: 250px;">
-									</td>
-								</tr>
+								
 								
 							</tbody>
 

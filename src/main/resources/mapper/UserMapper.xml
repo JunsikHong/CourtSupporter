@@ -4,46 +4,59 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.court.supporter.user.service.UserMapper">
-  	  <!-- 회원가입 -->
-  	<insert id="join" >
-  		insert into TB_001(user_proper_num,
-  						   user_id, 
-  						   user_pw, 
-  						   user_name, 
-  						   user_rrn, 
-  						   user_birthdate, 
-  						   user_email, 
-  						   user_phone, 
-  						   user_job, 
-  						   user_ar, 
-  						   user_ar_zonecode,
-  						   user_ar_jibun,
-  						   user_ar_detail,
-  						   user_bank,
-  						   user_bank_account,
-  						   user_bank_holder)
-  		values (#{user_proper_num},
-  				#{user_id}, 
-  				#{user_pw}, 
- 				#{user_name}, 
- 				#{user_rrn}, 
- 				#{user_birthdate}, 
- 				#{user_email}, 
- 				#{user_phone}, 
- 				#{user_job}, 
- 				#{user_ar}, 
- 				#{user_ar_zonecode},
- 				#{user_ar_jibun},
- 				#{user_ar_detail},
- 				#{user_bank},
- 				#{user_bank_account},
- 				#{user_bank_holder});
- 				
- 		insert into TB_018(member_id, member_password, member_role)
- 		values(#{user_id}, #{user_pw}, 'ROLE_USER');
-  	</insert>
-  	
-  	<select id="findByMemberId" resultType="TB_018VO">
-  		select * from TB_018 where member_id = #{memberId};
-  	</select>
+       <!-- 회원가입 -->
+     <insert id="join" >
+        insert into TB_001(user_proper_num,
+                       user_id, 
+                       user_pw, 
+                       user_name, 
+                       user_rrn, 
+                       user_birthdate, 
+                       user_email, 
+                       user_phone, 
+                       user_job, 
+                       user_ar, 
+                       user_ar_zonecode,
+                       user_ar_jibun,
+                       user_ar_detail,
+                       user_bank,
+                       user_bank_account,
+                       user_bank_holder)
+        select coalesce ((select max(member_proper_num)+1 
+                        from TB_018
+                       where cast(substring(member_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+                   , concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
+              #{user_id}, 
+              #{user_pw}, 
+             #{user_name}, 
+             #{user_rrn}, 
+             #{user_birthdate}, 
+             #{user_email}, 
+             #{user_phone}, 
+             #{user_job}, 
+             #{user_ar}, 
+             #{user_ar_zonecode},
+             #{user_ar_jibun},
+             #{user_ar_detail},
+             #{user_bank},
+             #{user_bank_account},
+             #{user_bank_holder};
+             
+       insert into TB_018(member_proper_num, member_id, member_password, member_role)
+       select coalesce ((select max(member_proper_num)+1 
+                        from TB_018
+                       where cast(substring(member_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+                   , concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
+           #{user_id}, 
+           #{user_pw}, 
+           'ROLE_USER';
+     </insert>
+     
+     <select id="findByMemberId" resultType="TB_018VO">
+        select * from TB_018 where member_id = #{memberId};
+     </select>
+     
+     <select id="findByMemberProperNum" resultType="TB_018VO">
+        select * from TB_018 where member_proper_num = #{memberProperNum};
+     </select>
   </mapper>
