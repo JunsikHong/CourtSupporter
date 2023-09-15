@@ -6,7 +6,7 @@
 <mapper namespace="com.court.supporter.adminmypage.service.AdminMypageMapper">
 
 	<select id="adminmypage_authcheck">
-		select *
+		select member_role
 		from TB_018
 		where member_id = #{member_id}
 	</select>

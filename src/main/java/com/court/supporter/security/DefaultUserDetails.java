@@ -12,6 +12,7 @@ import lombok.Getter;
 
 @Getter
 public class DefaultUserDetails implements UserDetails {
+
    private final TB_018VO tb_018vo;
     private final Collection<? extends GrantedAuthority> authorities;
     
@@ -62,3 +63,4 @@ public class DefaultUserDetails implements UserDetails {
    }
 
 }
+

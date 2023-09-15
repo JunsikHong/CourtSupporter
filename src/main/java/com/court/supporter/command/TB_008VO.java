@@ -20,5 +20,6 @@ public class TB_008VO {
 	private String aplcn_dtls_proper_num;
 	private String user_id;
 	private String user_proper_num;
+
 }
 

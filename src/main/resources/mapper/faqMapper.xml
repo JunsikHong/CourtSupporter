@@ -7,11 +7,18 @@
 
 	
 	<insert id="faqRegist" parameterType="TB_004VO">
-		INSERT INTO TB_004 (faq_ask_content,
+		INSERT INTO TB_004 (faq_proper_num,
+							faq_ask_content,
 							faq_ask_comment,
 							faq_ask_date,
 							admin_proper_num)
-		VALUES (#{faq_ask_content},
+		select coalesce 
+					((select max(faq_proper_num)+1 
+       					from TB_003
+         				where cast(substring(faq_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+      					, concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')
+   					),
+			   #{faq_ask_content},
 			   #{faq_ask_comment},
 			   NOW(),
 			   #{admin_proper_num})

@@ -20,11 +20,9 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
    width: 1280px;
    position: relative;
 }
-/*.announceInner {
-   width: 1000px;
-   display: block;
-   margin-left: 280px;
-}*/
+.announceInner { 
+   margin-left: 250px;
+}
 
 /***********************************************/
 
@@ -33,7 +31,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   font-weight: 800;
   padding-left: 5px;
   padding-bottom: 15px;
-  border-bottom: 3px solid #090C5F;
+  border-bottom: 3px solid #081247;
   color: #2E2E2E;
 }
 .required-img {
@@ -53,12 +51,24 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   height: 1px;
   overflow: hidden;
 }
-.modifyBox{
-  margin-top: 50px;
-  margin-left : 140px;
-  margin-right : 70px;
+.modifyTable {
+	width: 100%;
 }
-
+.modifyBox{
+ margin-top: 50px;
+   /*margin-left : 140px;
+  margin-right : 70px;*/
+}
+.tableT {
+	padding-left: 20px;
+    height: 30px;    
+	border-bottom: 0.3px solid #AEAFBF;
+}
+.popT select {
+	display: inline-block;
+	height: 30px; 
+	padding-left: 10px;
+}
 .board th {  
    text-align: center;
    padding: 10px;
@@ -72,17 +82,16 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
  /*  border-top: 0.3px solid #BDBDBD;
    border-bottom: 0.3px solid  #090C5F;*/
    /*background-color: #E8E8E9; */
-   background-color: #EAEBF8;
+   background-color: #F2F2F2;
 }
 .board td {
-  /* border-top: 0.3px solid #BDBDBD;
-   border-bottom: 0.3px solid #BDBDBD;*/  
    padding-left: 20px;
    padding-right: 20px;
    /*padding-bottom: 20px;*/
+    /* border-bottom: 0.3px solid #BDBDBD;*/  
 }
 #topborder {
-	border-top: 2px solid #222A61; 
+	border-top: 2px solid #081247; 
 	border-bottom: 0.3px solid #AEAFBF;
 }
 #border{
@@ -107,6 +116,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 .announceFile{
   width: 450px;
   height: 30px;
+   border-bottom: none;  
 }
 
 .file {
@@ -129,6 +139,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 .file > a:hover {
   text-decoration: none; 	
 }
+.sel {/*margin-left: 20px; */margin-bottom: 8px;  }
 .delete{
   margin-bottom: 30px;
   padding: 3px;
@@ -187,7 +198,9 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 
 }
 .btn > a{
+	font-family: "Noto Sans KR", sans-serif;
   color: white;
+  font-weight: 500;
 }
 .btn > a:hover{
   text-decoration: none;
@@ -197,24 +210,28 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   margin: 10px;
   width: 150px;
   height: 50px;
-  line-height: 52px;
+  line-height: 50px;
   font-size: 18px;
-  /* font-weight: 500; */
+  font-weight: 500; 
   /* padding: 10px;   */
-  
+  padding-bottom: 10px;
   /*vertical-align: middle;*/
   border: none;
   background-color:  rgb(11, 38, 110);
+  font-family: "Noto Sans KR", sans-serif;
   color: white;
   cursor: pointer;
 }
-.listBtn{
+.listBtn{	
   margin: 10px;
   width: 150px;
   height: 50px;
-  line-height: 52px;
+  line-height: 50px;
   font-size: 18px;  
+  font-weight: 500; 
   border: none;
+  padding-bottom: 10px;
   background-color: rgb(124, 124, 124);
+  font-family: "Noto Sans KR", sans-serif;
   color: white;
 }

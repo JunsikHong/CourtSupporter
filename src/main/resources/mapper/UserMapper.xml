@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.court.supporter.user.service.UserMapper">
+
        <!-- 회원가입 -->
      <insert id="join" >
         insert into TB_001(user_proper_num,
@@ -59,4 +60,5 @@
      <select id="findByMemberProperNum" resultType="TB_018VO">
         select * from TB_018 where member_proper_num = #{memberProperNum};
      </select>
+
   </mapper>

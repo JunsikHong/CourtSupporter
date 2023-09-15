@@ -62,7 +62,7 @@
 								<tbody>
 
 									<tr th:each="vo, status : ${list}">
-										<td>[[${vo.notice_proper_num}]]</td>
+										<td><span th:text="${list.size() - status.count+1}"></td>
 										<td class="left">
 											<a th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num})}">[[${vo.notice_title}]]</a>
 										</td>
@@ -81,10 +81,12 @@
 						<th:block th:replace="~{./include/noticePage :: pageNation( ${pageVO} )}"></th:block>
 
 						<!--pagination end-->
-						<div class="btnbox btnbox02 adminmenu">
-							<a href="noticeRegist" class="btnfb7">글 작성</a>
-							<a href="#none" class="btn4d5" onclick="javascript:window.close();">일괄삭제</a>
-						</div>
+						<th:block th:if="${member_role == 'ROLE_ADMIN'}">
+							<div class="btnbox btnbox02 adminmenu">
+								<a href="noticeRegist" class="btnfb7">글 작성</a>
+								<a href="#none" class="btn4d5" onclick="javascript:window.close();">일괄삭제</a>
+							</div>							
+						</th:block>
 					</form>
 
 					<!--searchform end-->

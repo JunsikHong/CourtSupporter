@@ -1,4 +1,3 @@
-
 package com.court.supporter.command;
 
 import java.util.List;

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.court.supporter.command.TB_017VO;
 import com.court.supporter.command.TB_002VO;
+import com.court.supporter.command.TB_010VO;
 import com.court.supporter.util.Criteria;
 
 
@@ -31,11 +32,12 @@ public class AnnounceServiceImpl implements AnnounceService{
 	private AnnounceMapper announceMapper;
 
 	@Override
-	public int announceRegist(TB_002VO vo, List<String> filelist) { //공고 등록	, List<MultipartFile> list	
-
+	public int announceRegist(TB_002VO vo, List<String> filelist) { //공고 등록	
+								
 		// sql 처리
 	      int result = announceMapper.announceRegist(vo);
-
+	      String announcepropernum = announceMapper.getannouncepropernum(vo);
+	      
 	      TB_017VO fileVO = new TB_017VO();
 
 	      for (String filePath : filelist) {
@@ -63,10 +65,10 @@ public class AnnounceServiceImpl implements AnnounceService{
 	            //tb_016vo.setFile_type(file_type);
 	            fileVO.setAnnounce_file_uuid(announce_file_uuid);
 	            fileVO.setOriginal_file_name(original_file_name);
-	            fileVO.setAnnounce_proper_num(vo.getAnnounce_proper_num());
+	            fileVO.setAnnounce_proper_num(announcepropernum);
 
 	            System.out.println("file_path : " + file_path + " original_file_name : " + original_file_name
-	                  + " announce_file_uuid : " + announce_file_uuid + " announce_proper_num : " + vo.getAnnounce_proper_num());
+	                  + " announce_file_uuid : " + announce_file_uuid + " announce_proper_num : " + announcepropernum);
 	         }
 
 	         announceMapper.announceFileRegist(fileVO);
@@ -87,7 +89,7 @@ public class AnnounceServiceImpl implements AnnounceService{
 	}
 	
 	@Override
-	public TB_002VO getDetail(int announce_proper_num) { //공고 상세		
+	public TB_002VO getDetail(String announce_proper_num) { //공고 상세		
 		return announceMapper.getDetail(announce_proper_num);
 	}
 
@@ -99,25 +101,37 @@ public class AnnounceServiceImpl implements AnnounceService{
 
 		
 	@Override
-	public void announceDelete(int announce_proper_num) { //공고 삭제
+	public void announceDelete(String announce_proper_num) { //공고 삭제
 		announceMapper.announceDelete(announce_proper_num);
 	}
 
 	@Override
-	public TB_002VO getPrev(int announce_proper_num) {
+	public TB_002VO getPrev(String announce_proper_num) {
 		return announceMapper.getPrev(announce_proper_num);		
 	}
 
 	@Override
-	public TB_002VO getNext(int announce_proper_num) {
+	public TB_002VO getNext(String announce_proper_num) {
 		return announceMapper.getNext(announce_proper_num);	
 	}
 
 	@Override
-	public List<TB_017VO> getFileDetail(int announce_proper_num) {
+	public List<TB_017VO> getFileDetail(String announce_proper_num) {
 		
 		return announceMapper.getFileDetail(announce_proper_num);
 	}
+
+	@Override
+	public int getTrial_flctt_proper_num(TB_010VO tb_010VO) {		
+		return announceMapper.getTrial_flctt_proper_num(tb_010VO);
+	}
+
+	@Override
+	public ArrayList<TB_002VO> getTrialList(int category) {				
+		return announceMapper.getTrialList(category);
+	}
+
+
 
 	
 }
