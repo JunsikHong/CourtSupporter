@@ -1,12 +1,12 @@
 /* 공통 */
-.basic, .education, .work, .certificate, .attachment {
+.basic, .education, .work, .certificate, .attachment, .complete {
 	display: flex;
 	justify-content: center;
 	margin-top: 150px;
 	margin-bottom: 150px;
 }
 
-.basic-wrap, .education-wrap, .work-wrap, .certificate-wrap, .attachment-wrap {
+.basic-wrap, .education-wrap, .work-wrap, .certificate-wrap, .attachment-wrap, .complete-wrap {
 	width: 1280px;
 }
 * { outline: none; }
@@ -65,12 +65,12 @@ fieldset, blockquote, iframe, button{ border:none; }
 .board_viewT .viewth{padding-left: 35px;}
 
 /* file 업로드 */
-.filePlusBtn{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 10px;float: right;vertical-align: middle;font-family:"ngB" !important;}
+.filePlusBtn, .OtFilePlusBtn, .CoFilePlusBtn1, .CoFilePlusBtn2, .CoFilePlusBtn3, .PeFilePlusBtn2, .PeFilePlusBtn3, .PeFilePlusBtn4{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 10px;vertical-align: middle;font-family:"ngB" !important;}
 .fileDeleteBtn{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 5px;vertical-align: middle;font-family:"ngB" !important;}
 .file-label {position: relative;}
 .fileAddBtn {background-color: rgb(11, 38, 110);display: inline-block;padding: 7px 10px 3px;color: #fff;height: 20px;vertical-align: middle;font-family:"ngB" !important;cursor: pointer;}
-#file-input {position: absolute;top: -9999px;}
 .file-container{margin: 5px}
+.upload-name{background-color: #fff;}
 
 /* popup 관련 */
 .popT .uptr06 input{width: auto;}
@@ -104,3 +104,163 @@ fieldset, blockquote, iframe, button{ border:none; }
 .required-img .hidden {position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;}
 
 /* 공통 end */
+
+/* 신청 완료 페이지 */
+.complete{border: none;color: rgb(11, 38, 110);}
+.completeMsg{margin-top: 20px;color: black;}
+.btnbox .completeBtn{width: 250px;}
+.completeIcon{border: 10px solid rgb(11, 38, 110);padding: 70px 0;}
+.success-checkmark {
+    width: 80px;
+    height: 115px;
+    margin: 0 auto;
+    
+    .check-icon {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        border-radius: 50%;
+        box-sizing: content-box;
+        border: 4px solid rgb(11, 38, 110);
+        
+        &::before {
+            top: 3px;
+            left: -2px;
+            width: 30px;
+            transform-origin: 100% 50%;
+            border-radius: 100px 0 0 100px;
+        }
+        
+        &::after {
+            top: 0;
+            left: 30px;
+            width: 60px;
+            transform-origin: 0 50%;
+            border-radius: 0 100px 100px 0;
+            animation: rotate-circle 4.25s ease-in;
+        }
+        
+        &::before, &::after {
+            content: '';
+            height: 100px;
+            position: absolute;
+            background: #FFFFFF;
+            transform: rotate(-45deg);
+        }
+        
+        .icon-line {
+            height: 5px;
+            background-color: rgb(11, 38, 110);
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+            
+            &.line-tip {
+                top: 46px;
+                left: 14px;
+                width: 25px;
+                transform: rotate(45deg);
+                animation: icon-line-tip 0.75s;
+            }
+            
+            &.line-long {
+                top: 38px;
+                right: 8px;
+                width: 47px;
+                transform: rotate(-45deg);
+                animation: icon-line-long 0.75s;
+            }
+        }
+        
+        .icon-circle {
+            top: -4px;
+            left: -4px;
+            z-index: 10;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: absolute;
+            box-sizing: content-box;
+            border: 4px solid rgba(11, 38, 110, .5);
+        }
+        
+        .icon-fix {
+            top: 8px;
+            width: 5px;
+            left: 26px;
+            z-index: 1;
+            height: 85px;
+            position: absolute;
+            transform: rotate(-45deg);
+            background-color: #FFFFFF;
+        }
+    }
+}
+
+@keyframes rotate-circle {
+    0% {
+        transform: rotate(-45deg);
+    }
+    5% {
+        transform: rotate(-45deg);
+    }
+    12% {
+        transform: rotate(-405deg);
+    }
+    100% {
+        transform: rotate(-405deg);
+    }
+}
+
+@keyframes icon-line-tip {
+    0% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+    }
+    54% {
+        width: 0;
+        left: 1px;
+        top: 19px;
+    }
+    70% {
+        width: 50px;
+        left: -8px;
+        top: 37px;
+    }
+    84% {
+        width: 17px;
+        left: 21px;
+        top: 48px;
+    }
+    100% {
+        width: 25px;
+        left: 14px;
+        top: 45px;
+    }
+}
+
+@keyframes icon-line-long {
+    0% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+    }
+    65% {
+        width: 0;
+        right: 46px;
+        top: 54px;
+    }
+    84% {
+        width: 55px;
+        right: 0px;
+        top: 35px;
+    }
+    100% {
+        width: 47px;
+        right: 8px;
+        top: 38px;
+    }
+}
+

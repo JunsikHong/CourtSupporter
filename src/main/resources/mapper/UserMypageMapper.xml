@@ -7,7 +7,7 @@
 	namespace="com.court.supporter.usermypage.service.UserMypageMapper">
 	<!-- 사용자 정보 가져오기 -->
 	<select id="usermypage_getInfo">
-		select * from TB_001 where user_id = #{user_id}
+		select * from TB_001 where user_proper_num = #{user_proper_num}
 	</select>
 
 	<!-- 사용자 정보 수정 -->
@@ -38,19 +38,19 @@
 		user_ar_jibun =
 		#{user_ar_jibun},
 		user_ar_detail = #{user_ar_detail}
-		where user_id =
-		#{user_id}
+		where user_proper_num =
+		#{user_proper_num}
 	</update>
 
 	<!-- 사용자 탈퇴 -->
 	<delete id="usermypage_withdrawl">
-		delete from TB_001 where user_id = #{user_id} and
+		delete from TB_001 where user_proper_num = #{user_proper_num} and
 		user_pw = #{user_pw}
 	</delete>
 
 	<!-- 사용자 비밀번호 확인 -->
 	<select id="usermypage_modify_pw_check">
-		select * from TB_001 where user_id = #{user_id} and
+		select * from TB_001 where user_proper_num = #{user_proper_num} and
 		user_pw = #{user_pw}
 	</select>
 
@@ -67,7 +67,7 @@
 		on t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM) as
 		result
 		where
-		user_id = #{user_id}
+		user_proper_num = #{user_proper_num}
 		<if test="cri.announce_title != '' and cri.announce_title != null">
 			and announce_title like concat('%',
 			#{cri.announce_title},
@@ -102,7 +102,7 @@
 		t2.ANNOUNCE_PROPER_NUM
 		) as result
 		where
-		user_id = #{user_id}
+		user_proper_num = #{user_proper_num}
 
 		<if test="cri.announce_title != '' and cri.announce_title != null">
 			and announce_title like concat('%',
@@ -146,7 +146,7 @@
 		left join TB_002 as t2
 		on t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM
 
-		where user_id = #{user_id} 
+		where user_proper_num = #{user_proper_num} 
 		and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</select>
 
@@ -163,7 +163,7 @@
 		left join TB_006 as t6
 		on t5.aplcn_dtls_proper_num = t6.aplcn_dtls_proper_num
 		
-		where t5.user_id = #{user_id} 
+		where t5.user_proper_num = #{user_proper_num} 
 		and t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</select>
 
@@ -180,7 +180,7 @@
 		left join TB_007 as t7
 		on t5.aplcn_dtls_proper_num = t7.aplcn_dtls_proper_num
 		
-		where t5.user_id = #{user_id} 
+		where t5.user_proper_num = #{user_proper_num} 
 		and t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</select>
 
@@ -195,7 +195,7 @@
 		left join TB_008 as t8
 		on t5.aplcn_dtls_proper_num = t8.aplcn_dtls_proper_num
 		
-		where t5.user_id = #{user_id} 
+		where t5.user_proper_num = #{user_proper_num} 
 		and t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</select>
 
@@ -210,7 +210,7 @@
 		left join TB_009 as t9
 		on t5.aplcn_dtls_proper_num = t9.aplcn_dtls_proper_num
 		
-		where t5.user_id = #{user_id} 
+		where t5.user_proper_num = #{user_proper_num} 
 		and t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</select>
 
@@ -231,7 +231,7 @@
 		left join TB_010 t10
 		on t5.trial_fcltt_proper_num = t10.trial_fcltt_proper_num
 		
-		where user_id = #{user_id} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num})
+		where user_proper_num = #{user_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num})
 	</select>
 	
 	<!-- 사용자 신청 상세 가져오기 -->
@@ -243,7 +243,7 @@
 		left join TB_011 as t11
 		on t5.court_proper_num = t11.court_proper_num
 		
-		where user_id = #{user_id} 
+		where user_proper_num = #{user_proper_num} 
 		and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</select>
 
@@ -251,7 +251,7 @@
 	<select id="usermypage_activity_gettotal">
 		select count(*) as total
 		from TB_012
-		where user_id = #{user_id}
+		where user_proper_num = #{user_proper_num}
 		<if test="cri.judgement_num != '' and cri.judgement_num != null">
 			and judgement_num like concat('%', #{cri.judgement_num},
 			'%')
@@ -285,8 +285,8 @@
 		CONVERT(attendance_date, CHAR) AS attendance_date_as_varchar
 		from
 		TB_012
-		where user_id =
-		#{user_id}
+		where user_proper_num =
+		#{user_proper_num}
 
 		<if test="cri.judgement_num != '' and cri.judgement_num != null">
 			and judgement_num like concat('%', #{cri.judgement_num},
@@ -327,8 +327,8 @@
 		CONVERT(attendance_date, CHAR) AS
 		attendance_date_as_varchar
 		from TB_012
-		where user_id =
-		#{user_id} and
+		where user_proper_num =
+		#{user_proper_num} and
 		act_proper_num =
 		#{act_proper_num}
 	</select>
@@ -391,4 +391,5 @@
 		and user_proper_num =
 		#{user_proper_num}
 	</update>
+
 </mapper>

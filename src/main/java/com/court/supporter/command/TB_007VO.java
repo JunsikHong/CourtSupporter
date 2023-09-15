@@ -1,4 +1,5 @@
 
+
 package com.court.supporter.command;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TB_007VO {
 
-	private Integer aplcn_carer_proper_num;
+	private String aplcn_carer_proper_num;
 	private String company_name;
 	private String carer_type;
 	private String work_start_date;
@@ -22,8 +23,9 @@ public class TB_007VO {
 	private String work_position;
 	private String carer_description;
 	private String special_note_description;
-	private Integer aplcn_dtls_proper_num;
+	private String aplcn_dtls_proper_num;
 	private String user_id;
+	private String user_proper_num;
+
 	
 }
-

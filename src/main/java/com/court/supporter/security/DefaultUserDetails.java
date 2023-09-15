@@ -34,7 +34,7 @@ public class DefaultUserDetails implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return tb_018vo.getMember_id();
+		return tb_018vo.getMember_proper_num();
 	}
 
 	@Override

@@ -5,5 +5,5 @@ import com.court.supporter.security.jwt.JwtToken;
 
 public interface UserLoginService {
 	//로그인
-		JwtToken login(TB_018VO tb_018vo);
+	JwtToken login(TB_018VO tb_018vo);
 }

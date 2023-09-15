@@ -21,7 +21,14 @@
 			<!-- 로그인 -->
 			<div class="header-login-wrap">
 				<div class="login-wrap">
-					<p>로그인</p>
+					<form th:action="@{/logout}" method="post">
+					<p th:if="${session.token}">
+						<a href="#" onclick="this.parentNode.parentNode.submit(); return false;">로그아웃</a>
+    				</p>
+					</form>
+					<p th:unless="${session.token}">
+						<a href="http://localhost:3000/login">로그인</a>
+					</p>
 				</div>
 			</div>
 			<!-- 고정헤더 -->
@@ -57,10 +64,67 @@
 								</li>
 							</a>
 						</ul>
+
+						<!--상세메뉴-->
+						<nav>
+							<div class="detail-menu-wrap">
+								<div class="detail-menus">
+									<ul class="detail-menu01">
+										<a th:href="@{/application/applicationAgree}">
+											<h3>조력자등재신청</h3>
+										</a>
+										<a th:href="@{/application/applicationAgree}">
+											<li>조력자등재신청</li>
+										</a>
+									</ul>
+									<ul class="detail-menu02">
+										<a th:href="@{/}">
+											<h3>조력자신청안내</h3>
+										</a>
+										<a th:href="@{/}">
+											<li>조력자 제도안내</li>
+										</a>
+										<a th:href="@{/}">
+											<li>조력자 신청절차안내</li>
+										</a>
+									</ul>
+									<ul class="detail-menu03">
+										<a th:href="@{/usermypage/usermypage}">
+											<h3>My Page</h3>
+										</a>
+										<a th:href="@{/usermypage/usermypage_applicationlist}">
+											<li>나의 신청현황</li>
+										</a>
+										<a th:href="@{/usermypage/usermypage_activitylist}">
+											<li>나의 활동내역</li>
+										</a>
+										<a th:href="@{/usermypage/usermypage}">
+											<li>나의 정보관리</li>
+										</a>
+										<a th:href="@{/usermypage/usermypage_pauselist}">
+											<li>중지/해제신청 관리</li>
+										</a>
+									</ul>
+									<ul class="detail-menu04">
+										<a th:href="@{/announce/announceList}">
+											<h3>공지사항</h3>
+										</a>
+										<a th:href="@{/announce/announceList}">
+											<li>모집공고</li>
+										</a>
+										<a th:href="@{/notice/noticeList}">
+											<li>공지사항</li>
+										</a>
+										<a th:href="@{/faq/faqList}">
+											<li>FAQ</li>
+										</a>
+									</ul>
+								</div>
+							</div>
+						</nav>
 					</div>
 				</div>
 		</header>
-
 
 		<div th:replace="${content}">
 
@@ -120,12 +184,28 @@
 		function handleScroll() {
 			var scrollY = window.scrollY || window.pageYOffset;
 			var head_menu_wrap = document.querySelector(".header-menu-wrap");
-			if(scrollY >= 20) {
+			if (scrollY >= 20) {
 				head_menu_wrap.style.top = "0px";
 			} else {
 				head_menu_wrap.style.top = "60px";
 			}
 		}
+
+		var menu_wrap = document.querySelector(".menu-wrap");
+		var header_menu_wrap = document.querySelector(".header-menu-wrap");
+		var detail_menu_wrap = document.querySelector(".detail-menu-wrap");
+		header_menu_wrap.style.height = '100px';
+		detail_menu_wrap.style.display = 'none';
+		menu_wrap.addEventListener('mouseover', function () {
+			header_menu_wrap.style.height = '330px';
+			detail_menu_wrap.style.display = 'block';
+		});
+
+		menu_wrap.addEventListener('mouseout', function () {
+			header_menu_wrap.style.height = '100px';
+			detail_menu_wrap.style.display = 'none';
+		});
+
 		window.addEventListener("scroll", handleScroll);
 	</script>
 </th:block>

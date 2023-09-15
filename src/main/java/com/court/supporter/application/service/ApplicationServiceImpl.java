@@ -23,20 +23,32 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	// 기본 정보 페이지 신청인 기본 정보 불러오기
 	@Override
-	public TB_001VO getUserInfo(String user_id) {
-		return applicationMapper.getUserInfo(user_id);
+	public TB_001VO getUserInfo(String user_proper_num) {
+		return applicationMapper.getUserInfo(user_proper_num);
 	}
 
+	//기본 정보 페이지 - tb_005vo 데이터 가져오기
+	@Override
+	public TB_005VO getApplicationBasicInfo(TB_005VO tb_005vo) {
+		return applicationMapper.getApplicationBasicInfo(tb_005vo);
+	}
+	
 	//기본 정보 페이지 - 주민번호 조회
 	@Override
-	public boolean getUserRrn(String user_id, String user_name, String user_rrn) {
-		if (applicationMapper.getUserRrn(user_id, user_name, user_rrn) == null) {
+	public boolean getUserRrn(String user_proper_num, String user_name, String user_rrn) {
+		if (applicationMapper.getUserRrn(user_proper_num, user_name, user_rrn) == null) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 
+	//기본 정보 페이지 - user_id 가져오기
+	@Override
+	public String getuser_id(String user_proper_num) {
+		return applicationMapper.getuser_id(user_proper_num);
+	}
+	
 	// 기본 정보 등록
 	@Override
 	public void basicRegist(TB_001VO tb_001vo, TB_005VO tb_005vo, TB_010VO tb_010vo) {
@@ -86,14 +98,14 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//학력 정보 페이지 - 입력한 학력 정보 불러오기
 	@Override
-	public ArrayList<TB_006VO> getEducationList(String user_id) {
-		return applicationMapper.getEducationList(user_id);
+	public ArrayList<TB_006VO> getEducationList(TB_006VO tb_006vo) {
+		return applicationMapper.getEducationList(tb_006vo);
 	}
 	
 	//학력 정보 수정 팝업 - 학력 정보 데이터 불러오기
 	@Override
-	public TB_006VO getEducationInfo(String user_id, int edctn_dtls_proper_num) {
-		return applicationMapper.getEducationInfo(user_id, edctn_dtls_proper_num);
+	public TB_006VO getEducationInfo(TB_006VO tb_006vo) {
+		return applicationMapper.getEducationInfo(tb_006vo);
 	}
 		
 	//학력 정보 페이지 - 학력 정보 수정
@@ -104,25 +116,50 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//학력 정보 페이지 - 학력 정보 삭제
 	@Override
-	public void educationInfoDelete(int edctn_dtls_proper_num, String user_id) {
-		applicationMapper.educationInfoDelete(edctn_dtls_proper_num, user_id);
+	public void educationInfoDelete(TB_006VO tb_006vo) {
+		applicationMapper.educationInfoDelete(tb_006vo);
 	}
 
+	//학력,경력,자격증 정보 파일 수정
+	@Override
+	public List<String> getFilepath(List<String> uuids, TB_009VO tb_009vo) {
+		//uuid가 존재하지 않는 파일 데이터 얻어오기
+		
+		List<String> filePaths = new ArrayList();
+		
+			List<TB_009VO> vo = applicationMapper.getFilepath(uuids, tb_009vo);
+			for (int i = 0; i < vo.size(); i++) {
+				String filepath = "";
+				filepath = vo.get(i).getFile_path() + "/" + vo.get(i).getUuid() + "_"
+						+ vo.get(i).getOriginal_file_name();
+				filePaths.add(filepath);
+			}
+			applicationMapper.fileDelete(uuids, tb_009vo);
+
+		return filePaths;
+		
+	}
+	
 	//학력 정보 페이지 - 최종 학력 입력
 	@Override
-	public void finalEducation(int final_education_chk, String user_id) {
+	public void finalEducation(String final_education_chk, String user_id) {
 		applicationMapper.finalEducation(final_education_chk, user_id);
 	}
 	
-	//학력 정보 페이지 - 학력 정보 첨부 파일 등록
+	//학력,경력,자격증 정보 등록된 첨부 파일 불러오기
 	@Override
-	public void educationAttachment(List<String> fileList, TB_009VO tb_009vo) {
-		
+	public ArrayList<TB_009VO> fileList(TB_009VO tb_009vo) {
+		return applicationMapper.fileList(tb_009vo);
+	}
+	
+	//학력,경력,자격증 정보 첨부 파일 등록
+	@Override
+	public void attachmentRegist(List<String> fileList, TB_009VO tb_009vo) {
 		for(String file: fileList) {
 			tb_009vo.setFile_path(file.substring(0, file.lastIndexOf('/')));
 			tb_009vo.setUuid(file.substring(file.lastIndexOf('/') + 1, file.indexOf('_')));
 			tb_009vo.setOriginal_file_name(file.substring(file.indexOf('_') + 1));
-			applicationMapper.educationAttachment(tb_009vo);
+			applicationMapper.attachmentRegist(tb_009vo);
 		}
 		
 	}
@@ -135,14 +172,14 @@ public class ApplicationServiceImpl implements ApplicationService {
 	
 	//경력 정보 페이지 - 입력한 경력 정보 불러오기
 	@Override
-	public ArrayList<TB_007VO> getWorkList(String user_id) {
-		return applicationMapper.getWorkList(user_id);
+	public ArrayList<TB_007VO> getWorkList(TB_007VO tb_007vo) {
+		return applicationMapper.getWorkList(tb_007vo);
 	}
 
 	//경력 정보 수정 팝업 - 경력 정보 데이터 불러오기
 	@Override
-	public TB_007VO getWorkInfo(String user_id, int aplcn_carer_proper_num) {
-		return  applicationMapper.getWorkInfo(user_id, aplcn_carer_proper_num);
+	public TB_007VO getWorkInfo(TB_007VO tb_007vo) {
+		return  applicationMapper.getWorkInfo(tb_007vo);
 	}
 
 	//경력 정보 페이지 - 경력 정보 수정
@@ -153,8 +190,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//경력 정보 페이지 - 경력 정보 삭제
 	@Override
-	public void workInfoDelete(int aplcn_carer_proper_num, String user_id) {
-		applicationMapper.workInfoDelete(aplcn_carer_proper_num, user_id);
+	public void workInfoDelete(TB_007VO tb_007vo) {
+		applicationMapper.workInfoDelete(tb_007vo);
 	}
 
 	//경력 정보 페이지 - 활동 경력, 특기 사항 등록
@@ -165,8 +202,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//경력 정보 페이지 - 활동 경력, 특기 사항 데이터 불러오기
 	@Override
-	public TB_007VO getWorkEtc(int aplcn_dtls_proper_num, String user_id) {
-		return applicationMapper.getWorkEtc(aplcn_dtls_proper_num, user_id);
+	public TB_007VO getWorkEtc(TB_007VO tb_007vo) {
+		return applicationMapper.getWorkEtc(tb_007vo);
 	}
 
 	//자격증 정보 페이지 - 자격증 정보 등록
@@ -178,29 +215,28 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	//자격증 정보 페이지 - 입력한 자격증 정보 불러오기
 	@Override
-	public ArrayList<TB_008VO> getCertificateList(String user_id) {
-		return applicationMapper.getCertificateList(user_id);
+	public ArrayList<TB_008VO> getCertificateList(TB_008VO tb_008vo) {
+		return applicationMapper.getCertificateList(tb_008vo);
 	}
 
 	//자격증 정보 수정 팝업 - 자격증 정보 데이터 불러오기
 	@Override
-	public TB_008VO getCertificateInfo(String user_id, int aplcn_crtfc_proper_num) {
-		return applicationMapper.getCertificateInfo(user_id, aplcn_crtfc_proper_num);
+	public TB_008VO getCertificateInfo(TB_008VO tb_008vo) {
+		return applicationMapper.getCertificateInfo(tb_008vo);
 	}
 
 	//자격증 정보 페이지 - 자격증 정보 수정
 	@Override
 	public void certificateModify(TB_008VO tb_008vo) {
 		applicationMapper.certificateModify(tb_008vo);
-		
 	}
 
 	//자격증 정보 페이지 - 자격증 정보 삭제
 	@Override
-	public void certificateInfoDelete(int aplcn_crtfc_proper_num, String user_id) {
-		applicationMapper.certificateInfoDelete(aplcn_crtfc_proper_num, user_id);
+	public void certificateInfoDelete(TB_008VO tb_008vo) {
+		applicationMapper.certificateInfoDelete(tb_008vo);
 		
 	}
-
+	
 	
 }

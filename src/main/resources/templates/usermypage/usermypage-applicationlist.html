@@ -111,7 +111,7 @@
 						<tbody>
 
 							<tr th:each="vo, status : ${list}">
-								<td>[[${status.count}]]</td>
+								<td><span th:text="${list.size() - status.count} + 1"></span></td>
 								<td style="text-align:left">
 									<a
 										th:href="@{/usermypage/usermypage_applicationdetail (aplcn_dtls_proper_num = ${vo.aplcn_dtls_proper_num})}">[[${vo.announce_title}]]</a>

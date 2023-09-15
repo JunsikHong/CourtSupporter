@@ -8,15 +8,20 @@
 		<div id="popup">
 
 			<div class="announce-section">
-				<div class="announce-title">
-					공고제목 : 2023년 하반기 서울대법원 건축관련 [건축설계A]
+				<div>
+					<table class="announce-table">
+						<tbody>
+							<td class="announce-title">공고제목</td>
+							<td class="announce-content">2023년 하반기 서울대법원 건축관련 [건축설계A]</td>						
+						</tbody>
+					</table>
 				</div>
 			</div>
 
 			<div class="evaluation-line1">
 
 				<div class="evaluation-target-section">
-					<h3>평가대상자</h3>
+					<div style="height: 30px;"><h3>평가대상자</h3></div>
 					<table class="evaluation-target-table">
 						<tbody>
 							<tr class="evaluation-target-line1">
@@ -40,7 +45,7 @@
 				</div>
 
 				<div class="evaluation-file-section">
-					<h3>첨부서류</h3>
+					<div style="height: 30px;"><h3>첨부서류</h3></div>
 					<div style="max-height: 140px; overflow-y: auto;">
 						<table class="evaluation-file-table1">
 							<tbody>
@@ -92,129 +97,417 @@
 				</div>
 
 			</div>
-
-			<div class="evaluation-line2">
-
-				<div class="evaluation-section">
-					<h3>평정기준표</h3>
-					<table class="tg">
-						<thead>
-							<tr>
-								<th class="tg-266k" rowspan="2"></th>
-								<th class="tg-266k" rowspan="2"></th>
-								<th class="tg-266k" colspan="3"></th>
-								<th class="tg-266k" rowspan="2"></th>
-							</tr>
-							<tr>
-								<th class="tg-266k"></th>
-								<th class="tg-266k"></th>
-								<th class="tg-266k"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="tg-0pky" rowspan="8"></td>
-								<td class="tg-0pky" rowspan="6"></td>
-								<td class="tg-0pky" rowspan="3"></td>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky" rowspan="6"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" rowspan="3"></td>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" rowspan="2"></td>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky" rowspan="2"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" rowspan="3"></td>
-								<td class="tg-0pky" rowspan="3"></td>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky" rowspan="3"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" rowspan="2"></td>
-								<td class="tg-0pky" rowspan="2"></td>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky" rowspan="2"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" rowspan="4"></td>
-								<td class="tg-0pky" rowspan="4"></td>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-								<td class="tg-0pky" rowspan="4"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-							<tr>
-								<td class="tg-0pky" colspan="2"></td>
-								<td class="tg-0pky"></td>
-							</tr>
-						</tbody>
-					</table>
+			
+			<form action="adminmypage_evaluation" method="post" id="adminmypage_evaluation" name="adminmypage_evaluation">
+				<input type="hidden" name="aplcn_dtls_proper_num" th:value="${tb_005VO.aplcn_dtls_proper_num}">
+				<div class="evaluation-line2">
+	
+					<div class="evaluation-section">
+						<div style="height: 30px;">
+							<h3>
+								평정기준표(기본평점)
+								<span class="error-message" style="color: red; font-weight: bold; display: inline;"></span>
+							</h3>
+						</div>
+						<table class="tg">
+							<thead style="height: 75px;">
+								<tr>
+									<th class="tg-y6fn" rowspan="2" style="width: 20%;">세부항목</th>
+									<th class="tg-y6fn" colspan="3" style="width: 60%;">내용</th>
+									<th class="tg-y6fn" rowspan="2" style="width: 20%;">점수</th>
+								</tr>
+								<tr>
+									<th class="tg-y6fn" style="width: 20%;">구분</th>
+									<th class="tg-y6fn" style="width: 30%;">기준</th>
+									<th class="tg-y6fn" style="width: 10%;">배점</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="tg-kftd" rowspan="6">경력점수</td>
+									<td class="tg-kftd" rowspan="3">통산경력</td>
+									<td class="tg-kftd rad">
+										<label>
+											<input type="radio" name="carrerSelect" id="carrerSelect1" value="5">
+											10년 이상
+										</label>
+									</td>
+									<td class="tg-kftd">5점</td>
+									<td class="tg-kftd" rowspan="6" style="width: 20%;">
+										<input type="number" name="carrerScore" id="carrerScore" readonly placeholder="점수" value="0">
+										<input type="hidden" name="all_career_score" id="all_career_score" value="0">
+										<input type="hidden" name="jrsdc_career_score" id="jrsdc_career_score" value="0">
+									</td>
+								</tr>
+								<tr>
+									<td class="tg-kftd rad">
+										<label>
+											<input type="radio" name="carrerSelect" id="carrerSelect2" value="4">
+											5~10년
+										</label>
+									</td>
+									<td class="tg-kftd">4점</td>
+								</tr>
+								<tr>
+									<td class="tg-kftd rad">
+										<label>
+											<input type="radio" name="carrerSelect" id="carrerSelect3" value="3">
+											5년 미만
+										</label>
+									</td>
+									<td class="tg-kftd">3점</td>
+								</tr>
+								<tr>
+									<td class="tg-kftd" rowspan="3">관내경력</td>
+									<td class="tg-kftd rad">
+										<label>
+											<input type="radio" name="carrer2Select" id="carrer2Select1" value="5">
+											10년 이상
+										</label>
+									</td>
+									<td class="tg-kftd">5점</td>
+								</tr>
+								<tr>
+									<td class="tg-kftd rad">
+										<label>
+											<input type="radio" name="carrer2Select" id="carrer2Select2" value="4">
+											5~10년
+										</label>
+									</td>
+									<td class="tg-kftd">4점</td>
+								</tr>
+								<tr>
+									<td class="tg-kftd rad">
+										<label>
+											<input type="radio" name="carrer2Select" id="carrer2Select3" value="3">
+											5년 미만
+										</label>
+									</td>
+									<td class="tg-kftd">3점</td>
+								</tr>
+								<tr>
+									<td class="tg-kftd" rowspan="2">사무소 소재지</td>
+									<td class="tg-kftd rad" colspan="2">
+										<label>
+											<input type="radio" name="locationSelect" id="locationSelect1" value="5">
+											관내사무소
+										</label>
+									</td>
+									<td class="tg-kftd">5점</td>
+									<td class="tg-kftd" rowspan="2" style="width: 20%;">
+										<input type="number" name="locationScore" id="locationScore" readonly placeholder="점수" value="0">
+										<input type="hidden" name="office_score" id="office_score" value="0">
+									</td>
+								</tr>
+								<tr>
+									<td class="tg-kftd rad" colspan="2">
+										<label>
+											<input type="radio" name="locationSelect" id="locationSelect2" value="3">
+											관외사무소
+										</label>
+									</td>
+									<td class="tg-kftd">3점</td>
+								</tr>
+								
+								<tr style="height: 75px;">
+									<td class="tg-y6fn" colspan="4" style="font-weight: bold;">합계</td>
+									<td class="tg-y6fn" style="width: 20%;">
+										<input type="number" name="carrerSum" id="carrerSum" readonly placeholder="총점" value="0">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+	
+					<div class="evaluation-section2">
+						
+						<!-- 공사비등 check -->
+						<th:block th:if="${tb_005VO.trial_fcltt_proper_num == 1010303}">
+							<div style="height: 30px;"><h3>평정기준표(공사비 등의 감정인)</h3></div>
+							<table class="tg2">
+								<thead style="height: 75px;">
+									<tr>
+										<th class="tg-y6fn" style="width: 20%;">세부항목</th>
+										<th class="tg-y6fn" style="width: 50%;">구분</th>
+										<th class="tg-y6fn" style="width: 10%;">배점</th>
+										<th class="tg-y6fn" style="width: 20%;">점수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="tg-zqu1" rowspan="4">자격점수 9항목별<br>자격점수 합산</td>
+										<td class="tg-zqu1 check">
+											<label>
+												<input type="checkbox" name="surveyorSelect">
+												건축사
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="2.5">2.5점</td>
+										<td class="tg-zqu1" rowspan="4" style="width: 20%;">
+											<input type="number" name="surveyorScore" id="surveyorScore" readonly placeholder="점수" value="0">
+											<input type="hidden" name="certificate_score" id="certificate_score" value="0">
+										</td>
+									</tr>
+									<tr>
+										<td class="tg-zqu1 check">
+											<label>
+												<input type="checkbox" name="surveyorSelect">
+												건축시공기술사
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="2.5">2.5점</td>
+									</tr>
+									<tr>
+										<td class="tg-zqu1 check">
+											<label>
+												<input type="checkbox" name="surveyorSelect">
+												건축구조기술사, 건설안전기술사
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="2.5">2.5점</td>
+									</tr>
+									<tr>
+										<td class="tg-zqu1 check">
+											<label>
+												<input type="checkbox" name="surveyorSelect">
+												토목시공기술사, 토목구조기술사, 도로 및 공항기술사
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="2.5">2.5점</td>
+									</tr>
+									<tr style="height: 75px;">
+										<td class="tg-y6fn" colspan="3" style="font-weight: bold;">합계</td>
+										<td class="tg-y6fn" style="width: 20%;">
+											<input type="number" name="surveyorSum" id="surveyorSum" readonly placeholder="총점" value="0">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</th:block>					
+						
+						<!-- 문서/인영/필적 radio -->
+						<th:block th:if="${tb_005VO.trial_fcltt_proper_num == 1010509}">
+							<div style="height: 30px;"><h3>평정기준표(문서 등의 감정인)</h3></div>
+							<table class="tg2">
+								<thead style="height: 75px;">
+									<tr>
+										<th class="tg-y6fn" style="width: 20%;">세부항목</th>
+										<th class="tg-y6fn" style="width: 50%;">구분</th>
+										<th class="tg-y6fn" style="width: 10%;">배점</th>
+										<th class="tg-y6fn" style="width: 20%;">점수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="tg-zqu1" rowspan="2">감정 연구 연수</td>
+										<td class="tg-zqu1 check">
+											<label style="font-size: 12px;">
+												<input type="radio" name="surveyorSelect">
+												국가기관연구소 문서감정실에서 감정/연구 (위와 동등한 감정 연구 포함)
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="5">5점</td>
+										<td class="tg-zqu1" rowspan="2" style="width: 20%;">
+											<input type="number" name="surveyorScore" id="surveyorScore" readonly placeholder="점수" value="0">
+											<input type="hidden" name="certificate_score" id="certificate_score" value="0">
+										</td>
+									</tr>
+									<tr>
+										<td class="tg-zqu1 check">
+											<label style="font-size: 10px;">
+												<input type="radio" name="surveyorSelect">
+												국가기관연구소 문서감정실에서 5년이상 감정/연구한 자로부터 인수 (위와 동등한 연수 포함)
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="3">3점</td>
+									</tr>
+									<tr style="height: 75px;">
+										<td class="tg-y6fn" colspan="3" style="font-weight: bold;">합계</td>
+										<td class="tg-y6fn" style="width: 20%;">
+											<input type="number" name="surveyorSum" id="surveyorSum" readonly placeholder="총점" value="0">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</th:block>
+						
+						<!-- 측량 radio -->
+						<th:block th:if="${tb_005VO.trial_fcltt_proper_num == 1010408}">
+							<div style="height: 30px;"><h3>평정기준표(측량감정인)</h3></div>
+							<table class="tg2">
+								<thead style="height: 75px;">
+									<tr>
+										<th class="tg-y6fn" style="width: 20%;">세부항목</th>
+										<th class="tg-y6fn" style="width: 50%;">구분</th>
+										<th class="tg-y6fn" style="width: 10%;">배점</th>
+										<th class="tg-y6fn" style="width: 20%;">점수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="tg-zqu1" rowspan="3">자격점수</td>
+										<td class="tg-zqu1 check">
+											<label>
+												<input type="radio" name="surveyorSelect">
+												기술사
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="5">5점</td>
+										<td class="tg-zqu1" rowspan="3" style="width: 20%;">
+											<input type="number" name="surveyorScore" id="surveyorScore" readonly placeholder="점수" value="0">
+											<input type="hidden" name="certificate_score" id="certificate_score" value="0">
+										</td>
+									</tr>
+									<tr>
+										<td class="tg-zqu1 check">
+											<label>
+												<input type="radio" name="surveyorSelect">
+												지적기사
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="4">4점</td>
+									</tr>
+									<tr>
+										<td class="tg-zqu1 check">
+											<label>
+												<input type="radio" name="surveyorSelect">
+												지적산업기사
+											</label>
+										</td>
+										<td class="tg-zqu1"><input type="hidden" name="appraiserScore" value="3">3점</td>
+									</tr>
+									<tr style="height: 75px;">
+										<td class="tg-y6fn" colspan="3" style="font-weight: bold;">합계</td>
+										<td class="tg-y6fn" style="width: 20%;">
+											<input type="number" name="surveyorSum" id="surveyorSum" readonly placeholder="총점" value="0">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</th:block>		
+						
+						<!-- else input -->
+						<th:block th:if="${tb_005VO.trial_fcltt_proper_num != 1010303 and
+										   tb_005VO.trial_fcltt_proper_num != 1010509 and
+										   tb_005VO.trial_fcltt_proper_num != 1010408}">
+							<div style="height: 30px;"><h3>평정기준표(자격증)</h3></div>
+							<table class="tg2">
+								<thead style="height: 75px;">
+									<tr>
+										<th class="tg-y6fn" style="width: 20%;">세부항목</th>
+										<th class="tg-y6fn" style="width: 50%;">설명</th>
+										<th class="tg-y6fn" style="width: 20%;">점수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="tg-zqu1" rowspan="1">자격점수</td>
+										<td class="tg-zqu1">10점 이내 평정기준(자격증)에 의거하여 심사위원회에서 결정</td>
+										<td class="tg-zqu1" rowspan="1" style="width: 20%;">
+											<input type="number" name="surveyorScore" id="surveyorScore" placeholder="점수" min="0" max="10" value="0">
+											<input type="hidden" name="certificate_score" id="certificate_score" value="0">
+										</td>
+									</tr>
+									<tr style="height: 75px;">
+										<td class="tg-y6fn" colspan="2" style="font-weight: bold;">합계</td>
+										<td class="tg-y6fn" style="width: 20%;">
+											<input type="number" name="surveyorSum" id="surveyorSum" readonly placeholder="총점" value="0">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</th:block>	
+					</div>
+	
+					<div class="evaluation-section3">
+						<div style="height: 30px;"><h3>평정기준표(조정평점)</h3></div>
+						<table class="tg3">
+							<thead style="height: 75px;">
+								<tr>
+									<th class="tg-y6fn" style="width: 20%;">세부항목</th>
+									<th class="tg-y6fn" style="width: 60%;">설명</th>
+									<th class="tg-y6fn" style="width: 20%;">점수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="tg-zqu1">인성평가 및 면접점수<br/><br/>(심사위원회 추천)</td>
+									<td class="tg-zqu1">7점 이내 평정기준에 의거하여 심사위원회에서 결정</td>
+									<td class="tg-zqu1" style="width: 20%;">
+										<input type="number" name="jurorScore" id="jurorScore" placeholder="점수" min="0" max="7" value="0">
+										<input type="hidden" name="adjust_score" id="adjust_score" value="0">
+									</td>
+								</tr>
+								<tr style="height: 75px;">
+									<td class="tg-y6fn" colspan="2" style="font-weight: bold;">합계</td>
+									<td class="tg-y6fn" style="width: 20%;">
+										<input type="number" name="jurorSum" id="jurorSum" readonly placeholder="총점" value="0">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-
-			</div>
-
+				
+				<div class="result-line1">
+					<div class="result-section1">
+						<table class="total-table">
+							<tbody>
+								<td class="total-title">총점</td>
+								<td id="total-td">
+									<span id="total">0</span>
+									<th:block th:if="${tb_005VO.trial_fcltt_proper_num == 1010303}">
+										<span>/ 32</span>
+									</th:block>
+									<th:block th:if="${tb_005VO.trial_fcltt_proper_num == 1010509}">
+										<span>/ 27</span>
+									</th:block>
+									<th:block th:if="${tb_005VO.trial_fcltt_proper_num == 1010408}">
+										<span>/ 27</span>
+									</th:block>
+									<th:block th:if="${tb_005VO.trial_fcltt_proper_num != 1010303 and
+										   			   tb_005VO.trial_fcltt_proper_num != 1010509 and
+										   			   tb_005VO.trial_fcltt_proper_num != 1010408}">
+										<span>/ 32</span>
+									</th:block>
+								</td>
+								<input type="hidden" name="evaluate_score" id="evaluate_score" value="0">							
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="result-line2">
+					<div class="result-section2">
+						<div class="review-title">검토의견</div>
+						<div class="review-wrap"><textarea name="review_etc" id="review_etc"></textarea></div>
+					</div>
+				</div>			
+	
+				
+				<div class="result-line3">
+					<div class="result-section3">
+						<div class="btnbox btnbox02">
+							<button href="#none" class="btn4d5">평가취소</button>
+							<button href="#none" type="submit" class="btnfb7 subbtn">평가완료</button>
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
-
-<script th:src="@{/js/adminmypage-evaluation-popup.js}"></script>
 <script th:inline="javascript">
-	if ('[[${result}]]' == 1) {
+	var trial_fcltt_proper_num = parseInt('[[${tb_005VO.trial_fcltt_proper_num}]]');
+	
+	if ('[[${evaluate_insert_result}]]' == 1) {
 		alert('평가가 완료되었습니다.');
 		opener.location.href = '/adminmypage/adminmypage_evaluationlist';
 		self.close();
 	} else if ('[[${result}]]' == 0) {
 		alert('평가에 실패하였습니다.')
 	}
+	
 </script>
-
+<script th:src="@{/js/adminmypage-evaluation-popup.js}"></script>
 </html>
