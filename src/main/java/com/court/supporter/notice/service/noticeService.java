@@ -16,15 +16,15 @@ public interface noticeService {
 	
 	public int noticeRegist(TB_003VO vo, List<String> filelist); //멀티파일 업로드 추가해야 함
 	
-	public TB_003VO noticeDetail(int notice_proper_num);
-	public List<TB_016VO> noticeFileDetail(int notice_proper_num);
+	public TB_003VO noticeDetail(String notice_proper_num);
+	public List<TB_016VO> noticeFileDetail(String notice_proper_num);
 	
-	public TB_003VO noticeGetNext(int notice_proper_num);
-	public TB_003VO noticeGetPrev(int notice_proper_num);
+	public TB_003VO noticeGetNext(String notice_proper_num);
+	public TB_003VO noticeGetPrev(String notice_proper_num);
 	
 	public int noticeModify(TB_003VO vo);
 	public int noticeUpdate(TB_003VO vo, List<String> filelist);
 	
-	public void noticeDelete(int notice_proper_num);
+	public void noticeDelete(String notice_proper_num);
 	
 }

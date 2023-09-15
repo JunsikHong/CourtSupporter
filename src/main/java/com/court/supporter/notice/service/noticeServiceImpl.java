@@ -29,7 +29,7 @@ public class noticeServiceImpl implements noticeService {
 
 		// sql 처리
 		int result = noticeMapper.noticeRegist(vo);
-
+		String noticepropernum = noticeMapper.getnoticepropernum(vo);
 		TB_016VO tb_016vo = new TB_016VO();
 
 		for (String filePath : filelist) {
@@ -57,10 +57,10 @@ public class noticeServiceImpl implements noticeService {
 				//tb_016vo.setFile_type(file_type);
 				tb_016vo.setNotice_file_uuid(notice_file_uuid);
 				tb_016vo.setOriginal_file_name(original_file_name);
-				tb_016vo.setNotice_proper_num(vo.getNotice_proper_num());
+				tb_016vo.setNotice_proper_num(noticepropernum);
 
 				System.out.println("file_path : " + file_path + " original_file_name : " + original_file_name
-						+ " notice_file_uuid : " + notice_file_uuid + " notice_proper_num : " + vo.getNotice_proper_num());
+						+ " notice_file_uuid : " + notice_file_uuid + " notice_proper_num : " + noticepropernum);
 			}
 
 			noticeMapper.noticeFileRegist(tb_016vo);
@@ -82,25 +82,25 @@ public class noticeServiceImpl implements noticeService {
 	}
 
 	@Override
-	public TB_003VO noticeDetail(int notice_proper_num) {
+	public TB_003VO noticeDetail(String notice_proper_num) {
 
 		return noticeMapper.noticeDetail(notice_proper_num);
 	}
 
 	@Override
-	public List<TB_016VO> noticeFileDetail(int notice_proper_num) {
+	public List<TB_016VO> noticeFileDetail(String notice_proper_num) {
 		System.out.println("서비스임플");
 		return noticeMapper.noticeFileDetail(notice_proper_num);
 	}
 
 	@Override
-	public TB_003VO noticeGetNext(int notice_proper_num) {
+	public TB_003VO noticeGetNext(String notice_proper_num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public TB_003VO noticeGetPrev(int notice_proper_num) {
+	public TB_003VO noticeGetPrev(String notice_proper_num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -155,7 +155,7 @@ public class noticeServiceImpl implements noticeService {
 	}
 
 	@Override
-	public void noticeDelete(int notice_proper_num) {
+	public void noticeDelete(String notice_proper_num) {
 		noticeMapper.noticeDelete(notice_proper_num);
 
 	}

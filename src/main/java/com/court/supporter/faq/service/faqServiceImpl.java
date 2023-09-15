@@ -29,7 +29,7 @@ public class faqServiceImpl implements faqService{
 	}
 
 	@Override
-	public TB_004VO faqDetail(int faq_proper_num) {
+	public TB_004VO faqDetail(String faq_proper_num) {
 		
 		return faqMapper.faqDetail(faq_proper_num);
 	}
@@ -55,7 +55,7 @@ public class faqServiceImpl implements faqService{
 	}
 	
 	@Override
-	public void faqDelete(int faq_proper_num) {
+	public void faqDelete(String faq_proper_num) {
 		faqMapper.faqDelete(faq_proper_num);
 		
 	}

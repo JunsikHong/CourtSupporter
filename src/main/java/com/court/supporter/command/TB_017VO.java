@@ -17,6 +17,6 @@ public class TB_017VO {
 		private String file_type;
 		private String original_file_name;
 		private String file_path;		
-		private Integer announce_proper_num;
+		private String announce_proper_num;
 		private String announce_file_uuid;
 }
