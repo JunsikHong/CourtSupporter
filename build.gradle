@@ -57,6 +57,9 @@ dependencies {
 	
 	//sqs
 	implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs:3.0.2'
+	
+	//mail 인증 lib
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {

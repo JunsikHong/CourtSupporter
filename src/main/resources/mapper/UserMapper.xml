@@ -56,7 +56,15 @@
   		select * from TB_018 where member_id = #{memberId};
   	</select>
   	
+  	<select id="findByUserId" resultType="TB_001VO">
+  		select * from TB_001 where user_id = #{userId};
+  	</select>
+  	
   	<select id="findByMemberProperNum" resultType="TB_018VO">
   		select * from TB_018 where member_proper_num = #{memberProperNum};
+  	</select>
+  	
+  	<select id="checkId" resultType="int">
+  		select count(*) from TB_018 where member_id = #{userId};
   	</select>
   </mapper>

@@ -2,6 +2,7 @@
 package com.court.supporter.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
@@ -43,5 +44,19 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<JwtToken> login(@RequestBody TB_018VO tb_018vo) {
 		return ResponseEntity.ok(userLoginService.login(tb_018vo));
+	}
+	
+	//아이디 중복확인
+	@PostMapping("/checkId")
+	public ResponseEntity<Integer> checkId(@RequestBody String userId) {
+		userId = userId.replace("=", "");
+		System.out.println(userId);
+		return ResponseEntity.ok(userService.checkId(userId));
+	}
+	
+	//회원가입 메일 인증
+	@PostMapping("/mail")
+	public ResponseEntity<String> sendMail(@RequestBody TB_001VO tb_001vo) {
+		return ResponseEntity.ok(userService.sendMail(tb_001vo));
 	}
 }

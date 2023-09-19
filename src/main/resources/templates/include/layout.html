@@ -42,86 +42,170 @@
 					</div>
 					<!--메인메뉴-->
 					<div class="menu-wrap">
-						<ul class="menus">
-							<a th:href="@{/application/applicationAgree}">
-								<li class="menu01">
-									<span class="">조력자등재신청</span>
-								</li>
-							</a>
-							<a th:href="@{/}">
-								<li class="menu02">
-									<span class="">조력자신청안내</span>
-								</li>
-							</a>
-							<a th:href="@{/usermypage/usermypage}">
-								<li class="menu03">
-									<span class="">My Page</span>
-								</li>
-							</a>
-							<a th:href="@{/announce/announceList}">
-								<li class="menu04">
-									<span class="">공지사항</span>
-								</li>
-							</a>
-						</ul>
-
-						<!--상세메뉴-->
-						<nav>
-							<div class="detail-menu-wrap">
-								<div class="detail-menus">
-									<ul class="detail-menu01">
-										<a th:href="@{/application/applicationAgree}">
-											<h3>조력자등재신청</h3>
-										</a>
-										<a th:href="@{/application/applicationAgree}">
-											<li>조력자등재신청</li>
-										</a>
-									</ul>
-									<ul class="detail-menu02">
-										<a th:href="@{/}">
-											<h3>조력자신청안내</h3>
-										</a>
-										<a th:href="@{/}">
-											<li>조력자 제도안내</li>
-										</a>
-										<a th:href="@{/}">
-											<li>조력자 신청절차안내</li>
-										</a>
-									</ul>
-									<ul class="detail-menu03">
-										<a th:href="@{/usermypage/usermypage}">
-											<h3>My Page</h3>
-										</a>
-										<a th:href="@{/usermypage/usermypage_applicationlist}">
-											<li>나의 신청현황</li>
-										</a>
-										<a th:href="@{/usermypage/usermypage_activitylist}">
-											<li>나의 활동내역</li>
-										</a>
-										<a th:href="@{/usermypage/usermypage}">
-											<li>나의 정보관리</li>
-										</a>
-										<a th:href="@{/usermypage/usermypage_pauselist}">
-											<li>중지/해제신청 관리</li>
-										</a>
-									</ul>
-									<ul class="detail-menu04">
-										<a th:href="@{/announce/announceList}">
-											<h3>공지사항</h3>
-										</a>
-										<a th:href="@{/announce/announceList}">
-											<li>모집공고</li>
-										</a>
-										<a th:href="@{/notice/noticeList}">
-											<li>공지사항</li>
-										</a>
-										<a th:href="@{/faq/faqList}">
-											<li>FAQ</li>
-										</a>
-									</ul>
+						<th:block th:if="${session.member_role == null || session.member_role == 'ROLE_USER'}">
+							<ul class="menus">
+								<a th:href="@{/application/applicationAgree}">
+									<li class="menu01">
+										<span class="">조력자등재신청</span>
+									</li>
+								</a>
+								<a th:href="@{/}">
+									<li class="menu02">
+										<span class="">조력자신청안내</span>
+									</li>
+								</a>
+								<a th:href="@{/usermypage/usermypage}">
+									<li class="menu03">
+										<span class="">My Page</span>
+									</li>
+								</a>
+								<a th:href="@{/announce/announceList}">
+									<li class="menu04">
+										<span class="">공지사항</span>
+									</li>
+								</a>
+							</ul>
+	
+							<!--상세메뉴-->
+							<nav>
+								<div class="detail-menu-wrap">
+									<div class="detail-menus">
+										<ul class="detail-menu01">
+											<a th:href="@{/application/applicationAgree}">
+												<h3>조력자등재신청</h3>
+											</a>
+											<a th:href="@{/application/applicationAgree}">
+												<li>조력자등재신청</li>
+											</a>
+										</ul>
+										<ul class="detail-menu02">
+											<a th:href="@{/}">
+												<h3>조력자신청안내</h3>
+											</a>
+											<a th:href="@{/}">
+												<li>조력자 제도안내</li>
+											</a>
+											<a th:href="@{/}">
+												<li>조력자 신청절차안내</li>
+											</a>
+										</ul>
+										<ul class="detail-menu03">
+											<a th:href="@{/usermypage/usermypage}">
+												<h3>My Page</h3>
+											</a>
+											<a th:href="@{/usermypage/usermypage_applicationlist}">
+												<li>나의 신청현황</li>
+											</a>
+											<a th:href="@{/usermypage/usermypage_activitylist}">
+												<li>나의 활동내역</li>
+											</a>
+											<a th:href="@{/usermypage/usermypage}">
+												<li>나의 정보관리</li>
+											</a>
+											<a th:href="@{/usermypage/usermypage_pauselist}">
+												<li>중지/해제신청 관리</li>
+											</a>
+										</ul>
+										<ul class="detail-menu04">
+											<a th:href="@{/announce/announceList}">
+												<h3>공지사항</h3>
+											</a>
+											<a th:href="@{/announce/announceList}">
+												<li>모집공고</li>
+											</a>
+											<a th:href="@{/notice/noticeList}">
+												<li>공지사항</li>
+											</a>
+											<a th:href="@{/faq/faqList}">
+												<li>FAQ</li>
+											</a>
+										</ul>
+									</div>
 								</div>
-							</div>
-						</nav>
+							</nav>
+						</th:block>
+						<th:block th:unless="${session.member_role == null || session.member_role == 'ROLE_USER'}">
+							<ul class="menus">
+								<a th:href="@{/application/applicationAgree}">
+									<li class="menu01">
+										<span class="">평가</span>
+									</li>
+								</a>
+								<a th:href="@{/}">
+									<li class="menu02">
+										<span class="">조력자신청안내</span>
+									</li>
+								</a>
+								<a th:href="@{/usermypage/usermypage}">
+									<li class="menu03">
+										<span class="">My Page</span>
+									</li>
+								</a>
+								<a th:href="@{/announce/announceList}">
+									<li class="menu04">
+										<span class="">관리</span>
+									</li>
+								</a>
+							</ul>
+							
+							<!--상세메뉴-->
+							<nav>
+								<div class="detail-menu-wrap">
+									<div class="detail-menus">
+										<ul class="detail-menu01">
+											<a th:href="@{/application/applicationAgree}">
+												<h3>조력자등재신청</h3>
+											</a>
+											<a th:href="@{/application/applicationAgree}">
+												<li>조력자등재신청</li>
+											</a>
+										</ul>
+										<ul class="detail-menu02">
+											<a th:href="@{/}">
+												<h3>조력자신청안내</h3>
+											</a>
+											<a th:href="@{/}">
+												<li>조력자 제도안내</li>
+											</a>
+											<a th:href="@{/}">
+												<li>조력자 신청절차안내</li>
+											</a>
+										</ul>
+										<ul class="detail-menu03">
+											<a th:href="@{/usermypage/usermypage}">
+												<h3>My Page</h3>
+											</a>
+											<a th:href="@{/usermypage/usermypage_applicationlist}">
+												<li>나의 신청현황</li>
+											</a>
+											<a th:href="@{/usermypage/usermypage_activitylist}">
+												<li>나의 활동내역</li>
+											</a>
+											<a th:href="@{/usermypage/usermypage}">
+												<li>나의 정보관리</li>
+											</a>
+											<a th:href="@{/usermypage/usermypage_pauselist}">
+												<li>중지/해제신청 관리</li>
+											</a>
+										</ul>
+										<ul class="detail-menu04">
+											<a th:href="@{/announce/announceList}">
+												<h3>공지사항</h3>
+											</a>
+											<a th:href="@{/announce/announceList}">
+												<li>모집공고</li>
+											</a>
+											<a th:href="@{/notice/noticeList}">
+												<li>공지사항</li>
+											</a>
+											<a th:href="@{/faq/faqList}">
+												<li>FAQ</li>
+											</a>
+										</ul>
+									</div>
+								</div>
+							</nav>
+						</th:block>
 					</div>
 				</div>
 		</header>

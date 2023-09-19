@@ -1,5 +1,10 @@
 package com.court.supporter.user.service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.court.supporter.command.TB_001VO;
@@ -12,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
    
    private final UserMapper userMapper;
+   private final JavaMailSender javaMailSender;
 
    //회원가입
    @Override
@@ -29,6 +35,44 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public TB_018VO findByMemberProperNum(String memberProperNum) {
 		return userMapper.findByMemberProperNum(memberProperNum).orElseThrow(RuntimeException::new);
+	}
+
+	//회원가입 시 아이디 중복 확인
+	@Override
+	public int checkId(String userId) {
+		return userMapper.checkId(userId);
+	}
+
+	//로그인 시 아이디로 user 탈퇴 여부 확인
+	@Override
+	public TB_001VO findByUserId(String userId) {
+		return userMapper.findByUserId(userId);
+	}
+
+	//메일 인증
+	@Override
+	public String sendMail(TB_001VO tb_001vo) {
+		int number = (int)(Math.random() * 90000) + 100000;
+		MimeMessage message = javaMailSender.createMimeMessage();
+		try {
+			message.setRecipients(MimeMessage.RecipientType.TO, tb_001vo.getUser_email());
+			message.setFrom("904lhw@gmail.com");
+			message.setSubject("메일 인증 두둔");
+			
+			String body = "";
+			body += "<h3>요청하신 인증번호입니다.</h3>";
+			body += "<h1>" + number + "</h1>";
+			body += "<h3>감사합니다.</h3>";
+			
+			message.setText(body, "UTF-8", "html");
+			System.out.println("메일 입력 완료");
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		javaMailSender.send(message);
+		System.out.println("왜 안보내져 ㅠ ");
+		return String.valueOf(number);
 	}
 
 }

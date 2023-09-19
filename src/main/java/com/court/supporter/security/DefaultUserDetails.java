@@ -1,5 +1,6 @@
 package com.court.supporter.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,16 +14,22 @@ import lombok.Getter;
 @Getter
 public class DefaultUserDetails implements UserDetails {
 	private final TB_018VO tb_018vo;
-    private final Collection<? extends GrantedAuthority> authorities;
     
     public DefaultUserDetails(TB_018VO tb_018vo) {
     	this.tb_018vo = tb_018vo;
-    	this.authorities = List.of(tb_018vo.getMember_role());
     }
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
+		List<GrantedAuthority> list = new ArrayList<>();
+		list.add(new GrantedAuthority() {
+			
+			@Override
+			public String getAuthority() {
+				return tb_018vo.getMember_role();
+			}
+		});
+		return list;
 	}
 
 	@Override

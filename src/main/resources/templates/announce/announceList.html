@@ -150,14 +150,16 @@
 					<!-- <div>
 				 <button type="button"  name="check" id="del"> 삭제 </button>
 			 </div>-->
-
-					<!--<th:block th:if="${member_role == 'admin'}">-->
+[[${session.member_role}]]
+					<th:block th:if="${session.member_role == 'admin'}">
+						
 						<div class="registBox"> <!--float 쓰면 이동이 안 됨-->
 							<button class="registBtn" id="registBtn">
 								<a href="/announce/announceReg">글 작성</a>
 							</button>
-						</div>						
-				<!--	</th:block>-->
+						</div>
+						
+					</th:block>
 
 					<!--페이지네이션-->
 					<th:block th:replace="~{./include/announcePage :: pageNation(${pageVO})}"></th:block>
