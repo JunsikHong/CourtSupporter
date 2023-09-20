@@ -77,10 +77,12 @@
 						<th:block th:replace="~{./include/faqPage :: pageNation( ${pageVO} )}"></th:block>
 
 						<!--pagination end-->
-						<div class="btnbox btnbox02 adminmenu" th:if="${member_role == 'admin'}">
-							<a href="faqRegist" class="btnfb7">글 작성</a>
-							<a href="#none" class="btn4d5" onclick="javascript:window.close();">일괄삭제</a>
-						</div>
+						<th:block th:if="${member_role == 'ROLE_ADMIN'}">
+							<div class="btnbox btnbox02 adminmenu">
+								<a href="faqRegist" class="btnfb7">글 작성</a>
+								<a href="#none" class="btn4d5" onclick="javascript:window.close();">일괄삭제</a>
+							</div>
+						</th:block>
 					</form>
 
 					<!--searchform end-->

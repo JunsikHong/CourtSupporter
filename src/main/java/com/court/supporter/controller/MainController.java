@@ -1,6 +1,5 @@
 package com.court.supporter.controller;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.court.supporter.security.DefaultUserDetails;
 import com.court.supporter.security.jwt.JwtValidator;
@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 
 @Controller
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class MainController {
 
@@ -48,6 +49,7 @@ public class MainController {
 			
 		}
 
+
 		HttpSession session = request.getSession();
 		System.out.println(session.getAttribute("member_role"));
 //		String jwt = (String) session.getAttribute("token");
@@ -67,5 +69,29 @@ public class MainController {
 //		}
 
 		return "/main";
+	}
+
+	@GetMapping("/guide/guideInfo")
+	public String guideInfo(@CookieValue(name = "Authorization", required = false) String token,
+			HttpServletRequest request) {
+		// 로그인한 상태
+		if (token != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("token", token);
+		}
+
+		return "guide/guideInfo";
+	}
+	
+	@GetMapping("/guide/guideProcedure")
+	public String guideProcedure(@CookieValue(name = "Authorization", required = false) String token,
+			HttpServletRequest request) {
+		// 로그인한 상태
+		if (token != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("token", token);
+		}
+		
+		return "guide/guideProcedure";
 	}
 }

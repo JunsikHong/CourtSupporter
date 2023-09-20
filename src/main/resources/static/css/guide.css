@@ -1,0 +1,181 @@
+*{
+  margin: 0;
+  padding: 0;
+  font: 12px/1.4em Gulim;
+  color: #737373;
+}
+
+a {
+  text-decoration:none;
+}
+
+table caption {
+  display: none;
+}
+
+ul {
+  list-style:none;
+}
+
+#contentsbox {
+	margin-left: 250px;
+}
+
+#contentstitle > .guidetitle {
+  font-size: x-large;
+  font-weight: 800;
+}
+
+.mainWrap{
+	display: flex;
+	margin: 0 auto; 
+	padding-top: 150px; 
+	align-items: center; 
+	justify-content: center;
+}
+
+#content{
+	 width: 1280px;  
+	 position: relative;
+    margin-top: 20px;
+    line-height: 1;
+    font-size: 12px;
+    color: #666666;
+}
+
+#contentstitle{
+  padding: 20px;
+  border-bottom: 3px solid gray;
+}
+
+.leftmenu{
+  width: 20%;
+  float: left;
+  background-color: rgb(11, 38, 110);
+}
+
+#contents{
+  /* float:left */
+  
+  padding:0 0 50px 0;
+}
+
+#contentsIn{
+	margin-left: 250px;
+}
+
+#contents h3 {
+  height: 22px;
+  margin: 0 0 25px 0;
+  /* background img */
+}
+
+#contents .contentsin {
+  text-align:left;
+  margin:35px;
+}
+
+#contents h4 {
+  clear: both;
+  font-size: 12px;
+  font-weight:bold;
+  letter-spacing: -1px;
+  line-height: 1.3em;
+  padding: 0 11px;
+  margin:5px 0;
+  /* background img */
+}
+
+#contents h4.mar {
+  margin : 25px 0 5px 0;
+}
+
+#contents h5 {
+  clear:both;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:-1px;
+  line-height: 1.3em;
+  margin:3px 0;
+  padding: 0 0 0 10px;
+  /* background img */
+}
+
+#contents h5.mar2 {
+  margin: 10px 0 3px 0;
+}
+
+div.tabletop {
+  border-top : 1px solid #5f5f5f;
+  background:#fff;
+}
+
+table.list {
+  border-collapse:collapse;
+  empty-cells:show;
+  width:100%;
+  border:none;
+  background:#fff;
+}
+
+table.list.vline td, table.list.vline th {
+  border-right: 1px solid #ddd;
+}
+
+table.list.vline td.last, table.list.vline th.last {
+  border-right:none;
+}
+
+table.list.vline td.title {
+  font-weight:bold;
+}
+
+table.list th {
+  height: 25px;
+  padding: 3px 5px 2px 5px;
+  color:#252525;
+  text-align:center;
+  letter-spacing:-1px;
+  background:#f5f5f5;
+  border-left:none;
+  border-top:none;
+  border-right:none;
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
+}
+
+table.list td {
+  height:20px;
+  padding:3px 5px 2px 5px;
+  text-align:left;
+  border-bottom:1px solid #ddd;
+  border-right:none;
+  border-left:none;
+  border-top:none;
+}
+
+table.list td.txtcenter {
+  text-align:center;
+}
+
+ul.countnum {
+  display:block;
+}
+
+ul.countnum li {
+  margin:0 0 0 25px;
+}
+
+ul.countnum li ul li{
+  margin:0;
+}
+
+ul.countnum span.num {
+  display:inline-block;
+  margin: 0 0 0 -25px;
+  width:25px;
+}
+
+ul.countnum ul {
+  margin: 3px 0 3px 5px;
+}

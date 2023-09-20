@@ -10,7 +10,6 @@
 		INSERT INTO TB_003 (notice_proper_num,
 						    notice_title,
 							notice_content,
-							notice_date,
 							admin_proper_num)
 		select coalesce 
 					((select max(notice_proper_num)+1 
@@ -20,7 +19,6 @@
    					),
 				#{notice_title},
 				#{notice_content},
-				NOW(),
 				#{admin_proper_num}
 		
 	</insert>

@@ -11,8 +11,8 @@ import com.court.supporter.util.Criteria;
 
 public interface noticeService {
 
-	public ArrayList<TB_003VO> noticeList(String writer, Criteria cri); //목록
-	public int getTotal(String writer, Criteria cri); //전체 데이터(페이징) 가져오기
+	public ArrayList<TB_003VO> noticeList(Criteria cri); //목록
+	public int getTotal(Criteria cri); //전체 데이터(페이징) 가져오기
 	
 	public int noticeRegist(TB_003VO vo, List<String> filelist); //멀티파일 업로드 추가해야 함
 	

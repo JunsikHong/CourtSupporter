@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="layout-usermypage-side">
+   <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
+
+   <div class="notice-sidemenu-wrap">
+      <p class="mainTitle">재판조력자 안내</p>
+      <div class="notice-sidemenu">
+         <div class="usermypage-myinfo">
+            <ul class="notice-content">
+
+			   <li><a th:href="@{/guide/guideInfo}">재판조력자 제도 안내</a></li>
+			   <li><a th:href="@{/guide/guideProcedure}">재판조력자의 신청 절차 안내</a></li>
+            </ul>
+         </div>
+
+      </div>
+   </div>
