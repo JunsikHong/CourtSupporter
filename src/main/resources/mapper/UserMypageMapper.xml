@@ -42,11 +42,18 @@
 		#{user_proper_num}
 	</update>
 
+	<select id="usermypage_withdrawl_search">
+		select *
+		from TB_018
+		where member_proper_num = #{user_proper_num}
+	</select>
+
 	<!-- 사용자 탈퇴 -->
-	<delete id="usermypage_withdrawl">
-		delete from TB_001 where user_proper_num = #{user_proper_num} and
-		user_pw = #{user_pw}
-	</delete>
+	<update id="usermypage_withdrawl">
+		update TB_001
+		set user_delete_yn = 'Y' 
+		where user_proper_num = #{user_proper_num} 
+	</update>
 
 	<!-- 사용자 비밀번호 확인 -->
 	<select id="usermypage_modify_pw_check">
@@ -56,36 +63,34 @@
 
 	<!-- 사용자 신청 총합구하기 -->
 	<select id="usermypage_application_gettotal">
-		select count(*) as total
-		from ( select t5.*, t2.ANNOUNCE_PROPER_NUM as
-		t5_ANNOUNCE_PROPER_NUM, CONVERT(t5.aplicn_dtls_date, CHAR) AS
-		aplicn_dtls_date_as_varchar, t2.announce_title
-		from TB_005 as t5
-		left
-		join
-		TB_002 as t2
-		on t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM) as
-		result
-		where
-		user_proper_num = #{user_proper_num}
-		<if test="cri.announce_title != '' and cri.announce_title != null">
-			and announce_title like concat('%',
-			#{cri.announce_title},
-			'%')
-		</if>
-		<if
-			test="cri.aplicn_dtls_sts != '' and cri.aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%',
-			#{cri.aplicn_dtls_sts}, '%')
-		</if>
-		<if
-			test="cri.aplicn_dtls_startdate != '' and cri.aplicn_dtls_startdate != null">
-			<![CDATA[and aplicn_dtls_date >= #{cri.aplicn_dtls_startdate}]]>
-		</if>
-		<if
-			test="cri.aplicn_dtls_enddate != '' and cri.aplicn_dtls_enddate != null">
-			<![CDATA[and aplicn_dtls_date <= #{cri.aplicn_dtls_enddate}]]>
-		</if>
+		select count(*)
+		from (
+			select count(*) as total
+			from ( select t5.*, t2.ANNOUNCE_PROPER_NUM as
+			t5_ANNOUNCE_PROPER_NUM, CONVERT(t5.aplicn_dtls_date, CHAR) AS
+			aplicn_dtls_date_as_varchar, t2.announce_title
+			from TB_005 as t5
+			left
+			join
+			TB_002 as t2
+			on t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM) as
+			result
+			where
+			user_proper_num = #{user_proper_num}
+			<if test="cri.announce_title != '' and cri.announce_title != null">
+				and announce_title like concat('%', #{cri.announce_title}, '%')
+			</if>
+			<if test="cri.aplicn_dtls_sts != '' and cri.aplicn_dtls_sts != null">
+				and aplicn_dtls_sts like concat('%', #{cri.aplicn_dtls_sts}, '%')
+			</if>
+			<if test="cri.aplicn_dtls_startdate != '' and cri.aplicn_dtls_startdate != null">
+				<![CDATA[and aplicn_dtls_date >= #{cri.aplicn_dtls_startdate}]]>
+			</if>
+			<if test="cri.aplicn_dtls_enddate != '' and cri.aplicn_dtls_enddate != null">
+				<![CDATA[and aplicn_dtls_date <= #{cri.aplicn_dtls_enddate}]]>
+			</if>
+			group by announce_proper_num
+		) as x
 	</select>
 
 	<!-- 사용자 신청 목록 구하기 -->
@@ -105,34 +110,30 @@
 		user_proper_num = #{user_proper_num}
 
 		<if test="cri.announce_title != '' and cri.announce_title != null">
-			and announce_title like concat('%',
-			#{cri.announce_title},
-			'%')
+			and announce_title like concat('%', #{cri.announce_title}, '%')
 		</if>
-		<if
-			test="cri.aplicn_dtls_sts != '' and cri.aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%',
-			#{cri.aplicn_dtls_sts}, '%')
+		<if test="cri.aplicn_dtls_sts != '' and cri.aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%', #{cri.aplicn_dtls_sts}, '%')
 		</if>
-		<if
-			test="cri.aplicn_dtls_startdate != '' and cri.aplicn_dtls_startdate != null">
+		<if test="cri.aplicn_dtls_startdate != '' and cri.aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{cri.aplicn_dtls_startdate}]]>
 		</if>
-		<if
-			test="cri.aplicn_dtls_enddate != '' and cri.aplicn_dtls_enddate != null">
+		<if test="cri.aplicn_dtls_enddate != '' and cri.aplicn_dtls_enddate != null">
 			<![CDATA[and aplicn_dtls_date <= #{cri.aplicn_dtls_enddate}]]>
 		</if>
-
+		
+		group by announce_proper_num
+		
 		order by result.aplcn_dtls_proper_num desc
 
-		limit #{cri.pageStart},
-		#{cri.amount}
+		limit #{cri.pageStart}, #{cri.amount}
 	</select>
 
 	<!-- 사용자 신청 상세 가져오기 -->
 	<select id="usermypage_getapplicationdetail1">
 		select 
 		t2.announce_title,
+		t5.aplcn_dtls_proper_num,
 		t5.aplicn_dtls_sts,
 		t5.aplicn_dtls_date,
 		t5.ligtn_case_carer_yn,
@@ -140,7 +141,11 @@
 		t5.insrn_indst_carer_yn,
 		t5.insrn_indst_carer_etc,
 		t5.criminal_penalty_carer_yn,
-		t5.criminal_penalty_carer_etc
+		t5.criminal_penalty_carer_etc,
+		t5.user_proper_num,
+		t5.announce_proper_num,
+		t5.trial_fcltt_proper_num
+		
 		
 		from TB_005 as t5
 		left join TB_002 as t2
@@ -148,6 +153,8 @@
 
 		where user_proper_num = #{user_proper_num} 
 		and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+		
+		limit 1
 	</select>
 
 	<!-- 사용자 신청 상세 가져오기 -->
@@ -174,7 +181,8 @@
 		t7.work_department,
 		t7.work_position,
 		t7.work_start_date,
-		t7.work_end_date
+		t7.work_end_date,
+		t7.carer_type
 		
 		from TB_005 as t5
 		left join TB_007 as t7
@@ -201,10 +209,7 @@
 
 	<!-- 사용자 신청 상세 가져오기 -->
 	<select id="usermypage_getapplicationdetail5">
-		select
-		t9.file_type,
-		t9.file_code,
-		t9.original_file_name
+		select t9.*
 		
 		from TB_005 as t5
 		left join TB_009 as t9
@@ -217,8 +222,10 @@
 	<!-- 사용자 신청 상세 가져오기 -->
 	<select id="usermypage_getapplicationdetail6">
 		select 
+		trial_fcltt_proper_num,
 		trial_fcltt_clasifi_code, 
-		trial_fcltt_sbcls_code
+		trial_fcltt_sbcls_code,
+		trial_fcltt_description
 		
 		from TB_010
 		
@@ -244,7 +251,7 @@
 		on t5.court_proper_num = t11.court_proper_num
 		
 		where user_proper_num = #{user_proper_num} 
-		and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+		and announce_proper_num = #{announce_proper_num}
 	</select>
 
 	<!-- 사용자 활동 총합구하기 -->
@@ -340,27 +347,28 @@
 
 	<!-- 사용자 중지 리스트 총합구하기 -->
 	<select id="usermypage_pausetotal">
-		select count(*) as total
-		from TB_014
-		where
-		user_proper_num = #{user_proper_num}
+		select count(*)
+		from (
+			select count(*) as total
+			from TB_014
+			where user_proper_num = #{user_proper_num}
+			
+			group by user_proper_num		
+		) as x
 	</select>
 
 	<!-- 사용자 중지 리스트 가져오기 -->
 	<select id="usermypage_pauselist">
-		select *,
-		CONVERT(accept_date, CHAR) AS
-		accept_date_as_varchar
+		select *
 		from
 		TB_014
-		where user_proper_num =
-		#{user_proper_num}
+		where user_proper_num = #{user_proper_num}
 
+		group by user_proper_num
+		
 		order by accept_proper_num desc
 
-		limit
-		#{cri.pageStart},
-		#{cri.amount}
+		limit #{cri.pageStart}, #{cri.amount}
 	</select>
 
 	<!-- 사용자 중지 상세 가져오기 -->
@@ -392,4 +400,57 @@
 		#{user_proper_num}
 	</update>
 
+	<insert id="usermypage_registimg">
+		insert into TB_019 (
+			img_file_proper_num,
+			file_type,
+			file_path,
+			img_file_uuid,
+			original_file_name,
+			user_proper_num
+		) select
+			coalesce (
+				(select max(img_file_proper_num)+1 
+		 		 from TB_019 
+         		 where cast(substring(img_file_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+				 , concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
+			'IMG',
+			#{file_path},
+			#{img_file_uuid},
+			#{original_file_name},
+			#{user_proper_num}
+	</insert>
+	
+	<select id="usermypage_getimg">
+		select *
+		from TB_019
+		where user_proper_num = #{user_proper_num}
+	</select>
+	
+	<select id="usermypage_getacceptinfo">
+		select *
+		from TB_014
+		where user_proper_num = #{user_proper_num}
+	</select>
+	
+	<insert id="usermypage_activity_regist">
+		insert into TB_012 (
+			act_proper_num,
+			judgement_num,
+			chosen_date,
+			attendance_date,
+			act_complete_yn,
+			accept_proper_num
+		) select
+			coalesce (
+				(select max(img_file_proper_num)+1 
+		 		 from TB_019 
+         		 where cast(substring(img_file_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+				 , concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
+			#{judgement_num},		
+			#{chosen_date},		
+			#{attendance_date},		
+			#{act_complete_yn},		
+			#{accept_proper_num}	
+	</insert>
 </mapper>

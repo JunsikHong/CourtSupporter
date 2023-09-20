@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="pageNation(pageVO)">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/page.css}">
+	<div id="page">
+		<ul>
+			<li><a th:href="@{/adminmypage/adminmypage_auth_manage(page=1, 
+                                   amount=${pageVO.amount},
+                                   member_role=${pageVO.cri.member_role},
+                                   member_id=${pageVO.cri.member_id}
+                                   )}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+
+
+			<th:block th:if="${pageVO.prev}">
+				<li style="margin-right:5px;">
+					<a th:href="@{/adminmypage/adminmypage_auth_manage(page=${pageVO.start - 1},
+                                  amount=${pageVO.amount},
+                                  member_role=${pageVO.cri.member_role},
+                                  member_id=${pageVO.cri.member_id}
+                                  )}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+				</li>
+			</th:block>
+
+
+			<th:block th:each="page : ${pageVO.pageList}">
+				<li th:class="${page == pageVO.page ? 'on' : ''}">
+					<a th:href="@{/adminmypage/adminmypage_auth_manage(page=${page}, 
+                                amount=${pageVO.amount},
+                                member_role=${pageVO.cri.member_role},
+                                member_id=${pageVO.cri.member_id}
+                                )}">[[${page}]]</a>
+				</li>
+			</th:block>
+
+
+			<th:block th:if="${pageVO.next}">
+				<li style="margin-left:5px;">
+					<a th:href="@{/adminmypage/adminmypage_auth_manage(page=${pageVO.end + 1},
+                                amount=${pageVO.amount},
+                                member_role=${pageVO.cri.member_role},
+                                member_id=${pageVO.cri.member_id}
+                                )}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+				</li>
+			</th:block>
+
+			<li><a th:href="@{/adminmypage/adminmypage_auth_manage(page=${pageVO.realEnd},
+                            amount=${pageVO.amount},
+                            member_role=${pageVO.cri.member_role},
+                            member_id=${pageVO.cri.member_id}
+                            )}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+		</ul>
+	</div>
+
+</th:block>

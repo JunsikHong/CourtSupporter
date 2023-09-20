@@ -68,7 +68,7 @@ fieldset, blockquote, iframe, button{ border:none; }
 .filePlusBtn, .OtFilePlusBtn, .CoFilePlusBtn1, .CoFilePlusBtn2, .CoFilePlusBtn3, .PeFilePlusBtn2, .PeFilePlusBtn3, .PeFilePlusBtn4{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 10px;vertical-align: middle;font-family:"ngB" !important;}
 .fileDeleteBtn{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 5px;vertical-align: middle;font-family:"ngB" !important;}
 .file-label {position: relative;}
-.fileAddBtn {background-color: rgb(11, 38, 110);display: inline-block;padding: 7px 10px 3px;color: #fff;height: 20px;vertical-align: middle;font-family:"ngB" !important;cursor: pointer;}
+.fileAddBtn {background-color: rgb(11, 38, 110);display: inline-block;padding: 5px 10px;color: #fff;height: 20px;vertical-align: middle;font-family:"ngB" !important;cursor: pointer;}
 .file-container{margin: 5px}
 .upload-name{background-color: #fff;}
 

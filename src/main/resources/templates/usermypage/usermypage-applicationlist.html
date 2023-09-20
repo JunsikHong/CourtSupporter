@@ -39,15 +39,21 @@
 								<span class="sts-content">신청상태</span>
 								<select name="aplicn_dtls_sts">
 									<option value="" th:selected="${pageVO.cri.aplicn_dtls_sts == ''}">선택</option>
-									<option value="ING" th:selected="${pageVO.cri.aplicn_dtls_sts == 'ING'}">신청중
+									<option value="01" th:selected="${pageVO.cri.aplicn_dtls_sts == '01'}">신청중
 									</option>
-									<option value="examination"
-										th:selected="${pageVO.cri.aplicn_dtls_sts == 'examination'}">심사중</option>
-									<option value="companion"
-										th:selected="${pageVO.cri.aplicn_dtls_sts == 'companion'}">서류 반려</option>
-									<option value="REFERRAL" th:selected="${pageVO.cri.aplicn_dtls_sts == 'REFERRAL'}">
-										불합격</option>
-									<option value="ACCEPT" th:selected="${pageVO.cri.aplicn_dtls_sts == 'ACCEPT'}">합격
+									<option value="02"
+										th:selected="${pageVO.cri.aplicn_dtls_sts == '02'}">신청완료</option>
+									<option value="03"
+										th:selected="${pageVO.cri.aplicn_dtls_sts == '03'}">심사중</option>
+									<option value="04" th:selected="${pageVO.cri.aplicn_dtls_sts == '04'}">
+										서류반려</option>
+									<option value="05" th:selected="${pageVO.cri.aplicn_dtls_sts == '05'}">1차통과
+									</option>
+									<option value="06" th:selected="${pageVO.cri.aplicn_dtls_sts == '06'}">최종심사중
+									</option>
+									<option value="07" th:selected="${pageVO.cri.aplicn_dtls_sts == '07'}">불합격
+									</option>
+									<option value="08" th:selected="${pageVO.cri.aplicn_dtls_sts == '08'}">합격
 									</option>
 								</select>
 							</div>
@@ -114,7 +120,7 @@
 								<td><span th:text="${list.size() - status.count} + 1"></span></td>
 								<td style="text-align:left">
 									<a
-										th:href="@{/usermypage/usermypage_applicationdetail (aplcn_dtls_proper_num = ${vo.aplcn_dtls_proper_num})}">[[${vo.announce_title}]]</a>
+										th:href="@{/usermypage/usermypage_applicationdetail (aplcn_dtls_proper_num = ${vo.aplcn_dtls_proper_num}, announce_proper_num = ${vo.announce_proper_num})}">[[${vo.announce_title}]]</a>
 								</td>
 								<td>
 									<span th:text="${#strings.substring(vo.aplicn_dtls_date, 0, 10)}"></span>
@@ -125,18 +131,24 @@
 										신청중
 									</th:block>
 									<th:block th:if="${vo.aplicn_dtls_sts == '02'}">
-										심사중
+										신청완료
 									</th:block>
 									<th:block th:if="${vo.aplicn_dtls_sts == '03'}">
-										서류 반려
+										심사중
 									</th:block>
 									<th:block th:if="${vo.aplicn_dtls_sts == '04'}">
-										1차 합격
+										서류반려
 									</th:block>
 									<th:block th:if="${vo.aplicn_dtls_sts == '05'}">
-										불합격
+										1차통과
 									</th:block>
 									<th:block th:if="${vo.aplicn_dtls_sts == '06'}">
+										최종심사중
+									</th:block>
+									<th:block th:if="${vo.aplicn_dtls_sts == '07'}">
+										불합격
+									</th:block>
+									<th:block th:if="${vo.aplicn_dtls_sts == '08'}">
 										합격
 									</th:block>
 								</td>

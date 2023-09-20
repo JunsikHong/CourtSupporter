@@ -40,33 +40,54 @@
 								<select name="aplicn_dtls_sts">
 									<option value="">선택</option>
 									<th:block th:if="${auth == 'ROLE_JURIS'}">
+										<option value="02"
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '02'}">신청완료</option>
 										<option value="03"
 											th:selected="${pageVO.cri.aplicn_dtls_sts == '03'}">심사중</option>
 										<option value="04"
-											th:selected="${pageVO.cri.aplicn_dtls_sts == '04'}">서류 반려</option>
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '04'}">서류반려</option>
+										<option value="05"
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '05'}">1차합격</option>
 									</th:block>
 									<th:block th:if="${auth == 'ROLE_COURT'}">
 										<option value="05"
-											th:selected="${pageVO.cri.aplicn_dtls_sts == '05'}">1차 합격</option>
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '05'}">1차합격</option>
 										<option value="06"
-											th:selected="${pageVO.cri.aplicn_dtls_sts == '06'}">불합격</option>
-										<option value="07" 
-											th:selected="${pageVO.cri.aplicn_dtls_sts == '07'}">합격</option>
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '06'}">최종심사중</option>
+										<option value="07"
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '07'}">불합격</option>
+										<option value="08" 
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '08'}">합격</option>
 									</th:block>
 									<th:block th:if="${auth == 'ROLE_ADMIN'}">
+										<option value="02"
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '02'}">신청완료</option>
 										<option value="03"
 											th:selected="${pageVO.cri.aplicn_dtls_sts == '03'}">심사중</option>
 										<option value="04"
-											th:selected="${pageVO.cri.aplicn_dtls_sts == '04'}">서류 반려</option>
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '04'}">서류반려</option>
 										<option value="05"
-											th:selected="${pageVO.cri.aplicn_dtls_sts == '05'}">1차 합격</option>
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '05'}">1차합격</option>
 										<option value="06"
-											th:selected="${pageVO.cri.aplicn_dtls_sts == '06'}">불합격</option>
-										<option value="07" 
-											th:selected="${pageVO.cri.aplicn_dtls_sts == '07'}">합격</option>
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '06'}">최종심사중</option>
+										<option value="07"
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '07'}">불합격</option>
+										<option value="08" 
+											th:selected="${pageVO.cri.aplicn_dtls_sts == '08'}">합격</option>
 									</th:block>
 								</select>
 							</div>
+							<div class="board_search_sts">
+								<span class="sts-content">조력자구분</span>
+								<select name="trial_fcltt_proper_num">
+									<option value="">선택</option>
+									<option value="1">조력자</option>
+									<option value="2">통번역인</option>
+									<option value="3">조정위원</option>
+									<option value="4">전문시밀위원</option>
+									<option value="5">상담위원</option>
+								</select>
+								</div>
 							<div class="board_search_text">
 								<input type="text" id="announce_title" name="announce_title" title="검색어 입력"
 									th:value="${pageVO.cri.announce_title}">
@@ -89,8 +110,8 @@
 								<th>번호</th>
 								<th>공고제목</th>
 								<th>신청날짜</th>
-								<th>첨부</th>
 								<th>신청상태</th>
+								<th>상세보기</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -120,43 +141,49 @@
 								<th>번호</th>
 								<th>공고제목</th>
 								<th>신청날짜</th>
-								<th>첨부</th>
 								<th>신청상태</th>
+								<th>상세보기</th>
 							</tr>
 						</thead>
 						<tbody>
 
 							<tr th:each="vo, status : ${list}">
-								<th:block th:if="${vo.aplicn_dtls_sts == '01'} or ${vo.aplicn_dtls_sts == '02'}">
+								<th:block th:if="${vo.aplicn_dtls_sts == '01'}">
 										
 								</th:block>
-								<th:block th:unless="${vo.aplicn_dtls_sts == '01'} or ${vo.aplicn_dtls_sts == '02'}">
-									<td><span th:text="${list.size() - status.count} + 1"></span></td>
-									<td style="text-align:left">
-										<a
-											th:href="@{/adminmypage/adminmypage_evaluationdetail (aplcn_dtls_proper_num=${vo.aplcn_dtls_proper_num})}" onclick="getkey()">[[${vo.announce_title}]]</a>
-									</td>
-									<td>
-										<span th:text="${#strings.substring(vo.aplicn_dtls_date, 0, 10)}"></span>
-									</td>
-									<td></td>
-									<td>
-										<th:block th:if="${vo.aplicn_dtls_sts == '03'}">
-											심사중
-										</th:block>
-										<th:block th:if="${vo.aplicn_dtls_sts == '04'}">
-											서류 반려
-										</th:block>
-										<th:block th:if="${vo.aplicn_dtls_sts == '05'}">
-											1차 합격
-										</th:block>
-										<th:block th:if="${vo.aplicn_dtls_sts == '06'}">
-											불합격
-										</th:block>
-										<th:block th:if="${vo.aplicn_dtls_sts == '07'}">
-											합격
-										</th:block>
-									</td>		
+								<th:block th:unless="${vo.aplicn_dtls_sts == '01'}">
+									<form action="adminmypage_evaluationdetail" method="post" name="evaluationdetail" class="evaluationdetail">
+										<input type="hidden" name="user_proper_num" th:value="${vo.user_proper_num}">
+										<input type="hidden" name="aplcn_dtls_proper_num" th:value="${vo.aplcn_dtls_proper_num}">
+										<input type="hidden" name="announce_proper_num" th:value="${vo.announce_proper_num}">
+										<td><span th:text="${list.size() - status.count} + 1"></span></td>
+										<td><p>[[${vo.announce_title}]]</p></td>
+										<td><span th:text="${#strings.substring(vo.aplicn_dtls_date, 0, 10)}"></span></td>
+										<td>
+											<th:block th:if="${vo.aplicn_dtls_sts == '02'}">
+												신청완료
+											</th:block>
+											<th:block th:if="${vo.aplicn_dtls_sts == '03'}">
+												심사중
+											</th:block>
+											<th:block th:if="${vo.aplicn_dtls_sts == '04'}">
+												서류반려
+											</th:block>
+											<th:block th:if="${vo.aplicn_dtls_sts == '05'}">
+												1차통과
+											</th:block>
+											<th:block th:if="${vo.aplicn_dtls_sts == '06'}">
+												최종심사중
+											</th:block>
+											<th:block th:if="${vo.aplicn_dtls_sts == '07'}">
+												불합격
+											</th:block>
+											<th:block th:if="${vo.aplicn_dtls_sts == '08'}">
+												합격
+											</th:block>
+										</td>
+										<td><button type="submit" class="btnfb7">상세보기</button></td>	
+									</form>
 								</th:block>
 							</tr>
 
