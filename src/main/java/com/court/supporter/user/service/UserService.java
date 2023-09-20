@@ -17,5 +17,9 @@ public interface UserService {
 	int checkId(String userId);
 	//메일 인증
 	String sendMail(TB_001VO tb_001vo);
+	//아이디 찾기 정보에 맞는 user 확인
+	String findUsersForId(TB_001VO tb_001vo);
+	//비밀번호 찾기 정보에 맞는 user 확인
+	String findUsersForPw(TB_001VO tb_001vo);
 }
 

@@ -59,4 +59,15 @@ public class UserController {
 	public ResponseEntity<String> sendMail(@RequestBody TB_001VO tb_001vo) {
 		return ResponseEntity.ok(userService.sendMail(tb_001vo));
 	}
+	
+	//아이디 찾기 정보에 맞는 user 확인
+	@PostMapping("/findUsers")
+	public ResponseEntity<String> findUsersForId(@RequestBody TB_001VO tb_001vo) {
+		System.out.println(tb_001vo.toString());
+		if (tb_001vo.getUser_id() == null) {
+			return ResponseEntity.ok(userService.findUsersForId(tb_001vo));			
+		} else {
+			return ResponseEntity.ok(userService.findUsersForPw(tb_001vo));
+		}
+	}
 }

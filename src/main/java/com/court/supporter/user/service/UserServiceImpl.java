@@ -65,14 +65,23 @@ public class UserServiceImpl implements UserService {
 			body += "<h3>감사합니다.</h3>";
 			
 			message.setText(body, "UTF-8", "html");
-			System.out.println("메일 입력 완료");
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		javaMailSender.send(message);
-		System.out.println("왜 안보내져 ㅠ ");
 		return String.valueOf(number);
+	}
+
+	//아이디 찾기 정보에 맞는 user 확인
+	@Override
+	public String findUsersForId(TB_001VO tb_001vo) {
+		return userMapper.findUsersForId(tb_001vo);
+	}
+
+	//비밀번호 찾기 정보에 맞는 user 확인
+	@Override
+	public String findUsersForPw(TB_001VO tb_001vo) {
+		return userMapper.findUsersForPw(tb_001vo);
 	}
 
 }

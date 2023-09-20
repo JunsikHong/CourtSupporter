@@ -19,5 +19,9 @@ public interface UserMapper {
 	Optional<TB_018VO> findByMemberProperNum(String memberProperNum);
 	//회원가입 시 아이디 중복 확인
 	int checkId(String userId);
+	//아이디 찾기 정보에 맞는 user 확인
+	String findUsersForId(TB_001VO tb_001vo);
+	//비밀번호 찾기 정보에 맞는 user 확인
+	String findUsersForPw(TB_001VO tb_001vo);
 }
 
