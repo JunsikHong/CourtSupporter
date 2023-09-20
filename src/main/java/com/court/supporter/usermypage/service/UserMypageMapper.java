@@ -16,6 +16,8 @@ import com.court.supporter.command.TB_010VO;
 import com.court.supporter.command.TB_011VO;
 import com.court.supporter.command.TB_012VO;
 import com.court.supporter.command.TB_014VO;
+import com.court.supporter.command.TB_018VO;
+import com.court.supporter.command.TB_019VO;
 import com.court.supporter.util.Criteria;
 
 @Mapper
@@ -23,8 +25,11 @@ public interface UserMypageMapper {
 
 	public TB_001VO usermypage_getInfo(String user_proper_num); //사용자 정보 가져오기
 	public int usermypage_modifyInfo(TB_001VO vo); //사용자 정보 수정
+	public int usermypage_registimg(TB_019VO vo); //사용자 이미지 등록
+	public TB_019VO usermypage_getimg(String user_proper_num); //사용자 이미지 가져오기
 	
 	public int usermypage_withdrawl(TB_001VO vo); //사용자 탈퇴
+	public TB_018VO usermypage_withdrawl_search(TB_001VO vo); //토큰 비교를 위한
 	public TB_001VO usermypage_modify_pw_check(TB_001VO vo);// 사용자 비밀번호 확인
 	
 	public int usermypage_application_gettotal(@Param("user_proper_num") String user_proper_num, 
@@ -45,6 +50,8 @@ public interface UserMypageMapper {
 														   @Param("cri") Criteria cri); //사용자 활동 리스트 목록구하기
 	public TB_012VO usermypage_getactivitydetail(TB_012VO vo); //사용자 활동 상세 정보 주변 가져오기
 	public TB_012VO usermypage_getnearactivitydetail(TB_012VO vo); //사용자 활동 상세 정보 주변 가져오기
+	public ArrayList<TB_014VO> usermypage_getacceptinfo(String user_proper_num); //사용자 등재명단 가져오기 모두
+	public int usermypage_activity_regist(TB_012VO vo); //사용자 활동 등록하기
 	
 	public int usermypage_pausetotal (@Param("user_proper_num") String user_proper_num, 
 									  @Param("cri") Criteria cri); //사용자 중지 리스트 총합구하기
@@ -53,5 +60,6 @@ public interface UserMypageMapper {
 	public TB_014VO usermypage_getpausedetail(TB_014VO vo); //사용자 중비 상세 정보 가져오기
 	public int usermypage_pauseapplication (TB_014VO vo); //사용자 중지 신청
 	public int usermypage_cancelapplication (TB_014VO vo); //사용자 해제 신청
+	
 	
 }

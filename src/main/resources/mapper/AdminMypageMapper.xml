@@ -10,27 +10,37 @@
 		from TB_018
 		where member_proper_num = #{member_proper_num}
 	</select>
+	
+	<select id="adminmypage_getmember_id">
+		select member_id
+		from TB_018
+		where member_proper_num = #{member_proper_num}
+	</select>
 
 	<select id="adminmypage_juris_getapplicationtotal">
-		select count(*) as total
-		from TB_005 as t5
-		left join TB_002 as t2
-		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts = '03'
-		<if test="announce_title != '' and announce_title != null">
-			and announce_title like concat('%', #{announce_title}, '%')
-		</if>
-		<if
-			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%',
-			#{aplicn_dtls_sts}, '%')
-		</if>
-		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
-			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
-		</if>
-		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
-			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
-		</if>
+		select count(*)
+		from (
+			select count(*) as total
+			from TB_005 as t5
+			left join TB_002 as t2
+			on t5.announce_proper_num = t2.announce_proper_num
+			where aplicn_dtls_sts = '03'
+			<if test="announce_title != '' and announce_title != null">
+				and announce_title like concat('%', #{announce_title}, '%')
+			</if>
+			<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+				and aplicn_dtls_sts like concat('%',
+				#{aplicn_dtls_sts}, '%')
+			</if>
+			<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+				<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+			</if>
+			<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+				<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+			</if>
+			
+			group by t5.user_proper_num, t5.announce_proper_num		
+		) as x
 	</select>
 
 	<select id="adminmypage_juris_getapplicationlist">
@@ -43,10 +53,8 @@
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
 		</if>
-		<if
-			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%',
-			#{aplicn_dtls_sts}, '%')
+		<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%', #{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -54,28 +62,37 @@
 		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
 			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
 		</if>
+		
+		group by t5.user_proper_num, t5.announce_proper_num
+		
+		order by aplcn_dtls_proper_num desc
+
+		limit #{pageStart}, #{amount}
 	</select>
 
 	<select id="adminmypage_court_getapplicationtotal">
-		select count(*) as total
-		from TB_005 as t5
-		left join TB_002 as t2
-		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts = '05'
-		<if test="announce_title != '' and announce_title != null">
-			and announce_title like concat('%', #{announce_title}, '%')
-		</if>
-		<if
-			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%',
-			#{aplicn_dtls_sts}, '%')
-		</if>
-		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
-			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
-		</if>
-		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
-			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
-		</if>
+		select count(*) 
+		from (
+			select count(*) as total
+			from TB_005 as t5
+			left join TB_002 as t2
+			on t5.announce_proper_num = t2.announce_proper_num
+			where aplicn_dtls_sts = '05'
+			<if test="announce_title != '' and announce_title != null">
+				and announce_title like concat('%', #{announce_title}, '%')
+			</if>
+			<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+				and aplicn_dtls_sts like concat('%', #{aplicn_dtls_sts}, '%')
+			</if>
+			<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+				<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+			</if>
+			<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+				<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+			</if>
+			
+			group by t5.user_proper_num, t5.announce_proper_num
+		) as x
 	</select>
 
 	<select id="adminmypage_court_getapplicationlist">
@@ -88,10 +105,8 @@
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
 		</if>
-		<if
-			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%',
-			#{aplicn_dtls_sts}, '%')
+		<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%', #{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -99,28 +114,42 @@
 		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
 			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
 		</if>
+		
+		group by t5.user_proper_num, t5.announce_proper_num
+		
+		order by aplcn_dtls_proper_num desc
+
+		limit #{pageStart}, #{amount}
 	</select>
 
 	<select id="adminmypage_admin_getapplicationtotal">
-		select count(*) as total
-		from TB_005 as t5
-		left join TB_002 as t2
-		on t5.announce_proper_num = t2.announce_proper_num
-		where 1 = 1
-		<if test="announce_title != '' and announce_title != null">
-			and announce_title like concat('%', #{announce_title}, '%')
-		</if>
-		<if
-			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%',
-			#{aplicn_dtls_sts}, '%')
-		</if>
-		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
-			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
-		</if>
-		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
-			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
-		</if>
+		select count(*)
+		from (
+			select count(*) as total
+			from TB_005 as t5
+			left join TB_002 as t2
+			on t5.announce_proper_num = t2.announce_proper_num
+			where aplicn_dtls_sts != '01'
+			<if test="announce_title != '' and announce_title != null">
+				and announce_title like concat('%', #{announce_title}, '%')
+			</if>
+			<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+				and aplicn_dtls_sts like concat('%',
+				#{aplicn_dtls_sts}, '%')
+			</if>
+			<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
+				and t5.trial_fcltt_proper_num like concat('%',
+				#{trial_fcltt_proper_num}, '%')
+			</if>
+			<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
+				<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
+			</if>
+			<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
+				<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
+			</if>
+			
+			group by t5.user_proper_num, t5.announce_proper_num
+		) as x
 	</select>
 
 	<select id="adminmypage_admin_getapplicationlist">
@@ -129,14 +158,16 @@
 		from TB_005 as t5
 		left join TB_002 as t2
 		on t5.announce_proper_num = t2.announce_proper_num
-		where 1 = 1
+		where aplicn_dtls_sts != '01'
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
 		</if>
-		<if
-			test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%',
-			#{aplicn_dtls_sts}, '%')
+		<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
+			and aplicn_dtls_sts like concat('%', #{aplicn_dtls_sts}, '%')
+		</if>
+		<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
+				and t5.trial_fcltt_proper_num like concat('%',
+				#{trial_fcltt_proper_num}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -144,6 +175,12 @@
 		<if test="aplicn_dtls_enddate != '' and aplicn_dtls_enddate != null">
 			<![CDATA[and aplicn_dtls_date <= #{aplicn_dtls_enddate}]]>
 		</if>
+		
+		group by t5.user_proper_num, t5.announce_proper_num
+		
+		order by aplcn_dtls_proper_num desc
+
+		limit #{pageStart}, #{amount}
 	</select>
 
 	<select id="adminmypage_getapplicationdetail">
@@ -199,38 +236,154 @@
 
 	<update id="adminmypage_juris_companion_evaluate">
 		update TB_005
-		set aplcn_dtls_sts = '04'
+		set aplicn_dtls_sts = '04'
 		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</update>
 
 	<update id="adminmypage_court_referral_evaluate">
 		update TB_005
-		set aplcn_dtls_sts = '07'
+		set aplicn_dtls_sts = '07'
 		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</update>
 	
 	<update id="adminmypage_juris_examination_evaluate">
 		update TB_005
-		set aplcn_dtls_sts = '03'
+		set aplicn_dtls_sts = '03'
 		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</update>
 	
 	<update id="adminmypage_court_examination_evaluate">
 		update TB_005
-		set aplcn_dtls_sts = '06'
+		set aplicn_dtls_sts = '06'
 		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</update>
 	
 	<update id="adminmypage_juris_pass_evaluate">
 		update TB_005
-		set aplcn_dtls_sts = '05'
-		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+		set aplicn_dtls_sts = '05'
+		where user_proper_num = #{user_proper_num}
+		and announce_proper_num = #{announce_proper_num}
 	</update>
 	
 	<update id="adminmypage_court_accept_evaluate">
 		update TB_005
-		set aplcn_dtls_sts = '08'
-		where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+		set aplicn_dtls_sts = '08'
+		where user_proper_num = #{user_proper_num}
+		and announce_proper_num = #{announce_proper_num}
 	</update>
+	
+	<select id="adminmypage_juris_getexamination">
+		select *
+		from TB_013 t13
+		inner join TB_005 t5
+		on t13.aplcn_dtls_proper_num = t5.aplcn_dtls_proper_num
+		where announce_proper_num = #{announce_proper_num} and
+		aplcn_dtls_sts = '03'
+	</select>
+	
+	<select id="adminmypage_court_getexamination">
+		select *
+		from TB_013 t13
+		inner join TB_005 t5
+		on t13.aplcn_dtls_proper_num = t5.aplcn_dtls_proper_num
+		where announce_proper_num = #{announce_proper_num} and
+		aplcn_dtls_sts = '06'
+	</select>
+	
+	<select id="adminmypage_getacceptinfo">
+		select *
+		from TB_005
+		where announce_proper_num = #{announce_proper_num}
+		and user_proper_num = #{user_proper_num}
+	</select>
+	
+	<insert id="adminmypage_accept">
+		insert into TB_014 (
+			accept_proper_num,
+			court_proper_num,
+			trial_fcltt_proper_num,
+			user_proper_num
+		) select
+			coalesce (
+				(select max(accept_proper_num)+1 
+		 		 from TB_014
+         		 where cast(substring(accept_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+				 , concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
+			#{court_proper_num},
+			#{trial_fcltt_proper_num},
+			#{user_proper_num}
+	</insert>
+	
+	<select id="adminmypage_getrecruitnum">
+		select announce_recruit_num
+		from TB_002
+		where announce_proper_num = #{announce_proper_num}
+	</select>
+	
+	<select id="adminmypage_getresult">
+		select *
+		from TB_013
+		where user_proper_num = #{user_proper_num}
+		and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</select>
+	
+	<select id="adminmypage_getauthtotal">
+		select count(*) as total
+		from TB_018 as t18
+		left join TB_015 as t15
+		on t18.member_proper_num = t15.admin_proper_num
+		where member_role != 'ROLE_USER'
+		<if test="member_id != '' and member_id != null">
+			and member_id like concat('%', #{member_id}, '%')
+		</if>
+		<if test="member_role != '' and member_role != null">
+			and member_role like concat('%', #{member_role}, '%')
+		</if>
+	</select>
+	
+	<select id="adminmypage_getauthlist">
+		select *
+		from TB_018 as t18
+		left join TB_015 as t15
+		on t18.member_proper_num = t15.admin_proper_num
+		where member_role != 'ROLE_USER'
+		<if test="member_id != '' and member_id != null">
+			and member_id like concat('%', #{member_id}, '%')
+		</if>
+		<if test="member_role != '' and member_role != null">
+			and member_role like concat('%', #{member_role}, '%')
+		</if>
+		
+		order by member_proper_num desc
 
+		limit #{pageStart}, #{amount}
+	</select>
+	
+	<update id="adminmypage_updateauth">
+		update TB_018
+		set member_role = #{member_role}
+		where member_proper_num = #{member_proper_num}
+	</update>
+	
+	<select id="adminmypage_getaplcninfo">
+		select *
+		from TB_005 t5
+		left join TB_002 t2
+		on t5.announce_proper_num = t2.announce_proper_num
+		
+		where user_proper_num = #{user_proper_num}
+		and announce_proper_num = #{announce_proper_num}
+		
+		limit 1
+	</select>
+	
+	<select id="adminmypage_getaceeptinfo">
+		select *
+		from TB_005 t5
+		
+		where user_proper_num = #{user_proper_num}
+		and announce_proper_num = #{announce_proper_num}
+		
+		limit 1
+	</select>
 </mapper>

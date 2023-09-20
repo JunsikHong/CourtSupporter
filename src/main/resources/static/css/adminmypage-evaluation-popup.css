@@ -24,7 +24,7 @@
 }
 
 .announce-title {
-	width: 500px;
+	width: 200px;
 	background-color: #034273;	
 	text-align: center;
 	vertical-align: middle;
@@ -57,8 +57,8 @@
 }
 
 .evaluation-target-table {
-	width: 500px;
-	height: 140px;
+	width: 900px;
+	height: 200px;
 	border: 1px solid rgb(221, 221, 221);
 }
 
@@ -83,6 +83,7 @@
 	background-color: #034273;
 	color: white;
 	font-weight: bold;
+	width: 180px;
 }
 
 .evaluation-target-line1 td:nth-child(2),
@@ -105,7 +106,7 @@
 }
 
 .evaluation-file-table1 {
-	width: 1300px;
+	width: 900px;
 }
 
 .evaluation-file-line1 td {
@@ -115,7 +116,7 @@
 }
 
 .evaluation-file-line1 {
-	height: 35px;
+	height: 50px;
 	position: sticky;
 	top: 0;
 	background-color: #034273;
@@ -123,7 +124,7 @@
 }
 
 .evaluation-file-line2 {
-	height: 35px;
+	height: 38px;
 	background-color: rgb(228, 228, 228);
 	border-bottom: 1px solid white;
 }
@@ -468,3 +469,4 @@ label {
 	width: 129px;
 	box-sizing: border-box;
 }
+

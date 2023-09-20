@@ -28,7 +28,4 @@ public class TB_018VO {
    private String member_password;
    private String member_role;
    
-   public SimpleGrantedAuthority getMember_role() {
-      return new SimpleGrantedAuthority(member_role);
-    }
 }
