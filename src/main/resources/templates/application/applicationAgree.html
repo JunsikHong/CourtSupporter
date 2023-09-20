@@ -46,6 +46,7 @@
 
 						<div class="agree-cont-wrap">
 							<form action="agreeForm" method="post" onsubmit="return _onSubmit();">
+								<!--<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">-->
 								<p class="agree-tit">이용약관(필수)</p>
 								<div class="agree-cont" tabindex="0">
 									<strong>제1장 총칙</strong>
@@ -471,22 +472,25 @@ return true;
 
 $(document).on("change", "#chkBox", function() {
     
-    var agree_all = val;
     
     if($(this).is(":checked")){
         $("input:radio[id='agreeBtn1']").prop("checked",true);
         $("input:radio[id='agreeBtn3']").prop("checked",true);
-        $("input:radio[id='agreeBtn2']").prop("checked",false);
-        $("input:radio[id='agreeBtn4']").prop("checked",false);
+       
+        
     }else{
+        
         $("input:radio[id='agreeBtn1']").prop("checked",false);
         $("input:radio[id='agreeBtn3']").prop("checked",false);
-        $("input:radio[id='agreeBtn2']").prop("checked",false);
-        $("input:radio[id='agreeBtn4']").prop("checked",false);
+       
         
     }
 })
-
+$(document).on('change', 'input[id="agreeBtn2"], input[id="agreeBtn4"]', function() {
+    if ($(this).is(':checked')) {
+       $("#chkBox").prop('checked', false);  // #chkBox 체크박스 해제
+    }
+});
 
 </script>
 </html>

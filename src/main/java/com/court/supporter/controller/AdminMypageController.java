@@ -155,7 +155,7 @@ public class AdminMypageController {
 			return "/adminmypage/adminmypage-evaluationdetail";
 		}
 		return "redirect:/";
-	}
+  }
 
 	//관리자 평가 팝업
 	@PostMapping("/adminmypage_evaluation_popup")

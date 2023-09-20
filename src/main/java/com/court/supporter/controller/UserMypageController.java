@@ -245,6 +245,7 @@ public class UserMypageController {
 
 	// 사용자 신청 현황 상세
 	@GetMapping("/usermypage_applicationdetail")
+
 	public String usermypage_applicationdetail(Model model, TB_005VO vo, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 	    String jwt = (String) session.getAttribute("token");

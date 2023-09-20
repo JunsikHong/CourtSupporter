@@ -68,9 +68,11 @@ fieldset, blockquote, iframe, button{ border:none; }
 .filePlusBtn, .OtFilePlusBtn, .CoFilePlusBtn1, .CoFilePlusBtn2, .CoFilePlusBtn3, .PeFilePlusBtn2, .PeFilePlusBtn3, .PeFilePlusBtn4{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 10px;vertical-align: middle;font-family:"ngB" !important;}
 .fileDeleteBtn{background-color: rgb(11, 38, 110);display: inline-block;padding: 0 5px;vertical-align: middle;font-family:"ngB" !important;}
 .file-label {position: relative;}
-.fileAddBtn {background-color: rgb(11, 38, 110);display: inline-block;padding: 5px 10px;color: #fff;height: 20px;vertical-align: middle;font-family:"ngB" !important;cursor: pointer;}
+.fileAddBtn {background-color: rgb(11, 38, 110);display: inline-block;padding:7px 10px 3px;color: #fff;height: 20px;vertical-align: middle;font-family:"ngB" !important;cursor: pointer;}
 .file-container{margin: 5px}
-.upload-name{background-color: #fff;}
+.upload-name, .name_box{background-color: #fff;}
+.PeFileDeleteBtn1, .fileDeleteBtn2{background-color: rgb(11, 38, 110);color: #fff; width: 80px;}
+
 
 /* popup 관련 */
 .popT .uptr06 input{width: auto;}
@@ -104,6 +106,9 @@ fieldset, blockquote, iframe, button{ border:none; }
 .required-img .hidden {position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;}
 
 /* 공통 end */
+
+/* 신청서 페이지 */
+.checkTitle{width: 80%;margin: 0 auto;text-align: center;border: none;}
 
 /* 신청 완료 페이지 */
 .complete{border: none;color: rgb(11, 38, 110);}
@@ -263,4 +268,3 @@ fieldset, blockquote, iframe, button{ border:none; }
         top: 38px;
     }
 }
-
