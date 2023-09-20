@@ -37,6 +37,30 @@
 					<!-- 검색창 action="searchForm"or announceList  class="searchBox" -->
 					<input type="hidden" name="page" value="1">
 					<input type="hidden" name="amount" th:value="${pageVO.amount}">
+						
+					<input type="hidden" name="trial_fcltt_proper_num" id="trialNum" value="">
+					
+					<!-- <div class="menuBox"> 게시판 상자 안에 있어야 함. 임시 div -->
+					<ul class="announceMenu"> <!-- th if  cri~~trial_fcltt_proper_num = 10 이면 border -->
+						<li data-trial-fcltt-proper-num="00" class="supporter"> <!-- class="on" name="" th:href="@{/announce/announceList}"-->
+							<a href="#" class="menu" >전체</a>
+						</li>
+						<li data-trial-fcltt-proper-num="10" class="supporter" >
+							<a href="#" class="menu" name="">조력자</a>
+						</li>
+						<li data-trial-fcltt-proper-num="20" class="supporter">
+							<a href="#" class="menu" name="" >통번역인</a>
+						</li>
+						<li data-trial-fcltt-proper-num="30" class="supporter">
+							<a href="#" class="menu" name="" >조정위원</a>
+						</li>
+						<li  data-trial-fcltt-proper-num="40" class="supporter">
+							<a href="#" class="menu" name="">전문시말위원</a>
+						</li>
+						<li data-trial-fcltt-proper-num="50" class="supporter" >
+							<a href="#" class="menu" name="">상담위원</a>
+						</li>							
+					</ul>
 
 					<div class="searchWrap">
 
@@ -70,29 +94,6 @@
 					<!-- 게시판 -->
 					<div class="announceBoard">
 
-						<!--   <div class="menuBox"> 게시판 상자 안에 있어야 함. 임시 div -->
-						<ul class="announceMenu">
-							<li> <!-- class="on" name=""-->
-								<a th:href="@{/announce/announceList}" class="menu" id="menu_1" data-category-id="" >전체</a>
-							</li>
-							<li class="" >
-								<a th:href="@{/announce/announceTrialList/10}" class="menu" id="menu_2" data-category-id="10" name="">조력자</a>
-							</li>
-							<li class="" >
-								<a th:href="@{/announce/announceTrialList/20}" class="menu" id="menu_3" data-category-id="20" name="">통번역인</a>
-							</li>
-							<li class="" >
-								<a th:href="@{/announce/announceTrialList/30}" class="menu" id="menu_4" data-category-id="30" name="">조정위원</a>
-							</li>
-							<li class="" >
-								<a th:href="@{/announce/announceTrialList/40}" class="menu" id="menu_5" data-category-id="40" name="">전문시말위원</a>
-							</li>
-							<li class="">
-								<a th:href="@{/announce/announceTrialList/50}" class="menu" id="menu_6" data-category-id="50" name="">상담위원</a>
-							</li>							
-						</ul>
-
-
 						<table class="board" id="menuData" > <!-- 공고게시판 -->
 							<thead>
 
@@ -102,14 +103,15 @@
 								 	 <input type="checkbox" class="allCheck">
 								  </th>-->
 									<th>번호</th>
-									<th>모집여부</th>
+									<th>모집여부</th>									
 									<th>제목</th>
+									<th>모집인원</th>
 									<th class="regdate">작성일</th>
 									<!--<th>공고 모집일</th>-->
 									<!--<th>조회</th>-->
 								</tr>
 
-							<tbody> <!-- 게시판 글 목록-->
+							<tbody id="datalist"> <!-- 게시판 글 목록-->
 								<tr th:each="vo, iterStat : ${list}"> <!--boardContent-->
 								  <!--<td><input type="checkbox" class="chk"></td>-->
 								  
@@ -120,17 +122,24 @@
 									<td class="hirebox">
 										<span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>
 									</td>
-
+									
+									<!--<td class="supporter">
+										<span></span>	
+									</td>-->
+									
+									
 									<td class="contentTitle">
 										<!--<div class="hirebox">-->
 										<!-- <span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>-->
 										<!--</div>-->										
 										<a th:href="@{announceDetail(announce_proper_num=${vo.announce_proper_num})}"
-											th:text="${vo.announce_title}"></a>	
-										<!--<a th:href="@{announceDetail(trial_fcltt_proper_num=${vo.trial_fcltt_proper_num})}"
-										th:text="${vo.announce_title}"></a>-->
+											th:text="${vo.announce_title}"></a>											
 									</td>
 
+									<td class="recruitNumber">
+										<span th:text="${vo.announce_recruit_num}" class="recruitNumberTxt"></span>	
+									</td>
+									
 									<td class="contentDate">
 										<span th:text="${vo.announce_first_date.substring(0,10)}"></span>
 										<!--${#temporals.format(vo.announce_first_date, 'yyyy-MM-dd')}-->
@@ -151,13 +160,13 @@
 				 <button type="button"  name="check" id="del"> 삭제 </button>
 			 </div>-->
 
-					<!--<th:block th:if="${member_role == 'admin'}">-->
-						<div class="registBox"> <!--float 쓰면 이동이 안 됨-->
+					<th:block th:if="${auth == 'ROLE_ADMIN'}">
+						<div class="registBox"  > <!--  float 쓰면 이동이 안 됨-->
 							<button class="registBtn" id="registBtn">
 								<a href="/announce/announceReg">글 작성</a>
 							</button>
-						</div>						
-				<!--	</th:block>-->
+						</div>										
+					</th:block>
 
 					<!--페이지네이션-->
 					<th:block th:replace="~{./include/announcePage :: pageNation(${pageVO})}"></th:block>
@@ -186,7 +195,31 @@
 </script>
 
 <script th:inline="javascript">
-	//공고 검색
+
+	//조력자 공고 조회	
+	 $(document).ready(function() {    		   
+        $(".menu").click(function(event) { 
+			var supporter = $(this);
+       	 	supporter.toggleClass("on");
+       	 	
+			//event.preventDefault(); 
+	        var trial_fcltt_proper_num = $(this).parent().data("trial-fcltt-proper-num");
+	        var trialNum = document.querySelector("#trialNum");
+	        console.log(trial_fcltt_proper_num);
+	        trialNum.value = trial_fcltt_proper_num;
+	        
+	        console.log(trialNum);
+	        // id가 "searchBtn"인 버튼을 클릭
+	        $(".searchBox").submit();        
+    	//});
+    	});  
+    });
+	
+</script>
+
+
+<script th:inline="javascript">
+	//공고 검색 기능
 	var searchOption = document.querySelector("#searchOption");
 	var search = document.querySelector(".search");
 
@@ -205,116 +238,34 @@
 			searchInput.setAttribute("name", "announce_end_date");
 		}
 	});
-
 </script>
-
-							
-<script th:inline="javascript"> //조력자 고유번호를 받아서 공고 조회
-	
-	var menuList = document.querySelectorAll('.announceMenu li');	
-	
-	menuList.forEach(item => {		
-		var menu = item.querySelector('.menu');
-	    		 
-	 	menu.addEventListener('click', function() {			 
-		    menuList.forEach(item => item.classList.remove('on'));		    
-		    item.classList.add('on');
-		    
-		   	var category = this.getAttribute('data-category-id');
-		  	
-		  	if (category === '') {
-                window.location.href = '/announce/announceList'; // 전체 메뉴의 경우
-            } else if(category === '10') {
-                window.location.href = '/announce/announceTrialList/' + category;
-            } else if(category === '20') {
-                window.location.href = '/announce/announceTrialList/' + category;
-            } else if(category === '30') {
-                window.location.href = '/announce/announceTrialList/' + category;
-            } else if(category === '40') {
-                window.location.href = '/announce/announceTrialList/' + category;
-            } else if(category === '50') {
-                window.location.href = '/announce/announceTrialList/' + category;
-            }	  
-				    		  
-		  	 
-		});
-		  			 
-	});
-		  	
-		  	
-		  	
-		  	/*
-		  	$.ajax({
-				  url: 'http://localhost:8788/announce/announceList',
-				  methode: 'get', 
-				  data: {trial_fcltt_proper_num:trialValue},
-				  success: function(response) {
-					  console.log(data);
-				  },
-				  error: function(error) {
-					  console.error('Error:', error);
-					  }
-			});
-				 
-		  	var trialValue = $(this).val();	
-		  	$('.menu').click(function() {				 
-				 var trialValue = $(this).val(); //attr('val');	
-				 			  
-			  });
-		  	fetch('/announce/announceList') 
-		  	.then( response => response.json() )
-		  	.then(data => {
-				  console.log(data);
-			 })
-			 .catch(error => {
-				 console.error('Error:', error);
-			 });
-			 
-			 
-		  	var category = this.getAttribute('data-category-id');
-		  	if (category === '') {
-                window.location.href = '/announce/announceList'; // 전체 메뉴의 경우
-            } else if(category === '10') {
-                window.location.href = '/announce/announceList/' + category;
-            } else if(category === '20') {
-                window.location.href = '/announce/announceList/' + category;
-            } else if(category === '30') {
-                window.location.href = '/announce/announceList/' + category;
-            } else if(category === '40') {
-                window.location.href = '/announce/announceList/' + category;
-            }else if(category === '50') {
-                window.location.href = '/announce/announceList/' + category;
-            }	  
-            
-		  	fetch('/announce/announceList/' + category) 
-		  	.then( response => response.json() )
-		  	.then(data => {
-				  console.log(data);
-			 })
-			 .catch(error => {
-				 console.error('Error:', error);
-			 });*/		  
-
-	
-	
-</script>
-
-
 
 <script th:inline="javascript">
-
-	var admin = "admin_proper_num";
-	//var user = "admin";
-	//관리자가 아닐시 버튼 숨김
+/*
+	//관리자가 아닐시 버튼 숨김	
+	var admin_proper_num = "";	
 	var registBtn = document.getElementById("registBtn");
-	if (admin_proper_num === "1") {
+	
+	if (admin_proper_num === "admin") {
 		//관리자일 경우 모든 버튼을 보이게
 		registBtn.style.display = "block";
 	} else {
 		//관리자 제외 버튼을 숨김
 		registBtn.style.display = "none";
 	}
+*/
+</script>
 
+<script th:inline="javascript">
+   if ('[[${result}]]' > 0) {
+      alert('이미 지원한 공고입니다.');      
+   } 
+</script>
+
+<script th:inline="javascript">
+   if ('[[${loginresult}]]' == null ) {
+      alert('로그인 후 신청해주세요.');      
+   } 
 </script>
 
 </html>

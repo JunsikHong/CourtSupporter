@@ -15,15 +15,15 @@
    padding-bottom: 15px;
    padding-left: 2px;
    color: #2E2E2E;
-   border-bottom: 3px solid #081247; /* #090C5F;*/     
+   border-bottom: 3px solid #08125E; /* #081247; #090C5F;*/     
 }
 
 .notice-sidemenu {
-   border-bottom: 3px solid #081247;
+   border-bottom: 3px solid  #08125E;
 }
 
 .notice-title {
-   border-bottom: 1px solid #081247; /* #777*/
+   border-bottom: 1px solid #08125E; /* #777*/
    font-size: 18px;
    font-weight: 550;
    color: #424242;
@@ -32,7 +32,7 @@
 }
 
 .myapplication-title {
-   border-bottom: 1px solid #081247;/* #777*/
+   border-bottom: 1px solid #08125E;/* #777*/
    font-size: 18px;
    font-weight: 550;
    padding: 10px 0;   
