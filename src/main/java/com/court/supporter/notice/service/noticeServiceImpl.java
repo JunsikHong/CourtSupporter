@@ -70,15 +70,15 @@ public class noticeServiceImpl implements noticeService {
 	}
 
 	@Override
-	public ArrayList<TB_003VO> noticeList(String writer, Criteria cri) {
+	public ArrayList<TB_003VO> noticeList(Criteria cri) {
 
-		return noticeMapper.noticeList(writer, cri);
+		return noticeMapper.noticeList( cri);
 	}
 
 	@Override
-	public int getTotal(String writer, Criteria cri) {
+	public int getTotal(Criteria cri) {
 
-		return noticeMapper.getTotal(writer, cri);
+		return noticeMapper.getTotal( cri);
 	}
 
 	@Override

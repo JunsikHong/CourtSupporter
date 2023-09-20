@@ -21,6 +21,13 @@ form  table tbody thead tr th td {
 	 position: relative;
 }
 
+#content{
+  margin-top: 20px;
+  line-height: 1;
+  font-size: 12px;
+  color: #666666;
+
+}
 
 table th, 
 table td {
@@ -83,17 +90,8 @@ input, select {
   background-color: rgb(11, 38, 110);
 }
 
-#content{
-  margin-top: 20px;
-  line-height: 1;
-  font-size: 12px;
-  color: #666666;
-
-}
-
 #contentsbox{
   margin-left: 250px;
-  
   min-height: 500px;
   
 }

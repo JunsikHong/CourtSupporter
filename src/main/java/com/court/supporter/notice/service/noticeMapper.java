@@ -14,10 +14,8 @@ import com.court.supporter.util.Criteria;
 @Mapper
 public interface noticeMapper {
 
-	public ArrayList<TB_003VO> noticeList(@Param("writer") String writer,
-										  @Param("cri") Criteria cri); //목록
-	public int getTotal(@Param("writer") String writer,
-						@Param("cri") Criteria cri); //전체 데이터(페이징) 가져오기
+	public ArrayList<TB_003VO> noticeList(@Param("cri") Criteria cri); //목록
+	public int getTotal(@Param("cri") Criteria cri); //전체 데이터(페이징) 가져오기
 	
 	public int noticeRegist(TB_003VO vo); //멀티파일 업로드 추가해야 함
 	public String getnoticepropernum(TB_003VO vo);

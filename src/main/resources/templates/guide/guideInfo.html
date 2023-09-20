@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/guide.css}">
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
+
+<th:block th:replace="~{./include/layout :: setContent(~{::.guideWrap})}">
+
+  <!--contents-->
+  <div class="guideWrap mainWrap">
+
+    <div id="content">
+      <!--sidebar-->
+      <div>
+        <th:block th:replace="~{./include/layout-guideList-side}"></th:block>
+      </div>
+
+      <div id="contentsbox">
+
+        <div id="contentstitle">
+			<span class="guidetitle">재판조력자 제도 안내</span>
+          <span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 재판조력자 제도 안내</span>
+        </div>
+        
+        <div id="contents">
+
+          <div id="contentsin">
+
+            <div class="contentsinbox">
+              <h4 class="mar">재판조력자의 종류 및 신청 방식</h4>
+              <div class="tabletop">
+                <!-- 1st table start-->
+                <table class="list vline" border="1">
+                  <!-- table title -->
+                  <caption>재판조력자의 종류 및 신청 방식</caption>
+
+                  <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="35%">
+                    <col width="15%">
+                  </colgroup>
+
+                  <thead>
+                    <tr>
+                      <th scope="col">종류</th>
+                      <th scope="col">모집시기</th>
+                      <th scope="col">모집방법</th>
+                      <th scope="col" class="last">비고</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="title">조력자</td>
+                      <td>년 1회</td>
+                      <td>추천을 받아 심사 후 등재</td>
+                      <td class="last"></td>
+                    </tr>
+                    <tr>
+                      <td class="title">통/번역인</td>
+                      <td>년 1회</td>
+                      <td>등재신청 모집공고</td>
+                      <td class="last"></td>
+                    </tr>
+                    <tr>
+                      <td class="title">조정위원</td>
+                      <td>년 1회</td>
+                      <td>등재신청 모집공고</td>
+                      <td class="last"></td>
+                    </tr>
+                    <tr>
+                      <td class="title">전문심리위원</td>
+                      <td>년 1회</td>
+                      <td>추천을 받아 심사 후 등재</td>
+                      <td class="last"></td>
+                    </tr>
+                    <tr>
+                      <td class="title">상담위원</td>
+                      <td>년 1회</td>
+                      <td>추천을 받아 심사 후 등재</td>
+                      <td class="last"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- 1st table end -->
+              </div>
+              <h4 class="mar">재판조력자 세부구분 및 조력자 명단 등재기준</h4>
+              <h5>공통사항</h5>
+              <ul class="countnum">
+                <li>
+                  <span class="num">1.</span>
+                  다음 각호의 어느 하나에 해당하는 사람은 『감정인 명단』에 등재하지 아니한다.
+                  <ul>
+                    <li>1. 금치산자 또는 한정치산자</li>
+                    <li>2. 파산선고를 받고 복권되지 아니한 사람</li>
+                    <li>3. 금고 이상의 형을 받고 그 집행이 종료되거나 집행을 받지 아니하기로 확정된 후 5년을 경과하지 아니한 사람</li>
+                    <li>4. 금고 이상의 형을 받고 그 집행유예의 기간이 완료된 날로부터 2년을 경과하지 아니한 사람</li>
+                    <li>5. 금고 이상의 형의 선고유예를 받은 경우에 그 선고유예 기간 중에 있는 사람</li>
+                    <li>6. 법원의 판결 또는 다른 볍률에 의하여 자격이 상실 또는 정지된 사람</li>
+                    <li>7. 공무원으로서 파면의 징계처분을 받은 때로부터 5년을 경과하지 아니한 사람</li>
+                    <li>8. 공무원으로서 해임의 징계처분을 받은 때로부터 3년을 경과하지 아니한 사람</li>
+                    <li>9. 감정업무와 관련하여 형사처벌 또는 징계처분을 받은 전력이 있는 사람</li>
+                    <li>10. 『감정인 명단』에서 삭제된 날로부터 2년이 경과되지 아니한 가람</li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="num">2.</span>
+                  기타 공정하고 객관적인 감정 업무를 수행하기 곤란하다고 판단되는 자는 제외한다.
+                </li>
+              </ul>
+
+
+
+              <h5 class="mar2" style="margin-top: 25px;">공사비등의 조력자 세부구분 및 등재기준</h5>
+              <div class="tabletop">
+                <!-- 3rd table start -->
+                <table class="list vline" border="1">
+                  <caption>공사비 등의 조력자 세부구분 및 등재기준</caption>
+                  <colgroup>
+                    <col width="20%">
+                    <col width="25%">
+                    <col width="15%">
+                    <col width="25%">
+                    <col width="15%">
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">구분</th>
+                      <th scope="col">대분류</th>
+                      <th scope="col">소분류</th>
+                      <th scope="col">등재기준</th>
+                      <th scope="col" class="last">제출서류</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="5">공사비등의 조력자</td>
+                      <td>건축(시공)</td>
+                      <td></td>
+                      <td rowspan="5">건축사·건축구조기술사·건축시공기술사 등의 국가기술자격을 가진 사람으로서 소속단체가 추천한 사람 또는 본인이 신청한 사람 또는 본인이 신청한 사람 중에서 적절하다고 판단되는 사람</td>
+                      <td rowspan="5" class="last"></td>
+                    </tr>
+                    <tr>
+                      <td>건축(구조·안전진단)</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>토목(시공)</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>토목(구조·안전진단)</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>토목(기타)</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- 3rd table end -->
+              </div>
+
+              <h5 class="mar2">측량 조력자, 문서 등의 조력자 세부구분 및 조력자 명단 등재기준</h5>
+              <div class="tabletop">
+                <!-- 4th table start -->
+                <table class="list vline" border="1">
+                  <caption>측량, 문서, 인영, 필적 등의 조력자 세부구분 및 조력자 명단 등재기준</caption>
+                  <colgroup>
+                    <col width="20%">
+                    <col width="50%">
+                    <col width="40%">
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">구분</th>
+                      <th scope="col">등재기준</th>
+                      <th scope="col" class="last">제출서류</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>측량 조력자</td>
+                      <td>
+                        <ul>
+                          <li>지적측량감정인은 측량·수로조사 및 지적에 관한 법률에 따라 등록된 지적 측량업자 또는 그 소속 지적기술사, 지적기사, 지적산업기사 이상의 자격을 가진 사람(국토교통부에 등록된 측량감정인)</li>
+                        </ul>
+                      </td>
+                      <td class="last"></td>
+                    </tr>
+                    <tr>
+                      <td>문서 등의 조력자</td>
+                      <td>
+                        <ul>
+                          <li>가.국가기관연구소 문서감정실에서 5년 이상 감정 연구한 사람</li>
+                          <li>나.국가기관연구소 문서감정실에서 5년 이상 감정 연구한 사람으로부터 문서감정 등에 관하여 5년 이상 연수받은 사람</li>
+                          <li>나.다음과 같은 시설·장비를 갖추어야 함. ① 입체현미경 ② 확대투영기 ③ 자외선 감식기 ④ 적외선 현미경(또는 적외선 휠터) ⑤ 마이크로렌즈가 장착된 카메라(또는 확대 컴퓨터) ⑥ 이화학적 실험기구</li>
+                        </ul>
+                      </td>
+                      <td class="last"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- 4th table end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</th:block>
+</html>
