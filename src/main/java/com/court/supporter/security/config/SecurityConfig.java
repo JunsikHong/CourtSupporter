@@ -46,18 +46,22 @@ public class SecurityConfig {
 //													   		"/notice/noticeUpdateForm", "/notice/noticeDelete",
 //													   		"/faq/faqRegist", "/faq/faqRegistForm", "/faq/faqModify",
 //													   		"/faq/faqUpdateForm", "/faq/faqDelete",
-//													   		"/adminmypage/adminmypage_auth_manage").hasRole("ADMIN") // 전체 관리자만
+
+//													   		"/adminmypage/adminmypage_auth_manage").hasAuthority("ROLE_ADMIN") // 전체 관리자만
 //											   .antMatchers("/adminmypage/adminmypage_evaluationlist", "/adminmypage/adminmypage_evaluationdetail",
-//													   		"/adminmypage/adminmypage_evaluation_popup", "/adminmypage/adminmypage_evaluation").hasAnyRole("JURIS", "COURT", "ADMIN") // 관리자
-//											   .antMatchers("/usermypage/**", "/application/**").hasRole("USER") // 사용자
-											   .anyRequest().permitAll()); //모든 요청 전부 허용
-		
+//													   		"/adminmypage/adminmypage_evaluation_popup", "/adminmypage/adminmypage_evaluation").hasAnyAuthority("ROLE_JURIS", "ROLE_COURT", "ROLE_ADMIN") // 관리자
+//											   .antMatchers("/usermypage/**", "/application/**").hasAuthority("ROLE_USER") // 사용자
+											   .anyRequest().permitAll());
+//											   .and()
+//											   .addFilter(jwtAuthenticationFilter)); //모든 요청 전부 허용
+
 		http.logout()
 			.logoutUrl("/logout")
 			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true)
 			.deleteCookies("Authorization", "Refresh")
 			.permitAll();
+		
 		return http.build();
 	}
 	

@@ -55,8 +55,8 @@ dependencies {
 	//aws lib
 	implementation 'software.amazon.awssdk:aws-sdk-java:2.20.43'
 	
-	//email
-	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.1'
+	//mail 인증 lib
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 }
 
