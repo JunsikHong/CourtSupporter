@@ -7,14 +7,16 @@
   
   <!-- 기본 정보 페이지 - 신청인 기본 정보 불러오기 -->
   <select id="getUserInfo" resultType="TB_001VO">
-  	select * from TB_001 where user_proper_num = #{user_proper_num}
+  	select * from TB_001 where user_id = #{user_id}
   </select>
   
   <!-- 기본 정보 페이지 - tb_005vo 데이터 가져오기 -->
   <select id="getApplicationBasicInfo" resultType="TB_005VO">
-  	select * from TB_005 where user_proper_num = #{user_proper_num} and announce_proper_num = #{announce_proper_num}
+  	select * from TB_005 where aplcn_dtls_proper_num = 
+  	(SELECT MIN(aplcn_dtls_proper_num) AS aplcn_dtls_proper_num 
+  	 FROM TB_005
+  	 WHERE announce_proper_num = #{announce_proper_num} and user_id = #{user_id})
   </select>
-  
   <!-- 기본 정보 페이지 - 주민번호 조회 -->
   <select id="getUserRrn" resultType="String">
   	select user_rrn from TB_001 where user_proper_num = #{user_proper_num} and user_name = #{user_name} and user_rrn = #{user_rrn}
@@ -165,8 +167,8 @@
   <!-- 학력 정보 페이지 - 최종 학력 입력 -->
   <update id="finalEducation">
 	update TB_006 set edctn_final_yn = CASE
-		WHEN user_id = #{user_id} AND edctn_dtls_proper_num =
-		#{final_education_chk} THEN 'Y'
+		WHEN user_id = #{user_id} AND aplcn_dtls_proper_num = #{aplcn_dtls_proper_num} 
+		AND edctn_dtls_proper_num = #{final_education_chk} THEN 'Y'
 		ELSE 'N'
 		END
   </update>
@@ -259,9 +261,40 @@
   </delete>
   
   <!-- 경력 정보 페이지 - 활동 경력, 특기 사항 등록 -->
-  <update id="workEtcRegist" parameterType="TB_007VO">
+  <insert id="workEtcRegist" parameterType="TB_007VO">
+  	insert into TB_007(aplcn_carer_proper_num,
+  					   carer_description,
+  					   special_note_description,
+		               aplcn_dtls_proper_num,
+		               user_id,
+		               user_proper_num)
+	select coalesce (
+      			(select max(aplcn_carer_proper_num)+1 from TB_007 
+      			where cast(substring(aplcn_carer_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d')), 
+      			concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
+           #{carer_description},
+           #{special_note_description},
+           #{aplcn_dtls_proper_num},
+		   #{user_id},
+		   #{user_proper_num}
+  </insert>
+  
+  <!-- 경력 정보 페이지 - 활동 경력, 특기 사항 수정 -->
+  <update id="workEtcUpdate" parameterType="TB_007VO">
   	update TB_007 set carer_description = #{carer_description},
   					  special_note_description = #{special_note_description}
+  	where user_id = #{user_id} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+  </update>
+  
+  <!-- 경력 정보 페이지 - 마지막 행 삭제시 경력 사항 수정 -->
+  <update id="workUpdate" parameterType="TB_007VO">
+  	update TB_007 set company_name = NULL,
+  					  carer_type = NULL,
+  					  work_start_date = NULL,
+  					  work_end_date = NULL,
+  					  work_description = NULL,
+  					  work_department = NULL,
+  					  work_position = NULL
   	where user_id = #{user_id} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </update>
   
@@ -320,6 +353,61 @@
   <delete id="certificateInfoDelete">
   	delete from TB_008 where user_id = #{user_id} and aplcn_crtfc_proper_num = #{aplcn_crtfc_proper_num} and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
   </delete>
+
+  <!-- 신청서 페이지 - 조력자 분류 -->
+  <select id="fclttDescription">
+	  select trial_fcltt_description from TB_005 as t5
+	  
+		left join TB_010 as t10
+		on t5.trial_fcltt_proper_num = t10.trial_fcltt_proper_num
+	
+		where user_proper_num = #{user_proper_num} 
+		and announce_proper_num = #{announce_proper_num}
+       limit 1
+  </select>
   
+  <!-- 신청서 페이지 - 학력 -->
+  <select id="getEdu">
+  	  select
+	  t6.*
+		
+	  from TB_005 as t5
+	  left join TB_006 as t6
+	  on t5.aplcn_dtls_proper_num = t6.aplcn_dtls_proper_num
+		
+	  where t5.user_proper_num = #{user_proper_num} 
+	  and t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+  </select>
+  
+  <!-- 신청서 페이지 - 경력 -->
+  <select id="getCareer">
+  	select
+		t7.*
+		
+		from TB_005 as t5
+		left join TB_007 as t7
+		on t5.aplcn_dtls_proper_num = t7.aplcn_dtls_proper_num
+		
+		where t5.user_proper_num = #{user_proper_num} 
+		and t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+  </select>
+  
+  <!-- 신청서 페이지 - 자격증 -->
+  <select id="getCert">
+	  select
+		t8.*
+		
+		from TB_005 as t5
+		left join TB_008 as t8
+		on t5.aplcn_dtls_proper_num = t8.aplcn_dtls_proper_num
+		
+		where t5.user_proper_num = #{user_proper_num} 
+		and t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+  </select>
+  
+  <!-- 신청완료 업데이트 -->
+  <update id="completeUpdate">
+  	update TB_005 set aplicn_dtls_sts = '02' where user_id = #{user_id} and announce_proper_num = #{announce_proper_num}
+  </update>
   
   </mapper>

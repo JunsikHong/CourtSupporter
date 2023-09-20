@@ -137,7 +137,7 @@ public class UserMypageController {
 		vo.setUser_proper_num(user_proper_num);
 		TB_001VO tb_001VO = userMypageService.usermypage_getInfo(user_proper_num);
 		TB_005VO tb_005VO = userMypageService.usermypage_getapplicationdetail1(vo);
-		TB_006VO tb_006VO = userMypageService.usermypage_getapplicationdetail2(vo);
+		ArrayList<TB_006VO> tb_006VO = userMypageService.usermypage_getapplicationdetail2(vo);
 		ArrayList<TB_007VO> tb_007VOlist = userMypageService.usermypage_getapplicationdetail3(vo);
 		ArrayList<TB_008VO> tb_008VOlist = userMypageService.usermypage_getapplicationdetail4(vo);
 		ArrayList<TB_009VO> tb_009VOlist = userMypageService.usermypage_getapplicationdetail5(vo);

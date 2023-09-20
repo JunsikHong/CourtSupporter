@@ -1,10 +1,19 @@
 package com.court.supporter.application.service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.court.supporter.command.TB_001VO;
@@ -23,8 +32,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 
 	// 기본 정보 페이지 신청인 기본 정보 불러오기
 	@Override
-	public TB_001VO getUserInfo(String user_proper_num) {
-		return applicationMapper.getUserInfo(user_proper_num);
+	public TB_001VO getUserInfo(TB_001VO tb_001vo) {
+		return applicationMapper.getUserInfo(tb_001vo);
 	}
 
 	//기본 정보 페이지 - tb_005vo 데이터 가져오기
@@ -142,8 +151,8 @@ public class ApplicationServiceImpl implements ApplicationService {
 	
 	//학력 정보 페이지 - 최종 학력 입력
 	@Override
-	public void finalEducation(String final_education_chk, String user_id) {
-		applicationMapper.finalEducation(final_education_chk, user_id);
+	public void finalEducation(TB_006VO tb_006vo) {
+		applicationMapper.finalEducation(tb_006vo);
 	}
 	
 	//학력,경력,자격증 정보 등록된 첨부 파일 불러오기
@@ -193,11 +202,23 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public void workInfoDelete(TB_007VO tb_007vo) {
 		applicationMapper.workInfoDelete(tb_007vo);
 	}
-
+	
 	//경력 정보 페이지 - 활동 경력, 특기 사항 등록
 	@Override
 	public void workEtcRegist(TB_007VO tb_007vo) {
 		applicationMapper.workEtcRegist(tb_007vo);
+	}
+
+	//경력 정보 페이지 - 활동 경력, 특기 사항 수정
+	@Override
+	public void workEtcUpdate(TB_007VO tb_007vo) {
+		applicationMapper.workEtcUpdate(tb_007vo);
+	}
+	
+	//경력 정보 페이지 - 마지막 행 삭제시 경력 사항 수정
+	@Override
+	public void workUpdate(TB_007VO tb_007vo) {
+		applicationMapper.workUpdate(tb_007vo);
 	}
 
 	//경력 정보 페이지 - 활동 경력, 특기 사항 데이터 불러오기
@@ -235,8 +256,36 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Override
 	public void certificateInfoDelete(TB_008VO tb_008vo) {
 		applicationMapper.certificateInfoDelete(tb_008vo);
-		
+	}
+
+	//신청서 페이지 - 조력자 분류
+	@Override
+	public TB_010VO fclttDescription(TB_005VO tb_005vo) {
+		return applicationMapper.fclttDescription(tb_005vo);
 	}
 	
+	//신청서 페이지 - 학력
+	@Override
+	public ArrayList<TB_006VO> getEdu(TB_005VO tb_005vo) {
+		return applicationMapper.getEdu(tb_005vo);
+	}
+
+	//신청서 페이지 - 경력
+	@Override
+	public ArrayList<TB_007VO> getCareer(TB_005VO tb_005vo) {
+		return applicationMapper.getCareer(tb_005vo);
+	}
 	
+	//신청서 페이지 - 자격증
+	@Override
+	public ArrayList<TB_008VO> getCert(TB_005VO tb_005vo) {
+		return applicationMapper.getCert(tb_005vo);
+	}
+	
+	//신청완료 업데이트
+	@Override
+	public void completeUpdate(TB_005VO tb_005vo) {
+		applicationMapper.completeUpdate(tb_005vo);
+	}
+
 }

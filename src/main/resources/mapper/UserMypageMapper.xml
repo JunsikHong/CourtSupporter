@@ -148,6 +148,8 @@
 
 		where user_proper_num = #{user_proper_num} 
 		and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+		
+		limit 1
 	</select>
 
 	<!-- 사용자 신청 상세 가져오기 -->
@@ -244,7 +246,7 @@
 		on t5.court_proper_num = t11.court_proper_num
 		
 		where user_proper_num = #{user_proper_num} 
-		and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+		and announce_proper_num = #{announce_proper_num}
 	</select>
 
 	<!-- 사용자 활동 총합구하기 -->

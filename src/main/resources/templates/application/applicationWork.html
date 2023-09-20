@@ -52,7 +52,8 @@
 					<span>는 필수 입력 사항 입니다.</span>
 				</div>
 				<form action="workForm" id="workForm" name="workForm" method="post" enctype="multipart/form-data">
-
+					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+					<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 					<div class="pop_contents">
 						<table class="board_table topT">
 							<colgroup>
@@ -80,13 +81,12 @@
 								</tr>
 							</thead>
 							<tbody id="workList">
-								<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num">
-								<tr th:each="vo : ${list}" class="workListRow">
+								<tr th:if="${list != null and list[0].company_name != null}" th:each="vo : ${list}" class="workListRow">
 									<input type="hidden" id="aplcn_carer_proper_num" name="aplcn_carer_proper_num" th:value="${vo.aplcn_carer_proper_num}">
-									<td style="vertical-align: middle;">[[${vo?.company_name}]]</td>
-									<td style="vertical-align: middle;">[[${vo?.work_start_date}]]~[[${vo.work_end_date}]]</td>
-									<td style="vertical-align: middle;">[[${vo?.work_description}]]</td>
-									<td style="vertical-align: middle;">[[${vo?.work_department}]]/[[${vo.work_position}]]</td>
+									<td style="vertical-align: middle;">[[${vo.company_name}]]</td>
+									<td style="vertical-align: middle;">[[${#strings.substring(vo.work_start_date, 0, 10)}]]~[[${#strings.substring(vo.work_end_date, 0, 10)}]]</td>
+									<td style="vertical-align: middle;">[[${vo.work_description}]]</td>
+									<td style="vertical-align: middle;">[[${vo.work_department}]]/[[${vo.work_position}]]</td>
 									<td style="vertical-align: middle;">
 										<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />
 										<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />
@@ -112,12 +112,15 @@
 										</i>
 										<span>활동경력</span>
 									</th>
-									<td><textarea name="carer_description"
+									<td><textarea id="carer_description" name="carer_description"
 											style="border: 1px solid #ddd; width: 95%; resize: none; height: 70px;">[[${vo?.carer_description}]]</textarea>
 									</td>
 								</tr>
 							</tbody>
 						</table>
+						<div style="text-align: center;">
+							<span id="msg1" style="color: red;"></span>
+						</div>
 					</div>
 
 					<div class="pop_contents">
@@ -135,12 +138,15 @@
 										</i>
 										<span>특기사항</span>
 									</th>
-									<td><textarea name="special_note_description"
+									<td><textarea id="special_note_description" name="special_note_description"
 											style="border: 1px solid #ddd; width: 95%; resize: none; height: 70px;">[[${vo?.special_note_description}]]</textarea>
 									</td>
 								</tr>
 							</tbody>
 						</table>
+						<div style="text-align: center;">
+							<span id="msg2" style="color: red;"></span>
+						</div>
 					</div>
 
 					<div class="pop_contents">

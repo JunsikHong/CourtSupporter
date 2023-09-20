@@ -47,7 +47,8 @@
 			<div id="pop_wrap">
 
 				<form action="certificateForm" id="certificateForm" name="certificateForm" method="post" enctype="multipart/form-data">
-
+					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+					<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 					<div class="pop_contents">
 						<table class="board_table topT">
 							<colgroup>
@@ -76,13 +77,12 @@
 								</tr>
 							</thead>
 							<tbody id="certificateList">
-								<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num">
 								<tr th:each="vo : ${list}" class="certificateListRow">
 									<input type="hidden" id="aplcn_crtfc_proper_num" name="aplcn_crtfc_proper_num" th:value="${vo.aplcn_crtfc_proper_num}">
 									<td style="vertical-align: middle;">[[${vo.crtfc_type}]]</td>
 									<td style="vertical-align: middle;">[[${vo.issue_agency}]]</td>
 									<td style="vertical-align: middle;">[[${vo.crtfc_number}]]</td>
-									<td style="vertical-align: middle;">[[${vo.issue_date}]]</td>
+									<td style="vertical-align: middle;">[[${#strings.substring(vo.issue_date, 0, 10)}]]</td>
 									<td style="vertical-align: middle;">
 										<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />
 										<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />
