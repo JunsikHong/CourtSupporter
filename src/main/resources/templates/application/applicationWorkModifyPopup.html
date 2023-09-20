@@ -11,6 +11,8 @@
 			<div id="pop_wrap">
 
 				<form action="workModifyPopupForm" id="workModifyPopupForm" name="workModifyPopupForm" method="post">
+					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+					<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 					<div class="pop_contents">
 						<span class="sm_title">*근무경력 및 활동경력사항 입력</span>
 						<table class="tableT popT">
@@ -34,9 +36,9 @@
 								<tr class="uptr04">
 									<th class="">기간</th>
 									<td>
-										<input class="datepicker" id="date1" name="work_start_date" type="text" th:value="${vo.work_start_date}" title="기간" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"> 
+										<input class="datepicker" id="date1" name="work_start_date" type="text" th:value="${#strings.substring(vo.work_start_date, 0, 10)}" title="기간" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"> 
 										<span>~</span>
-										<input class="datepicker" id="date2" name="work_end_date" type="text" th:value="${vo.work_end_date}" title="기간" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}">
+										<input class="datepicker" id="date2" name="work_end_date" type="text" th:value="${#strings.substring(vo.work_end_date, 0, 10)}" title="기간" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}">
 									</td>
 								</tr>
 								<tr class="uptr01">

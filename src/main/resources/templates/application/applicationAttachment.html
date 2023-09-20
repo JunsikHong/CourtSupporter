@@ -52,7 +52,8 @@
 					<span>는 필수 입력 사항 입니다.</span>
 				</div>
 				<form action="attachmentForm" id="attachmentForm" name="attachmentForm" method="post" enctype="multipart/form-data">
-
+					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+					<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 					<div class="pop_contents">
 						<table class="board_table topT">
 							<colgroup>
@@ -83,14 +84,18 @@
 									<td style="vertical-align: middle; border-right: 1px solid #ddd;">사업자 등록증</td>
 									<td id="CoFileAddList1">
 										  <input type="button" class="CoFilePlusBtn1" value="파일추가" style="color: #fff; width: 150px;">
-										<div class="file-container">
+										<div id="businesslicenseFile" class="file-container">
 											<div th:each="vo : ${BUSINESSLICENSE}">
 										  <label for="file-input" class="file-label">
-										    <input type="hidden" class="uuid_type" th:value="${vo.uuid + '_' + vo.file_type}">
+										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
+										    <input type="hidden" class="type" th:value="${vo.file_type}">
 										  </label>
 										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
 										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;background-color: rgb(11, 38, 110);">
 											</div>
+										</div>
+										<div style="text-align: center;">
+											<span id="msg1" style="color: red;"></span>
 										</div>
 									</td>
 								</tr>
@@ -98,14 +103,18 @@
 									<td style="vertical-align: middle; border-right: 1px solid #ddd;">업무관련 등록 신고현황</td>
 									<td id="CoFileAddList2">
 										  <input type="button" class="CoFilePlusBtn2" value="파일추가" style="color: #fff; width: 150px;">
-										<div class="file-container">
+										<div id="businessreportFile" class="file-container">
 											<div th:each="vo : ${BUSINESSREPORT}">
 										  <label for="file-input" class="file-label">
-										    <input type="hidden" class="uuid_type" th:value="${vo.uuid + '_' + vo.file_type}">
+										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
+										    <input type="hidden" class="type" th:value="${vo.file_type}">
 										  </label>
 										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
 										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;">
 											</div>
+										</div>
+										<div style="text-align: center;">
+											<span id="msg2" style="color: red;"></span>
 										</div>
 									</td>
 								</tr>
@@ -113,14 +122,18 @@
 									<td style="vertical-align: middle; border-right: 1px solid #ddd;">납세증명확인서</td>
 									<td id="CoFileAddList3">
 										  <input type="button" class="CoFilePlusBtn3" value="파일추가" style="color: #fff; width: 150px;">
-										<div class="file-container">
+										<div id="taxconfirmFile" class="file-container">
 											<div th:each="vo : ${TAXCONFIRM}">
 										  <label for="file-input" class="file-label">
-										    <input type="hidden" class="uuid_type" th:value="${vo.uuid + '_' + vo.file_type}">
+										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
+										    <input type="hidden" class="type" th:value="${vo.file_type}">
 										  </label>
 										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
 										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;">
 											</div>
+										</div>
+										<div style="text-align: center;">
+											<span id="msg3" style="color: red;"></span>
 										</div>
 									</td>
 								</tr>
@@ -157,12 +170,13 @@
 										<div class="file-container" id="resume_container">
 											<div th:each="vo : ${RESUME}">
 											<label for="file-input" class="file-label">
-												<input type="hidden" class="uuid_type" th:value="${vo.uuid + '_' + vo.file_type}">
+												<input type="hidden" class="uuid" th:value="${vo.uuid}">
+												<input type="hidden" class="type" th:value="${vo.file_type}">
 												<input type="file" id="file-input" name="pe_resume" style="display: none;">
-												<span id="resume_btn" class="fileAddBtn" style="width: 130px;height: 14px;">파일 선택</span>
+												<span id="resume_btn" class="fileAddBtn" style="width: 160px;height: 14px;">파일 선택</span>
 											</label>
-											<input id="resume_name" class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="width: 166px;display: none;">
-											<input type="button" class="PeFileDeleteBtn1" value="삭제" style="color: #fff; width: 80px;display: none;">
+											<input id="resume_name" class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="width: 166px;">
+											<input type="button" class="PeFileDeleteBtn1" value="삭제">
 											</div>
 										</div>
 									</td>
@@ -174,10 +188,11 @@
 										<div class="file-container">
 											<div th:each="vo : ${EDUCATIONLEVEL}">
 										  <label for="file-input" class="file-label">
-										    <input type="hidden" class="uuid_type" th:value="${vo.uuid + '_' + vo.file_type}">
+										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
+										    <input type="hidden" class="type" th:value="${vo.file_type}">
 										  </label>
 										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
-										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;">
+										  <input type="button" class="fileDeleteBtn2" value="삭제">
 											</div>
 										</div>
 									</td>
@@ -189,7 +204,8 @@
 										<div class="file-container">
 											<div th:each="vo : ${CARRER}">
 										  <label for="file-input" class="file-label">
-										    <input type="hidden" class="uuid_type" th:value="${vo.uuid + '_' + vo.file_type}">
+										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
+										    <input type="hidden" class="type" th:value="${vo.file_type}">
 										  </label>
 										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
 										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;">
@@ -204,7 +220,8 @@
 										<div class="file-container">
 											<div th:each="vo : ${CERTIFICATE}">
 										  <label for="file-input" class="file-label">
-										    <input type="hidden" class="uuid_type" th:value="${vo.uuid + '_' + vo.file_type}">
+										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
+										    <input type="hidden" class="type" th:value="${vo.file_type}">
 										  </label>
 										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
 										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;">
@@ -216,30 +233,6 @@
 							</tbody>
 						</table>
 					</div>
-
-					<!--<div class="pop_contents">
-						<table class="board_table topT">
-							<colgroup>
-								<col width="10%">
-								<col width="50%">
-								<col width="40%">
-							</colgroup>
-
-							<thead>
-								<div class="board_h">
-									<div class="board_total">*기타 증빙서류</div>
-								</div>
-
-								<tr>
-									<th style="border-right: 1px solid #ddd;">구분</th>
-									<th colspan="2">제출서류명</th>
-								</tr>
-							</thead>
-							<tbody>
-
-							</tbody>
-						</table>
-					</div>-->
 
 					<div class="pop_contents">
 						<div class="board_h">
@@ -258,7 +251,8 @@
 										<div class="file-container">
 											<div th:each="vo : ${OTHER}">
 										  <label for="file-input" class="file-label">
-										    <input type="hidden" class="uuid_type" th:value="${vo.uuid + '_' + vo.file_type}">
+										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
+										    <input type="hidden" class="type" th:value="${vo.file_type}">
 										  </label>
 										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
 										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;">
@@ -272,7 +266,7 @@
 
 					<div class="btnbox btnbox02">
 						<input type="button" class="btn4d5" value="이전" onclick="history.back();" />
-						<input type="submit" class="btnfb7" value="제출">
+						<input type="submit" class="btnfb7 save" value="다음">
 					</div>
 				</form>
 			</div>

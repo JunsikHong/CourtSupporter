@@ -184,3 +184,50 @@ input[type='text'].datepicker {
 	margin-right: 20px;
 	line-height: 30px;
 }
+
+.btnbox {
+	text-align: center;
+	margin-top: 40px;
+}
+
+.btnbox .btnfb7 {
+	background-color: rgb(11, 38, 110);
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.btnbox .btn4d5 {
+	background-color: #4d515b;
+	font-size: 18px;
+	color: #FFF;
+	height: 42px;
+	line-height: 42px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.uptr03 .btn4d5 {
+	background-color: #4d515b;
+	font-size: 12px;
+	color: #FFF;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+	cursor: pointer;
+}
+
+.btnbox02 a {
+	width: 129px;
+	box-sizing: border-box;
+}

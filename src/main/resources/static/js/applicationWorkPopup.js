@@ -1,11 +1,12 @@
 window.onload = function() {
-	$('#popupClose').on('click', function() {
-		$('#workPopupForm').submit();
-		window.opener.workInfo();
+	$('#workPopupForm').on('submit', function() {
+		var aplcn_dtls_proper_num = document.getElementById('aplcn_dtls_proper_num').value;
+		window.opener.workInfo(aplcn_dtls_proper_num);
 	});
 	
 	$('#workModifyPopupForm').on('submit', function() {
-		window.opener.workInfo();
+		var aplcn_dtls_proper_num = document.getElementById('aplcn_dtls_proper_num').value;
+		window.opener.workInfo(aplcn_dtls_proper_num);
 		
 	});
 }

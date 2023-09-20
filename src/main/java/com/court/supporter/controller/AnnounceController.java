@@ -1,6 +1,8 @@
 package com.court.supporter.controller;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -8,7 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -37,8 +41,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.court.supporter.adminmypage.service.AdminMypageService;
 import com.court.supporter.announce.service.AnnounceService;
+import com.court.supporter.application.service.ApplicationService;
 import com.court.supporter.aws.service.AnnounceFileService;
 import com.court.supporter.command.TB_002VO;
+import com.court.supporter.command.TB_005VO;
 import com.court.supporter.command.TB_010VO;
 import com.court.supporter.command.TB_017VO;
 import com.court.supporter.security.DefaultUserDetails;
@@ -57,30 +63,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 @RequiredArgsConstructor
 public class AnnounceController {
 	
-	/*
 	private final JwtValidator jwtValidator;
-	
-
-	public void exam(HttpServletRequest request) {
-		
-      //session에서 token 불러오기
-      HttpSession session = request.getSession();
-      String jwt = (String) session.getAttribute("token");
-      
-      //로그인 했을 때(= 토큰이 있을 때)
-      if (jwt != null) {
-         Authentication authentication = jwtValidator.getAuthentication(jwt);
-         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
-         
-         //token에서 member_proper_num 가져오기
-           String member_proper_num = userDetails.getUsername();
-           //token에서 member_role 가져오기
-           //role은 Collection으로 받아와서 배열로 바꾼 뒤 roles[0]를 가져오면 됩니다 :)
-           Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
-           Object[] roles = member_role.toArray();
-      }
-	}
-	*/
 	
 	@Autowired
 	@Qualifier("announceService")
@@ -91,6 +74,10 @@ public class AnnounceController {
     private AnnounceFileService announceFileService;
 
     @Autowired
+	@Qualifier("applicationService")
+	private ApplicationService applicationService;
+    
+    @Autowired
     @Qualifier("adminMypageService")
     private AdminMypageService adminMypageService;
     
@@ -99,192 +86,301 @@ public class AnnounceController {
     
     @Value("${aws_bucket_name}")
     private String aws_bucket_name;
-
     private String uploadPath = "announce/" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
 	
 	//공고 등록 화면으로 이동
 	@GetMapping("/announceReg")
-	public String announceRegist() {
-		return "announce/announceReg";
-	}	
+	public String announceRegist(HttpServletRequest request, RedirectAttributes ra) { //, RedirectAttributes ra
+		
+		HttpSession session = request.getSession();
+	    String jwt = (String) session.getAttribute("token");	     
+	     
+	    if (jwt != null) {
+	         Authentication authentication = jwtValidator.getAuthentication(jwt);
+	         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();	        
+	         String member_proper_num = userDetails.getUsername();
+	         //token에서 member_role 가져오기
+	         //role은 Collection으로 받아와서 배열로 바꾼 뒤 roles[0]를 가져오면 됩니다 :)
+	         Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
+	         Object[] roles = member_role.toArray();
+	         
+	         String auth = announceService.announce_authcheck(member_proper_num);
+	         System.out.println(auth);
+	         if(auth.equals("ROLE_ADMIN")) {	        	 
+	        	 return "announce/announceReg";         
+	         }
+	    }   
+	    ra.addFlashAttribute("msg", "접근 권한이 없습니다.");	
+		
+	    return "redirect:/announce/announceList";
+	}	 
 
 	//등록시 목록으로 이동
 	@PostMapping("/announceRegForm")
-	public String regist(TB_002VO vo, TB_010VO tb_010VO, RedirectAttributes ra , @RequestParam("file") List<MultipartFile> list) { //@RequestParam("announce_file") List<MultipartFile> list    MultipartFile file
-
-				
-		//임의로 관리자 및 재판조력자 고유번호 설정
-		vo.setAdmin_proper_num(1);
-		//vo.setTrial_fcltt_proper_num(23);		
-
-		tb_010VO.getTrial_fcltt_clasifi_code();
-		tb_010VO.getTrial_fcltt_sbcls_code();	
-//		tb_010VO.getTrial_fcltt_proper_num();
-		//vo.setTrial_fcltt_proper_num(tb_010VO.getTrial_fcltt_proper_num());		
-		
-		Integer trialFclttProperNum = announceService.getTrial_flctt_proper_num(tb_010VO);
-		
-		if(tb_010VO.getTrial_fcltt_sbcls_code() == null) { //소분류가 없다면 중분류만 있다는 것	
-			tb_010VO.getTrial_fcltt_clasifi_code(); 
-			vo.setTrial_fcltt_proper_num(trialFclttProperNum);
-			System.out.println(vo.getTrial_fcltt_proper_num());
-		} else {
-			tb_010VO.getTrial_fcltt_sbcls_code();
-			vo.setTrial_fcltt_proper_num(trialFclttProperNum);
-			System.out.println(vo.getTrial_fcltt_proper_num());
-		}
-
-		//file upload
-		list = list.stream().filter(t -> t.isEmpty() == false).toList();
-
-	      for (MultipartFile file : list) {
-	         if (file.getContentType().contains("image") == false &&
-	            file.getContentType().contains("application/pdf") == false &&
-	            file.getContentType().contains("text/plain") == false &&
-	            file.getContentType().contains("application/x-hwp") == false) {
-	            
-	            //허용되지 않는 MIME타입인 경우 처리            
-	            ra.addFlashAttribute("msg", "올바른 파일 형식이 아닙니다");	
-	            return "redirect:/announce/announceList";
-	         }	         
-	      }	  	      
-	      
-	      List<String> fileList = announceFileService.announceRegist(list);
-	      
-	      announceService.announceRegist(vo, fileList);		
-	      announceService.getTrial_flctt_proper_num(tb_010VO);
-	      
-		return "redirect:/announce/announceList";
+	public String regist(HttpServletRequest request, TB_002VO vo, TB_010VO tb_010VO, RedirectAttributes ra , @RequestParam("file") List<MultipartFile> list) { //@RequestParam("announce_file") List<MultipartFile> list    MultipartFile file
+								
+	     HttpSession session = request.getSession();
+	     String jwt = (String) session.getAttribute("token");	     
+	     
+	     if (jwt != null) {
+	         Authentication authentication = jwtValidator.getAuthentication(jwt);
+	         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();	        
+	         String member_proper_num = userDetails.getUsername();
+	         //token에서 member_role 가져오기
+	         //role은 Collection으로 받아와서 배열로 바꾼 뒤 roles[0]를 가져오면 됩니다 :)
+	         Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
+	         Object[] roles = member_role.toArray();
+	    	
+			//임의로 관리자 고유번호 설정
+			vo.setAdmin_proper_num(member_proper_num); //"1"
+			System.out.println(vo.getAdmin_proper_num());
+			
+			//file upload
+			list = list.stream().filter(t -> t.isEmpty() == false).toList();
+	
+		      for (MultipartFile file : list) {
+		         if (file.getContentType().contains("image") == false &&
+		            file.getContentType().contains("application/pdf") == false &&
+		            file.getContentType().contains("text/plain") == false &&
+		            file.getContentType().contains("application/x-hwp") == false) {
+		            
+		            //허용되지 않는 MIME타입인 경우 처리            
+		            ra.addFlashAttribute("msg", "올바른 파일 형식이 아닙니다");	
+		            return "redirect:/announce/announceList";
+		         }	                  
+		      }	  	      
+		      
+		      List<String> fileList = announceFileService.announceRegist(list);
+		      
+		      String trialNum = announceService.getTrial_flctt_proper_num(tb_010VO);
+		      vo.setTrial_fcltt_proper_num(trialNum);
+		      announceService.announceRegist(vo, fileList);		
+		      
+		      
+			return "redirect:/announce/announceList";
+	     }
+	     return "redirect:/announce/announceList";
 	}
 	
 	
 	//공고 목록 게시판 조회 + 검색
 	@GetMapping("/announceList")
-	public String announceList( Model model, Criteria cri) { //, @RequestParam(value = "categoryValue", required = false) , @RequestParam("trial_fcltt_proper_num") int trial_fcltt_proper_num
-		String member_id = "user100";
-		String member_role = adminMypageService.adminmypage_authcheck(member_id);		
+	public String announceList(HttpServletRequest request, Model model, Criteria cri, RedirectAttributes ra) { //, @RequestParam(value = "categoryValue", required = false) , @RequestParam("trial_fcltt_proper_num") int trial_fcltt_proper_num
 		
-		List<TB_002VO> list = announceService.announce_getList(cri);				
-		int total = announceService.announce_getTotal(cri);
-		PageVO pageVO = new PageVO(cri, total);		
-			
-		//날짜 비교		
-		for(TB_002VO vo : list) {
-			String endDate = vo.getAnnounce_end_date();
-			DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			LocalDate localEndDate = LocalDate.parse(endDate, dateformat); //LocalDate
-			LocalDate today = LocalDate.now(); //LocalDate
-			if(today.isAfter(localEndDate)) {
-				vo.setAnnounceStatus("모집완료");
-			} else {
-				vo.setAnnounceStatus("모집중");
-			}			
-		}
-
-		model.addAttribute("list", list);		
-		model.addAttribute("pageVO", pageVO); 
-		model.addAttribute("member_role", member_role);
-
+		HttpSession session = request.getSession();
+	    String jwt = (String) session.getAttribute("token");	     
+	     
+	    List<TB_002VO> list = announceService.announce_getList(cri);				
+	    int total = announceService.announce_getTotal(cri);
+	    PageVO pageVO = new PageVO(cri, total);		
+	    
+	    //날짜 비교		
+	    for(TB_002VO vo : list) { //TB_002VO vo
+	    	String endDate = vo.getAnnounce_end_date();
+	    	DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    	LocalDate localEndDate = LocalDate.parse(endDate, dateformat); //LocalDate
+	    	LocalDate today = LocalDate.now(); //LocalDate
+	    	
+	    	if(today.isAfter(localEndDate)) {
+	    		vo.setAnnounceStatus("모집완료");
+	    	} else {
+	    		vo.setAnnounceStatus("모집중");
+	    	}			
+	    }
+	    
+	    System.out.println(cri.getTrial_fcltt_proper_num());
+	    model.addAttribute("list", list);		
+	    model.addAttribute("pageVO", pageVO); 			
+	    
+	    
+	    if (jwt != null) { //목록 조회시 로그인이 된 경우
+	         Authentication authentication = jwtValidator.getAuthentication(jwt);
+	         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();	        
+	         String member_proper_num = userDetails.getUsername();
+	         //token에서 member_role 가져오기  //role은 Collection으로 받아와서 배열로 바꾼 뒤 roles[0]를 가져오면 됩니다 :)
+	         Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
+	         Object[] roles = member_role.toArray();
+	         String auth = announceService.announce_authcheck(member_proper_num);
+	         //model.addAttribute("member_role", member_role);
+	         if(auth.equals("ROLE_ADMIN")) {	
+	        	 model.addAttribute("auth", auth);
+	        	 return "announce/announceList";         
+	         } 
+	    }	         
+                
 		return "announce/announceList";
 	}
 	
-	@GetMapping("/announceTrialList/{category}")
-	public String announceTrialList(@PathVariable("category")int category, Criteria cri , Model model, TB_002VO vo) { //, @PathVariable int trial_fcltt_proper_num 
-										//int trial_fcltt_proper_num 
-		//조력자 메뉴 클릭시 해당 조력자 공고조회			
-		List<TB_002VO> trialList = announceService.getTrialList(category);
-		
-		int total = announceService.announce_getTotal(cri);
-		PageVO pageVO = new PageVO(cri, total);
-		
-		vo.getTrial_fcltt_proper_num();
-		System.out.println(vo.getTrial_fcltt_proper_num());
-		
-		model.addAttribute("trialList", trialList);
-		model.addAttribute("pageVO", pageVO); 
-		//model.addAttribute("vo", vo);
-		return "announce/announceTrialList/" + category;
-		
-	}
-		
 	
-	//조력자 공고 조회
-//	@GetMapping("/announceList/{category}")
-//	public String announceTrialList(@PathVariable("category")int category, Criteria cri , Model model, TB_002VO vo) { //, @PathVariable int trial_fcltt_proper_num 
-//										//int trial_fcltt_proper_num 
-//		//조력자 메뉴 클릭시 해당 조력자 공고조회			
-//		List<TB_002VO> trialList = announceService.getTrialList(category);
-//		
-//		int total = announceService.announce_getTotal(cri);
-//		PageVO pageVO = new PageVO(cri, total);
-//		
-//		vo.getTrial_fcltt_proper_num();
-//		System.out.println(vo.getTrial_fcltt_proper_num());
-//		
-//		model.addAttribute("trialList", trialList);
-//		model.addAttribute("pageVO", pageVO); 
-//		//model.addAttribute("vo", vo);
-//		return "redirect:/announce/announceList/" + category;
-//		
-//	}
-	
-	
-	
-	//공고 게시글(공고 상세 화면)
+	//공고 상세 화면(게시글)
 	@GetMapping("/announceDetail") //파일첨부기능도 떠야함
-	public String announceDetail(@RequestParam("announce_proper_num") String announce_proper_num, Model model) { //@RequestParam("announce_file_proper_num") int announce_file_proper_num)
-//		fileVO.setAnnounce_proper_num(123);
+	public String announceDetail(HttpServletRequest request, @RequestParam("announce_proper_num") String announce_proper_num, Model model, RedirectAttributes ra) { //@RequestParam("announce_file_proper_num") int announce_file_proper_num)
+
+		HttpSession session = request.getSession();
+	    String jwt = (String) session.getAttribute("token");
 		
-		TB_002VO vo = announceService.getDetail(announce_proper_num);
-		
-		List<TB_017VO> filevo = announceService.getFileDetail(announce_proper_num);
-		
-		
-		 // 이전 글과 다음 글 조회
-	    TB_002VO previousPost = announceService.getPrev(announce_proper_num);
-	    TB_002VO nextPost = announceService.getNext(announce_proper_num);
-	    
-	    model.addAttribute("filevo", filevo);
-	    model.addAttribute("previousPost", previousPost);
-	    model.addAttribute("nextPost", nextPost);
-	    model.addAttribute("vo", vo);
-				
-		return "announce/announceDetail";
+		TB_002VO vo = announceService.getDetail(announce_proper_num);		
+        List<TB_017VO> filevo = announceService.getFileDetail(announce_proper_num);
+        
+        
+        //파일 다운로드. 특수문자로 떠서 수정해야함.
+//        Map<TB_017VO,String> file = new HashMap<TB_017VO, String>();       
+//        
+//        for(int i = 0; i < filevo.size(); i++) {
+//     	   
+//            file.put(filevo.get(i), filevo.get(i).getOriginal_file_name());
+//            try {
+//               filevo.get(i).setOriginal_file_name(URLEncoder.encode(filevo.get(i).getOriginal_file_name(),"UTF-8"));
+//            } catch (UnsupportedEncodingException e) {
+//               // TODO Auto-generated catch block
+//               e.printStackTrace();
+//            }
+//         }
+                  
+        System.out.println("announce_proper_num: " + announce_proper_num);
+        System.out.println("jwt: " + jwt);
+                  
+      
+        // 이전 글과 다음 글 조회
+        TB_002VO previousPost = announceService.getPrev(announce_proper_num);
+        TB_002VO nextPost = announceService.getNext(announce_proper_num);
+        
+        model.addAttribute("filevo", filevo);
+        model.addAttribute("previousPost", previousPost);
+        model.addAttribute("nextPost", nextPost);      
+        model.addAttribute("vo", vo);	
+       
+	  	    
+	    if (jwt != null) { //상세화면 로그인 했을 때(= 토큰이 있을 때)
+           Authentication authentication = jwtValidator.getAuthentication(jwt);
+           DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
+         
+           //token에서 member_proper_num 가져오기
+           String member_proper_num = userDetails.getUsername(); 
+           Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
+           Object[] roles = member_role.toArray();
+           String auth = announceService.announce_authcheck(member_proper_num);
+           if(auth.equals("ROLE_ADMIN")) {	
+        	   	model.addAttribute("auth", auth);
+	        	return "announce/announceDetail";         
+	       } 
+	    } 
+
+	    return   "announce/announceDetail";	//"redirect:/announce/announceList"; //"redirect:/"; 
 	}
 	
+	@GetMapping("/applicationAgree")
+	public String applicationAgree(@RequestParam("announce_proper_num") String announce_proper_num, Model model, HttpServletRequest request, RedirectAttributes ra ) {
+									//@RequestParam("trial_fcltt_proper_num") String trial_fcltt_proper_num
+		
+		HttpSession session = request.getSession();
+	    String jwt = (String) session.getAttribute("token");	     
+	    
+	    if (jwt != null) { //회원인 경우
+	         Authentication authentication = jwtValidator.getAuthentication(jwt);
+	         DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();	        
+	         String member_proper_num = userDetails.getUsername();
+	         
+	         //회원 고유번호과 공고 고유번호를 매개변수로 받아 해당 데이터가 있다면	       
+	         int userInfo = announceService.getUserInfo(announce_proper_num, member_proper_num);
+	         System.out.println(userInfo);
+	      
+	         //user 해당 공고 신청기록이 없다면	 	      
+	         if(userInfo == 0) { //int 라면 == 0일 경우,
+	        	//String mainCode = "0" + announce_proper_num.substring(0, 1);  //대분류코드 넘길 때
+	        	//String trialNum = vo.getTrial_fcltt_proper_num();
+	        	 return "redirect:/application/applicationAgree?announce_proper_num=" + announce_proper_num; // + "&trial_fcltt_proper_num=" + trial_fcltt_proper_num 
+	        	 
+	         } else { //이미 해당 공고를 신청한 경우 
+	        	 ra.addFlashAttribute("result", userInfo);
+	        	 return "redirect:/announce/announceList";
+	         }	         
+	    } else { 
+	    	ra.addFlashAttribute("loginresult", jwt);
+	    }
+	    return "redirect:/announce/announceList";
+	}
 	
 	//공고 수정 화면
 	@GetMapping("/announceModify")
-	public String announceModify(@RequestParam("announce_proper_num") String announce_proper_num, Model model) {
+	public String announceModify(HttpServletRequest request, @RequestParam("announce_proper_num") String announce_proper_num, Model model) {
 		
-		 TB_002VO vo = announceService.getDetail(announce_proper_num);
-		 model.addAttribute("vo", vo); System.out.println(vo.toString());
+		HttpSession session = request.getSession();
+	    String jwt = (String) session.getAttribute("token");
+	      
+	    //로그인 했을 때(= 토큰이 있을 때)
+	    if (jwt != null) {
+           Authentication authentication = jwtValidator.getAuthentication(jwt);
+           DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
+         
+           //token에서 member_proper_num 가져오기
+           String member_proper_num = userDetails.getUsername(); 
+           Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
+           Object[] roles = member_role.toArray();
+//	    }
+			TB_002VO vo = announceService.getDetail(announce_proper_num);
+			model.addAttribute("vo", vo); System.out.println(vo.toString());
 		
-		return "announce/announceModify";
+			return "announce/announceModify";
+	    }
+	    return "redirect:/announce/announceList";
 	}
 	
 	//공고 수정후 게시물로 이동
 	@PostMapping("/announceModifyForm")
-	public String modify(@ModelAttribute("vo") TB_002VO vo, RedirectAttributes ra) {
+	public String modify(HttpServletRequest request, @ModelAttribute("vo") TB_002VO vo, RedirectAttributes ra) {
 		
 		System.out.println(vo); //확인
 		
-		int result = announceService.announceModify(vo);
-		String msg = result == 1 ? "수정 완료" : "수정 실패";
-		ra.addFlashAttribute("msg", msg);
-		return "redirect:/announce/announceList";
-		
+		HttpSession session = request.getSession();
+	    String jwt = (String) session.getAttribute("token");
+	      
+	    //로그인 했을 때(= 토큰이 있을 때)
+	    if (jwt != null) {
+           Authentication authentication = jwtValidator.getAuthentication(jwt);
+           DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
+         
+           //token에서 member_proper_num 가져오기
+           String member_proper_num = userDetails.getUsername(); 
+           Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
+           Object[] roles = member_role.toArray();
+//	    }	
+	       vo.setAdmin_proper_num("1");
+           //vo.setAdmin_proper_num(member_proper_num);
+		   int result = announceService.announceModify(vo);
+		   String msg = result == 1 ? "수정 완료" : "수정 실패";
+		   ra.addFlashAttribute("msg", msg);
+		   
+		   return "redirect:/announce/announceList";
+	    }   
+	    return "redirect:/announce/announceList";
 	}
-	
-	
+		
 	//공고 삭제	
 	@PostMapping("/deleteForm")
-	public String deleteForm(@RequestParam("announce_proper_num") String announce_proper_num, RedirectAttributes ra) {
+	public String deleteForm(HttpServletRequest request, @RequestParam("announce_proper_num") String announce_proper_num, RedirectAttributes ra) {
 		
-		announceService.announceDelete(announce_proper_num);
-		ra.addFlashAttribute("deleteForm", "삭제하시겠습니까?");
-		
+		HttpSession session = request.getSession();
+	    String jwt = (String) session.getAttribute("token");
+	      
+	    //로그인 했을 때(= 토큰이 있을 때)
+	    if (jwt != null) {
+           Authentication authentication = jwtValidator.getAuthentication(jwt);
+           DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
+         
+           //token에서 member_proper_num 가져오기
+           String member_proper_num = userDetails.getUsername(); 
+           Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
+           Object[] roles = member_role.toArray();
+           
+           String auth = announceService.announce_authcheck(member_proper_num);
+           if(auth.equals("ROLE_ADMIN")) {	       	   		
+        	   	announceService.announceDelete(announce_proper_num);
+        	    ra.addFlashAttribute("deleteForm", "삭제하시겠습니까?");
+	        	return "redirect:/announce/announceList";         
+           }		  
+		 }
 		return "redirect:/announce/announceList";
 	}
 	

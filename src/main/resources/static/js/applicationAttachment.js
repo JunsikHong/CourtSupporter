@@ -8,9 +8,9 @@ $(document).ready(function() {
 		str += '<label for="license-file-input-' + idx + '" class="file-label">';
 		str += '<input type="hidden" class="fileAdd" style="border: none;" value="' + idx + '">';
 		str += '<input type="file" id="license-file-input-' + idx + '" name="co_license" style="display: none;">';
-		str += '<span class="fileAddBtn">파일선택</span>';
+		str += '<span class="fileAddBtn licenseAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="lisence-upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input class="lisence-upload-name' + idx + ' name_box license_name" value="" disabled="disabled" style="border: none;">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -28,9 +28,9 @@ $(document).ready(function() {
 		str += '<label for="report-file-input-' + idx + '" class="file-label">';
 		str += '<input type="hidden" class="fileAdd" style="border: none;" value="' + idx + '">';
 		str += '<input type="file" id="report-file-input-' + idx + '" name="co_report" style="display: none;">';
-		str += '<span class="fileAddBtn">파일선택</span>';
+		str += '<span class="fileAddBtn reportAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="report-upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input class="report-upload-name' + idx + ' name_box report_name" value="" disabled="disabled" style="border: none;">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -49,9 +49,9 @@ $(document).ready(function() {
 		str += '<label for="tax-file-input-' + idx + '" class="file-label">';
 		str += '<input type="hidden" class="fileAdd" style="border: none;" value="' + idx + '">';
 		str += '<input type="file" id="tax-file-input-' + idx + '" name="co_tax" style="display: none;">';
-		str += '<span class="fileAddBtn">파일선택</span>';
+		str += '<span class="fileAddBtn taxfileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="tax-upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input class="tax-upload-name' + idx + ' name_box taxfile_name" value="" disabled="disabled" style="border: none;">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -61,6 +61,28 @@ $(document).ready(function() {
 	
 })
 
+/* 이력서 */
+$(document).ready(function() {
+	var resumeContainer = $("#resume_container");
+	if (resumeContainer.children().length === 0) {
+		
+		var str = "";
+		str += '<div>';
+		str += '<label for="file-input" class="file-label">';
+		str += '<input type="hidden" class="uuid">';
+		str += '<input type="hidden" class="type">';
+		str += '<input type="file" id="file-input" name="pe_resume" style="display: none;">';
+		str += '<span id="resume_btn" class="fileAddBtn" style="width: 150px;padding: 2px 0;">파일 선택</span>';		
+		str += '</label>';
+		str += '<input id="resume_name" class="upload-name" disabled="disabled" style="width: 166px;display: none;">';
+		str += '<input type="button" class="PeFileDeleteBtn1" value="삭제" style="display: none;">';
+		str += '</div>';					
+		
+		resumeContainer.append(str);
+	} else {
+		$('#resume_btn').css('display', 'none');
+	}
+})
 /* 학력 정보 */
 $(document).ready(function() {
 	var idx = 1;
@@ -72,8 +94,8 @@ $(document).ready(function() {
 		str += '<input type="file" id="edu-file-input-' + idx + '" name="pe_edu" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="edu-upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
-		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
+		str += '<input class="edu-upload-name' + idx + ' name_box" value="" disabled="disabled" style="border: none;">';
+		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none;">';
 		str += '</div>';
 		
 		$("#PeFileAddList2").append(str);
@@ -93,7 +115,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="work-file-input-' + idx + '" name="pe_work" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="work-upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input class="work-upload-name' + idx + ' name_box" value="" disabled="disabled" style="border: none;">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -114,7 +136,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="cert-file-input-' + idx + '" name="pe_cert" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="cert-upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input class="cert-upload-name' + idx + ' name_box" value="" disabled="disabled" style="border: none;">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -135,7 +157,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="ot-file-input-' + idx + '" name="ot_file" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="ot_upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input class="ot_upload-name' + idx + ' name_box" value="" disabled="disabled" style="border: none;">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -145,31 +167,77 @@ $(document).ready(function() {
 	
 })
 
-/* 파일 수정 */
+/* 파일 수정 & 유효성 검사 */
 window.onload = function() {
 	$("#attachmentForm").on('submit', function(e) {
 		e.preventDefault();
-		var uuid_types = [];
-		const elements = document.getElementsByClassName("uuid_type");
-		for(var i = 0; i < elements.length; i++) {
-		console.log(elements[i].value)
-			uuid_types.push(elements[i].value);
+
+		var values = $('.license_name').map(function() {
+						  return $(this).val();
+						}).get();
+		var allEmpty = values.every(function(value) {
+						  return value === "";
+						});
+		var values2 = $('.report_name').map(function() {
+						  return $(this).val();
+						}).get();
+		var allEmpty2 = values2.every(function(value) {
+						  return value === "";
+						});
+		var values3 = $('.taxfile_name').map(function() {
+						  return $(this).val();
+						}).get();
+		var allEmpty3 = values3.every(function(value) {
+						  return value === "";
+						});
+		
+		$('.CoFilePlusBtn1, .licenseAddBtn').on('click', function() {
+			$("#msg1").text("");
+		});
+		
+		$('.CoFilePlusBtn2, .reportAddBtn').on('click', function() {
+			$("#msg2").text("");
+		});
+		
+		$('.CoFilePlusBtn3, .taxfileAddBtn').on('click', function() {
+			$("#msg3").text("");
+		});
+
+		if ($('#businesslicenseFile').children().length === 0 && (values.length === 0 || allEmpty)) {
+		  $("#msg1").text("사업자 등록증 첨부는 필수입니다");
+			return false;
+		} else if ($('#businessreportFile').children().length === 0 && (values2.length === 0 || allEmpty2)) {
+		  $("#msg2").text("업무관련 등록 신고현황 첨부는 필수입니다");
+			return false;
+		} else if ($('#taxconfirmFile').children().length === 0 && (values3.length === 0 || allEmpty3)) {
+		  $("#msg3").text("납세증명확인서 첨부는 필수입니다");
+			return false;
 		}
 		
+		var uuids = [];
+		var types = [];
+		const elements1 = document.getElementsByClassName("uuid");
+		const elements2 = document.getElementsByClassName("type");
+		for(var i = 0; i < elements1.length; i++) {
+			uuids.push(elements1[i].value);
+			types.push(elements2[i].value);
+		}
+		
+		var detail = document.getElementById('aplcn_dtls_proper_num').value;
 		$.ajax({
 			url: "../application/attachmentFileModify",
 			method: "POST",
 			contentType: "application/json",
-			data: JSON.stringify(uuid_types),
+			data: JSON.stringify({ uuids: uuids, types: types, detail: detail }),
 			success: function(data) {
 				console.log(data)
-				
+				document.attachmentForm.submit();
 			},
 			error: function(error) {
 				console.error(error);
 			}
 		});
-		document.attachmentForm.submit();
+		
 	})
 }
 
@@ -196,7 +264,7 @@ $(document).ready(function() {
 		str += '<label for="file-input" class="file-label">';
 		str += '<input type="hidden" class="uuid_type">';
 		str += '<input type="file" id="file-input" name="pe_resume" style="display: none;">';
-		str += '<span id="resume_btn" class="fileAddBtn" style="width: 130px;height: 14px;">파일 선택</span>';
+		str += '<span id="resume_btn" class="fileAddBtn" style="width: 150px;padding: 2px 0;">파일 선택</span>';	
 		str += '</label>';
 		str += '<input id="resume_name" class="upload-name" disabled="disabled" style="width: 166px;display: none;">';
 		str += '<input type="button" class="PeFileDeleteBtn1" value="삭제" style="color: #fff; width: 80px;display: none;">';

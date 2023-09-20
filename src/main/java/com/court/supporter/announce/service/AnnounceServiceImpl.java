@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.court.supporter.command.TB_017VO;
 import com.court.supporter.command.TB_002VO;
+import com.court.supporter.command.TB_005VO;
 import com.court.supporter.command.TB_010VO;
 import com.court.supporter.util.Criteria;
 
@@ -79,8 +82,8 @@ public class AnnounceServiceImpl implements AnnounceService{
 	
 			
 	@Override
-	public ArrayList<TB_002VO> announce_getList(@Param("cri")Criteria cri ) { //공고 조회		
-		return announceMapper.announce_getList( cri );
+	public ArrayList<TB_002VO> announce_getList(@Param("cri")Criteria cri) { //공고 조회		
+		return announceMapper.announce_getList( cri);
 	}
 	
 	@Override
@@ -122,15 +125,35 @@ public class AnnounceServiceImpl implements AnnounceService{
 	}
 
 	@Override
-	public int getTrial_flctt_proper_num(TB_010VO tb_010VO) {		
+	public String getTrial_flctt_proper_num(TB_010VO tb_010VO) {		
 		return announceMapper.getTrial_flctt_proper_num(tb_010VO);
 	}
 
+
 	@Override
-	public ArrayList<TB_002VO> getTrialList(int category) {				
-		return announceMapper.getTrialList(category);
+	public int getUserInfo(String announce_proper_num, String user_proper_num) {				
+		/*
+		 * Map<String, String> userMap = new HashMap<>();
+		 * userMap.put("announce_proper_num", announce_proper_num);
+		 * userMap.put("user_proper_num", user_proper_num);
+		 */
+		return announceMapper.getUserInfo(announce_proper_num, user_proper_num);
 	}
 
+
+	@Override
+	public String announce_authcheck(String member_proper_num) {		
+		return announceMapper.announce_authcheck(member_proper_num);
+	}
+
+
+	@Override
+	public String getTrial_fcltt_description(TB_010VO tb_010vo) {
+		
+		return announceMapper.getTrial_fcltt_description(tb_010vo);
+	}
+
+	
 
 
 	

@@ -4,7 +4,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<script th:src="@{/js/announceDetail.js}"></script>
 
 <link rel="stylesheet" th:href="@{/css/announceDetail.css}">
 <!--<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">-->
@@ -26,32 +25,28 @@
 
 				<div class="announceTitle"> <!-- 게시판 타이틀 -->
 					<p>모집 공고</p>
-				</div>
-
-
-
-				<!-- innerBox -->
-
-				<div class="menuBtnBox">
 					
-				<!--	<ul class="btnWrap">
+					<ul class="btnWrap">
 						<li>
 							<a href="#" class="btn_plus" onclick="zoomIn();">
-								<img src="/img/btn_font_plus.png" alt="확대">
+								<img src="/img/btn_font_plus.png" style="padding-bottom: 1px;" alt="확대">
 							</a>
 						</li>
 						<li>
 							<a href="#" class="btn_reset" onclick="zoomReset();">
-								<img src="/img/btn_font_natural.png" alt="기본">
+								<img src="/img/btn_font_natural.png" style="padding-bottom: 2px;" alt="기본">
 							</a>
 						</li>
 						<li>
 							<a href="#" class="btn_mius"  onclick="zoomOut();">
-								<img src="/img/btn_font_min.png" alt="축소">
+								<img src="/img/btn_font_min.png" style="padding-bottom: 6px;" alt="축소">
 							</a>
-						</li>
-					
-					</ul>-->
+						</li>					
+					</ul>
+				</div>
+				
+				<!-- innerBox -->
+				<div class="menuBtnBox">
 					
 					<div class="snsBtn" id="snsBtn"> <!--공유아이콘-->
 						<a href="javascript:void(0);" onclick="">
@@ -88,6 +83,13 @@
 									<th class="title">제목</th>
 									<td class="tdtitle">[[${vo.announce_title}]]</td>
 								</tr>
+								
+								<tr> <!-- class="boardTitle" -->
+									<th class="trialNumth">조력자 분류</th>
+									<td class="trialNum" ></td> 
+									<th class="recruitNumth">모집인원</th>
+									<td class="recruitNum">[[${vo.announce_recruit_num}]] 명</td>
+								</tr>
 
 								<tr>
 									<th class="startDate">모집 시작일</th>
@@ -96,8 +98,9 @@
 									</td>
 
 									<th class="modifyDate">모집 종료일</th>
-									<td class="tdsize"><span
-											th:text="${vo.announce_end_date}">[[${vo.announce_end_date}]]</span></td>
+									<td class="tdsize">
+										<span id="endDate" th:text="${vo.announce_end_date}">[[${vo.announce_end_date}]]</span>
+									</td>
 								</tr> <!--td colspan="2"-->
 
 								<tr>
@@ -121,11 +124,12 @@
 							
 						</div>
 
-						<div class="applyBox">
-							<button class="applyBtn" name="applyBtn">
-								<a href="#">신청버튼</a>								
-							</button>
+						<div class="applyBox" id="applyBtn">
+							<a th:href="@{/announce/applicationAgree(announce_proper_num=${vo.announce_proper_num})}" class="applyBtn" name="applyBtn">공고 신청</a>	
 						</div>
+						<div th:if="${msg}" class="alert alert-info">
+						    <p th:text="${msg}"></p>
+						</div>					
 						
 						<div class="fileBox">
 							<div class="file">첨부파일</div>
@@ -193,14 +197,14 @@
 								<a th:href="@{/announce/announceList}">목록</a>
 							</button>
 							
-							<!--<th:block th:if="${member_role == 'admin'}">-->
-								<button class="delBtn btn" id="deleteBtn">
+							<th:block th:if="${auth == 'ROLE_ADMIN'}">
+								<button class="delBtn btn" id="deleteBtn" >
 									<a href="#">삭제</a> <!-- id="deleteBtn"-->
 								</button>
-								<button class="modifyBtn btn" id="modifyBtn">
+								<button class="modifyBtn btn" id="modifyBtn" > 
 									<a th:href="@{/announce/announceModify(announce_proper_num=${vo.announce_proper_num})}">수정</a>
 								</button>
-							<!--</th:block>-->
+							</th:block>
 							
 						</div>
 					</form>
@@ -211,6 +215,8 @@
 	</div> <!--announceDetail end -->
 
 </th:block>
+
+<script th:src="@{/js/announceDetail.js}"></script>
 
 <script th:inline="javascript">
 	//작성취소 - 목록으로 돌아가기
@@ -229,9 +235,54 @@
 	    document.actionForm.submit();			
 	  }
 	}
+	
+	//신청화면으로 이동
+	/*
+	let applyBtn = document.getElementById("applyBtn");
+	applyBtn.onclick = () => {		
+	  event.preventDefault();		
+	  document.actionForm.action = "agreeForm"; 
+	  window.location.href = "/application/applicationAgree";	   	
+	}*/
+	
 </script>
 
 <script th:inline="javascript">
+	
+	//모집기간 지난 경우 신청 버튼 숨기기
+	var announceEnddate = document.getElementById("endDate");
+	var enddate = announceEnddate.textContent;
+	
+	function getToday() {
+		var today = new Date();
+		//console.log(today);
+		var year = today.getFullYear();
+	    var month = String(today.getMonth() + 1).padStart(2, "0");
+	    var day = String(today.getDate()).padStart(2, "0");
+	    return year + "-" + month + "-" + day;
+	}
+	
+	function hideDate() {
+		var currentDate = getToday();
+		if( currentDate > enddate ) {
+			document.getElementById("applyBtn").style.display = "none";
+		}
+	}	
+	window.onload = hideDate;
+	
+</script>
+
+<script th:inline="javascript">
+
+   if ('[[${msg}]]' > 0) {
+      alert('로그인 후에 공고를 신청할 수 있습니다.q');      
+   } 
+	
+</script>
+
+<script th:inline="javascript">
+	
+	//sns 공유 박스 유무
 	let snsBtn = document.getElementById("snsBtn");
 	let snsBox = document.getElementById("snsBox");
 	snsBtn.onclick = function() {
@@ -244,7 +295,18 @@
 			snsBox.style.display = "block";
 		}		
 	}
+		
+</script>
+
+<script th:inline="javascript">
+   if ('[[${loginresult}]]' == null ) {
+      alert('로그인 후 신청해주세요.');      
+   } 
+</script>
+
+<script th:inline="javascript">
 	
+	//공유버튼 링크
 	function shareTwitter() {
 	   let txt = "모집공고";
 	   let url = ""; 
@@ -256,6 +318,8 @@
 	   window.open("http://www.facebook.com/sharer/sharer.php?u=" +"&url=" + url);
 	}
 	
+	
+	//화면 확대 축소 기능
 	let now = 100;
 	
 	function zooms() {
@@ -285,8 +349,7 @@
 			now = 70;
 		}
 		zooms();
-	}
-	
+	}	
 	
 </script>
 	

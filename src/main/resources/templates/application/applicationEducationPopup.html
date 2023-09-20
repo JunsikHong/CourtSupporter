@@ -11,6 +11,8 @@
 			<div id="pop_wrap">
 
 				<form action="educationPopupForm" id="educationPopupForm" name="educationPopupForm" method="post">
+					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+					<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 					<div class="pop_contents">
 						<span>*학력사항 입력</span>
 						<table class="tableT popT">
@@ -26,7 +28,10 @@
 										</i>
 										<span>학교명</span>
 									</th>
-									<td><input type="text" name="edctn_school_name" id="edctn_school_name" title="학교명"></td>
+									<td>
+										<input type="text" name="edctn_school_name" id="edctn_school_name" title="학교명">
+										<span id="msg1" style="color: red;"></span>
+									</td>
 								</tr>
 								<tr class="uptr01">
 									<th class="">
@@ -35,7 +40,10 @@
 										</i>
 										<span>학과(전공)</span>
 									</th>
-									<td><input type="text" name="edctn_major" id="edctn_major" title="학과(전공)"></td>
+									<td>
+										<input type="text" name="edctn_major" id="edctn_major" title="학과(전공)">
+										<span id="msg2" style="color: red;"></span>
+									</td>
 								</tr>
 								<tr class="uptr02">
 									<th class="">
@@ -51,6 +59,7 @@
 											<option value='대학교 휴학'>대학교 휴학</option>
 											<option value='대학교 졸업'>대학교 졸업</option>
 										</select>
+										<span id="msg3" style="color: red;"></span>
 									</td>
 								</tr>
 								<tr class="uptr01">
@@ -60,7 +69,10 @@
 										</i>
 										<span>입학일</span>
 									</th>
-									<td><input type="text" class="datepicker" name="edctn_admsn_date" id="edctn_admsn_date" title="입학일" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"></td>
+									<td>
+										<input type="text" class="datepicker" name="edctn_admsn_date" id="edctn_admsn_date" title="입학일" readonly placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}">
+										<span id="msg4" style="color: red;"></span>
+									</td>
 								</tr>
 								<tr class="uptr01">
 									<th class="">
@@ -69,7 +81,10 @@
 										</i>
 										<span>졸업일</span>
 									</th>
-									<td><input type="text" class="datepicker" name="edctn_grdtn_date" id="edctn_grdtn_date" title="졸업일" readonly placeholder="날짜선택" required pattern="\d{4}-\d{2}-\d{2}"></td>
+									<td>
+										<input type="text" class="datepicker" name="edctn_grdtn_date" id="edctn_grdtn_date" title="졸업일" readonly placeholder="날짜선택" pattern="\d{4}-\d{2}-\d{2}">
+										<span id="msg5" style="color: red;"></span>
+									</td>
 								</tr>
 
 							</tbody>

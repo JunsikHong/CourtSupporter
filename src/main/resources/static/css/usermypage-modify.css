@@ -1,3 +1,22 @@
+.img-wrap {
+	width: 150px; 
+	height: 180px; 
+	border: 1px solid rgb(219, 219, 219); 
+	text-align: center; 
+	margin-bottom: 10px; 
+	line-height: 180px; 
+	
+}
+.imgregist {
+	line-height: 180px; 
+	vertical-align: middle;
+	
+}
+
+.imgregistauto {
+	width: 150px;
+	height: 180px;
+}
 .usermypage-modify {
 	display: flex;
 	justify-content: center;
@@ -27,6 +46,21 @@
 .myinfo-modify-table-title {
 	margin: 15px 0;
 }
+
+.filebox {
+	margin-bottom: 20px;
+}
+
+.upload-name {
+	height: 150px;
+	width: 130px;
+	display: block;
+	background-image: url('/img/plus_btn.png');
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
 
 .tableT {
 	border-top: 1px #535353 solid;
