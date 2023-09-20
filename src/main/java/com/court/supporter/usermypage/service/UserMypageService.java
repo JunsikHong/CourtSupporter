@@ -27,7 +27,7 @@ public interface UserMypageService {
 	public int usermypage_application_gettotal(String user_id, Criteria cri); //사용자 신청 리스트 총합 구하기
 	public ArrayList<TB_005VO> usermypage_application_getlist(String user_proper_num, Criteria cri); //사용자 신청 리스트 목록 구하기
 	public TB_005VO usermypage_getapplicationdetail1 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
-	public TB_006VO usermypage_getapplicationdetail2 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
+	public ArrayList<TB_006VO> usermypage_getapplicationdetail2 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
 	public ArrayList<TB_007VO> usermypage_getapplicationdetail3 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
 	public ArrayList<TB_008VO> usermypage_getapplicationdetail4 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
 	public ArrayList<TB_009VO> usermypage_getapplicationdetail5 (TB_005VO vo); //사용자 신청 상세 정보 가져오기

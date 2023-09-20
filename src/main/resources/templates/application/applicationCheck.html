@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/application.css}">
+<script th:src="@{/js/html2canvas.min.js}"></script>
+<script th:src="@{/js/jspdf.min.js}"></script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script th:src="@{/js/applicationCheck.js}"></script>
+<th:block th:replace="~{./include/layout :: setContent(~{::.complete})}">
+	<div class="complete">
+		<div class="complete-wrap">
+			
+			<form action="checkForm" id="checkForm" name="checkForm" method="post" enctype="multipart/form-data">
+				<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+				<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
+			
+			<div class="pop_header checkTitle">
+				<h1 class="tith5">[[${tb_005vo.announce_title}]]</h1>
+			</div>
+			
+			<div id="capture">
+					
+				<div id="pop_wrap" style="width: 70%;margin: 0 auto">
+					<div class="pop_contents">
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr class="uptr02">
+									<th>기본 정보</th>
+									<td>
+										<div>
+											<p>신청인 : <!--[[${tb_001vo.user_name}]]--></p>	
+										</div>
+										<div>주소 : [[${tb_001vo.user_ar}]] [[${tb_001vo.user_ar_detail}]]</div>
+										<div>조력자 분류 : [[${tb_010vo.trial_fcltt_description}]]</div>
+										<div>
+											희망 법원 : 
+											<span th:each="vo : ${tb_011vo}">[[${vo.court_name}]] </span>
+										</div>
+										<div>소송사건 당사자 경력 : [[${tb_005vo.ligtn_case_carer_yn}]]</div>
+										<div th:if="${tb_005vo.ligtn_case_carer_etc != ''}">소송사건 당사자 경력 내용: [[${tb_005vo.ligtn_case_carer_etc}]]</div>
+										<div>보험업계 자문 경력 : [[${tb_005vo.insrn_indst_carer_yn}]]</div>
+										<div th:if="${tb_005vo.insrn_indst_carer_etc != ''}">보험업계 자문 내용 : [[${tb_005vo.insrn_indst_carer_etc}]]</div>
+										<div>형사 처벌 받은 경력 : [[${tb_005vo.criminal_penalty_carer_yn}]]</div>
+										<div th:if="${tb_005vo.criminal_penalty_carer_etc != ''}">형사 처벌 받은 내용 : [[${tb_005vo.criminal_penalty_carer_etc}]]</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="pop_contents">
+					<table class="board_table topT" style="margin: 0 auto">
+							<colgroup>
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+							</colgroup>
+
+							<thead>
+								<tr>
+									<th>학교명</th>
+									<th>학과(전공)</th>
+									<th>기간</th>
+									<th>학위</th>
+									<th>최종학력</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="vo : ${tb_006vo}">
+									<td>[[${vo.edctn_school_name}]]</td>
+									<td>[[${vo.edctn_major}]]</td>
+									<td>[[${#strings.substring(vo.edctn_admsn_date, 0, 10)}]] ~ <span>[[${#strings.substring(vo.edctn_grdtn_date, 0, 10)}]]</span></td>
+									<td>[[${vo.edctn_degree}]]</td>
+									<td th:text="${vo.edctn_final_yn eq 'Y' ? 'O' : ''}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		
+					
+		
+					<div class="pop_contents">
+						<table class="board_table topT" style="margin: 0 auto" th:if="${tb_007vo[0] != null}">
+							<colgroup>
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+							</colgroup>
+
+							<thead>
+								<tr>
+									<th>회사명</th>
+									<th>근무 기간</th>
+									<th>수행업무</th>
+									<th>부서 / 직책</th>
+									<th>관련 경력</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="vo : ${tb_007vo}">
+									<td>[[${vo.company_name}]]</td>
+									<td>[[${#strings.substring(vo.work_start_date, 0, 10)}]] ~ <span>[[${#strings.substring(vo.work_end_date, 0, 10)}]]</span></td>
+									<td>[[${vo.work_description}]]</td>
+									<td>[[${vo.work_department}]] / <span>[[${vo.work_position}]]</span></td>
+									<td th:text="${vo.carer_type eq 'CA' ? 'O' : ''}"></td>
+								</tr>
+							</tbody>
+						</table>
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr class="uptr02">
+									<th>활동경력</th>
+									<td>
+										<div th:each="vo : ${tb_007vo[0]}">
+											<div>[[${vo.carer_description}]]</div>
+										</div>
+									</td>
+								</tr>
+								<tr class="uptr02">
+									<th>특기사항</th>
+									<td>
+										<div th:each="vo : ${tb_007vo[0]}">
+											<div>[[${vo.special_note_description}]]</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		
+				<div class="pop_contents" th:if="${tb_008vo[0] != null}">
+					<table class="board_table topT" style="margin: 0 auto">
+							<colgroup>
+								<col width="25%">
+								<col width="25%">
+								<col width="25%">
+								<col width="25%">
+							</colgroup>
+
+							<thead>
+								<tr>
+									<th>자격증</th>
+									<th>자격 번호</th>
+									<th>발급 기관</th>
+									<th>발급일</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="vo : ${tb_008vo}">
+									<td style="vertical-align: middle;">[[${vo?.crtfc_type}]]</td>
+									<td style="vertical-align: middle;">[[${vo?.crtfc_number}]]</td>
+									<td style="vertical-align: middle;">[[${vo?.issue_agency}]]</td>
+									<td style="vertical-align: middle;">[[${#strings.substring(vo?.issue_date, 0, 10)}]]</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		
+					
+		
+					<div class="pop_contents">
+						<table class="tableT popT">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr class="uptr02">
+									<th>첨부 서류</th>
+									<td>
+										<div th:each="vo,status : ${tb_009vo}">
+											<div>[[${status.count}]]. [[${vo.original_file_name}]]</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					
+					
+				</div>
+				
+			</div>
+			<div class="btnbox btnbox02">
+				<input type="button" class="btn4d5" value="이전" onclick="history.back()" />
+				<input type="submit" class="btnfb7" value="제출">
+			</div>
+			</form>
+		</div>
+	</div>
+	
+</th:block>
+
+</html>

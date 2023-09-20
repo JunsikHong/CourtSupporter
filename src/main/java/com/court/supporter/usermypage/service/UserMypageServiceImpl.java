@@ -73,7 +73,7 @@ public class UserMypageServiceImpl implements UserMypageService{
 	
 	//사용자 신청 상세 정보 가져오기
 	@Override
-	public TB_006VO usermypage_getapplicationdetail2(TB_005VO vo) {
+	public ArrayList<TB_006VO> usermypage_getapplicationdetail2(TB_005VO vo) {
 		return userMypageMapper.usermypage_getapplicationdetail2(vo);
 	}
 

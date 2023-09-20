@@ -57,6 +57,7 @@ dependencies {
 	
 	//sqs
 	implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs:3.0.2'
+	
 }
 
 tasks.named('test') {

@@ -32,7 +32,7 @@ public interface UserMypageMapper {
 	public ArrayList<TB_005VO> usermypage_application_getlist(@Param("user_proper_num") String user_proper_num, 
 															  @Param("cri") Criteria cri); //사용자 신청 리스트 목록 구하기
 	public TB_005VO usermypage_getapplicationdetail1(TB_005VO vo); //사용자 신청 상세 정보 가져오기
-	public TB_006VO usermypage_getapplicationdetail2 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
+	public ArrayList<TB_006VO> usermypage_getapplicationdetail2 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
 	public ArrayList<TB_007VO> usermypage_getapplicationdetail3 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
 	public ArrayList<TB_008VO> usermypage_getapplicationdetail4 (TB_005VO vo); //사용자 신청 상세 정보 가져오기
 	public ArrayList<TB_009VO> usermypage_getapplicationdetail5 (TB_005VO vo); //사용자 신청 상세 정보 가져오기

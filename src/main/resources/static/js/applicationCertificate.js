@@ -1,5 +1,8 @@
 /* 팝업창 띄우기 */
 function popUp() {
+	var announce = encodeURIComponent(document.getElementById('announce_proper_num').value);
+	var detail = encodeURIComponent(document.getElementById('aplcn_dtls_proper_num').value);
+	
 	var popupWidth = 700;
 	var popupHeight = 500;
 	// window.screen.width  : 윈도우의 가로 크기
@@ -11,10 +14,13 @@ function popUp() {
 	featureWindow = "width=" + popupWidth + ", height=" + popupHeight
 		+ ", left=" + popupX + ", top=" + popupY;
 	// open("경로", "이름", "옵션")
-	childPopup = window.open("applicationCertificatePopup", "자격증 사항 입력", featureWindow);
+	childPopup = window.open("applicationCertificatePopup?announce=" + announce + "&detail=" + detail, "자격증 사항 입력", featureWindow);
 }
 
 function modifyPopUp(data) {
+	var announce = encodeURIComponent(document.getElementById('announce_proper_num').value);
+	var detail = encodeURIComponent(document.getElementById('aplcn_dtls_proper_num').value);
+	
 	var popupWidth = 700;
 	var popupHeight = 500;
 	// window.screen.width  : 윈도우의 가로 크기
@@ -28,12 +34,12 @@ function modifyPopUp(data) {
 		
 	
 	// open("경로", "이름", "옵션")
-	childPopup = window.open("applicationCertificateModifyPopup?data=" + encodeURIComponent(data), "자격증 사항 수정", featureWindow);
+	childPopup = window.open("applicationCertificateModifyPopup?data=" + encodeURIComponent(data) + "&announce=" + announce + "&detail=" + detail, "자격증 사항 수정", featureWindow);
 	
 }
 
 /* 자격증 정보 리스트 */
-function certificateInfo() {
+function certificateInfo(aplcn_dtls_proper_num) {
 	
 	setTimeout(function() {
 		
@@ -41,7 +47,7 @@ function certificateInfo() {
 		url: "../application/certificateInfo",
 		method: "POST",
 		contentType: "application/json", //보낼 데이터 형식
-		data : JSON.stringify( {user_id: 'user1'} ),
+		data : JSON.stringify( {aplcn_dtls_proper_num: aplcn_dtls_proper_num} ),
 		success : function(data) {
 		
 		$("#certificateList").children(".certificateListRow").remove();
@@ -54,7 +60,7 @@ function certificateInfo() {
 			str += '<td style="vertical-align: middle;">' + data[i].crtfc_type + '</td>';				
 			str += '<td style="vertical-align: middle;">' + data[i].issue_agency + '</td>';
 			str += '<td style="vertical-align: middle;">' + data[i].crtfc_number + '</td>';
-			str += '<td style="vertical-align: middle;">' + data[i].issue_date + '</td>';
+			str += '<td style="vertical-align: middle;">' + data[i].issue_date.substring(0, 10) + '</td>';
 			str += '<td style="vertical-align: middle;">';
 			str += '<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />';
 			str += '<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />';
@@ -91,12 +97,13 @@ $(document).ready(function() {
 	
 	$(document).on("click", ".deleteBtn", function(event) {
 	var aplcn_crtfc_proper_num = event.target.parentNode.parentNode.firstElementChild.value;
+	var aplcn_dtls_proper_num = document.getElementById('aplcn_dtls_proper_num').value;
 	
 		$.ajax({
 			url: "../application/certificateInfoDelete",
 			method: "POST",
 			contentType: "application/json",
-			data: JSON.stringify({ user_id: 'user1', aplcn_crtfc_proper_num: aplcn_crtfc_proper_num }),
+			data: JSON.stringify({aplcn_crtfc_proper_num: aplcn_crtfc_proper_num, aplcn_dtls_proper_num: aplcn_dtls_proper_num }),
 			success: function(data) {
 				
 				$("#certificateList").children(".certificateListRow").remove();
@@ -109,7 +116,7 @@ $(document).ready(function() {
 					str += '<td style="vertical-align: middle;">' + data[i].crtfc_type + '</td>';
 					str += '<td style="vertical-align: middle;">' + data[i].issue_agency + '</td>';
 					str += '<td style="vertical-align: middle;">' + data[i].crtfc_number + '</td>';
-					str += '<td style="vertical-align: middle;">' + data[i].issue_date + '</td>';
+					str += '<td style="vertical-align: middle;">' + data[i].issue_date.substring(0, 10) + '</td>';
 					str += '<td style="vertical-align: middle;">';
 					str += '<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />';
 					str += '<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />';
@@ -129,22 +136,21 @@ $(document).ready(function() {
 
 /* 파일 수정 */
 window.onload = function() {
-	$("#certificateForm").on('submit', function(e) {
+	$("#certificateForm").on('submit', function() {
 
 		var uuids = [];
 		const elements = document.getElementsByClassName("uuid");
 		console.log(elements)
 		for(var i = 0; i < elements.length; i++) {
-			
 			uuids.push(elements[i].value);
-			console.log(uuids);
 		}
 		
+		var detail = document.getElementById('aplcn_dtls_proper_num').value;
 		$.ajax({
 			url: "../application/certificateFileModify",
 			method: "POST",
 			contentType: "application/json",
-			data: JSON.stringify(uuids),
+			data: JSON.stringify({uuids: uuids, detail: detail}),
 			success: function(data) {
 				console.log(data)
 				
