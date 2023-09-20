@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 * {
 	padding: 0;
 	margin: 0;
@@ -269,32 +269,29 @@ textarea {
 	border-top: 2px solid rgb(230, 230, 230);
 }
 
-.edctnLine1,
-.edctnLine2 {
-	border-bottom: 1px solid rgb(233, 233, 233);
-}
-
-.edctnLine1 td:nth-child(1),
-.edctnLine1 td:nth-child(3),
-.edctnLine2 td:nth-child(1),
-.edctnLine2 td:nth-child(3) {
-	width: 20%;
-	height: 70px;
-	vertical-align: middle;
+.edctnHead {
+	height: 50px;
+	text-align: center;
 	font-weight: bold;
-	padding-left: 20px;
 	background-color: #034273;
 	color: white;
+	height: 70px;
 }
 
-.edctnLine1 td:nth-child(2),
-.edctnLine1 td:nth-child(4),
-.edctnLine2 td:nth-child(2),
-.edctnLine2 td:nth-child(4) {
-	padding-left: 20px;
+.edctnHead th {
 	vertical-align: middle;
-	width: 30%;
+}
+
+.edctnBody {
+	height: 50px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.edctnBody td {
+	vertical-align: middle;
 	background-color: rgb(228, 228, 228);
+	height: 70px;
 }
 
 /***********************************************/
@@ -486,28 +483,14 @@ textarea {
 	width: 1px;
 	height: 1px;
 	overflow: hidden;
-=======
-* {
-	padding: 0;
-	margin: 0;
-}
 
-ul,
-li {
-	list-style: none;
-}
-
-* {
-	margin: 0 auto;
-}
-
-.adminmypage-evaluationdetail {
+.usermypage-applicationdetail {
 	display: flex;
 	justify-content: center;
 	margin-top: 150px;
 }
 
-.adminmypage-evaluationdetail-wrap {
+.usermypage-applicationdetail-wrap {
 	width: 1280px;
 }
 
@@ -524,13 +507,6 @@ li {
 	border-bottom: 3px solid rgb(109, 109, 109);
 	box-sizing: border-box;
 	margin-bottom: 50px;
-}
-
-#member_id {
-	font-weight: 300;
-	color: rgb(171, 171, 171);
-	font-size: 17px;
-	text-align: right;
 }
 /***********************************************/
 /*arrow*/
@@ -672,13 +648,7 @@ li {
 	vertical-align: middle;
 }
 
-textarea {
-	width: 90%;
-	height: 60px;
-	resize: none;
-	margin-top: 10px;
-	font-size: 18px;
-}
+
 
 .inputbox {
 	padding: 10px 0;
@@ -956,5 +926,4 @@ textarea {
 	width: 1px;
 	height: 1px;
 	overflow: hidden;
->>>>>>> e0e526ef03fe86baffaa1ce97181072a37d75824
-}
+}}

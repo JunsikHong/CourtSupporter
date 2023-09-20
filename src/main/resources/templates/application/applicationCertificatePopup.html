@@ -10,7 +10,9 @@
 		<div class="certificatePopup-wrap">
 			<div id="pop_wrap">
 
-				<form action="certificatePopupForm" name="certificatePopupForm" method="post">
+				<form action="certificatePopupForm" id="certificatePopupForm" name="certificatePopupForm" method="post">
+					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+					<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 					<div class="pop_contents">
 						<span class="sm_title">*자격/면허 사항</span>
 						<table class="tableT popT">

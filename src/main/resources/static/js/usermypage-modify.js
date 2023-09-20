@@ -77,10 +77,33 @@ const subbtn = document.querySelector(".subbtn");
 subbtn.addEventListener("click", function(event) {
 	event.preventDefault();  // 기본 동작인 폼 제출 방지
 
-	const confirmResult = confirm("정말로 정보를 변경하시겠습니까?");
-	if (confirmResult) {
-		event.target.form.submit();
-	} else {
-		alert("정보 변경이 취소되었습니다.");
+	var fileInput = document.getElementById('main_file');
+	var file = fileInput.files[0];
+
+	if (!file || file.type.startsWith('image/')) {
+		const confirmResult = confirm("정말로 정보를 변경하시겠습니까?");
+		if (confirmResult) {
+			event.target.form.submit();
+		} else {
+			alert("정보 변경이 취소되었습니다.");
+		}
 	}
+
+	if (!file.type.startsWith('image/')) {
+		alert('이미지 파일을 선택해주세요.');
+		return false;
+	}
+
 });
+
+function setThumbnail(event) {
+	var reader = new FileReader();
+
+	reader.onload = function(event) {
+		var imgregist = document.querySelector(".imgregist");
+		imgregist.setAttribute("src", event.target.result);
+		imgregist.classList.add("imgregistauto");
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
+

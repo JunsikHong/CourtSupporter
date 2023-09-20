@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/reset.css}">
+<link rel="stylesheet" th:href="@{/css/usermypage-evaluation-result.css}">
+
+<div id="popupbody">
+	<div id="popup-wrap">
+		<div id="popup">
+			<th:block th:if="${evaluate_result} == 1">
+				<div class="success-checkmark">
+					<div class="check-icon">
+						<span class="icon-line line-tip"></span>
+						<span class="icon-line line-long"></span>
+						<div class="icon-circle"></div>
+						<div class="icon-fix"></div>
+					</div>
+				</div>
+				<center>
+					<p class="result-content" style="margin-bottom: 15px;"><span style="color: blue;">[[${tb_001VO.user_name}]]</span>님의 평가가 완료되었습니다.</p>
+					<p class="result-content">
+						신청결과는
+						<span style="color: red;">
+							<th:block th:if="${tb_005VO.aplicn_dtls_sts == '02'}">
+								신청완료
+							</th:block>
+							<th:block th:if="${tb_005VO.aplicn_dtls_sts == '03'}">
+								심사중
+							</th:block>
+							<th:block th:if="${tb_005VO.aplicn_dtls_sts == '04'}">
+								서류반려
+							</th:block>
+							<th:block th:if="${tb_005VO.aplicn_dtls_sts == '05'}">
+								1차통과
+							</th:block>
+							<th:block th:if="${tb_005VO.aplicn_dtls_sts == '06'}">
+								최종심사중
+							</th:block>
+							<th:block th:if="${tb_005VO.aplicn_dtls_sts == '07'}">
+								불합격
+							</th:block>
+							<th:block th:if="${tb_005VO.aplicn_dtls_sts == '08'}">
+								합격
+							</th:block>
+						</span>
+						입니다.
+					</p>
+					<div class="btnbox btnbox02">
+						<button href="#none" class="btn4d5 closebtn">닫기</button>
+					</div>
+				</center>
+			</th:block>
+
+			<th:block th:unless="${evaluate_result == 1}">
+				<div class="success-checkmark">
+					<div class="circle">
+						<div class="x-mark">
+							<div class="x-line1"></div>
+							<div class="x-line2"></div>
+						</div>
+					</div>
+				</div>
+				<center>
+					<p class="result-content">평가가 완료되지 않았습니다.</p>
+					<div class="btnbox btnbox02">
+						<button href="#none" class="btn4d5 closebtn">닫기</button>
+					</div>
+				</center>
+			</th:block>
+		</div>
+	</div>
+</div>
+<script th:inline="javascript">
+	var closebtn = document.querySelector('.closebtn');
+	closebtn.addEventListener('click', function () {
+		self.close();
+	});
+</script>
+
+</html>

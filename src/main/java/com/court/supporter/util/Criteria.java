@@ -39,9 +39,13 @@ public class Criteria {
 	//공지
 	private String searchNotice;
 
-	//조력자 분류
-	private int trial_fcltt_proper_num;
+	//권한
+	private String member_proper_num;
+	private String member_id;
+	private String member_role;
 	
+	//조력자 구분
+	private String trial_fcltt_proper_num;
 	
 	//기본 생성자로 만들어지면 1, 10이 기본값이다.
 	public Criteria() {

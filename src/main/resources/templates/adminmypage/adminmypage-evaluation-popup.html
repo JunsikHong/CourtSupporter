@@ -12,7 +12,7 @@
 					<table class="announce-table">
 						<tbody>
 							<td class="announce-title">공고제목</td>
-							<td class="announce-content">2023년 하반기 서울대법원 건축관련 [건축설계A]</td>						
+							<td class="announce-content">[[${tb_005VO.announce_title}]] <span>[</span>[[${tb_005VO.trial_fcltt_proper_num}]]<sapn>]</sapn></td>						
 						</tbody>
 					</table>
 				</div>
@@ -26,19 +26,19 @@
 						<tbody>
 							<tr class="evaluation-target-line1">
 								<td>이름</td>
-								<td>홍길동</td>
+								<td>[[${tb_001VO.user_name}]]</td>
 							</tr>
 							<tr class="evaluation-target-line2">
 								<td>생년월일</td>
-								<td>1990-10-28</td>
+								<td>[[${tb_001VO.user_birthdate}]]</td>
 							</tr>
 							<tr class="evaluation-target-line3">
 								<td>직업</td>
-								<td>건축설계사</td>
+								<td>[[${tb_001VO.user_job}]]</td>
 							</tr>
 							<tr class="evaluation-target-line4">
 								<td>주소</td>
-								<td>인천시 남동구 논현동</td>
+								<td>[[${tb_001VO.user_ar}]] [[${tb_001VO.user_ar_detail}]] <span>[</span>[[${tb_001VO.user_ar_zonecode}]]<span>]</span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -46,51 +46,40 @@
 
 				<div class="evaluation-file-section">
 					<div style="height: 30px;"><h3>첨부서류</h3></div>
-					<div style="max-height: 140px; overflow-y: auto;">
+					<div style="max-height: 200px; overflow-y: auto;">
 						<table class="evaluation-file-table1">
 							<tbody>
 								<tr class="evaluation-file-line1">
 									<td>번호</td>
 									<td>파일명</td>
 									<td>타입</td>
-									<td>미리보기</td>
+									<td>다운로드</td>
 								</tr>
-								<tr class="evaluation-file-line2">
-									<td>1</td>
-									<td>건축자격증_1.pdf</td>
-									<td>자격증</td>
-									<td><button>미리보기</button></td>
-								</tr>
-								<tr class="evaluation-file-line2">
-									<td>1</td>
-									<td>건축자격증_1.pdf</td>
-									<td>자격증</td>
-									<td><button>미리보기</button></td>
-								</tr>
-								<tr class="evaluation-file-line2">
-									<td>1</td>
-									<td>건축자격증_1.pdf</td>
-									<td>자격증</td>
-									<td><button>미리보기</button></td>
-								</tr>
-								<tr class="evaluation-file-line2">
-									<td>1</td>
-									<td>건축자격증_1.pdf</td>
-									<td>자격증</td>
-									<td><button>미리보기</button></td>
-								</tr>
-								<tr class="evaluation-file-line2">
-									<td>1</td>
-									<td>건축자격증_1.pdf</td>
-									<td>자격증</td>
-									<td><button>미리보기</button></td>
-								</tr>
-								<tr class="evaluation-file-line2">
-									<td>1</td>
-									<td>건축자격증_1.pdf</td>
-									<td>자격증</td>
-									<td><button>미리보기</button></td>
-								</tr>
+								<th:block th:each="tb_009VO, status : ${tb_009VOlist}">
+									<tr class="evaluation-file-line2">
+										<td><span th:text="${status.count}"></span></td>
+										<td>[[${tb_009VO.value}]]</td>
+										<td>
+											<th:block th:if="${tb_009VO.key.file_type == 'BUSINESSLICENSE'}">사업자등록증</th:block>
+											<th:block th:if="${tb_009VO.key.file_type == 'BUSINESSREPORT'}">업무관련등록신고현황</th:block>
+											<th:block th:if="${tb_009VO.key.file_type == 'TAXCONFIRM'}">납세증명확인서</th:block>
+											<th:block th:if="${tb_009VO.key.file_type == 'RESUME'}">이력서</th:block>
+											<th:block th:if="${tb_009VO.key.file_type == 'EDUCATIONLEVEL'}">학력정보</th:block>
+											<th:block th:if="${tb_009VO.key.file_type == 'CARRER'}">경력정보</th:block>
+											<th:block th:if="${tb_009VO.key.file_type == 'CERTIFICATE'}">자격증정보</th:block>
+											<th:block th:if="${tb_009VO.key.file_type == 'OTHER'}">기타</th:block>
+										</td>
+										<td>
+											<p class="attachTable-content">
+												<a th:href="@{'https://court-supporter-project-t4.s3.ap-northeast-2.amazonaws.com/' + ${tb_009VO.key.file_path} + '/' + ${tb_009VO.key.uuid} + '_' + ${tb_009VO.key.original_file_name}}" style="color: blue; font-weight: bold;">
+													다운로드
+												</a>
+											</p>										
+										</td>
+									</tr>
+								</th:block>
+								
+						
 							</tbody>
 						</table>
 					</div>
@@ -99,7 +88,13 @@
 			</div>
 			
 			<form action="adminmypage_evaluation" method="post" id="adminmypage_evaluation" name="adminmypage_evaluation">
+				<input type="hidden" name="user_proper_num" th:value="${tb_001VO.user_proper_num}">
+				<input type="hidden" name="user_id" th:value="${tb_001VO.user_id}">
+				<input type="hidden" name="aplicn_dtls_sts" th:value="${tb_005VO.aplicn_dtls_sts}">
 				<input type="hidden" name="aplcn_dtls_proper_num" th:value="${tb_005VO.aplcn_dtls_proper_num}">
+				<input type="hidden" name="announce_proper_num" th:value="${tb_005VO.announce_proper_num}">
+				<input type="hidden" name="trial_fcltt_proper_num" th:value="${tb_005VO.trial_fcltt_proper_num}">
+				
 				<div class="evaluation-line2">
 	
 					<div class="evaluation-section">
@@ -474,6 +469,13 @@
 								<input type="hidden" name="evaluate_score" id="evaluate_score" value="0">							
 							</tbody>
 						</table>
+						<p style="margin-top: 10px;">
+							<span style="color: red;">*채점자 : </span>
+							<span th:if="${member_role == 'ROLE_JURIS'}">사법담당자</span>
+							<span th:if="${member_role == 'ROLE_COURT'}">법원담당자</span>
+							<span th:if="${member_role == 'ROLE_ADMIN'}">관리자</span>
+							[[${member_proper_num}]]							
+						</p>
 					</div>
 				</div>
 				
@@ -499,15 +501,6 @@
 </div>
 <script th:inline="javascript">
 	var trial_fcltt_proper_num = parseInt('[[${tb_005VO.trial_fcltt_proper_num}]]');
-	
-	if ('[[${evaluate_insert_result}]]' == 1) {
-		alert('평가가 완료되었습니다.');
-		opener.location.href = '/adminmypage/adminmypage_evaluationlist';
-		self.close();
-	} else if ('[[${result}]]' == 0) {
-		alert('평가에 실패하였습니다.')
-	}
-	
 </script>
 <script th:src="@{/js/adminmypage-evaluation-popup.js}"></script>
 </html>

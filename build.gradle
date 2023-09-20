@@ -55,8 +55,9 @@ dependencies {
 	//aws lib
 	implementation 'software.amazon.awssdk:aws-sdk-java:2.20.43'
 	
-	//sqs
-	implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs:3.0.2'
+	//email
+	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.1'
+
 }
 
 tasks.named('test') {

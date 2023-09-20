@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/reset.css}">
+<link rel="stylesheet" th:href="@{/css/adminmypage-evaluation-result-info.css}">
+
+
+<div id="popupbody">
+	<div id="popup-wrap">
+		<div id="popup">
+			
+			<div class="announce-section">
+				<div>
+					<table class="announce-table">
+						<tbody>
+							<td class="announce-title">공고제목</td>
+							<td class="announce-content">[[${tb_005VO.announce_title}]]
+								<span>[</span>[[${tb_005VO.trial_fcltt_proper_num}]]<sapn>]</sapn>
+							</td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="evaluation-line1">
+				<div class="evaluation-target-section">
+					<table class="evaluation-target-table">
+						<tbody>
+							<tr class="evaluation-target-line1">
+								<td>신청자</td>
+								<td>[[${tb_001VO.user_name}]]</td>
+							</tr>
+							<tr class="evaluation-target-line2">
+								<td>평가자</td>
+								<td>
+									<span style="color: red;">*채점자 : </span>
+									<span th:if="${member_role == 'ROLE_JURIS'}">사법담당자</span>
+									<span th:if="${member_role == 'ROLE_COURT'}">법원담당자</span>
+									<span th:if="${member_role == 'ROLE_ADMIN'}">관리자</span>
+									[[${member_proper_num}]]
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="evaluation-line2">
+				<div class="evaluation-score-section">
+					<table class="evaluation-score-table">
+						<tbody>
+							<tr class="evaluation-score-line1">
+								<td>통산경력점수</td>
+								<td>[[${tb_013VO.all_career_score}]]</td>
+								<td>관내경력점수</td>
+								<td>[[${tb_013VO.jrsdc_career_score}]]</td>
+							</tr>
+							<tr class="evaluation-score-line2">
+								<td>사무소 소재지 점수</td>
+								<td>[[${tb_013VO.office_score}]]</td>
+								<td>자격증점수</td>
+								<td>[[${tb_013VO.certificate_score}]]</td>
+							</tr>
+							<tr class="evaluation-score-line3">
+								<td>조정점수</td>
+								<td>[[${tb_013VO.adjust_score}]]</td>
+								<td style="color: red;">총점</td>
+								<td style="color: red; font-weight: bold;">[[${tb_013VO.evaluate_score}]]</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="evaluation-line3">
+				<div class="evaluation-review-section">
+					<table class="evaluation-review-table">
+						<tbody>
+							<tr class="evaluation-review-line1">
+								<td>검토의견</td>
+							</tr>
+							<tr class="evaluation-review-line2">
+								<td><textarea name="review_etc" id="review_etc" placeholder="없음">[[${tb_013VO.review_etc}]]</textarea></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>	
+			
+			<div class="evaluation-line4">
+				<div class="evaluation-result-section">
+					<table class="evaluation-result-table">
+						<tbody>
+							<tr class="evaluation-result-line1">
+								<td>평가결과</td>
+								<td>
+									<th:block th:if="${tb_005VO.aplicn_dtls_sts == '02'}">
+										신청완료
+									</th:block>
+									<th:block th:if="${tb_005VO.aplicn_dtls_sts == '03'}">
+										심사중
+									</th:block>
+									<th:block th:if="${tb_005VO.aplicn_dtls_sts == '04'}">
+										서류반려
+									</th:block>
+									<th:block th:if="${tb_005VO.aplicn_dtls_sts == '05'}">
+										1차통과
+									</th:block>
+									<th:block th:if="${tb_005VO.aplicn_dtls_sts == '06'}">
+										최종심사중
+									</th:block>
+									<th:block th:if="${tb_005VO.aplicn_dtls_sts == '07'}">
+										불합격
+									</th:block>
+									<th:block th:if="${tb_005VO.aplicn_dtls_sts == '08'}">
+										합격
+									</th:block>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="evaluation-line5">
+					<div class="evaluation-button-section">
+						<div class="btnbox btnbox02">
+							<button href="#none" class="btn4d5 closebtn">닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script>
+	var closebtn = document.querySelector('.closebtn')
+	closebtn.addEventListener('click', function() {
+		self.close();
+	});
+</script>
+
+</html>
