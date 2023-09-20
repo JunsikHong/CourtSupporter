@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -132,8 +134,50 @@ public class ApplicationFileService {
             System.out.println(result.sdkHttpResponse().statusCode());
         
         } catch (Exception e) {
-        	e.printStackTrace();
+			e.printStackTrace();
         }
     }
+	
+	//------------------------------------------------------------------------------------------------------------------------------------
+	//조력자 신청서 업로드
+
+	public List<String> ApplicationFormRegist(String dataUri) {
+		
+		List<String> filelist = new ArrayList();
+		
+		// 데이터 URI에서 Base64 인코딩된 파일 내용 추출
+		String base64Data = dataUri.substring(dataUri.indexOf(",") + 1);
+	    
+	    // Base64 디코딩하여 바이트 배열로 변환
+	    byte[] fileBytes = Base64.getDecoder().decode(base64Data);
+	    
+		try {
+			//업로드 처리
+			
+			String extension = ".pdf"; // 예시로 PDF 확장자(.pdf) 사용
+	        MediaType mediaType = MediaType.APPLICATION_PDF; // 예시로 PDF MIME 타입 사용
+
+	        String filename = "신청서";
+				//동일한 파일 재업로드시 기존파일을 덮어씌우므로 난수 이름으로 파일명을 바꿔서 올림
+				String uuid = UUID.randomUUID().toString();
+			
+				//파일 저장 경로 
+				 String savepath = uploadPath + "/applicationForm/" + uuid + "_" + filename + extension;
+				
+				// S3에 업로드
+				if (!filename.isEmpty()) {
+					PutObjectRequest request = PutObjectRequest.builder().bucket(aws_bucket_name).key(savepath).contentType(mediaType.toString()).build();
+
+					PutObjectResponse response = s3.putObject(request, RequestBody.fromBytes(fileBytes));
+
+					filelist.add(savepath);
+				}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return filelist;
+	}
 
 }

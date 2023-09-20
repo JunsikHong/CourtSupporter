@@ -4,7 +4,7 @@ var admin = "admin_proper_num";
 //관리자가 아닐시 버튼 숨김
 var modifyBtn = document.getElementById("modifyBtn"); //수정버튼
 var delBtn = document.getElementById("deleteBtn"); //삭제버튼
-if (admin_proper_num === "1") {
+if (admin_proper_num === "23091400010") { //23091400010
     //관리자일 경우 모든 버튼을 보이게
     modifyBtn.style.display = "block";
     delBtn.style.display = "block";	    
@@ -22,6 +22,10 @@ function printPageArea(areaID){
     window.print();
     document.body.innerHTML = originalContent;
 }
+
+
+
+
 
 
 /*//작성취소 - 목록으로 돌아가기

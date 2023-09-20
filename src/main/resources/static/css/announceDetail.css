@@ -47,35 +47,30 @@ a{
 	margin-top: 20px;
 /*	margin-bottom: 20px;*/
 }
+.btnWrap {
+	display: block;
+	float: right;	
+	margin-top : -25px;
+}
 .btnWrap li {
 	display: inline-block;
+	/*border:  0.5px solid #A4A4A4;*/
+	border-radius: 2px;
+	/*background-color: white;*/
+	background-color: #eff1f5; /*dde3eb;*/
+	width: 29px;
+	height: 29px;
+	text-align: center;	
+	/*margin-left: 3px;*/
+	
 }
 .btn_plus {	
-	background-color: white;
-	border:  0.5px solid #A4A4A4;
-	text-align: center;
-	width: 19px;
-	padding: 5px;
-	margin-right: 3px;
 }
-.btn_reset {	
-	background-color: white;
-	border:  0.5px solid #A4A4A4;
-	text-align: center;
-	width: 19px;
-	padding: 5px;
-	margin-right: 3px;
+.btn_reset {		
+	
 }
 .btn_mius {
-	text-align: center;
-	justify-content: center;
-	background-color: white;
-	border:  0.5px solid #A4A4A4;
-	width: 19px;
-	padding: 5px;
-	margin-right: 3px;
-	/*background-image: #dde3eb url(/img/btn_font_min.png) center center no-repeat; */
-	/*background-color: #dde3eb; */
+	padding-bottom: 5px;
 }
 .snsBtn{
 	display: inline-block;
@@ -188,8 +183,8 @@ td .left{
 	margin-top: 50px;
 	margin-bottom: 20px;
 	/*padding-bottom: 15px;*/
-	border-top: 1.5px solid #08124E;
-	border-bottom: 1.5px solid #08124E;
+	border-top: 1.5px solid #c1c1c1;
+	border-bottom: 1.5px solid #c1c1c1;
 }
 .file {	
 	padding-top: 15px;
@@ -212,13 +207,19 @@ td .left{
 .applyBox {
 	display: block;
 	margin : 0 auto;
-	text-align: center;
+	text-align: center;	
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	background-color: #0B196B;
+	border-radius: 2px;
 }
 .applyBtn {
-	width: 100px;
-	height: 40px;
-	display: block;
+	color: white;	
 	text-align: center;
+}
+.applyBox > a:hover {
+	text-decoration: none;	
 }
 
 /***********************************************/
@@ -240,8 +241,9 @@ td .left{
   padding-top: 20px;
 }
 .nextTable tr td a:hover{ 
+  text-decoration: none;
   color: #004B8C; /* #0057a1; */
-  text-decoration:underline; 
+  text-decoration:underline;
   font-weight:bold; 
 }
 .nextTitle {
@@ -269,8 +271,9 @@ td .left{
   padding-top: 20px;
 }
 .prevTable tr td a:hover{ 
+  text-decoration: none;
   color: #004B8C; /* #0057a1; */
-  text-decoration:underline; 
+ /* text-decoration:underline; */
   font-weight:bold; 
 }
 .prevTitle {

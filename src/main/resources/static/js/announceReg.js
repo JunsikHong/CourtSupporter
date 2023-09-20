@@ -75,7 +75,15 @@ $(document).ready(function() {
 	var mainSelect_b_id = ["02"];
 	var mainSelect_c_id = ["03"];
 	var mainSelect_d_id = ["04"];
-	var mainSelect_e_id = ["05"];	
+	var mainSelect_e_id = ["05"];
+	
+/*	var mainSelect_a_id = ["1010101"];
+	var mainSelect_b_id = ["2020111"];
+	var mainSelect_c_id = ["3030114"];
+	var mainSelect_d_id = ["4040117"];
+	var mainSelect_e_id = ["5050119"];*/
+	
+		
 	var mainSelect = document.getElementById("mainSelect");
 	var firstSelect = document.getElementById("firstSelect");
 	var secondSelect = document.getElementById("secondSelect");
@@ -242,6 +250,14 @@ if (firstSelect == '0103' || firstSelect == '0301') {
     } else if(announceForm.announce_end_date.value == "") {
       alert("모집 종료일을 선택하세요.");
       announceForm.announce_end_date.focus();
+      return false;
+    } else if(announceForm.trial_fcltt_proper_num.value == "") {
+      alert("조력자 선택은 필수입니다.");
+      announceForm.trial_fcltt_proper_num.focus();
+      return false;    
+    } else if(announceForm.announce_recruit_num.value == "") {
+      alert("모집 인원을 입력하세요.");
+      announceForm.announce_recruit_num.focus();
       return false;
     } else if(announceForm.announce_content.value == "") {
       alert("내용을 입력하세요.");

@@ -67,5 +67,4 @@ public class DefaultUserDetails implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
 }

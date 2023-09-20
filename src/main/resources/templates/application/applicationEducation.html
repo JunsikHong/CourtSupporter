@@ -45,7 +45,15 @@
 			</div>
 
 			<div id="pop_wrap">
+				<div style="padding: 20px 0 0 30px;">
+					<i class="required-img">
+						<span class="hidden">필수입력</span>
+					</i>
+					<span>는 필수 입력 사항 입니다.</span>
+				</div>
 				<form action="educationForm" id="educationForm" name="educationForm" method="post" enctype="multipart/form-data">
+					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+					<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 					<div class="pop_contents">
 						<table class="board_table topT">
 							<colgroup>
@@ -60,7 +68,10 @@
 
 							<thead>
 								<div class="board_h">
-									<div class="board_total">*학력 사항</div>
+									<i class="required-img">
+										<span class="hidden">필수입력</span>
+									</i>
+									<div class="board_total">학력 사항</div>
 									<div class="board_search">
 										<a href="#" class="popup_btn" onclick="popUp()">학력사항 입력</a>
 									</div>
@@ -73,18 +84,24 @@
 									<th>입학일</th>
 									<th>졸업일</th>
 									<th>관리</th>
-									<th>최종학력</th>
+									<th>
+										<i class="required-img">
+											<span class="hidden">필수입력</span>
+										</i>
+										최종학력
+									</th>
 								</tr>
 							</thead>
+
+							<input type="hidden" id="final_education_chk" name="final_education_chk">
 							<tbody id="educationList">
-								<input type="hidden" id="final_education_chk" name="final_education_chk">
 								<tr th:each="vo : ${list}" class="educationListRow">
 									<input type="hidden" id="edctn_dtls_proper_num" name="edctn_dtls_proper_num" th:value="${vo.edctn_dtls_proper_num}">
 									<td style="vertical-align: middle;">[[${vo.edctn_school_name}]]</td>
 									<td style="vertical-align: middle;">[[${vo.edctn_major}]]</td>
 									<td style="vertical-align: middle;">[[${vo.edctn_degree}]]</td>
-									<td style="vertical-align: middle;">[[${vo.edctn_admsn_date}]]</td>
-									<td style="vertical-align: middle;">[[${vo.edctn_grdtn_date}]]</td>
+									<td style="vertical-align: middle;">[[${#strings.substring(vo.edctn_admsn_date, 0, 10)}]]</td>
+									<td style="vertical-align: middle;">[[${#strings.substring(vo.edctn_grdtn_date, 0, 10)}]]</td>
 									<td style="vertical-align: middle;">
 										<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />
 										<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />
@@ -93,9 +110,14 @@
 										<input type="radio" name="edctn_final_yn" value="" th:checked="${vo.edctn_final_yn == 'Y'}">
 									</td>
 								</tr>
-								
 							</tbody>
 						</table>
+						<div style="text-align: center;">
+							<span id="msg1" style="color: red;"></span>
+						</div>
+						<div style="text-align: end;">
+							<span id="msg2" style="color: red;"></span>
+						</div>
 					</div>
 
 					<div class="pop_contents">
@@ -129,8 +151,6 @@
 					</div>
 				</form>
 			</div>
-
-
 
 		</div>
 	</div>

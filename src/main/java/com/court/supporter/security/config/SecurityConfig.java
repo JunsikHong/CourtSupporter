@@ -46,6 +46,7 @@ public class SecurityConfig {
 //													   		"/notice/noticeUpdateForm", "/notice/noticeDelete",
 //													   		"/faq/faqRegist", "/faq/faqRegistForm", "/faq/faqModify",
 //													   		"/faq/faqUpdateForm", "/faq/faqDelete",
+
 //													   		"/adminmypage/adminmypage_auth_manage").hasAuthority("ROLE_ADMIN") // 전체 관리자만
 //											   .antMatchers("/adminmypage/adminmypage_evaluationlist", "/adminmypage/adminmypage_evaluationdetail",
 //													   		"/adminmypage/adminmypage_evaluation_popup", "/adminmypage/adminmypage_evaluation").hasAnyAuthority("ROLE_JURIS", "ROLE_COURT", "ROLE_ADMIN") // 관리자
@@ -53,7 +54,7 @@ public class SecurityConfig {
 											   .anyRequest().permitAll());
 //											   .and()
 //											   .addFilter(jwtAuthenticationFilter)); //모든 요청 전부 허용
-		
+
 		http.logout()
 			.logoutUrl("/logout")
 			.logoutSuccessUrl("/")

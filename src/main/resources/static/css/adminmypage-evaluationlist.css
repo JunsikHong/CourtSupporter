@@ -150,3 +150,16 @@ input[type='text'].datepicker {
 .sts-content {
 	line-height: 30px;
 }
+
+.btnfb7 {
+	background-color: rgb(11, 38, 110);
+	font-size: 13px;
+	color: #FFF;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	padding: 0 10px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}

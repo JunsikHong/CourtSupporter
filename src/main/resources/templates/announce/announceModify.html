@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
 <!-- <script th:src="@{/js/announceModify.js}"></script>-->
 
@@ -74,8 +74,8 @@
 						<span >조력자 선택</span> <!--name="trial_fcltt_proper_num"-->
 					</th>
 					<td class="tableT popT">					
-						<select class="selC" name="trial_fcltt_mainclasifi_code" id="mainSelect" title="조력자 선택"
-							onchange="selectChange()">
+						<select class="selC" name="trial_fcltt_proper_num" id="mainSelect" title="조력자 선택"
+						  onchange="selectChange()" th:value="${vo.trial_fcltt_proper_num}"> <!-- th:value="${vo.trial_fcltt_proper_num}"  onchange="selectChange()"-->
 						</select><span id="msg0" style="color: red;"></span>
 							
 						<select class="selC" name="trial_fcltt_clasifi_code" id="firstSelect" title="조력자 선택"
@@ -87,7 +87,15 @@
 					</td>
 				</tr>
 
+				<tr>
+					<th id="border"><i class="required-img"><span class="hidden">필수입력</span></i> 모집 인원수
+					</th>
+					<td id="border">
+						<input type="text" class="recruitNum" name="announce_recruit_num" placeholder="모집인원" th:value="${vo.announce_recruit_num}"> 명
+					</td>
+				</tr>
 
+			
                  <tr>
                   <th class="announceFile">첨부파일</th>
                   <td>
@@ -145,43 +153,5 @@
 
 <script th:src="@{/js/announceModify.js}"></script>
 
-<script th:inline="javascript"> //event.preventDefault(); 
-
-  let modifyBtn = document.getElementById("modifyBtn");  
-  modifyBtn.onclick = () => {
-	  
-    if(modifyForm.announce_title.value == ""){
-      alert("제목을 입력하세요.");
-      modifyForm.announce_title.focus();    
-      return false;      
-	} else if(modifyForm.announce_start_date.value == "") {
-      alert("모집 시작일을 선택하세요.");
-      modifyForm.announce_start_date.focus();      
-      return false;
-    } else if(modifyForm.announce_end_date.value == "") {
-      alert("모집 종료일을 선택하세요.");
-      modifyForm.announce_end_date.focus();      
-      return false;
-    } else if(modifyForm.announce_content.value == "") {
-      alert("내용을 입력하세요.");
-      modifyForm.announce_content.focus();      
-      return false;
-    } else {
-      alert("정상적으로 등록되었습니다.");     
-      return true;
-    }
-  }    
-  
-</script>
-
-<script th:inline="javascript"> 
-    //작성취소 - 목록으로 돌아가기
-	let listBtn = document.getElementById("listBtn");
-	listBtn.onclick = () => {
-		event.preventDefault();
-		window.location.href = "/announce/announceList";
-	}
-        
-</script>
 
 </html>

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TB_015VO {
 
-	private Integer admin_proper_num;
+	private String admin_proper_num;
 	private String admin_id;
 	private String admin_pw;
 }

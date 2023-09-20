@@ -31,7 +31,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   font-weight: 800;
   padding-left: 5px;
   padding-bottom: 15px;
-  border-bottom: 3px solid #081247;
+  border-bottom: 3px solid #08125E; /*#081247;*/
   color: #2E2E2E;
 }
 .required-img {
@@ -118,7 +118,12 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   height: 30px;
    border-bottom: none;  
 }
-
+.recruitNum{
+	width: 110px;
+	height: 28px;
+	line-height: 30px;
+	text-align: center;
+}
 .file {
   margin-bottom: 5px;  
 }
