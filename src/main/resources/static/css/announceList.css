@@ -36,7 +36,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 /*  padding: 20px;*/
   padding-left: 5px;
   padding-bottom: 15px;
-  border-bottom: 3px solid #081247;  /* #090C5F; *//* #424242;*/
+  border-bottom: 3px solid  #08125E;  /* #081247;  #090C5F; *//* #424242;*/
   color:  #2E2E2E; /* #081247;*/  /*  08124E #090C5F;2E2E2E*/
 }
 .announceTitle > p {
@@ -119,12 +119,13 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 }
 /***********************************************/
 .announceMenu {
+  margin-top : 30px;
   margin-bottom: 30px;
  /* width: 1029px;*/
   height: 60px;
   text-align: center;
   justify-content: center;
-  border-bottom: 2px solid #081247;
+  border-bottom: 2px solid #08125E; /*#081247;*/
   background-color: #F2F2F2;
   color:#515151;
 }
@@ -141,36 +142,34 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   vertical-align: middle; 
 }
 .announceMenu > li > a { 
-  text-align: center; 
-  
+  text-align: center;   
   text-decoration: none;
-  display: block; 
-  /*font-weight: 600;*/
-  text-decoration: none;  
+  display: block;   
 }
-.announceMenu .list > li.on {
-   /* width: 143px;
-  height: 53px;*/
+.menu .on {
+  width: 143px;
+  height: 53px;
+  background-color: #FFFFFF;  
+ 
   border-radius: 3px;
-  border-bottom: 2px solid #081247;
-  background-color: #FFFFFF;
+  border-bottom: 2px solid  #091366; 
   color: #081247;;
   font-weight: bold;
 
 }
 
 
-
 /***********************************************/
 
 .announceBoard{
   /*border-top: 3px solid #848484;*/
-  /*border-top: 2px solid #081247;*/   /* #08124E;*/ /* #6E6E6E;*/ /* #090C5F;*/
+  /*border-top: 2px solid #081247;*/   /* #08124E;*/ /* #6E6E6E;*/ /* #090C5F;*/ 
   width: 100%; 
   overflow: hidden;
 }
 .board{
   width: 100%;
+ /*  margin-top: 30px;*/
 }
 table {
   border-collapse: collapse;
@@ -180,10 +179,10 @@ td {
   padding: 5px 0; 
 /*  width: 20%;  */
 }
-.boardTitle th {
+.boardTitle th {	
   height: 15px;
   line-height: 15px; 
-  border-top: 2px solid #081247;
+  border-top: 2px solid #08125E;/* #081247;*/
   border-bottom: 1px solid #848484; /* #090C5F;*/ /* rgb(160, 160, 160);*/
   padding: 15px;
   background-color:  #F2F2F2;  /* #EAEBF8;*/
@@ -197,9 +196,9 @@ td {
 	text-align: center;
 }
 .hireIcon {
-	border: 1px solid #081247;    /* #848484; *//* #090C5F;*/
+	border: 1px solid #08125E;   /* #081247;  #848484; *//* #090C5F;*/
 	border-radius: 3px;
-	color:  #08124E;  /* #848484; *//* #090C5F;*/
+	color:  #08125E;  /* #848484; *//* #090C5F;*/
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 14px;
@@ -232,9 +231,12 @@ td {
 .titlebox{
 	width: 700px;
 }
+.supporter {
+	 width: 110px;
+}
 .contentTitle {
   /*width: 50%;  */
-  width: 792px;
+  width: 530px; /*792*/
   text-align: left;
   padding-left: 5px;
   padding-right: 70px;
@@ -250,9 +252,13 @@ td {
   color: #42464A; /* rgb(75, 75, 75);*/
   font-weight: 700;  
 }
+.recruitNumber {
+	width: 100px;
+	text-align: center;
+}
 .contentDate{
   /*width: 15%;*/
-   width: 150px;
+   width: 130px;
   text-align: center;
   font-size : 15px;
   color: #42464A; /*424242*/

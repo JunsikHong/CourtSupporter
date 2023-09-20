@@ -54,9 +54,10 @@ public class ApplicationController {
 	
 	//동의 화면
 	@GetMapping("/applicationAgree")
-	public String agreeForm( HttpServletRequest request) {
+	public String agreeForm( HttpServletRequest request, @RequestParam("announce_proper_num") String announce_proper_num ) { //, @RequestParam("trial_fcltt_proper_num") String trial_fcltt_proper_num
+		
 		HttpSession session = request.getSession();
-		String jwt = (String) session.getAttribute("token");
+		String jwt = (String) session.getAttribute("token");		
 		
 		if (jwt != null) {
 			Authentication authentication = jwtValidator.getAuthentication(jwt);

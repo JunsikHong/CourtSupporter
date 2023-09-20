@@ -14,7 +14,8 @@
 							announce_start_date,
 							announce_end_date,
 							admin_proper_num,
-							trial_fcltt_proper_num
+							trial_fcltt_proper_num,							
+							announce_recruit_num
 							) 
 		select coalesce (
 					(select max(announce_proper_num)+1 
@@ -27,7 +28,8 @@
 						#{announce_start_date},
 						#{announce_end_date},
 						#{admin_proper_num},
-						#{trial_fcltt_proper_num}
+						#{trial_fcltt_proper_num},						
+						#{announce_recruit_num}
 				
 	</insert>
 	
@@ -54,8 +56,16 @@
 
 	</insert>
 	
+	<!-- 관리자 고유번호 조회 -->
+	<select id="announce_authcheck">
+		select member_role
+		from TB_018
+		where member_proper_num = #{member_proper_num}
+	</select>
+	
+	
 	<!-- 조력자 고유번호 조회 -->
-	<select id="getTrial_flctt_proper_num" resultType="int">
+	<select id="getTrial_flctt_proper_num" resultType="String">
 		select trial_fcltt_proper_num
 		from TB_010
 		where 		
@@ -66,6 +76,17 @@
             trial_fcltt_sbcls_code = #{trial_fcltt_sbcls_code}
         </if>   
 	</select>
+	
+	<!-- 조력자 종류 조회 -->
+<!-- 	<select id="getTrial_fcltt_description" resultType="String">
+		select trial_fcltt_description
+		from TB_010
+		where 		
+        <if test="trial_fcltt_proper_num != null">
+            trial_fcltt_proper_num = #{trial_fcltt_proper_num}
+        </if>           
+	</select> -->
+	
 
 	<!-- 공고 조회 + 검색 -->
 	<select id="announce_getTotal">
@@ -86,37 +107,12 @@
 			test="cri.announce_end_date != '' and cri.announce_end_date != null">
          <![CDATA[and announce_end_date <= #{cri.announce_end_date}]]>
 		</if>
+		<if test="cri.trial_fcltt_proper_num != null and cri.trial_fcltt_proper_num != ''">
+	        AND  trial_fcltt_proper_num LIKE CONCAT(#{cri.trial_fcltt_proper_num}, '%')        	
+	    </if>	
 		order by announce_proper_num desc
 		
 	</select>
-
-	
-	<!-- 조력자 공고 조회 -->
-	<select id="getTrialList" resultType="TB_002VO">
-		select *
-		from TB_002
-		where
-		<if test="trial_fcltt_proper_num != null">
-			1 = 1
-		</if>
-		<if test="trial_fcltt_proper_num == 10">
-			trial_fcltt_proper_num LIKE '10%'
-		</if>
-		<if test="trial_fcltt_proper_num == 20">
-			trial_fcltt_proper_num LIKE '20%'
-		</if>
-		<if test="trial_fcltt_proper_num == 30">
-			trial_fcltt_proper_num LIKE '30%'
-		</if>
-		<if test="trial_fcltt_proper_num == 40">
-			trial_fcltt_proper_num LIKE '40%'
-		</if>
-		<if test="trial_fcltt_proper_num == 50">
-			trial_fcltt_proper_num LIKE '50%'
-		</if>
-	</select>
-	
-	
 	
 	
 	<!-- 공고 날짜 변환 -->
@@ -138,6 +134,9 @@
 		<if test="cri.announce_end_date != '' and cri.announce_end_date != null">
          <![CDATA[and announce_end_date <= #{cri.announce_end_date}]]>
 		</if>
+		<if test="cri.trial_fcltt_proper_num != null and cri.trial_fcltt_proper_num != ''">
+	        AND  trial_fcltt_proper_num LIKE CONCAT(#{cri.trial_fcltt_proper_num}, '%')        	
+	    </if>		
 		order by announce_proper_num desc
 		limit #{cri.pageStart}, #{cri.amount}
 	</select>
@@ -150,6 +149,12 @@
 
 	<select id="getFileDetail" resultType="TB_017VO">
 		select * from TB_017 where announce_proper_num = #{announce_proper_num}
+	</select>
+	
+	<select id="getUserInfo" resultType="int">
+		SELECT COUNT(*) FROM TB_005
+	    WHERE announce_proper_num = #{announce_proper_num}
+	    AND user_proper_num = #{user_proper_num}
 	</select>
 	
 	
@@ -170,7 +175,9 @@
 						  announce_content = #{announce_content},
 						  announce_start_date = #{announce_start_date},
 						  announce_end_date = #{announce_end_date},
-						  announce_last_date = now()			  
+						  announce_last_date = now(),
+						  trial_fcltt_proper_num = #{trial_fcltt_proper_num},	  
+						  announce_recruit_num = #{announce_recruit_num}	  
 		where announce_proper_num = #{announce_proper_num}			 
 	</update>
 	

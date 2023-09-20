@@ -39,16 +39,17 @@ public class SecurityConfig {
 		http.cors().configurationSource(corsConfigurationSource());
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); //세션인증 기반을 사용하지 않고, JWT 사용해서 인증
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-		http.authorizeHttpRequests(auth -> auth.antMatchers("/announce/announceReg", "announce/announceRegForm", "/announce/announceModify",
-													   		"/announce/announceModifyForm", "/announce/announceDeleteForm",
-													   		"/notice/noticeRegist", "/notice/noticeRegistForm", "/notice/noticeModify",
-													   		"/notice/noticeUpdateForm", "/notice/noticeDelete",
-													   		"/faq/faqRegist", "/faq/faqRegistForm", "/faq/faqModify",
-													   		"/faq/faqUpdateForm", "/faq/faqDelete",
-													   		"/adminmypage/adminmypage_auth_manage").hasRole("ADMIN") // 전체 관리자만
-											   .antMatchers("/adminmypage/adminmypage_evaluationlist", "/adminmypage/adminmypage_evaluationdetail",
-													   		"/adminmypage/adminmypage_evaluation_popup", "/adminmypage/adminmypage_evaluation").hasAnyRole("JURIS", "COURT", "ADMIN") // 관리자
-											   .antMatchers("/usermypage/**", "/application/**").hasRole("USER") // 사용자
+		http.authorizeHttpRequests(auth -> auth
+//				.antMatchers("/announce/announceReg", "announce/announceRegForm", "/announce/announceModify",
+//													   		"/announce/announceModifyForm", "/announce/announceDeleteForm",
+//													   		"/notice/noticeRegist", "/notice/noticeRegistForm", "/notice/noticeModify",
+//													   		"/notice/noticeUpdateForm", "/notice/noticeDelete",
+//													   		"/faq/faqRegist", "/faq/faqRegistForm", "/faq/faqModify",
+//													   		"/faq/faqUpdateForm", "/faq/faqDelete",
+//													   		"/adminmypage/adminmypage_auth_manage").hasRole("ADMIN") // 전체 관리자만
+//											   .antMatchers("/adminmypage/adminmypage_evaluationlist", "/adminmypage/adminmypage_evaluationdetail",
+//													   		"/adminmypage/adminmypage_evaluation_popup", "/adminmypage/adminmypage_evaluation").hasAnyRole("JURIS", "COURT", "ADMIN") // 관리자
+//											   .antMatchers("/usermypage/**", "/application/**").hasRole("USER") // 사용자
 											   .anyRequest().permitAll()); //모든 요청 전부 허용
 		
 		http.logout()

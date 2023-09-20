@@ -25,8 +25,8 @@ public class TB_002VO {
 	
 	private String announce_first_date;	//최초입력일시
 	private String announce_last_date;	//최종변경일시
-	private Integer admin_proper_num;	//관리자 계정 고유번호
-	private Integer trial_fcltt_proper_num; //재판조력자 고유번호
+	private String admin_proper_num;	//관리자 계정 고유번호
+	private String trial_fcltt_proper_num; //재판조력자 고유번호	
 	
 	private String announceStatus; //모집여부
 		
@@ -39,5 +39,6 @@ public class TB_002VO {
 	private String previousPost;
 	private String nextPost;
 	
+	private Integer announce_recruit_num;
 	
 }
