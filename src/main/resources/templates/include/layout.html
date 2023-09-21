@@ -265,17 +265,32 @@
 			</div>
 		</footer>
 
+		<div class="to-the-top-wrap">
+			<a>
+				<img th:src="@{/img/top_grey.png}"/>
+			</a>
+		</div>
 	</body>
 	<script>
+		var top_wrap = document.querySelector(".to-the-top-wrap");
 		function handleScroll() {
 			var scrollY = window.scrollY || window.pageYOffset;
 			var head_menu_wrap = document.querySelector(".header-menu-wrap");
 			if (scrollY >= 20) {
 				head_menu_wrap.style.top = "0px";
+				top_wrap.classList.add("active"); // active 클래스 추가
 			} else {
 				head_menu_wrap.style.top = "60px";
+				top_wrap.classList.remove("active"); // active 클래스 제거
 			}
 		}
+		
+		top_wrap.addEventListener('click', function() {
+			window.scrollTo({
+		        top: 0,
+		        behavior: "smooth" // 부드러운 스크롤 효과를 위해 "smooth"를 사용
+		    });
+		})
 
 		var menu_wrap = document.querySelector(".menu-wrap");
 		var header_menu_wrap = document.querySelector(".header-menu-wrap");

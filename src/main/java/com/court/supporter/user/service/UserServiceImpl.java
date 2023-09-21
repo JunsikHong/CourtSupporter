@@ -84,5 +84,16 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findUsersForPw(tb_001vo);
 	}
 
+	@Override
+	public int updatePw(TB_001VO tb_001vo) {
+		int tb001Update = userMapper.updatePwTB001(tb_001vo);
+		int tb018Update = userMapper.updatePwTB018(tb_001vo);
+		if (tb001Update == 1 && tb018Update == 1) {
+			return 1;
+		}
+		return 0;
+	}
+	
+
 }
 

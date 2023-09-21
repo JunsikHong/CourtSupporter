@@ -41,6 +41,4 @@ public class TB_002VO {
 	private String previousPost;
 	private String nextPost;
 	
-	private Integer announce_recruit_num;
-	
 }

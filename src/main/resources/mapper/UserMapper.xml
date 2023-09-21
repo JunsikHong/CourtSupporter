@@ -75,4 +75,12 @@
   	<select id="findUsersForPw" resultType="String">
   		select user_id from TB_001 where user_name = #{user_name} and user_email = #{user_email} and user_id = #{user_id} and user_delete_yn = "N"
   	</select>
+  	
+  	<update id="updatePwTB001">
+  		update TB_001 set user_pw = #{user_pw} where user_id = #{user_id};
+  	</update>
+  	
+  	<update id="updatePwTB018">
+  		update TB_018 set member_password = #{user_pw} where member_id = #{user_id};
+  	</update>
   </mapper>
