@@ -65,14 +65,15 @@ function educationInfo(aplcn_dtls_proper_num) {
 			str += '<td style="vertical-align: middle;">' + data[i].edctn_admsn_date.substring(0, 10) + '</td>';
 			str += '<td style="vertical-align: middle;">' + data[i].edctn_grdtn_date.substring(0, 10) + '</td>';
 			str += '<td style="vertical-align: middle;">';
-			str += '<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />';
-			str += '<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />';
+			str += '<input type="button" class="modifyBtn" value="수정" style="margin-right: 5px;"/>';
+			str += '<input type="button" class="deleteBtn" value="삭제"/>';
 			str += '</td>';
 			str += '<td style="text-align:center; vertical-align: middle;" class="toptd">';
 			str += '<input type="radio" name="edctn_final_yn" value=""' + (data[i].edctn_final_yn === 'Y' ? ' checked' : '') + '>';
 			str += '</td>';
 			str += '</tr>';
 		}
+		
 		
 		$("#educationList").append(str);
 	
@@ -125,8 +126,8 @@ $(document).ready(function() {
 					str += '<td style="vertical-align: middle;">' + data[i].edctn_admsn_date.substring(0, 10) + '</td>';
 					str += '<td style="vertical-align: middle;">' + data[i].edctn_grdtn_date.substring(0, 10) + '</td>';
 					str += '<td style="vertical-align: middle;">';
-					str += '<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />';
-					str += '<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />';
+					str += '<input type="button" class="modifyBtn" value="수정" style="margin-right: 5px;"/>';
+					str += '<input type="button" class="deleteBtn" value="삭제"/>';
 					str += '</td>';
 					str += '<td style="text-align:center; vertical-align: middle;" class="toptd">';
 					str += '<input type="radio" name="edctn_final_yn" value=""' + (data[i].edctn_final_yn === 'Y' ? ' checked' : '') + '>';
@@ -205,7 +206,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="file-input-' + idx + '" name="file" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name" class="upload-name' + idx + '" value="" disabled="disabled" style="">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		

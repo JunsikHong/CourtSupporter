@@ -55,8 +55,9 @@
 					<span>는 필수 입력 사항 입니다.</span>
 				</div>
 				<form action="basicForm" name="basicForm" id="basicForm" method="post">
-					<input type="hidden" name="announce_proper_num" th:value="${param.data}"/>
-					<div class="pop_contents">
+					<input type="hidden" name="announce_proper_num" th:value="${param.announce}"/>
+					<input type="hidden" name="trial_fcltt_proper_num" th:value="${param.fcltt_num}"/>
+					<!--<div class="pop_contents">
 						<table class="tableT popT">
 							<colgroup>
 								<col width="20%">
@@ -84,7 +85,7 @@
 							</tbody>
 						</table>
 
-					</div>
+					</div>-->
 
 					<div class="pop_contents">
 						<table class="tableT popT">

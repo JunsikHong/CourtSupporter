@@ -1,4 +1,12 @@
+ @font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
  /* 로그인 스타일 */
+ .color {
+	 background-color: rgb(0, 64, 128);
+ }
+ 
  .header-login-wrap {
  	overflow: hidden;
  	border-bottom: 1px solid rgb(213, 213, 213);
@@ -54,6 +62,7 @@
  	display: flex;
  	margin: 0;
  	padding: 0;
+ 	justify-content: space-between;
  }
 
  .menus li span {
@@ -69,8 +78,19 @@
  /* 상단 상세메뉴 바 스타일 */
  .detail-menus {
 	 display: flex;
+	 text-align: center;
 	 border-left: 2px solid rgb(219, 219, 219);
  }
+ 
+ .detail-menus h2 {
+	font-weight: 550;
+	font-size: 17px;
+	padding-bottom: 40px;
+	color: #333;
+	margin: 0 60px;
+	text-align: center;
+	text-decoration: none;
+}
  
 .detail-menus h3 {
 	font-weight: 550;
@@ -90,6 +110,11 @@
 }
 
 .detail-menus li:hover {
+	color: rgb(0, 64, 128);
+	cursor: pointer;
+}
+
+.detail-menus h2:hover {
 	color: rgb(0, 64, 128);
 	cursor: pointer;
 }

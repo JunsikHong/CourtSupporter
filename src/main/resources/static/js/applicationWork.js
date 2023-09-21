@@ -69,7 +69,7 @@ function workInfo(aplcn_dtls_proper_num) {
 		}
 		
 		$("#workList").append(str);
-	
+	console.log(data)
 		},
 		error : function(status, error) {
 			console.log(status);

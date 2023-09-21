@@ -5,6 +5,11 @@
   
   <mapper namespace="com.court.supporter.application.service.ApplicationMapper">
   
+  <!-- 조력자 분류 번호 조회 -->
+  <select id="getFclttNum" resultType="TB_002VO">
+  	select trial_fcltt_proper_num from TB_002 where announce_proper_num = #{announce_proper_num}
+  </select>
+  
   <!-- 기본 정보 페이지 - 신청인 기본 정보 불러오기 -->
   <select id="getUserInfo" resultType="TB_001VO">
   	select * from TB_001 where user_id = #{user_id}

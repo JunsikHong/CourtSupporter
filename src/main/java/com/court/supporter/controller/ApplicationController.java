@@ -72,8 +72,7 @@ public class ApplicationController {
 
 	// 동의 화면
 	@GetMapping("/applicationAgree")
-
-	public String agreeForm( HttpServletRequest request, @RequestParam("announce_proper_num") String announce_proper_num ) { //, @RequestParam("trial_fcltt_proper_num") String trial_fcltt_proper_num
+	public String agreeForm(HttpServletRequest request) { 
 		
 		HttpSession session = request.getSession();
 		String jwt = (String) session.getAttribute("token");		
@@ -90,7 +89,7 @@ public class ApplicationController {
 
 	// 기본 정보 입력 화면으로 이동
 	@PostMapping("/agreeForm")
-	public String basic(HttpServletRequest request/* , @RequestParam("data") String data */) {
+	public String basic(TB_005VO tb_005vo, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String jwt = (String) session.getAttribute("token");
 
@@ -98,15 +97,17 @@ public class ApplicationController {
 			Authentication authentication = jwtValidator.getAuthentication(jwt);
 			DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
 			String member_proper_num = userDetails.getUsername();
-			String data = "23091400011";
-			return "redirect:/application/applicationBasic?data=" + data;
+			
+			String announce = tb_005vo.getAnnounce_proper_num();
+			String trial_fcltt_proper_num = applicationService.getFclttNum(announce).getTrial_fcltt_proper_num();
+			return "redirect:/application/applicationBasic?announce=" + announce + "&fcltt_num=" + trial_fcltt_proper_num;
 		}
 		return "redirect:/";
 	}
 
 	// 기본 정보 화면
 	@GetMapping("/applicationBasic")
-	public String basicForm(TB_001VO tb_001vo, TB_005VO tb_005vo, Model model, HttpServletRequest request, @RequestParam("data") String data) {
+	public String basicForm(TB_001VO tb_001vo, TB_005VO tb_005vo, Model model, HttpServletRequest request, @RequestParam("announce") String announce) {
 
 		HttpSession session = request.getSession();
 		String jwt = (String) session.getAttribute("token");
@@ -121,7 +122,7 @@ public class ApplicationController {
 			tb_001vo.setUser_id(user_id);
 			tb_005vo.setUser_id(user_id);
 			tb_005vo.setUser_proper_num(member_proper_num);
-			tb_005vo.setAnnounce_proper_num(data);
+			tb_005vo.setAnnounce_proper_num(announce);
 
 			// 신청인 정보 가져오기
 			TB_001VO vo1 = applicationService.getUserInfo(tb_001vo);
@@ -467,7 +468,9 @@ public class ApplicationController {
 			applicationService.workRegist(tb_007vo);
 		} else if (applicationService.getWorkList(tb_007vo).size() != 0 && applicationService.getWorkList(tb_007vo).get(0).getCompany_name() == null) {
 			String proper_num = applicationService.getWorkList(tb_007vo).get(0).getAplcn_carer_proper_num();
+			String aplcn_dtls_proper_num = applicationService.getWorkList(tb_007vo).get(0).getAplcn_dtls_proper_num();
 			tb_007vo.setAplcn_carer_proper_num(proper_num);
+			tb_007vo.setAplcn_dtls_proper_num(aplcn_dtls_proper_num);
 			applicationService.workModify(tb_007vo);
 		}
 		
@@ -538,7 +541,7 @@ public class ApplicationController {
 		tb_007vo.setUser_proper_num(member_proper_num);
 
 		applicationService.workModify(tb_007vo);
-		return "redirect:/application/applicationWork";
+		return "redirect:/application/applicationWork?detail=" + tb_007vo.getAplcn_dtls_proper_num();
 		}
 		return "redirect:/";
 	}
