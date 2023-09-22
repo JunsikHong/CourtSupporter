@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.court.supporter.main.service.MainMapper">
+
+	<select id="getannouncelist">
+		select *
+		from TB_002
+		where
+		announce_title like concat
+		('%', #{search}, '%')
+		or announce_content like concat ('%', #{search},
+		'%')
+		order by announce_start_date desc
+		limit 5
+
+	</select>
+
+	<select id="getnoticelist">
+		select *
+		from TB_003
+		where
+		notice_title like concat ('%', #{search}, '%')
+		or notice_content like concat ('%', #{search}, '%')
+		order by notice_date desc
+		limit 5
+
+
+	</select>
+
+	<select id="getfaqlist">
+		select *
+		from TB_004
+		where
+		faq_ask_content like concat ('%', #{search}, '%')
+		or faq_ask_comment like concat ('%', #{search}, '%')
+		order by faq_ask_date desc
+		limit 5
+
+	</select>
+
+	<select id="getannouncetotal">
+		select count(*) as total
+		from TB_002
+		where
+		announce_title like concat ('%', #{search}, '%')
+		or announce_content like concat ('%', #{search}, '%')
+
+	</select>
+
+	<select id="getnoticetotal">
+		select count(*)
+		from TB_003
+		where
+		notice_title like concat ('%', #{search}, '%')
+		or notice_content like concat ('%', #{search}, '%')
+
+	</select>
+
+	<select id="getfaqtotal">
+		select count(*)
+		from TB_004
+		where
+		faq_ask_content like concat ('%', #{search}, '%')
+		or faq_ask_comment like concat ('%', #{search}, '%')
+	</select>
+
+</mapper>

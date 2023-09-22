@@ -1,0 +1,98 @@
+@font-face {
+	font-family: 'Noto Sans KR', sans-serif;
+	src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
+
+.total-search-wrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+}
+
+.total-search {
+	width: 1280px;
+	position: relative;
+}
+
+
+.announce-section-title-wrap {
+	height: 50px;
+	border-bottom: 2px solid #777;
+	line-height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.announce-section-content-wrap {
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 15px;
+}
+
+.announce-section-content {
+	border-top: 1px solid #777;
+	border-bottom: 1px solid #777;
+	padding: 15px 0;
+	margin-bottom: 15px;
+	height: 80px;
+}
+
+.announce-wrap {
+	overflow: hidden;
+}
+
+.announce-left {
+	width: 1000px;
+	float: left;
+}
+
+.announce-left-title {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.announce-right {
+	width: 270px;
+	text-align: center;
+	line-height: 80px;
+	float: right;
+}
+
+.announce-left-content{
+
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+	/* 표시할 최대 줄 수 */
+}
+
+.announce-section-more-wrap {
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+.btnfb7 {
+	background-color: rgb(11, 38, 110);
+	font-size: 14px;
+	color: #FFF;
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+	padding: 0 25px;
+	vertical-align: middle;
+	font-family: "ngB" !important;
+}
+
+.searchbar {
+	width: 1100px;
+	height: 35px;
+	
+}
+
+.searchbarwrap {
+	text-align: center;
+	margin-bottom: 30px;
+}
