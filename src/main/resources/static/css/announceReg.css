@@ -194,6 +194,9 @@ body{font-family: 'Noto Sans KR', sans-serif;}
   vertical-align: middle; 
   /*height: 500px;  */
 }
+.contentBox {
+	width: 860px;
+}
 .contentBox td {
 	padding-left: 0;
 }
