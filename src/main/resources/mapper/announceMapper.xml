@@ -72,20 +72,20 @@
         <if test="trial_fcltt_sbcls_code == null">
             trial_fcltt_clasifi_code = #{trial_fcltt_clasifi_code}
         </if>
-        <if test="trial_fcltt_sbcls_code != null">
+        <if test="trial_fcltt_sbcls_code != null ">
             trial_fcltt_sbcls_code = #{trial_fcltt_sbcls_code}
         </if>   
 	</select>
 	
 	<!-- 조력자 종류 조회 -->
-<!-- 	<select id="getTrial_fcltt_description" resultType="String">
+ 	<select id="getTrial_fcltt_description" >
 		select trial_fcltt_description
 		from TB_010
 		where 		
         <if test="trial_fcltt_proper_num != null">
             trial_fcltt_proper_num = #{trial_fcltt_proper_num}
         </if>           
-	</select> -->
+	</select>
 	
 
 	<!-- 공고 조회 + 검색 -->

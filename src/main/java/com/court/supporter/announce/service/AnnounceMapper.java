@@ -21,7 +21,7 @@ public interface AnnounceMapper {
 	 public int announceRegist(TB_002VO vo); //공고 등록 
 	 public int announceFileRegist(TB_017VO fileVO);
 	 public String getTrial_flctt_proper_num(TB_010VO tb_010VO);
-	 public String getTrial_fcltt_description(TB_010VO tb_010VO);
+	 public String getTrial_fcltt_description(String trial_fcltt_proper_num);
 	 public String getannouncepropernum(TB_002VO vo);
 	 
 	 //공고 목록 조회	
