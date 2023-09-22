@@ -10,7 +10,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="license-file-input-' + idx + '" name="co_license" style="display: none;">';
 		str += '<span class="fileAddBtn licenseAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="lisence-upload-name' + idx + ' name_box license_name" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name2" class="lisence-upload-name' + idx + ' name_box license_name" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -30,7 +30,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="report-file-input-' + idx + '" name="co_report" style="display: none;">';
 		str += '<span class="fileAddBtn reportAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="report-upload-name' + idx + ' name_box report_name" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name2" class="report-upload-name' + idx + ' name_box report_name" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -51,7 +51,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="tax-file-input-' + idx + '" name="co_tax" style="display: none;">';
 		str += '<span class="fileAddBtn taxfileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="tax-upload-name' + idx + ' name_box taxfile_name" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name2" class="tax-upload-name' + idx + ' name_box taxfile_name" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -94,7 +94,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="edu-file-input-' + idx + '" name="pe_edu" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="edu-upload-name' + idx + ' name_box" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name2" class="edu-upload-name' + idx + ' name_box" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none;">';
 		str += '</div>';
 		
@@ -115,7 +115,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="work-file-input-' + idx + '" name="pe_work" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="work-upload-name' + idx + ' name_box" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name2" class="work-upload-name' + idx + ' name_box" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -136,7 +136,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="cert-file-input-' + idx + '" name="pe_cert" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="cert-upload-name' + idx + ' name_box" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name2" class="cert-upload-name' + idx + ' name_box" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -157,7 +157,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="ot-file-input-' + idx + '" name="ot_file" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="ot_upload-name' + idx + ' name_box" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name2" class="ot_upload-name' + idx + ' name_box" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -288,3 +288,11 @@ $(document).ready(function() {
   });
   
 });
+
+/* 이전 버튼 */
+function returnPage() {
+	var announce = document.getElementById('announce_proper_num').value;
+	var fcltt_num = document.getElementById('trial_fcltt_proper_num').value;
+	var detail = document.getElementById('aplcn_dtls_proper_num').value
+	location.href = '/application/applicationCertificate?announce=' + announce + "&fcltt_num=" + fcltt_num + "&detail=" + detail;
+}

@@ -14,6 +14,8 @@
   margin: 0 auto;
 }
 
+#agreeText, #chkBox, #agreeBtn1, #agreeBtn2, .agreeRadio, .btn4d5, .btnfb7{cursor: pointer;}
+
 /* table */
 table {border-collapse:collapse; border-spacing: 0;}
 th, td { border-collapse:collapse; border-spacing: 0; vertical-align:middle;}
@@ -217,7 +219,8 @@ input[type="radio"].custorm+label span {
   display: inline-block;
   padding: 0 25px;
   vertical-align: middle;
-  font-family: "ngB" !important;
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
 .btnbox .btn4d5 {
@@ -229,7 +232,8 @@ input[type="radio"].custorm+label span {
   display: inline-block;
   padding: 0 25px;
   vertical-align: middle;
-  font-family: "ngB" !important;
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
 .btnbox02 input {
