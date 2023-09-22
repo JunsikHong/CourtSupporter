@@ -81,7 +81,7 @@
 											<h3>조력자등재신청</h3>
 										</a>-->
 										<a th:href="@{/announce/announceList}">
-											<h2>조력자등재신청</h2>
+											<h2>&nbsp&nbsp조력자등재신청</h2>
 										</a>
 									</ul>
 									<ul class="detail-menu02">
@@ -89,10 +89,10 @@
 											<h3>조력자신청안내</h3>
 										</a>-->
 										<a th:href="@{/}">
-											<h2>조력자 제도안내</h2>
+											<h2 class="temp1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp조력자 제도안내</h2>
 										</a>
 										<a th:href="@{/}">
-											<h2>조력자 신청절차안내</h2>
+											<h2 class="temp2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp조력자 신청안내</h2>
 										</a>
 									</ul>
 									<ul class="detail-menu03">
@@ -343,7 +343,7 @@
 		var header_menu_wrap = document.querySelector(".header-menu-wrap");
 		var detail_menu_wrap = document.querySelector(".detail-menu-wrap");
 		header_menu_wrap.style.height = '100px';
-		detail_menu_wrap.style.display = 'none';
+		//detail_menu_wrap.style.display = 'none';
 		menu_wrap.addEventListener('mouseover', function () {
 			header_menu_wrap.style.height = '330px';
 			detail_menu_wrap.style.display = 'block';
@@ -351,7 +351,7 @@
 
 		menu_wrap.addEventListener('mouseout', function () {
 			header_menu_wrap.style.height = '100px';
-			detail_menu_wrap.style.display = 'none';
+			//detail_menu_wrap.style.display = 'none';
 		});
 
 		window.addEventListener("scroll", handleScroll);

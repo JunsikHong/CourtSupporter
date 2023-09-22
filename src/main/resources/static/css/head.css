@@ -4,6 +4,10 @@
   src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
 }
 
+a:hover {
+	text-decoration: none !important;
+}
+
  /* 로그인 스타일 */
  .color {
 	 background-color: rgb(0, 64, 128);
@@ -97,7 +101,8 @@
 	text-align: center;
 	text-decoration: none;
 }
- 
+
+
 .detail-menus h3 {
 	font-weight: 550;
 	font-size: 20px;
