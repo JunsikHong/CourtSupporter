@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" th:href="@{/css/application.css}">
 <link rel="stylesheet" th:href="@{/css/applicationStateBar.css}">
 <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -55,8 +58,8 @@
 					<span>는 필수 입력 사항 입니다.</span>
 				</div>
 				<form action="basicForm" name="basicForm" id="basicForm" method="post">
-					<input type="hidden" name="announce_proper_num" th:value="${param.announce}"/>
-					<input type="hidden" name="trial_fcltt_proper_num" th:value="${param.fcltt_num}"/>
+					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}"/>
+					<input type="hidden" id="trial_fcltt_proper_num" name="trial_fcltt_proper_num" th:value="${param.fcltt_num}"/>
 					<!--<div class="pop_contents">
 						<table class="tableT popT">
 							<colgroup>
@@ -167,7 +170,7 @@
 									<td><input title="주민번호앞자리" name="user_rrn1" id="user_rrn1" type="text" maxlength='6'> <span>-</span>
 										<input title="주민번호뒷자리" name="user_rrn2" id="user_rrn2" type="password" maxlength='7'>
 										<button type="button" id="fetchDataButton"
-											style="border: 1px solid #888888; border-radius: 3px; height: 30px; vertical-align: middle;">실명확인</button>
+											style="border: 1px solid #888888; border-radius: 3px; height: 30px; vertical-align: middle;cursor: pointer;">실명확인</button>
 										<span id="messageDisplay" style="color: red;"></span>
 									</td>
 								</tr>
@@ -221,7 +224,7 @@
 										<span>우편번호 : </span>
 										<input type="text" id="user_ar_zonecode" name="user_ar_zonecode" title="우편번호" th:value="${tb_001vo.user_ar_zonecode}" readonly>
 										<button type="button" id="addressSearch"
-											style="border: 1px solid #888888; border-radius: 3px; height: 30px; vertical-align: middle;">주소검색</button>
+											style="border: 1px solid #888888; border-radius: 3px; height: 30px; vertical-align: middle;cursor: pointer;">주소검색</button>
 										<span id="addressMsg" style="color: red;"></span>
 									</td>
 
@@ -270,8 +273,10 @@
 								<tr>
 									<td style="vertical-align: middle;">소송사건 당사자 경력</td>
 									<td style="text-align:center; vertical-align: middle;" class="toptd">
-										<input type="radio" name="ligtn_case_carer_yn" value="Y" th:checked="${tb_005vo?.ligtn_case_carer_yn == 'Y'}">예
-										<input type="radio" name="ligtn_case_carer_yn" value="N" th:checked="${tb_005vo?.ligtn_case_carer_yn == 'N'}">아니오
+										<input type="radio" id="carer_radio1" name="ligtn_case_carer_yn" value="Y" th:checked="${tb_005vo?.ligtn_case_carer_yn == 'Y'}" style="cursor: pointer;">
+										<label for="carer_radio1" style="cursor: pointer;">예</label>
+										<input type="radio" id="carer_radio2" name="ligtn_case_carer_yn" value="N" th:checked="${tb_005vo?.ligtn_case_carer_yn == 'N'}" style="cursor: pointer;">
+										<label for="carer_radio2" style="cursor: pointer;">아니오</label>
 										<div id="radioMsg1" style="color: red;"></div>
 									</td>
 									<td><textarea
@@ -282,8 +287,10 @@
 								<tr>
 									<td style="vertical-align: middle;">보험업계 자문 경력</td>
 									<td style="text-align:center; vertical-align: middle;" class="toptd">
-										<input type="radio" name="insrn_indst_carer_yn" value="Y" th:checked="${tb_005vo?.insrn_indst_carer_yn == 'Y'}">예
-										<input type="radio" name="insrn_indst_carer_yn" value="N" th:checked="${tb_005vo?.insrn_indst_carer_yn == 'N'}">아니오
+										<input type="radio" id="carer_radio3" name="insrn_indst_carer_yn" value="Y" th:checked="${tb_005vo?.insrn_indst_carer_yn == 'Y'}" style="cursor: pointer;">
+										<label for="carer_radio3" style="cursor: pointer;">예</label>
+										<input type="radio" id="carer_radio4" name="insrn_indst_carer_yn" value="N" th:checked="${tb_005vo?.insrn_indst_carer_yn == 'N'}" style="cursor: pointer;">
+										<label for="carer_radio4" style="cursor: pointer;">아니오</label>
 										<div id="radioMsg2" style="color: red;"></div>
 									</td>
 									<td><textarea
@@ -294,8 +301,10 @@
 								<tr>
 									<td style="vertical-align: middle;">형사처벌 받은 경력</td>
 									<td style="text-align:center; vertical-align: middle;" class="toptd">
-										<input type="radio" name="criminal_penalty_carer_yn" value="Y" th:checked="${tb_005vo?.criminal_penalty_carer_yn == 'Y'}">예
-										<input type="radio" name="criminal_penalty_carer_yn" value="N" th:checked="${tb_005vo?.criminal_penalty_carer_yn == 'N'}">아니오
+										<input type="radio" id="carer_radio5" name="criminal_penalty_carer_yn" value="Y" th:checked="${tb_005vo?.criminal_penalty_carer_yn == 'Y'}" style="cursor: pointer;">
+										<label for="carer_radio5" style="cursor: pointer;">예</label>
+										<input type="radio" id="carer_radio6" name="criminal_penalty_carer_yn" value="N" th:checked="${tb_005vo?.criminal_penalty_carer_yn == 'N'}" style="cursor: pointer;">
+										<label for="carer_radio6" style="cursor: pointer;">아니오</label>
 										<div id="radioMsg3" style="color: red;"></div>
 									</td>
 									<td><textarea
@@ -307,7 +316,7 @@
 						</table>
 					</div>
 					<div class="btnbox btnbox02">
-						<input type="button" class="btn4d5" value="이전" onclick="history.back()" />
+						<input type="button" class="btn4d5" value="이전" onclick="returnPage()" />
 						<input type="submit" class="btnfb7" value="다음">
 					</div>
 				</form>

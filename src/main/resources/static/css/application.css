@@ -24,7 +24,11 @@ button[disabled],html input[disabled]{cursor:default}
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
 input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}
 
-html,body,input,select,textarea,table,td,th,p,div,h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,a,form, label,strong,small,span{font-family:"ng","Nanum Gothic",sans-serif;line-height:1.5em; vertical-align: baseline;}
+html,body,input,select,textarea,table,td,th,p,div,h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,a,form, label,strong,small,span{
+line-height:1.5em; vertical-align: baseline;
+font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
 html,body,h1,h2,h3,h4,h5,h6,p,ul,li,dt,dl,dd,a,img, input,ol,fieldset, form, label, legend, caption, tbody, tfoot,table, td, tr, th,
 article, aside, canvas, details, embed,figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video,div, span,
 object, iframe,abbr, address, big, cite, code,del, dfn, em, img, ins, small, strike, strong, sub, sup, var, center{
@@ -162,7 +166,10 @@ font-family: 'Noto Sans KR', sans-serif;
 
 .modifyBtn, .deleteBtn{background-color: rgb(11, 38, 110);color: #fff;padding: 1px;border: none;}
 #file-upload-name{border: none;margin-right: 8px;background-color: #fff;}
-.file-container{margin:2px};
+#file-upload-name2{border: none;margin-right: 3px;}
+.file-container{margin:2px;}
+
+.edctn_final_yn{cursor: pointer;}
 /* 공통 end */
 
 /* 신청서 페이지 */

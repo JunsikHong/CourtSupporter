@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">	
 <link rel="stylesheet" th:href="@{/css/applicationAgree.css}">
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <th:block th:replace="~{./include/layout :: setContent(~{::.agree})}">
@@ -41,7 +44,8 @@
 						</ol>
 
 						<p class="accept-all-check">
-							<input type="checkbox" id="chkBox" name='agree' value='selectall'> 전체동의
+							<input type="checkbox" id="chkBox" name='agree' value='selectall'>
+							<label id="agreeText" for="chkBox">전체동의</label> 
 						</p>
 
 						<div class="agree-cont-wrap">
@@ -333,12 +337,12 @@
 								</div>
 								<div class="check-area list02">
 									<div class="list">
-										<input type="radio"  name="agreeBtn1" id="agreeBtn1" class="radio_y" value="Y">
-										<label for="useStplatAgreY"><span></span>동의합니다.</label>
+										<input type="radio" name="agreeBtn1" id="agreeBtn1" class="radio_y" value="Y">
+										<label for="agreeBtn1" class="agreeRadio">동의합니다.</label>
 									</div>
 									<div class="list">
 										<input type="radio" name="agreeBtn1" id="agreeBtn2" class="radio_n" value="N">
-										<label for="useStplatAgreN"><span></span>동의하지 않습니다.</label>
+										<label for="agreeBtn2" class="agreeRadio">동의하지 않습니다.</label>
 									</div>
 								</div>
 
@@ -426,17 +430,17 @@
 									<div class="list">
 										<input type="radio" class="radio_y" name="agreeBtn2" id="agreeBtn3"
 											value="Y">
-										<label for="useStplatAgreY"><span></span>동의합니다.</label> 
+										<label for="agreeBtn3" class="agreeRadio">동의합니다.</label> 
 									</div>
 									<div class="list">
 										<input type="radio" class="radio_n" name="agreeBtn2" id="agreeBtn4" onclick=""
 											value="N">
-										<label for="useStplatAgreN"><span></span>동의하지 않습니다.</label>
+										<label for="agreeBtn4" class="agreeRadio">동의하지 않습니다.</label>
 									</div>
 								</div>
 
 								<div class="btnbox btnbox02">
-									<input type="button" class="btn4d5" value="취소" onclick="location.href = '/'" />
+									<input type="button" class="btn4d5" value="취소" onclick="location.href = '/announce/announceList'" />
 									<input type="submit" class="btnfb7" value="동의"/>
 								</div>
 							</form>
@@ -471,7 +475,9 @@ return true;
 }
 
 $(document).on("change", "#chkBox", function() {
-    
+    $('#agreeText').on("click", function() {
+		$('#chkBox').change();
+	})
     
     if($(this).is(":checked")){
         $("input:radio[id='agreeBtn1']").prop("checked",true);

@@ -313,3 +313,9 @@ $(document).ready(function() {
 	
 })
 
+/* 이전 버튼 */
+function returnPage() {
+	var announce = document.getElementById('announce_proper_num').value;
+	location.href = '/application/applicationAgree?announce_proper_num=' + announce;
+}
+
