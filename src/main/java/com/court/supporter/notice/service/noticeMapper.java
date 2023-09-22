@@ -32,4 +32,5 @@ public interface noticeMapper {
 	
 	
 	public void noticeDelete(String notice_proper_num);
+	public void noticeFileDelete(String notice_proper_num);
 }

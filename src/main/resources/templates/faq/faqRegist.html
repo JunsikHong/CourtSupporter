@@ -64,5 +64,30 @@
 
 
 </th:block>
+<script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        // TextArea에서 텍스트를 가져옵니다.
+        const textarea = document.getElementById('faqRegist');
+        const text = textarea.value;
+        
+        // 줄 바꿈 문자를 br 태그로 변환합니다.
+        const textWithHtmlLineBreaks = text.replace(/\n/g, '<br>');
+        
+        // 변환된 텍스트를 hidden input에 저장하거나 서버로 직접 전송할 수 있습니다.
+        // 이 예제에서는 hidden input에 저장합니다.
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'faq_ask_comment';
+        hiddenInput.value = textWithHtmlLineBreaks;
+        
+        // Form에 hidden input을 추가합니다.
+        this.appendChild(hiddenInput);
+        
+        // Form을 서버로 제출합니다.
+        this.submit();
+    });
+</script>
 
 </html>

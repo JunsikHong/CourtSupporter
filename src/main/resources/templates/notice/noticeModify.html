@@ -55,7 +55,13 @@
 										<td class="left" colspan="5" style="text-align: left;">
 											<input type="file" name="file" id="files" multiple>
 											<!-- 파일 이름을 나타낼 영역 -->
-											<div id="fileNames"></div>
+											<div id="fileNames">
+												<ul>
+													<li th:each="vo : ${file}" >
+														<a class="downloadLinks" th:href="@{'https://court-supporter-project-t4.s3.ap-northeast-2.amazonaws.com/' + ${vo.key.file_path} + ${vo.key.notice_file_uuid} + '_' + ${vo.key.original_file_name}}">[[${vo.value}]]</a>
+													</li>
+												</ul>
+											</div>
 
 											<!-- JavaScript -->
 											<script>
@@ -88,7 +94,7 @@
 									<tr>
 										<td colspan="4" class="contents left" style="text-align: left;">
 											<p class="textArea">
-												<textarea name="noticecontent" id="noticeModify" cols="30" rows="10"
+												<textarea name="notice_content" id="noticeModify" cols="30" rows="10"
 													style="width: 99%; height: 200px;">[[${vo.notice_content}]]</textarea>
 											</p>
 										</td>

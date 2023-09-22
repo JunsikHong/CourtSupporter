@@ -10,7 +10,7 @@
 
 		<div class="contentsbox" id="content">
 			<!--sidebar-->
-			<div> 
+			<div>
 				<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
 			</div>
 			<div id="contentsIn">
@@ -39,7 +39,8 @@
 
 									<tr class="firstTh">
 										<th scope="row">등록일</th>
-										<td scope="left"><span th:text="${#strings.substring(vo.notice_date, 0, 10)}"></span></th>
+										<td scope="left"><span
+												th:text="${#strings.substring(vo.notice_date, 0, 10)}"></span></th>
 											<!--<th scope="row">조회수</th>
 										<td scope="left">2023</th>-->
 										<th scope="row">번호</th>
@@ -50,8 +51,9 @@
 										<td class scope="row" style="background-color: #faf6ef;">첨부파일</td>
 										<td class="left" colspan="5" style="text-align: left;" >
 											<ul>
-												<li th:each="vo : ${file}" >
-													<a class="downloadLinks" th:href="@{'https://court-supporter-project-t4.s3.ap-northeast-2.amazonaws.com/' + ${vo.key.file_path} + ${vo.key.notice_file_uuid} + '_' + ${vo.key.original_file_name}}">[[${vo.value}]]</a>
+												<li th:each="vo : ${file}">
+													<a class="downloadLinks"
+														th:href="@{'https://court-supporter-project-t4.s3.ap-northeast-2.amazonaws.com/' + ${vo.key.file_path} + ${vo.key.notice_file_uuid} + '_' + ${vo.key.original_file_name}}">[[${vo.value}]]</a>
 												</li>
 											</ul>
 										</td>
@@ -66,43 +68,68 @@
 								</tbody>
 							</table>
 
-							<table class="tableListBox">
-								<colgroup>
-									<col style="width: 15%;">
-								</colgroup>
-								<tbody>
+							<div th:if="${nextPost != null}">
+								<table class="nextTable">
+									<tbody>
+										<tr>
+											<td class="nextContent">다음글</td>
+											<td colspan="3">
+												<a id="nextLink" class="nextTitle"
+													th:href="@{/notice/noticeDetail/(notice_proper_num=${nextPost.notice_proper_num})}"
+													th:text="${nextPost.notice_title}"></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 
-									<tr>
-										<th scope="row">이전글</th>
-										<td colspan="5" class="left">
-											<a th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num}+1)}"
-												onclick="beforeBtn('81')" class="board1" style="cursor: pointer;">오픈에 따른
-												공지</a>
-											<input type="hidden" id="bpg" name="bpg" value="1">
-										</td>
-									</tr>
+							<div th:unless="${nextPost != null}"> <!-- 다음 글 없을 때 -->
+								<table class="nextInfo">
+									<tbody>
+										<tr>
+											<td colspan="4" class="nextTxt">다음 글이 없습니다.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 
-									<tr>
-										<th scope="row">다음글</th>
-										<td colspan="5" class="left">
-											<a th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num}-1)}"
-												onclick="beforeBtn('79')" class="board1" style="cursor: pointer;">오픈에 따른
-												공지</a>
-											<input type="hidden" id="afpg" name="afpg" value="1">
-										</td>
-									</tr>
+							<div th:if="${previousPost != null}">
+								<table class="prevTable">
+									<tbody>
+										<tr>
+											<td class="prevContent">이전글</td>
+											<td colspan="3">
+												<a id="prevLink" class="prevTitle"
+													th:href="@{/notice/noticeDetail/(notice_proper_num=${previousPost.notice_proper_num})}"
+													th:text="${previousPost.notice_title}"></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 
-								</tbody>
-							</table>
+
+							<div th:unless="${previousPost != null}"> <!-- 이전 글 없을 때 -->
+								<table class="prevInfo">
+									<tbody>
+										<tr>
+											<td colspan="4" class="prevTxt">이전 글이 없습니다.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
 						</div>
 						<div class="btnbox btnbox02" style="margin-bottom: 40px;">
 							<a href="noticeList" class="btnfb7" onclick="">목록</a>
 							<th:block th:if="${member_role == 'ROLE_ADMIN'}">
-								<span class="adminmenu" >
-									<a th:href="@{noticeModify(notice_proper_num=${vo.notice_proper_num})}" class="btn4d5">수정</a>
-									<a th:href="@{noticeDelete(notice_proper_num=${vo.notice_proper_num})}" class="btn4d5">삭제</a>
+								<span class="adminmenu">
+									<a th:href="@{noticeModify(notice_proper_num=${vo.notice_proper_num})}"
+										class="btn4d5">수정</a>
+									<a th:href="@{noticeDelete(notice_proper_num=${vo.notice_proper_num})}"
+										class="btn4d5">삭제</a>
 								</span>
-								
+
 							</th:block>
 						</div>
 
@@ -119,4 +146,5 @@
 
 </th:block>
 <script th:src="@{/js/noticeFileDownload.js}"></script>
+
 </html>
