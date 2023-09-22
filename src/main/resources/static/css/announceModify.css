@@ -184,6 +184,9 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 .announceContent th {
   vertical-align: middle;   
 }
+.contentBox {
+	width: 860px;
+}
 #contentDetail{
   margin-top: 25px;
   margin-bottom: 20px;

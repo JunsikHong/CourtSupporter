@@ -31,9 +31,11 @@ import com.court.supporter.util.Criteria;
 	 public TB_002VO getPrev(String announce_proper_num) ;
 	 public TB_002VO getNext(String announce_proper_num) ;
 	 
-	 public int announceModify(TB_002VO vo); //공고 수정
+	 //공고 수정
+	 public int announceModify(TB_002VO vo, List<String> filelist); //공고 수정 , List<String> filelist
 	 
 	 public void announceDelete(String announce_proper_num); //공고 삭제
+	 public void announceFileDelete(String announce_proper_num); //file 삭제
 	 
 	 public String announce_authcheck(String member_proper_num); //관리자 여부 확인
 

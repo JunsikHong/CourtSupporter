@@ -117,7 +117,7 @@ public class AnnounceFileService {
    private String uploadPath = "announce/" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
 
-   public List<String> announceRegist(List<MultipartFile> list) {
+   public List<String> announcefileRegist(List<MultipartFile> list) {
 	   
 	   List<String> fileList = new ArrayList<>();
 	
@@ -164,6 +164,41 @@ public class AnnounceFileService {
    }
 
 
+   //------------------------------------------------------------------------------------------------------------------------------------
+
+   public void announceFileDelete (List<TB_017VO> filevo) {
+	      
+	      ArrayList<ObjectIdentifier> keys = new ArrayList<>();
+	      
+	      for(TB_017VO file_path : filevo) {
+	         //삭제할 객체 경로
+	         String filepath = file_path.getFile_path()+file_path.getAnnounce_file_uuid()+"_"+file_path.getOriginal_file_name();
+	         
+	         //삭제할 객체
+	           ObjectIdentifier objectId = ObjectIdentifier.builder().key(filepath).build();
+	   
+	           //리스트에 추가
+	           keys.add(objectId);
+	      }
+	       //s3 파일 삭제
+	        Delete del = Delete.builder().objects(keys).build();
+
+	        try {
+	            DeleteObjectsRequest multiObjectDeleteRequest = DeleteObjectsRequest.builder().bucket(aws_bucket_name).delete(del).build();
+
+	            //삭제요청
+	            DeleteObjectsResponse result = s3.deleteObjects(multiObjectDeleteRequest);
+	            
+	            System.out.println("삭제완료");
+	            System.out.println(result.sdkHttpResponse().statusCode());
+	        
+	        } catch (Exception e) {
+	         e.printStackTrace();
+	        }
+	      
+	   }
+   
+   
    //------------------------------------------------------------------------------------------------------------------------------------
    // s3파일업로드
    public void putS3Object(String originName, byte[] originData) {

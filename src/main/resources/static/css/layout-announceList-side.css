@@ -30,7 +30,7 @@
 .notice-title {
    border-bottom: 1px solid #08125E; /* #777*/
    font-size: 18px;
-   font-weight: 800;
+   font-weight: 500;
    color: #424242;
    padding: 10px 0;
    padding-left: 3px;
@@ -58,9 +58,9 @@ notice-content {
 
 .notice-content li:hover {
    background-color:#FD2B2A; /* rgb(227, 0, 0);*/
+   color: white;
 }
 .notice-content a:hover {
-   color: white;
    text-decoration: none;
 }
 .myinfo-content > a {

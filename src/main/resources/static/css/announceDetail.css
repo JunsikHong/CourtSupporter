@@ -343,6 +343,9 @@ td .left{
   font-family: "Noto Sans KR", sans-serif;
   color: white;
 }
+.modifyBtn {
+	width: 70px;
+}
 .btn > a:hover{
   text-decoration: none;
 }
