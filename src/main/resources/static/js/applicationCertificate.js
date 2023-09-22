@@ -62,8 +62,8 @@ function certificateInfo(aplcn_dtls_proper_num) {
 			str += '<td style="vertical-align: middle;">' + data[i].crtfc_number + '</td>';
 			str += '<td style="vertical-align: middle;">' + data[i].issue_date.substring(0, 10) + '</td>';
 			str += '<td style="vertical-align: middle;">';
-			str += '<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />';
-			str += '<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />';
+			str += '<input type="button" class="modifyBtn" value="수정" style="margin-right: 3px;" />';
+			str += '<input type="button" class="deleteBtn" value="삭제"/>';
 			str += '</td>';
 			str += '</tr>';
 		}
@@ -118,8 +118,8 @@ $(document).ready(function() {
 					str += '<td style="vertical-align: middle;">' + data[i].crtfc_number + '</td>';
 					str += '<td style="vertical-align: middle;">' + data[i].issue_date.substring(0, 10) + '</td>';
 					str += '<td style="vertical-align: middle;">';
-					str += '<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />';
-					str += '<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />';
+					str += '<input type="button" class="modifyBtn" value="수정" style="margin-right: 3px;" />';
+					str += '<input type="button" class="deleteBtn" value="삭제"/>';
 					str += '</td>';
 					str += '</tr>';
 				}
@@ -173,7 +173,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="file-input-' + idx + '" name="file" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input class="upload-name' + idx + '" value="" disabled="disabled" style="border: none;">';
+		str += '<input id="file-upload-name" class="upload-name' + idx + '" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -205,3 +205,11 @@ $(document).ready(function() {
   });
   
 });
+
+/* 이전 버튼 */
+function returnPage() {
+	var announce = document.getElementById('announce_proper_num').value;
+	var fcltt_num = document.getElementById('trial_fcltt_proper_num').value;
+	var detail = document.getElementById('aplcn_dtls_proper_num').value
+	location.href = '/application/applicationWork?announce=' + announce + "&fcltt_num=" + fcltt_num + "&detail=" + detail;
+}

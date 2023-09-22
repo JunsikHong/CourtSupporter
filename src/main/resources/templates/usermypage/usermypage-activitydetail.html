@@ -1,5 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" th:href="@{/css/usermypage-activitydetail.css}">
 <th:block th:replace="~{./include/layout :: setContent(~{::.usermypage-activitydetail})}">
 	<div class="usermypage-activitydetail">
@@ -50,12 +54,7 @@
 							<tr class="announceContent">
 								<th>내용</th>
 								<td class="innerContent">
-									<p>
-										서울가정법원 공무직 근로자(시설관리원)
-									</p>
-									<p>
-										채용시험 시행계획 공고
-									</p>
+									[[${result.act_etc}]]
 								</td>
 							</tr>
 						</tbody>

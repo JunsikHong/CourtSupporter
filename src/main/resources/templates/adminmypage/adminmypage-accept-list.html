@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/announceList.css}">
+<link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
+<link rel="stylesheet" th:href="@{/css/page.css}">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- jQuery UI (Datepicker가 포함된 전체 jQuery UI 라이브러리) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<style>
+	.announceInner1 {
+		margin-bottom: 250px;
+		margin-left: 250px;
+		min-height: 300px;
+	}
+</style>
+
+<!--<script th:src="@{/js/announceList.js}"></script>-->
+
+<th:block th:replace="~{./include/layout :: setContent(~{:: .announceList})}">
+
+	<div class="announceList"> <!-- 가장 큰 박스 -->
+
+		<div class="announceList-wrap"> <!-- 다음으로 감싸는 박스-->
+
+			<div> <!--sidebar-->
+				<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+			</div>
+			<div class="announceInner1"> <!-- 공고게시판 -->
+				<div class="announceTitle"> <!-- 게시판 타이틀 -->
+					<p>모집 공고</p>
+				</div>
+
+				<form action="/announce/announceList" name="searchForm" class="searchBox" method="get">
+					<!-- 검색창 action="searchForm"or announceList  class="searchBox" -->
+					<input type="hidden" name="page" value="1">
+					<input type="hidden" name="amount" th:value="${pageVO.amount}">
+				
+
+					<!-- 게시판 -->
+					<div class="announceBoard">
+
+						<table class="board" id="menuData" > <!-- 공고게시판 -->
+							<thead>
+
+								<tr class="boardTitle"> <!-- 게시판 상단부분 (분류) -->
+
+						      <!--<th>맨 앞쪽에 다 넣어야함  
+								 	 <input type="checkbox" class="allCheck">
+								  </th>-->
+									<th>번호</th>
+									<th>모집여부</th>									
+									<th>제목</th>
+									<th>모집인원</th>
+									<th class="regdate">작성일</th>
+									<!--<th>공고 모집일</th>-->
+									<!--<th>조회</th>-->
+								</tr>
+
+							<tbody id="datalist"> <!-- 게시판 글 목록-->
+								<tr th:each="vo, iterStat : ${list}"> <!--boardContent-->
+								  <!--<td><input type="checkbox" class="chk"></td>-->
+								  
+									<td class="contentNumber">
+										<span th:text="${list.size() - iterStat.count+1}"></span><!--  th:text="${vo.announce_proper_num}"-->							
+									</td>
+
+									<td class="hirebox">
+										<span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>
+									</td>
+									
+									<!--<td class="supporter">
+										<span></span>	
+									</td>-->
+									
+									
+									<td class="contentTitle">
+										<!--<div class="hirebox">-->
+										<!-- <span class="hireIcon" id="hire" th:text="${vo.announceStatus}"></span>-->
+										<!--</div>-->										
+										<a th:href="@{adminmypage_announce_detail(announce_proper_num=${vo.announce_proper_num})}"
+											th:text="${vo.announce_title}"></a>											
+									</td>
+
+									<td class="recruitNumber">
+										<span th:text="${vo.announce_recruit_num}" class="recruitNumberTxt"></span>	
+									</td>
+									
+									<td class="contentDate">
+										<span th:text="${vo.announce_first_date.substring(0,10)}"></span>
+										<!--${#temporals.format(vo.announce_first_date, 'yyyy-MM-dd')}-->
+									</td>
+
+									<!--<td class="contentViews"><span id="viewCount">0</span></td>-->
+								</tr>
+
+							</tbody>
+
+							</thead>
+						</table>
+
+					</div>
+
+
+
+					<!--페이지네이션-->
+					<th:block th:replace="~{./include/announcePage :: pageNation(${pageVO})}"></th:block>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</th:block>
+
+
+</html>

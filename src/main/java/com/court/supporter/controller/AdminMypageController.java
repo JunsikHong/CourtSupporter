@@ -3,6 +3,8 @@ package com.court.supporter.controller;
 
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -30,7 +32,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.court.supporter.adminmypage.service.AdminMypageService;
 import com.court.supporter.announce.service.AnnounceService;
-import com.court.supporter.aws.service.EmailService;
 import com.court.supporter.command.TB_001VO;
 import com.court.supporter.command.TB_002VO;
 import com.court.supporter.command.TB_005VO;
@@ -170,27 +171,53 @@ public class AdminMypageController {
 			
 			Map<TB_009VO, String> tb_009VOlist = new HashMap<TB_009VO, String>();
 			
+			String member_id = adminMypageService.adminmypage_getmember_id(member_proper_num);
 			TB_005VO tb_005VO = userMypageService.usermypage_getapplicationdetail1(vo);
 			TB_001VO tb_001VO = userMypageService.usermypage_getInfo(vo.getUser_proper_num());
 			ArrayList<TB_009VO> fileVO = userMypageService.usermypage_getapplicationdetail5(vo);
-			
+			TB_010VO tb_010VO = userMypageService.usermypage_getapplicationdetail6(vo);
 			for(int i = 0; i < fileVO.size(); i++) {
 				String url = URLEncoder.encode(fileVO.get(i).getOriginal_file_name());
 				tb_009VOlist.put(fileVO.get(i), fileVO.get(i).getOriginal_file_name());
 				fileVO.get(i).setOriginal_file_name(url);
 			}
 			
-			model.addAttribute("member_proper_num", member_proper_num);
-			model.addAttribute("member_role", roles);
+			model.addAttribute("member_id", member_id);
 			model.addAttribute("tb_005VO", tb_005VO);
 			model.addAttribute("tb_001VO", tb_001VO);
 			model.addAttribute("tb_009VOlist", tb_009VOlist);
-			
-			if(tb_005VO.getAplicn_dtls_sts().equals("02") || tb_005VO.getAplcn_dtls_proper_num().equals("05")) {
-				return "/adminmypage/adminmypage-evaluation-popup"; //관리자 평가 화면
-			} else {
-				model.addAttribute("tb_013VO", adminMypageService.adminmypage_getresult(tb_005VO));
-				return "/adminmypage/adminmypage-evaluation-result-info"; //관리자 평가 상세 결과 화면
+			model.addAttribute("tb_010VO", tb_010VO);
+			if(roles.equals("ROLE_JURIS")) {
+				if(!tb_005VO.getAplicn_dtls_sts().equals("02")) {
+					ArrayList<TB_013VO> list = adminMypageService.adminmypage_getresult(tb_005VO);
+					model.addAttribute("tb_013VOlist", adminMypageService.adminmypage_getresult(tb_005VO));						
+					if(list == null) {
+						model.addAttribute("result", 1);
+					}
+					return "/adminmypage/adminmypage-evaluation-result-info"; //관리자 평가 상세 결과 화면										
+				} else {
+					return "/adminmypage/adminmypage-evaluation-popup"; //관리자 평가 화면					
+				}
+			} else if(roles.equals("ROLE_COURT")) {
+				if(!tb_005VO.getAplicn_dtls_sts().equals("05")) {
+					ArrayList<TB_013VO> list = adminMypageService.adminmypage_getresult(tb_005VO);
+					model.addAttribute("tb_013VOlist", adminMypageService.adminmypage_getresult(tb_005VO));						
+					if(list == null) {
+						model.addAttribute("result", 1);
+					}
+					return "/adminmypage/adminmypage-evaluation-result-info"; //관리자 평가 상세 결과 화면										
+				} else {
+					return "/adminmypage/adminmypage-evaluation-popup"; //관리자 평가 화면										
+				}
+			} else if(roles.equals("ROLE_ADMIN")) {
+				if(!tb_005VO.getAplicn_dtls_sts().equals("07")) {
+					ArrayList<TB_013VO> list = adminMypageService.adminmypage_getresult(tb_005VO);
+					model.addAttribute("tb_013VOlist", adminMypageService.adminmypage_getresult(tb_005VO));						
+					if(list.size() == 0) {
+						model.addAttribute("result", 1);
+					}
+					return "/adminmypage/adminmypage-evaluation-result-info"; //관리자 평가 상세 결과 화면															
+				}
 			}
 		}
 		return "redirect:/";
@@ -198,7 +225,7 @@ public class AdminMypageController {
 
 	//관리자 평가
 	@PostMapping("/adminmypage_evaluation")
-	public String adminmypage_evaulation (TB_013VO tb_013VO, TB_005VO tb_005VO, RedirectAttributes ra, HttpServletRequest request) {
+	public String adminmypage_evaulation (TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO, RedirectAttributes ra, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String jwt = (String) session.getAttribute("token");
 		if (jwt != null) {
@@ -207,52 +234,26 @@ public class AdminMypageController {
 			String member_proper_num = userDetails.getUsername();
 			String member_role = adminMypageService.adminmypage_authcheck(member_proper_num); //권한
 			if(member_role == "ROLE_USER") return "redirect:/"; //권한이 사용자일 때는 서비스 종료
-			String aplicn_dtls_sts = tb_005VO.getAplicn_dtls_sts(); // 신청자 상태
-			////////////////////////////////////////////////////////////////////
 			
 			tb_013VO.setAdmin_proper_num(member_proper_num); //평가자 기록
-			int evaluate_insert_result = adminMypageService.adminmypage_evaluate(tb_013VO);	//평가테이블에 넣기	
+			int evaluate_insert_result = adminMypageService.adminmypage_evaluate(tb_013VO);	//평가테이블에 넣기
 			
-			////////////////////////////////////////////////////////////////////
-			
-			int end_date_yn = adminMypageService.adminmypage_checkannounceenddate(tb_005VO); //오늘날짜 공고종료날짜 비교
-			int evaluate_complete_yn = adminMypageService.adminmypage_checkevaluatecomplete(tb_005VO);//모든 신청자가 심사완료인지 확인
-			if(end_date_yn == 1) { //오늘날짜가 공고종료날짜 이후라면
-				
-				if(evaluate_complete_yn == 1) { //모든 신청자가 심사중
-					if(member_role.equals("ROLE_JURIS") || member_role.equals("ROLE_ADMIN")) { //권한이 사법이라면
-						if(aplicn_dtls_sts.equals("03")) { //상태가 심사중일 때
-							TB_001VO tb_001VO = userMypageService.usermypage_getInfo(tb_005VO.getUser_proper_num());
-							adminMypageService.adminmypage_confirm_first_evaluate(tb_013VO, tb_005VO, tb_001VO); //상대평가 및 1차 합격
-						}
-					}
-				} else if(evaluate_complete_yn == 3) { //모든 신청자가 최종심사중 상태
-					if(member_role.equals("ROLE_COURT") || member_role.equals("ROLE_ADMIN")) { //권한이 법원이라면
-						if(aplicn_dtls_sts.equals("05")) { //상태가 1차합격일 때
-							TB_001VO tb_001VO = userMypageService.usermypage_getInfo(tb_005VO.getUser_proper_num());
-							adminMypageService.adminmypage_confirm_final_evaluate(tb_013VO, tb_005VO, tb_001VO); //상대평가 및 조력자 등재				
-						}
-					}
+			if(member_role.equals("ROLE_JURIS")) { //사법 담당자일때
+				if(tb_013VO.getEvaluate_score() < 20) { //서류반려
+					adminMypageService.juris_fail(tb_013VO, tb_005VO, tb_001VO);
+				} else if (tb_013VO.getEvaluate_score() >= 20) { //1차합격
+					adminMypageService.juris_pass(tb_013VO, tb_005VO, tb_001VO);
 				}
-				
-			} else if(end_date_yn == 0) { //오늘날짜가 공고종료날짜 이전이라면
-				
-				if(member_role.equals("ROLE_JURIS") || member_role.equals("ROLE_ADMIN")) { //권한이 사법이라면
-					if(aplicn_dtls_sts.equals("02")) { //상태가 신청완료일 때
-						TB_001VO tb_001VO = userMypageService.usermypage_getInfo(tb_005VO.getUser_proper_num());
-						adminMypageService.adminmypage_juris_evaluate(tb_013VO, tb_005VO, tb_001VO); //사법관리자 평가
-					}
-				} else if(member_role.equals("ROLE_COURT") || member_role.equals("ROLE_ADMIN")) { //권한이 법원이라면
-					if(aplicn_dtls_sts.equals("05")) { //상태가 1차합격일 때
-						TB_001VO tb_001VO = userMypageService.usermypage_getInfo(tb_005VO.getUser_proper_num());
-						adminMypageService.adminmypage_court_evaluate(tb_013VO, tb_005VO, tb_001VO); //법원관리자 평가
-					}
+			} else if(member_role.equals("ROLE_COURT")) {
+				if(tb_013VO.getEvaluate_score() < 20) { //불합격
+					adminMypageService.court_fail(tb_013VO, tb_005VO, tb_001VO);		
+				} else if (tb_013VO.getEvaluate_score() >= 20) { //최종심사중
+					adminMypageService.court_pass(tb_013VO, tb_005VO, tb_001VO);							
 				}
-				
 			}
 			
 			////////////////////////////////////////////////////////////////////
-			ra.addFlashAttribute("user_name", userMypageService.usermypage_getInfo(tb_005VO.getUser_proper_num()).getUser_name());
+			ra.addFlashAttribute("user_name", tb_001VO.getUser_name());
 			ra.addFlashAttribute("evaluate_insert_result", evaluate_insert_result);
 			return "redirect:/adminmypage/adminmypage_evaluation_result";
 			
@@ -262,7 +263,7 @@ public class AdminMypageController {
 
 	//관리자 평가 후 성공 메시지 결과화면
 	@GetMapping("adminmypage_evaluation_result")
-	public String adminmypage_evaluation_result (HttpServletRequest request, @ModelAttribute("user_name") String user_name) {
+	public String adminmypage_evaluation_result (HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String jwt = (String) session.getAttribute("token");
 		if (jwt != null) {
@@ -310,5 +311,42 @@ public class AdminMypageController {
 		}
 		return "redirect:/";
 	}
+	
+	//전체관리자 최종등재 목록 화면
+	@GetMapping("adminmypage_accept")
+	public String adminmypage_accept (HttpServletRequest request, Model model, Criteria cri) {
+		HttpSession session = request.getSession();
+		String jwt = (String) session.getAttribute("token");
+		if (jwt != null) {
+			Authentication authentication = jwtValidator.getAuthentication(jwt);
+			DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
+			String member_proper_num = userDetails.getUsername();
+			String member_role = adminMypageService.adminmypage_authcheck(member_proper_num); //권한
+			if(!member_role.equals("ROLE_ADMIN")) return "redirect:/";
+			int total = adminMypageService.getannouncecount(cri);
+			ArrayList<TB_002VO> list = adminMypageService.getannouncelist(cri);
+			 //날짜 비교		
+		    for(TB_002VO vo : list) { //TB_002VO vo
+		    	String endDate = vo.getAnnounce_end_date();
+		    	DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		    	LocalDate localEndDate = LocalDate.parse(endDate, dateformat); //LocalDate
+		    	LocalDate today = LocalDate.now(); //LocalDate
+		    	
+		    	if(today.isAfter(localEndDate)) {
+		    		vo.setAnnounceStatus("모집완료");
+		    	} else {
+		    		vo.setAnnounceStatus("모집중");
+		    	}			
+		    }
+			
+			PageVO pageVO = new PageVO(cri, total);
+			model.addAttribute("total", total);
+			model.addAttribute("pageVO", pageVO);
+			model.addAttribute("list", list);
+			return "/adminmypage/adminmypage-accept-list";
+		}
+		return "redirect:/";
+	}
+	
 	
 }

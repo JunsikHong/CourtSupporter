@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+<<<<<<< HEAD
+  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
+}
+
+=======
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
+>>>>>>> 676e3afc7d25362301e3b5b0967325c7d5606931
 * {
 	padding: 0;
 	margin: 0;

@@ -1,4 +1,9 @@
-@charset "UTF-8";
+
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
+}
+
 
 .notice-sidemenu-wrap {
    position: absolute;
@@ -11,7 +16,7 @@
 
 .mainTitle {
    font-size: 25px;
-   font-weight: 600;
+   font-weight: 800;
    padding-bottom: 15px;
    padding-left: 2px;
    color: #2E2E2E;
@@ -25,7 +30,7 @@
 .notice-title {
    border-bottom: 1px solid #08125E; /* #777*/
    font-size: 18px;
-   font-weight: 550;
+   font-weight: 800;
    color: #424242;
    padding: 10px 0;
    padding-left: 3px;
@@ -34,12 +39,12 @@
 .myapplication-title {
    border-bottom: 1px solid #08125E;/* #777*/
    font-size: 18px;
-   font-weight: 550;
+   font-weight: 800; /*550*/
    padding: 10px 0;   
 }
 
 notice-content {
-   background-color: #F2F2F2; /* #EAEBF8; *//* rgb(232, 232, 232);*/ 
+   background-color: #f3f4fb;/*  #F2F2F2;#EAEBF8; *//* rgb(232, 232, 232);*/ 
 }
 
 .notice-content li {
@@ -48,14 +53,19 @@ notice-content {
    font-size: 13px;
    color: #585858;
    border-bottom: 1px solid white;
-    background-color: #F2F2F2;
+   background-color: #f3f4fb;
 }
 
 .notice-content li:hover {
    background-color:#FD2B2A; /* rgb(227, 0, 0);*/
 }
 .notice-content a:hover {
-   color: white;	
+   color: white;
+   text-decoration: none;
+}
+.myinfo-content > a {
+	color: #585858;
+	text-decoration: none;
 }
 
 .myapplication-content {

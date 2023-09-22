@@ -28,17 +28,22 @@ public interface AdminMypageService {
 	public int adminmypage_checkevaluatecomplete(TB_005VO vo); //모든 신청자가 심사중인지 확인
 	
 	public int adminmypage_evaluate(TB_013VO vo); //관리자페이지 신청 평가 점수 넣기
-	public int adminmypage_juris_evaluate(TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO); //관리자페이지 신청 1차평가
-	public int adminmypage_court_evaluate(TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO); //관리자페이지 신청 최종평가
 	
-	public void adminmypage_confirm_first_evaluate(TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO); //관리자페이지 1차 상대평가 및 등재
-	public void adminmypage_confirm_final_evaluate(TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO); //관리자페이지 최종 상대평가 및 등재
-	
-	public TB_013VO adminmypage_getresult (TB_005VO vo); //관리자 페이지 평가 결과
+	public ArrayList<TB_013VO> adminmypage_getresult (TB_005VO vo); //관리자 페이지 평가 결과
 	
 	public int adminmypage_getauthtotal(Criteria cri); //관리자페이지 관리자 리스트 총합
 	public ArrayList<TB_018VO> adminmypage_getauthlist(Criteria cri); //관리자페이지 관리자 리스트
 	public int adminmypage_updateauth(TB_018VO vo); //관리자 권한 설정하기
 	
 	public String adminmypage_getmember_id(String member_proper_num); //멤버 아이디 구하기
+	
+	public int juris_fail(TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO); //사법관리자 서류반려
+	public int juris_pass(TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO); //사법관리자 1차합격
+	public int court_fail(TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO); //법원관리자 불합격
+	public int court_pass(TB_013VO tb_013VO, TB_005VO tb_005VO, TB_001VO tb_001VO); //법원관리자 최종심사중
+	
+	public ArrayList<TB_002VO> getannouncelist(Criteria cri); //공고목록 가져오기(기간 끝난)
+	public int getannouncecount(Criteria cri); //공고목록 가져오기(기간 끝난)
+	
+	public ArrayList<TB_013VO> getaplicndetail(String announce_proper_num);
 }

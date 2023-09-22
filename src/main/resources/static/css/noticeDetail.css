@@ -90,8 +90,8 @@ input, select {
 }
 
 #contentstitle{
-  padding: 20px;
-  border-bottom: 3px solid gray;
+  padding-bottom: 15px;
+  border-bottom: 3px solid black;
 }
 
 #contentstitle > .noticetitle,
@@ -121,6 +121,10 @@ input, select {
 table{
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+th {
+	background-color: #faf6ef;
 }
 
 #contents .tablebox table tr.firstTh th {

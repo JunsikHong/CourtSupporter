@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
 .usermypage-applicationlist {
 	display: flex;
 	justify-content: center;
@@ -37,6 +41,7 @@
 }
 
 .board_table th {
+	background-color: #f3f4fb;
 	font-size: 16px;
 	color: #222222;
 	padding: 12px 0;
@@ -53,6 +58,8 @@
 	word-break: keep-all;
 	letter-spacing: -0.7px;
 }
+
+
 
 .board_table td>img {
 	width: auto;
@@ -98,9 +105,39 @@
 	margin-top: 30px;
 }
 
+.searchvalue {
+	width: 100%;
+}
+
+.searchzonewrap {
+	width: 100%;
+	background-color: #f3f4fb;
+	height: 120px;
+	margin-bottom: 20px;
+	
+}
+
+.searchzone {
+	display: flex;
+	gap: 40px;
+	justify-content: center; /* 수평 정렬 */
+  	align-items: center; /* 수직 정렬 */
+  	padding-top: 40px;
+}
+
 .board_search_date {
-	margin-left: 30px;
-	float: left;
+
+	
+}
+
+.board_search_sts {
+	
+	
+	
+}
+
+.choicests {
+	width: 150px;
 }
 
 .board_search input,
@@ -109,22 +146,21 @@
 	border: 1px #c4c4c4 solid;
 	height: 30px;
 	line-height: 30px;
-	color: #777777;
+	
 	font-size: 15px;
 	box-sizing: border-box;
-	vertical-align: top;
 
 }
 
 .search_btn {
 	display: inline-block;
-	background: #555555;
-	color: #FFF;
+	background: rgb(11, 38, 110);
+	color: white;
 	font-size: 13px;
 	font-family: "ngB" !important;
 	height: 30px;
 	line-height: 30px;
-	width: 54px;
+	width: 80px;
 	text-align: center;
 	vertical-align: top;
 }
@@ -139,18 +175,6 @@ input[type='text'].datepicker {
 	background-repeat: no-repeat;
 	background-position-x: 90px;
 	background-position-y: 5px;
-}
-
-.date-content {
-	line-height: 30px;
-}
-
-.board_search_sts {
-	float: left;
-	margin-left: 30px;
-}
-.sts-content {
-	line-height: 30px;
 }
 
 .no_document_img {

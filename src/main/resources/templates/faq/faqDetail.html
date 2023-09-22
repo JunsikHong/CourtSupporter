@@ -16,7 +16,6 @@
 			<div id="contentsIn">
 				<div id="contentstitle">
 					<span class="FAQtitle">자주묻는질문(FAQ)</span>
-					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 자주묻는질문</span>
 				</div>
 				<div id="contents">
 					<form id="viewForm" action="#" method="post">
@@ -36,7 +35,7 @@
 										<td class="left" colspan="5">[[${vo.faq_ask_content}]]</td>
 									</tr>
 									<tr>
-										<td colspan="4" class="contents left" style="text-align: left;">
+										<td colspan="4" class="contents left" style="text-align: left; height: 200px;">
 											<p class="textArea">[[${vo.faq_ask_comment}]]</p>
 										</td>
 									</tr>
@@ -95,9 +94,7 @@
 								</table>
 							</div>
 						</div>
-
-
-						<div class="btnbox btnbox02">
+						<div class="btnbox btnbox02" style="margin-bottom: 40px;">
 							<a href="faqList" class="btnfb7" onclick="javascript:goRegist();">목록</a>
 							<th:block th:if="${member_role == 'ROLE_ADMIN'}">
 								<span class="adminmenu">

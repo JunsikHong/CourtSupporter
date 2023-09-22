@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <th:block th:fragment="layout-usermypage-side">
    <link rel="stylesheet" th:href="@{/css/layout-usermypage-side.css}">
          <div class="usermypage-sidemenu-wrap">
@@ -18,7 +21,7 @@
                   </ul>
                </div>
                <div class="usermypage-myinfo menu">
-                  <h3 class="myinfo-title">나의 정보관리</h3>
+                  <h3 href="#" class="myinfo-title">나의 정보관리</h3> <!--<a href="#" class="myinfo-title">나의 정보관리</a>-->
                   <ul class="myinfo-content">
                      <a th:href="@{usermypage}"><li>회원정보</li></a>
                      <a th:href="@{usermypage_withdrawl}"><li>회원탈퇴</li></a>
@@ -34,5 +37,21 @@
          </div>
 
       </th:block>
+      
+      <script>
+		  /*
+		  var title = document.querySelector(".myinfo-title");
+		  var menu = document.querySelector(".myinfo-content");
+		  title.addEventListener("click", function(e) {		
+			 e.preventDefault(); 	 
+			 if (menu.style.display === "none" || menu.style.display === "") {
+		         menu.style.display = "block";
+		      } else {
+		         menu.style.display = "none";
+		      }
+			  
+		  });
+		  */
+	  </script>
 
 </html >

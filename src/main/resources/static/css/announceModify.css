@@ -82,7 +82,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
  /*  border-top: 0.3px solid #BDBDBD;
    border-bottom: 0.3px solid  #090C5F;*/
    /*background-color: #E8E8E9; */
-   background-color: #F2F2F2;
+   background-color: #f3f4fb;/* #F2F2F2;*/
 }
 .board td {
    padding-left: 20px;

@@ -86,7 +86,7 @@
 								
 								<tr> <!-- class="boardTitle" -->
 									<th class="trialNumth">조력자 분류</th>
-									<td class="trialNum" ></td> 
+									<td class="trialNum" name="trial_fcltt_description" id="trialFclttName" >[[${name}]]</td> <!-- th:text="${tb_010VO.trial_fcltt_description}"--> 
 									<th class="recruitNumth">모집인원</th>
 									<td class="recruitNum">[[${vo.announce_recruit_num}]] 명</td>
 								</tr>
@@ -207,7 +207,6 @@
 							</th:block>
 							
 						</div>
-					</form>
 				</div>
 
 			</div>
@@ -234,16 +233,7 @@
 	    document.actionForm.action = "deleteForm"; //action변경 
 	    document.actionForm.submit();			
 	  }
-	}
-	
-	//신청화면으로 이동
-	/*
-	let applyBtn = document.getElementById("applyBtn");
-	applyBtn.onclick = () => {		
-	  event.preventDefault();		
-	  document.actionForm.action = "agreeForm"; 
-	  window.location.href = "/application/applicationAgree";	   	
-	}*/
+	}	
 	
 </script>
 
@@ -273,10 +263,7 @@
 </script>
 
 <script th:inline="javascript">
-
-   if ('[[${msg}]]' > 0) {
-      alert('로그인 후에 공고를 신청할 수 있습니다.q');      
-   } 
+	
 	
 </script>
 
@@ -296,16 +283,6 @@
 		}		
 	}
 		
-</script>
-
-<script th:inline="javascript">
-   if ('[[${loginresult}]]' == null ) {
-      alert('로그인 후 신청해주세요.');      
-   } 
-</script>
-
-<script th:inline="javascript">
-	
 	//공유버튼 링크
 	function shareTwitter() {
 	   let txt = "모집공고";
@@ -317,8 +294,21 @@
 	   let url = ""; 
 	   window.open("http://www.facebook.com/sharer/sharer.php?u=" +"&url=" + url);
 	}
+
 	
-	
+	function printPageArea(areaID){
+	    var printContent = document.getElementById(areaID).innerHTML;	    
+	    var printWindow = window.open('', '_blank');
+	    printWindow.document.open();
+	    printWindow.document.write('<html><head><title>Print</title></head><body>');
+	    printWindow.document.write(printContent);
+	    printWindow.document.write('</body></html>');
+	    printWindow.document.close();
+	    printWindow.print();
+	    printWindow.close()
+	    
+	}
+
 	//화면 확대 축소 기능
 	let now = 100;
 	
@@ -352,5 +342,5 @@
 	}	
 	
 </script>
-	
+
 </html>

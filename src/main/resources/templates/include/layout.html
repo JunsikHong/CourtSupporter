@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <th:block th:fragment="setContent(content)">
 
 
@@ -19,11 +22,11 @@
 		<!--header-->
 		<header>
 			<!-- 로그인 -->
-			<div class="header-login-wrap">
+			<div id="element" class="header-login-wrap">
 				<div class="login-wrap">
 					<form th:action="@{/logout}" method="post">
 					<p th:if="${session.token}">
-						<a href="#" onclick="this.parentNode.parentNode.submit(); return false;">로그아웃</a>
+						<a href="#" id="logout_a" onclick="this.parentNode.parentNode.submit(); return false;">로그아웃</a>
     				</p>
 					</form>
 					<p th:unless="${session.token}">
@@ -37,7 +40,7 @@
 					<!--로고-->
 					<div class="logo-wrap">
 						<a th:href="@{/}">
-							<img th:src="@{/img/logo_color.png}" alt="재판조력자" />
+							<img th:src="@{/img/logo_.png}" alt="재판조력자" />
 						</a>
 					</div>
 					
@@ -46,7 +49,7 @@
 
 						<th:block th:if="${session.member_role == null || session.member_role == 'ROLE_USER'}">
 						<ul class="menus">
-							<a th:href="@{/application/applicationAgree}">
+							<a th:href="@{/announce/announceList}">
 								<li class="menu01">
 									<span class="">조력자등재신청</span>
 								</li>
@@ -74,11 +77,11 @@
 							<div class="detail-menu-wrap">
 								<div class="detail-menus">
 									<ul class="detail-menu01">
-										<a th:href="@{/announce/announceList}">
+										<!--<a th:href="@{/announce/announceList}">
 											<h3>조력자등재신청</h3>
-										</a>
+										</a>-->
 										<a th:href="@{/announce/announceList}">
-											<li>조력자등재신청</li>
+											<h2>&nbsp&nbsp조력자등재신청</h2>
 										</a>
 									</ul>
 									<ul class="detail-menu02">
@@ -93,44 +96,44 @@
 										</a>
 									</ul>
 									<ul class="detail-menu03">
-										<a th:href="@{/usermypage/usermypage}">
+										<!--<a th:href="@{/usermypage/usermypage}">
 											<h3>My Page</h3>
-										</a>
+										</a>-->
 										<a th:href="@{/usermypage/usermypage_applicationlist}">
-											<li>나의 신청현황</li>
+											<h2>나의 신청현황</h2>
 										</a>
 										<a th:href="@{/usermypage/usermypage_activitylist}">
-											<li>나의 활동내역</li>
+											<h2>나의 활동내역</h2>
 										</a>
 										<a th:href="@{/usermypage/usermypage}">
-											<li>나의 정보관리</li>
+											<h2>나의 정보관리</h2>
 										</a>
 										<a th:href="@{/usermypage/usermypage_pauselist}">
-											<li>중지/해제신청 관리</li>
+											<h2>중지/해제신청 관리</h2>
 										</a>
 									</ul>
 									<ul class="detail-menu04">
-										<a th:href="@{/announce/announceList}">
+										<!--<a th:href="@{/announce/announceList}">
 											<h3>공지사항</h3>
-										</a>
+										</a>-->
 										<a th:href="@{/announce/announceList}">
-											<li>모집공고</li>
+											<h2>모집공고</h2>
 										</a>
 										<a th:href="@{/notice/noticeList}">
-											<li>공지사항</li>
+											<h2>공지사항</h2>
 										</a>
 										<a th:href="@{/faq/faqList}">
-											<li>FAQ</li>
+											<h2>FAQ</h2>
 										</a>
 									</ul>
 								</div>
 							</nav>
 						</th:block>
-						<th:block th:unless="${session.member_role == null || session.member_role == 'ROLE_USER'}">
+						<th:block th:if="${session.member_role == 'ROLE_ADMIN'}">
 							<ul class="menus">
-								<a th:href="@{/application/applicationAgree}">
+								<a th:href="@{/}">
 									<li class="menu01">
-										<span class="">평가</span>
+										<span class="">권한관리</span>
 									</li>
 								</a>
 								<a th:href="@{/}">
@@ -140,12 +143,7 @@
 								</a>
 								<a th:href="@{/usermypage/usermypage}">
 									<li class="menu03">
-										<span class="">My Page</span>
-									</li>
-								</a>
-								<a th:href="@{/announce/announceList}">
-									<li class="menu04">
-										<span class="">관리</span>
+										<span class="">공지사항</span>
 									</li>
 								</a>
 							</ul>
@@ -155,53 +153,90 @@
 								<div class="detail-menu-wrap">
 									<div class="detail-menus">
 										<ul class="detail-menu01">
-											<a th:href="@{/application/applicationAgree}">
-												<h3>조력자등재신청</h3>
-											</a>
-											<a th:href="@{/application/applicationAgree}">
-												<li>조력자등재신청</li>
+											<a th:href="@{/}">
+												<h2>권한관리</h2>
 											</a>
 										</ul>
 										<ul class="detail-menu02">
-											<a th:href="@{/}">
+											<!--<a th:href="@{/}">
 												<h3>조력자신청안내</h3>
+											</a>-->
+											<a th:href="@{/}">
+												<h2>조력자 제도안내</h2>
 											</a>
 											<a th:href="@{/}">
-												<li>조력자 제도안내</li>
-											</a>
-											<a th:href="@{/}">
-												<li>조력자 신청절차안내</li>
+												<h2>조력자 신청절차안내</h2>
 											</a>
 										</ul>
 										<ul class="detail-menu03">
-											<a th:href="@{/usermypage/usermypage}">
-												<h3>My Page</h3>
-											</a>
-											<a th:href="@{/usermypage/usermypage_applicationlist}">
-												<li>나의 신청현황</li>
-											</a>
-											<a th:href="@{/usermypage/usermypage_activitylist}">
-												<li>나의 활동내역</li>
-											</a>
-											<a th:href="@{/usermypage/usermypage}">
-												<li>나의 정보관리</li>
-											</a>
-											<a th:href="@{/usermypage/usermypage_pauselist}">
-												<li>중지/해제신청 관리</li>
-											</a>
-										</ul>
-										<ul class="detail-menu04">
-											<a th:href="@{/announce/announceList}">
+											<!--<a th:href="@{/announce/announceList}">
 												<h3>공지사항</h3>
-											</a>
+											</a>-->
 											<a th:href="@{/announce/announceList}">
-												<li>모집공고</li>
+												<h2>모집공고</h2>
 											</a>
 											<a th:href="@{/notice/noticeList}">
-												<li>공지사항</li>
+												<h2>공지사항</h2>
 											</a>
 											<a th:href="@{/faq/faqList}">
-												<li>FAQ</li>
+												<h2>FAQ</h2>
+											</a>
+										</ul>
+									</div>
+								</div>
+							</nav>
+						</th:block>
+						<th:block th:if="${session.member_role == 'ROLE_COURT' || session.member_role == 'ROLE_JURIS'}">
+							<ul class="menus">
+								<a th:href="@{/}">
+									<li class="menu01">
+										<span class="">평가</span>
+									</li>
+								</a>
+								<a th:href="@{/}">
+									<li class="menu02">
+										<span class="">조력자신청안내</span>
+									</li>
+								</a>
+								<a th:href="@{/announce/announceList}">
+									<li class="menu03">
+										<span class="">공지사항</span>
+									</li>
+								</a>
+							</ul>
+							
+							<!--상세메뉴-->
+							<nav>
+								<div class="detail-menu-wrap">
+									<div class="detail-menus">
+										<ul class="detail-menu01">
+											<a th:href="@{/}">
+												<h2>평가</h2>
+											</a>
+										</ul>
+										<ul class="detail-menu02">
+											<!--<a th:href="@{/}">
+												<h3>조력자신청안내</h3>
+											</a>-->
+											<a th:href="@{/}">
+												<h2>조력자 제도안내</h2>
+											</a>
+											<a th:href="@{/}">
+												<h2>조력자 신청절차안내</h2>
+											</a>
+										</ul>
+										<ul class="detail-menu03">
+											<!--<a th:href="@{/announce/announceList}">
+												<h3>공지사항</h3>
+											</a>-->
+											<a th:href="@{/announce/announceList}">
+												<h2>모집공고</h2>
+											</a>
+											<a th:href="@{/notice/noticeList}">
+												<h2>공지사항</h2>
+											</a>
+											<a th:href="@{/faq/faqList}">
+												<h2>FAQ</h2>
 											</a>
 										</ul>
 									</div>
@@ -222,7 +257,7 @@
 			<div id="footer-box">
 				<!--로고-흑백-->
 				<div class="logo-footer">
-					<img th:src="@{/img/logo_black.png}" alt="재판조력자">
+					<img th:src="@{/img/logo_black_tr.png}" alt="재판조력자">
 				</div>
 				<ul class="footer-menu">
 					<li></li>
@@ -265,23 +300,50 @@
 			</div>
 		</footer>
 
+		<div class="to-the-top-wrap">
+			<a>
+				<img th:src="@{/img/top_grey.png}"/>
+			</a>
+		</div>
 	</body>
+	<script th:inline="javascript">
+		var a = /*[[${session.member_role}]]*/ "";
+		if(a == 'ROLE_ADMIN' || a == 'ROLE_JURIS' || a == 'ROLE_COURT'){
+			
+		var element = document.getElementById('element');
+		var element2 = document.getElementById('logout_a');
+			element.classList.add('color');
+			element2.style.color = 'white';
+			
+		}
+	
+	</script>
 	<script>
+		var top_wrap = document.querySelector(".to-the-top-wrap");
 		function handleScroll() {
 			var scrollY = window.scrollY || window.pageYOffset;
 			var head_menu_wrap = document.querySelector(".header-menu-wrap");
 			if (scrollY >= 20) {
 				head_menu_wrap.style.top = "0px";
+				top_wrap.classList.add("active"); // active 클래스 추가
 			} else {
 				head_menu_wrap.style.top = "60px";
+				top_wrap.classList.remove("active"); // active 클래스 제거
 			}
 		}
+		
+		top_wrap.addEventListener('click', function() {
+			window.scrollTo({
+		        top: 0,
+		        behavior: "smooth" // 부드러운 스크롤 효과를 위해 "smooth"를 사용
+		    });
+		})
 
 		var menu_wrap = document.querySelector(".menu-wrap");
 		var header_menu_wrap = document.querySelector(".header-menu-wrap");
 		var detail_menu_wrap = document.querySelector(".detail-menu-wrap");
 		header_menu_wrap.style.height = '100px';
-		detail_menu_wrap.style.display = 'none';
+		//detail_menu_wrap.style.display = 'none';
 		menu_wrap.addEventListener('mouseover', function () {
 			header_menu_wrap.style.height = '330px';
 			detail_menu_wrap.style.display = 'block';
@@ -289,11 +351,12 @@
 
 		menu_wrap.addEventListener('mouseout', function () {
 			header_menu_wrap.style.height = '100px';
-			detail_menu_wrap.style.display = 'none';
+			//detail_menu_wrap.style.display = 'none';
 		});
 
 		window.addEventListener("scroll", handleScroll);
 	</script>
+	
 </th:block>
 
 </html>
