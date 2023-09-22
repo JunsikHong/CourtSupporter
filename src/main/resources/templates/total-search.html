@@ -4,9 +4,164 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
-<th:block th:replace="~{./include/layout :: setContent(~{::.total-search)}">
-	<div class="total-search">
-		<div class="total-search-wrap">
+<link rel="stylesheet" th:href="@{/css/total-search.css}">
+<th:block th:replace="~{./include/layout :: setContent(~{::.total-search-wrap})}">
+	<div class="total-search-wrap">
+		<div class="total-search">
+			<div class="announce-section">
+				
+				<div class="searchbarwrap">
+					<form action="total_search" method="get">
+						<input type="text" name="search" value="" class="searchbar">	
+						<button type="submit" class="btnfb7">검색</button>				
+					</form>					
+				</div>
+				
+				<div class="announce-section-title-wrap">
+					<p class="announce-section-title">공고내역</p>
+				</div>
+				<th:block th:if="${tb_002total == 0}">
+					<div class="announce-section-content-wrap">
+
+						<ul class="announce-section-content">
+							<li class="announce-wrap">
+								<h1>검색결과가 없습니다.</h1>
+							</li>
+						</ul>
+
+					</div>
+				</th:block>
+				<th:block th:unless="${tb_002total == 0}">
+					<div class="announce-section-content-wrap">
+						<th:block th:each="tb_002 : ${tb_002list}">
+							<ul class="announce-section-content">
+								<li class="announce-wrap">
+									<div class="announce-left">
+										<h3 class="announce-left-title">
+											<pre>[[${tb_002.announce_title}]]</pre>
+										</h3>
+										<p class="announce-left-content" th:text="${tb_002.announce_content}">
+	
+										</p>
+									</div>
+									<div class="announce-right">
+										<form action="/announce/announceList" method="get">
+											<button type="submit" class="btnfb7">사이트 가기</button>
+										</form>
+									</div>
+								</li>
+							</ul>
+						</th:block>
+					</div>
+				</th:block>
+
+				<a href="announce/announceList">
+					<div class="announce-section-more-wrap">
+						<p class="announce-section-more">[[${tb_002total}]] 개 더보기 >></p>
+					</div>
+				</a>
+			</div>
+
+			<div class="announce-section">
+				<div class="announce-section-title-wrap">
+					<p class="announce-section-title">공지</p>
+				</div>
+
+				<th:block th:if="${tb_003total == 0}">
+					<div class="announce-section-content-wrap">
+
+						<ul class="announce-section-content">
+							<li class="announce-wrap">
+								<h1>검색결과가 없습니다.</h1>
+							</li>
+						</ul>
+
+					</div>
+				</th:block>
+				<th:block th:unless="${tb_003total == 0}">
+					<div class="announce-section-content-wrap">
+						<th:block th:each="tb_003 : ${tb_003list}">
+							<ul class="announce-section-content">
+								<li class="announce-wrap">
+									<div class="announce-left">
+										<h3 class="announce-left-title">
+											<pre>[[${tb_003.notice_title}]]</pre>
+										</h3>
+										<p class="announce-left-content" th:text="${tb_003.notice_content}">
+	
+										</p>
+									</div>
+									<div class="announce-right">
+										<form action="/notice/noticeList" method="get">
+											<button type="submit" class="btnfb7">사이트 가기</button>
+										</form>
+									</div>
+								</li>
+							</ul>
+						</th:block>
+					</div>		
+				</th:block>
+
+				<a href="/notice/noticeList">
+					<div class="announce-section-more-wrap">
+						<p class="announce-section-more">[[${tb_003total}]] 개 더보기 >></p>
+					</div>
+				</a>
+			</div>
+
+			<div class="announce-section">
+				<div class="announce-section-title-wrap">
+					<p class="announce-section-title">FAQ</p>
+				</div>
+
+				<th:block th:if="${tb_004total == 0}">
+					<div class="announce-section-content-wrap">
+
+						<ul class="announce-section-content">
+							<li class="announce-wrap">
+								<h1>검색결과가 없습니다.</h1>
+							</li>
+						</ul>
+
+					</div>
+				</th:block>
+				<th:block th:unless="${tb_004total == 0}">
+					<div class="announce-section-content-wrap">
+						<th:block th:each="tb_004 : ${tb_004list}">
+							<ul class="announce-section-content">
+								<li class="announce-wrap">
+									<div class="announce-left">
+										<h3 class="announce-left-title">
+											<pre>[[${tb_004.faq_ask_content}]]</pre>
+										</h3>
+										<p class="announce-left-content" th:text="${tb_004.faq_ask_comment}">
+	
+										</p>
+									</div>
+									<div class="announce-right">
+										<form action="/faq/faqList" method="get">
+											<button type="submit" class="btnfb7">사이트 가기</button>
+										</form>
+									</div>
+								</li>
+							</ul>
+						</th:block>
+					</div>		
+				</th:block>
+
+				<a href="/faq/faqList">
+					<div class="announce-section-more-wrap">
+						<p class="announce-section-more">[[${tb_004total}]] 개 더보기 >></p>
+					</div>
+				</a>
+			</div>
+			
+			<div style="height: 60px;"></div>
 		</div>
 	</div>
+
 </th:block>
+<script th:src="@{/js/usermypage.js}"></script>
+
+</html>
+
