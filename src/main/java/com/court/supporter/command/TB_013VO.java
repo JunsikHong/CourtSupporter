@@ -25,5 +25,6 @@ public class TB_013VO {
 	private String user_id;
 	private String user_proper_num;
 	
+	private String member_id;
 }
 

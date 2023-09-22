@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" th:href="@{/css/usermypage-pause.css}">
 <th:block th:replace="~{./include/layout :: setContent(~{::.usermypage-pause})}">
@@ -71,7 +71,7 @@
 
 							<tr th:each="vo, status : ${list}">
 								<td><span th:text="${list.size() - status.count} + 1"></span></td>
-								<td style="text-align:left">
+								<td style="text-align:center">
 									<a
 										th:href="@{/usermypage/usermypage_pausedetail (accept_proper_num = ${vo.accept_proper_num})}">[[${vo.accept_proper_num}]]</a>
 								</td>
@@ -88,12 +88,12 @@
 								</td>
 								<td>
 									<form action="usermypage_pauseapplication" method="post">
+										<input type="hidden" name="trial_fcltt_proper_num" th:value="${vo.trial_fcltt_proper_num}">
+										<input type="hidden" name="accept_act_yn" th:value="${vo.accept_act_yn}">
 										<th:block th:if="${vo.accept_act_yn == 'Y'}">
-											<input type="hidden" name="accept_act_yn" th:value="${vo.accept_act_yn}">
 											<button type="submit" class="acceptbtn" name="accept_proper_num" th:value="${vo.accept_proper_num}" onclick="confirmAndSubmit(this)">중지신청</button>
 										</th:block>
 										<th:block th:if="${vo.accept_act_yn == 'N'}">
-											<input type="hidden" name="accept_act_yn" th:value="${vo.accept_act_yn}">
 											<button type="submit" class="acceptbtn" name="accept_proper_num" th:value="${vo.accept_proper_num}" onclick="confirmAndSubmit(this)">재활동신청</button>
 										</th:block>
 									</form>

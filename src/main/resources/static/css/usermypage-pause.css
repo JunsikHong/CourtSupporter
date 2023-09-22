@@ -1,7 +1,8 @@
 @font-face {
   font-family: 'Noto Sans KR', sans-serif;
-  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
 }
+
 .usermypage-pause {
 	display: flex;
 	justify-content: center;
@@ -45,6 +46,7 @@
 }
 
 .board_table th {
+	background-color: #f3f4fb;
 	font-size: 16px;
 	color: #222222;
 	padding: 12px 0;

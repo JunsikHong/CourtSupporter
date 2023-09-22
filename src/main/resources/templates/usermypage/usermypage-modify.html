@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" th:href="@{/css/usermypage-modify.css}">
 <th:block th:replace="~{./include/layout :: setContent(~{::.usermypage-modify})}">
@@ -62,15 +62,11 @@
 								</td>
 							</tr>
 							<tr class="uptr01">
-								<th class=""><i class="required-img">
-										<span class="hidden">필수입력</span>
-									</i> 비밀번호</th>
+								<th class="">비밀번호</th>
 								<td><input title="비밀번호" name="user_pw" type="password" th:value="${vo.user_pw}" readonly></td>
 							</tr>
 							<tr class="uptr01">
-								<th class=""><i class="required-img">
-										<span class="hidden">필수입력</span>
-									</i> 비밀번호 확인</th>
+								<th class="">비밀번호 확인</th>
 								<td><input title="비밀번호확인" name="password_check" type="password" readonly
 										th:value="${vo.user_pw}">
 								</td>

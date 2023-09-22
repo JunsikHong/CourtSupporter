@@ -16,7 +16,6 @@
 			<div id="contentsIn">
 				<div id="contentstitle">
 					<span class="noticetitle">공지사항</span>
-					<span style="float: right; vertical-align: text-bottom; padding-top: 5px;">홈 > 공지사항 > 공지사항</span>
 				</div>
 				<div id="contents">
 					<form id="viewForm" action="" method="post">
@@ -48,7 +47,7 @@
 									</tr>
 
 									<tr class="firstTh" >
-										<td class scope="row">첨부파일</td>
+										<td class scope="row" style="background-color: #faf6ef;">첨부파일</td>
 										<td class="left" colspan="5" style="text-align: left;" >
 											<ul>
 												<li th:each="vo : ${file}" >
@@ -59,7 +58,7 @@
 									</tr>
 
 									<tr>
-										<td colspan="4" class="contents left" style="text-align: left;">
+										<td colspan="4" class="contents left" style="text-align: left; height: 200px;">
 											<pre th:utext="${vo.notice_content}"/>
 										</td>
 									</tr>
@@ -96,7 +95,7 @@
 								</tbody>
 							</table>
 						</div>
-						<div class="btnbox btnbox02">
+						<div class="btnbox btnbox02" style="margin-bottom: 40px;">
 							<a href="noticeList" class="btnfb7" onclick="">목록</a>
 							<th:block th:if="${member_role == 'ROLE_ADMIN'}">
 								<span class="adminmenu" >

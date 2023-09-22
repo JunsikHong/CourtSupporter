@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif; 
   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
@@ -54,7 +54,7 @@
 }
 
 .myinfo-table th {
-	background-color: #f3f3f3;
+	background-color: #eaedf8;
 	font-weight: 550;
 	padding-left: 30px;
 	width: 20%;

@@ -13,12 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.court.supporter.aws.service.EmailService;
 import com.court.supporter.command.TB_001VO;
 import com.court.supporter.command.TB_002VO;
 import com.court.supporter.command.TB_005VO;
 import com.court.supporter.command.TB_013VO;
 import com.court.supporter.command.TB_018VO;
+import com.court.supporter.user.service.UserService;
 import com.court.supporter.usermypage.service.UserMypageService;
 import com.court.supporter.util.Criteria;
 
@@ -29,8 +29,8 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 	private AdminMypageMapper adminMypageMapper;
 	
 	@Autowired
-	@Qualifier("emailService")
-	private EmailService emailService;
+	@Qualifier("userService")
+	private UserService userService;
 
 	@Autowired
 	@Qualifier("userMypageService")
@@ -147,120 +147,7 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 	}
 
 	@Override
-	public int adminmypage_juris_evaluate(TB_013VO tb_013vo, TB_005VO tb_005VO, TB_001VO tb_001VO) {
-		if(tb_005VO.getTrial_fcltt_proper_num() == 1010509 || 
-		   tb_005VO.getTrial_fcltt_proper_num() == 1010408) {
-			//최고점 27 -> 최저 15
-			if(tb_013vo.getEvaluate_score() < 15) { //서류 반려 04
-				try {
-					emailService.createMessage(tb_001VO, tb_005VO, "04");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				} catch (MessagingException e) {
-					e.printStackTrace();
-				} //해당 신청자에게 반려 됐다 메일주기
-				return adminMypageMapper.adminmypage_juris_companion_evaluate(tb_013vo); //반려처리
-			}
-		} else {
-			//최고점 32 -> 최저 20
-			if(tb_013vo.getEvaluate_score() < 20) { //서류 반려 04
-				try {
-					emailService.createMessage(tb_001VO, tb_005VO, "04");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				} catch (MessagingException e) {
-					e.printStackTrace();
-				} //해당 신청자에게 반려 됐다 메일주기
-				return adminMypageMapper.adminmypage_juris_companion_evaluate(tb_013vo); //반려처리		
-			}
-		}
-		return adminMypageMapper.adminmypage_juris_examination_evaluate(tb_013vo); //1차평가 심사중 03 (최저점보다 낮지 않은 경우)
-	}
-
-	@Override
-	public int adminmypage_court_evaluate(TB_013VO tb_013vo, TB_005VO tb_005VO, TB_001VO tb_001VO) {
-		if(tb_005VO.getTrial_fcltt_proper_num() == 1010509 || 
-		   tb_005VO.getTrial_fcltt_proper_num() == 1010408) {
-			//최고점 27 -> 최저 15
-			if(tb_013vo.getEvaluate_score() < 15) { //불합격 07
-				try {
-					emailService.createMessage(tb_001VO, tb_005VO, "07");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				} catch (MessagingException e) {
-					e.printStackTrace();
-				} //해당 신청자에게 불합격 됐다 메일주기
-				return adminMypageMapper.adminmypage_court_referral_evaluate(tb_013vo);
-			}
-		} else {
-			//최고점 32 -> 최저 20
-			if(tb_013vo.getEvaluate_score() < 20) { //불합격 07
-				try {
-					emailService.createMessage(tb_001VO, tb_005VO, "07");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				} catch (MessagingException e) {
-					e.printStackTrace();
-				} //해당 신청자에게 불합격 됐다 메일주기
-				return adminMypageMapper.adminmypage_court_referral_evaluate(tb_013vo);
-			}
-		}
-		return adminMypageMapper.adminmypage_court_examination_evaluate(tb_013vo); //최종평가 심사중 06 (최저점보다 낮지 않은 경우)
-	}
-
-	@Override
-	public void adminmypage_confirm_first_evaluate(TB_013VO tb_013vo, TB_005VO tb_005VO, TB_001VO tb_001VO) {
-		ArrayList<TB_013VO> result = adminMypageMapper.adminmypage_juris_getexamination(tb_005VO.getAnnounce_proper_num());
-		int recruit_num = adminMypageMapper.adminmypage_getrecruitnum(tb_005VO); // 모집인원정보
-	    result.sort((vo1, vo2) -> Double.compare(vo2.getEvaluate_score(), vo1.getEvaluate_score()));
-	    for (int i = 0; i < Math.min(recruit_num*2, result.size()); i++) { //모집인원의 2배수로 1차합격
-	    	TB_001VO vo1 = userMypageService.usermypage_getInfo(result.get(i).getUser_proper_num());
-	    	TB_005VO vo5 = adminMypageMapper.adminmypage_getaplcninfo(result.get(i).getUser_proper_num(), tb_005VO.getAnnounce_proper_num());
-	    	try {
-				emailService.createMessage(vo1, vo5, "05");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			} catch (MessagingException e) {
-				e.printStackTrace();
-			} //해당 신청자에게 1차합격 됐다 메일주기
-	    	
-	    	//해당 신청자의 아이디와 공고 번호를 토대로 -> tb5번의 해당신청자의 아이디와 공고번호 모두 05로 업데이트
-	    	adminMypageMapper.adminmypage_juris_pass_evaluate(result.get(i).getUser_proper_num(), tb_005VO.getAnnounce_proper_num()); // 재판조력자 1차합격
-	    }
-		
-	}
-
-	@Override
-	public void adminmypage_confirm_final_evaluate(TB_013VO tb_013vo, TB_005VO tb_005VO, TB_001VO tb_001VO) {
-		ArrayList<TB_013VO> result = adminMypageMapper.adminmypage_court_getexamination(tb_005VO.getAnnounce_proper_num());
-		int recruit_num = adminMypageMapper.adminmypage_getrecruitnum(tb_005VO); //모집인원정보
-	    result.sort((vo1, vo2) -> Double.compare(vo2.getEvaluate_score(), vo1.getEvaluate_score()));
-	    for (int i = 0; i < Math.min(recruit_num, result.size()); i++) { //정보개수만큼 반복 돌려서
-	    	TB_001VO vo1 = userMypageService.usermypage_getInfo(result.get(i).getUser_proper_num());
-	    	TB_005VO vo5 = adminMypageMapper.adminmypage_getaplcninfo(result.get(i).getUser_proper_num(), tb_005VO.getAnnounce_proper_num());
-	    	try {
-	    		emailService.createMessage(vo1, vo5, "08");
-	    	} catch (UnsupportedEncodingException e) {
-	    		e.printStackTrace();
-	    	} catch (MessagingException e) {
-	    		e.printStackTrace();
-	    	} //해당 신청자에게 최종합격 됐다 메일주기
-	    	
-	    	//해당 신청자의 아이디와 공고 번호를 토대로 -> tb5번의 해당신청자의 아이디와 공고번호 모두 08로 업데이트
-	    	adminMypageMapper.adminmypage_court_accept_evaluate(result.get(i).getUser_proper_num(), tb_005VO.getAnnounce_proper_num()); // 재판조력자 1차합격
-	    	
-	    	ArrayList<TB_005VO> list = adminMypageMapper.adminmypage_getaceeptinfo(result.get(i).getUser_proper_num(), tb_005VO.getAnnounce_proper_num()); //최종합격한 정보 가져오기
-	    	for(int j = 0; j < list.size(); j++) {
-	    		//tb5에서 신청자아이디 공고번호를 토대로 -> 모두 list로 가져와서 -> 반복을 돌리면서 법원, 조력자번호, 유저번호를 14번에 모두 넣기
-	    		adminMypageMapper.adminmypage_accept(list.get(i));//재판조력자 등재 (중복데이터 있음, 법원만 다름)	    		    		
-	    	}
-
-	    }
-		
-	}
-
-	@Override
-	public TB_013VO adminmypage_getresult(TB_005VO vo) {
+	public ArrayList<TB_013VO> adminmypage_getresult(TB_005VO vo) {
 		return adminMypageMapper.adminmypage_getresult(vo);
 	}
 
@@ -284,5 +171,77 @@ public class AdminMypageServiceImpl implements AdminMypageService {
 		return adminMypageMapper.adminmypage_getmember_id(member_proper_num);
 	}
 
+	///////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public int juris_fail(TB_013VO tb_013vo, TB_005VO tb_005vo, TB_001VO tb_001vo) {
+		int result = adminMypageMapper.update04(tb_005vo);
+		try {
+			userService.createMessage(tb_001vo, tb_005vo, "04");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int juris_pass(TB_013VO tb_013vo, TB_005VO tb_005vo, TB_001VO tb_001vo) {
+		int result = adminMypageMapper.update05(tb_005vo);
+		try {
+			userService.createMessage(tb_001vo, tb_005vo, "05");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int court_fail(TB_013VO tb_013vo, TB_005VO tb_005vo, TB_001VO tb_001vo) {
+		int result = adminMypageMapper.update07(tb_005vo);
+		try {
+			userService.createMessage(tb_001vo, tb_005vo, "07");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int court_pass(TB_013VO tb_013vo, TB_005VO tb_005vo, TB_001VO tb_001vo) {
+		int result = adminMypageMapper.update08(tb_005vo);
+		ArrayList<TB_005VO> list = adminMypageMapper.adminmypage_get_court_pass(tb_005vo);
+		for(int i = 0; i < list.size(); i++) {
+			adminMypageMapper.adminmypage_accept(list.get(i)); //최종 등재
+		}
+		try {
+			userService.createMessage(tb_001vo, tb_005vo, "08");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public ArrayList<TB_002VO> getannouncelist(Criteria cri) {
+		return adminMypageMapper.getannouncelist(cri);
+	}
+
+	@Override
+	public int getannouncecount(Criteria cri) {
+		return adminMypageMapper.getannouncecount(cri);
+	}
+
+	@Override
+	public ArrayList<TB_013VO> getaplicndetail(String announce_proper_num) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 
 }

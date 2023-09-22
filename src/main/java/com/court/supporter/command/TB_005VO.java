@@ -33,5 +33,8 @@ public class TB_005VO {
    //TB_002VO join
    private String announce_proper_num;
    private String announce_title;
+   
+   //TB_010VO join
+   private String trial_fcltt_description;
 }
 

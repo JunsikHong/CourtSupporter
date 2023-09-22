@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Noto Sans KR', sans-serif;
-  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
+
 }
 
 .adminmypage-auth-manage {

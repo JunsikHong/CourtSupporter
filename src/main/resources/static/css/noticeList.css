@@ -25,8 +25,10 @@ form  table tbody thead tr th td {
   margin-top: 20px;
   line-height: 1;
   font-size: 12px;
-  color: #666666;
-
+}
+table th {
+background-color: #faf6ef;
+	
 }
 
 table th, 
@@ -60,7 +62,7 @@ table td {
 
 table td.left, 
 table th.left {
-  text-align: left;
+  text-align: center;
   color: #666;
   font-weight: normal;
   display: table-cell;
@@ -97,8 +99,8 @@ input, select {
 }
 
 #contentstitle{
-  padding: 20px;
-  border-bottom: 3px solid gray;
+  padding-bottom: 15px;
+  border-bottom: 3px solid black;
 
 }
 
@@ -129,13 +131,13 @@ input, select {
 
 .search_btn {
    display: inline-block;
-   background: #555555;
+   background: rgb(11, 38, 110);
    color: #FFF;
    font-size: 13px;
    font-family: "ngB" !important;
    height: 30px;
    line-height: 30px;
-   width: 54px;
+   width: 80px;
    text-align: center;
    vertical-align: top;
    cursor:pointer;

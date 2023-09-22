@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
+}
+
 /******************************************************************/
 /* wrap */
 @font-face {
