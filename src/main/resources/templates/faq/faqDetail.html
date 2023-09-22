@@ -11,8 +11,8 @@
 
 		<div class="contentsbox" id="content">
 			<div> <!--sidebar-->
-         		<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
-      		</div>
+				<th:block th:replace="~{./include/layout-announceList-side}"></th:block>
+			</div>
 			<div id="contentsIn">
 				<div id="contentstitle">
 					<span class="FAQtitle">자주묻는질문(FAQ)</span>
@@ -43,17 +43,67 @@
 								</tbody>
 							</table>
 
+							<div th:if="${nextPost != null}">
+								<table class="nextTable">
+									<tbody>
+										<tr>
+											<td class="nextContent">다음글</td>
+											<td colspan="3">
+												<a id="nextLink" class="nextTitle"
+													th:href="@{/faq/faqDetail/(faq_proper_num=${nextPost.faq_proper_num})}"
+													th:text="${nextPost.faq_ask_content}"></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 
+							<div th:unless="${nextPost != null}"> <!-- 다음 글 없을 때 -->
+								<table class="nextInfo">
+									<tbody>
+										<tr>
+											<td colspan="4" class="nextTxt">다음 글이 없습니다.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div th:if="${previousPost != null}">
+								<table class="prevTable">
+									<tbody>
+										<tr>
+											<td class="prevContent">이전글</td>
+											<td colspan="3">
+												<a id="prevLink" class="prevTitle"
+													th:href="@{/faq/faqDetail/(faq_proper_num=${previousPost.faq_proper_num})}"
+													th:text="${previousPost.faq_ask_content}"></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
+							<div th:unless="${previousPost != null}"> <!-- 이전 글 없을 때 -->
+								<table class="prevInfo">
+									<tbody>
+										<tr>
+											<td colspan="4" class="prevTxt">이전 글이 없습니다.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-
 						<div class="btnbox btnbox02" style="margin-bottom: 40px;">
 							<a href="faqList" class="btnfb7" onclick="javascript:goRegist();">목록</a>
 							<th:block th:if="${member_role == 'ROLE_ADMIN'}">
 								<span class="adminmenu">
-									<a th:href="@{faqModify(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5" onclick="javascript:window.close();">수정</a>
-									<a th:href="@{faqDelete(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5" onclick="javascript:window.close();">삭제</a>
+									<a th:href="@{faqModify(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5"
+										onclick="javascript:window.close();">수정</a>
+									<a th:href="@{faqDelete(faq_proper_num=${vo.faq_proper_num})}" class="btn4d5"
+										onclick="javascript:window.close();">삭제</a>
 								</span>
-								
+
 							</th:block>
 						</div>
 

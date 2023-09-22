@@ -61,6 +61,16 @@
 		where faq_proper_num = #{faq_proper_num}
 	</select>
 	
+		<!-- 이전 글 조회 <![CDATA[<]]>  &lt;  &gt;  -->
+	<select id="faqGetPerv" resultType="TB_004VO">
+	     SELECT * FROM TB_004 WHERE faq_proper_num <![CDATA[<]]> #{faq_proper_num} ORDER BY faq_proper_num DESC LIMIT 1;
+	</select>
+	
+	<!-- 다음 글 조회 -->
+	<select id="faqGetNext" resultType="TB_004VO">
+	    SELECT * FROM TB_004 WHERE faq_proper_num <![CDATA[>]]> #{faq_proper_num} ORDER BY faq_proper_num ASC LIMIT 1;
+	</select>
+	
 	<!-- 글 수정 업데이트 -->
 	
 	<update id="faqUpdate">

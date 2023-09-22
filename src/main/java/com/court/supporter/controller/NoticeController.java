@@ -31,6 +31,7 @@ import com.court.supporter.security.DefaultUserDetails;
 import com.court.supporter.security.jwt.JwtValidator;
 import com.court.supporter.adminmypage.service.AdminMypageService;
 import com.court.supporter.aws.service.NoticeFileService;
+import com.court.supporter.command.TB_002VO;
 import com.court.supporter.command.TB_003VO;
 import com.court.supporter.command.TB_016VO;
 import com.court.supporter.util.Criteria;
@@ -101,6 +102,11 @@ public class NoticeController {
 		Map<TB_016VO, String> file = new HashMap<TB_016VO, String>();
 
 		List<TB_016VO> filevo = noticeService.noticeFileDetail(notice_proper_num);
+		
+		// 이전 글과 다음 글 조회
+        TB_003VO previousPost = noticeService.noticeGetPrev(notice_proper_num);
+        TB_003VO nextPost = noticeService.noticeGetNext(notice_proper_num);
+		
 
 		for (int i = 0; i < filevo.size(); i++) {
 			file.put(filevo.get(i), filevo.get(i).getOriginal_file_name());
@@ -116,8 +122,12 @@ public class NoticeController {
 
 		model.addAttribute("vo", vo);
 		model.addAttribute("filevo", filevo);
-
+		
 		model.addAttribute("file", file);
+		
+		model.addAttribute("previousPost", previousPost);
+        model.addAttribute("nextPost", nextPost);  
+
 
 		// 시큐리티
 		HttpSession session = request.getSession();
@@ -232,16 +242,36 @@ public class NoticeController {
 
 		}
 
+		
 		TB_003VO vo = noticeService.noticeDetail(notice_proper_num);
 
+		Map<TB_016VO, String> file = new HashMap<TB_016VO, String>();
+
+		List<TB_016VO> filevo = noticeService.noticeFileDetail(notice_proper_num);
+
+		for (int i = 0; i < filevo.size(); i++) {
+			file.put(filevo.get(i), filevo.get(i).getOriginal_file_name());
+			try {
+				filevo.get(i).setOriginal_file_name(URLEncoder.encode(filevo.get(i).getOriginal_file_name(), "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		List<String> file_name = new ArrayList<>();
+
 		model.addAttribute("vo", vo);
+		model.addAttribute("filevo", filevo);
+		
+		model.addAttribute("file", file);
 
 		return "notice/noticeModify";
 	}
 
 	// 공지사항 수정(업데이트)
 	@PostMapping("/noticeUpdateForm")
-	public String noticeUpdate(TB_003VO vo, RedirectAttributes ra, @RequestParam("file") List<MultipartFile> list,
+	public String noticeUpdate(TB_003VO vo, RedirectAttributes ra, @RequestParam("file") List<MultipartFile> list, @RequestParam("notice_proper_num") String notice_proper_num,
 			HttpServletRequest request) {
 
 		// 시큐리티
@@ -258,6 +288,7 @@ public class NoticeController {
 			}
 
 		}
+		
 
 		list = list.stream().filter(t -> t.isEmpty() == false).toList();
 
@@ -274,12 +305,23 @@ public class NoticeController {
 				return "redirect:/notice/noticeList";
 			}
 		}
+		//기존업로드 파일 삭제
+			//데이터 이름 가져오기
+		List<TB_016VO> filevo = noticeService.noticeFileDetail(notice_proper_num);
+		//파일삭제
+		noticeFileService.noticeFileDelete(filevo);
+		//sql삭제
+		noticeService.noticeFileDelete(notice_proper_num);
+		
+		
 
 		// 파일 업로드하고 저장경로를 리스트로 받음
 		List<String> filelist = noticeFileService.noticeFileRegist(list);
 
 		// 파일리스트와 같이 등록 진행
 		int result = noticeService.noticeUpdate(vo, filelist);
+		
+		
 
 		String msg = "저장되었습니다.";// 왜안됨?
 
@@ -309,7 +351,8 @@ public class NoticeController {
 		}
 
 		noticeService.noticeDelete(notice_proper_num);
-
+		noticeService.noticeFileDelete(notice_proper_num);
+		
 		return "redirect:/notice/noticeList";
 	}
 

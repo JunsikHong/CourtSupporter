@@ -84,33 +84,16 @@
 		select * from TB_016
 		where notice_proper_num = #{notice_proper_num}
 	</select>
-	<!-- 이전 글 -->
-	<!-- <select id="noticeGetNext" resultType="TB_003VO">
-		select * from TB_003 
-		where notice_proper_num = (select * from TB_003 
-								   where notice_proper_num > #{notice_proper_num 
-								   order by notice_proper_num asc
-								   limit 1)
-	</select> -->
-	<!-- 다음 글 -->
-	<!-- <select id="noticeGetPerv" resultType="TB_003VO">
-		select * from TB_003
-		where notice_proper_num = (select * from TB_003
-								   where notice_proper_num < #{notice_proper_num
-								   order by notice_proper_num desc
-								   limit 1)
-	</select> 
-	<select id="noticeGetPrev" resultType="TB_003VO">
-    <![CDATA[
-    SELECT * FROM TB_003
-    WHERE notice_proper_num = (
-        SELECT MAX(notice_proper_num)
-        FROM TB_003
-        WHERE notice_proper_num < #{notice_proper_num}
-    )
-    ]]>
-</select>
-	-->
+
+	<!-- 이전 글 조회 <![CDATA[<]]>  &lt;  &gt;  -->
+	<select id="noticeGetPerv" resultType="TB_003VO">
+	     SELECT * FROM TB_003 WHERE notice_proper_num <![CDATA[<]]> #{notice_proper_num} ORDER BY notice_proper_num DESC LIMIT 1;
+	</select>
+	
+	<!-- 다음 글 조회 -->
+	<select id="noticeGetNext" resultType="TB_003VO">
+	    SELECT * FROM TB_003 WHERE notice_proper_num <![CDATA[>]]> #{notice_proper_num} ORDER BY notice_proper_num ASC LIMIT 1;
+	</select>
 	
 	
 	<!-- 글 수정 업데이트 -->
@@ -126,6 +109,12 @@
 	
 	<delete id="noticeDelete">
 		delete from TB_003 where notice_proper_num = #{notice_proper_num}
+	</delete>
+	
+	<!-- 글 파일 삭제 -->
+	
+	<delete id="noticeFileDelete">
+		delete from TB_016 where notice_proper_num = #{notice_proper_num}
 	</delete>
 
 </mapper>
