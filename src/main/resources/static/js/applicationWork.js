@@ -62,7 +62,7 @@ function workInfo(aplcn_dtls_proper_num) {
 			str += '<td style="vertical-align: middle;">' + data[i].work_description + '</td>';
 			str += '<td style="vertical-align: middle;">' + data[i].work_department + '/' + data[i].work_position + '</td>';
 			str += '<td style="vertical-align: middle;">';
-			str += '<input type="button" class="modifyBtn" value="수정" style="margin-right: 3px;" />';
+			str += '<input type="button" class="modifyBtn" value="수정" style="margin-right: 5px;" />';
 			str += '<input type="button" class="deleteBtn" value="삭제"/>';
 			str += '</td>';
 			str += '</tr>';
@@ -118,7 +118,7 @@ $(document).ready(function() {
 					str += '<td style="vertical-align: middle;">' + data[i].work_description + '</td>';
 					str += '<td style="vertical-align: middle;">' + data[i].work_department + '/' + data[i].work_position + '</td>';
 					str += '<td style="vertical-align: middle;">';
-					str += '<input type="button" class="modifyBtn" value="수정" style="margin-right: 3px;" />';
+					str += '<input type="button" class="modifyBtn" value="수정" style="margin-right: 5px;" />';
 					str += '<input type="button" class="deleteBtn" value="삭제"/>';
 					str += '</td>';
 					str += '</tr>';

@@ -72,7 +72,7 @@ $(document).ready(function() {
 		str += '<input type="hidden" class="uuid">';
 		str += '<input type="hidden" class="type">';
 		str += '<input type="file" id="file-input" name="pe_resume" style="display: none;">';
-		str += '<span id="resume_btn" class="fileAddBtn" style="width: 150px;padding: 2px 0;">파일 선택</span>';		
+		str += '<span id="resume_btn" class="fileAddBtn addFile">파일 선택</span>';		
 		str += '</label>';
 		str += '<input id="resume_name" class="upload-name" disabled="disabled" style="width: 166px;display: none;">';
 		str += '<input type="button" class="PeFileDeleteBtn1" value="삭제" style="display: none;">';
@@ -264,7 +264,7 @@ $(document).ready(function() {
 		str += '<label for="file-input" class="file-label">';
 		str += '<input type="hidden" class="uuid_type">';
 		str += '<input type="file" id="file-input" name="pe_resume" style="display: none;">';
-		str += '<span id="resume_btn" class="fileAddBtn" style="width: 150px;padding: 2px 0;">파일 선택</span>';	
+		str += '<span id="resume_btn" class="fileAddBtn" style="width: 130px;">파일 선택</span>';	
 		str += '</label>';
 		str += '<input id="resume_name" class="upload-name" disabled="disabled" style="width: 166px;display: none;">';
 		str += '<input type="button" class="PeFileDeleteBtn1" value="삭제" style="color: #fff; width: 80px;display: none;">';
