@@ -23,7 +23,12 @@
 						</div>
 					</div>
 				</div>
-
+				<div>
+					<form action="total_search" method="get" id="total_searchform" >
+						<input type="text" name="search" id="searchtxt" placeholder="검색어를 입력하세요">
+						<button type="submit" id="searchBtn">검색</button>
+					</form>
+				</div>
 				<div class="contentbox">
 					<div class="contentboxin">
 
@@ -32,27 +37,37 @@
 							<ul class="flowbox">
 
 								<li class="recruitment_image">
-									<a href="#"><img th:src="@{/img/assistant1.png}">
+									<a
+										href="announce/announceList?page=1&amount=8&trial_fcltt_proper_num=10&announce_start_date=&announce_end_date=&searchOption=announceAll&searchKeyword="><img
+											th:src="@{/img/assistant1.png}">
 										<h4>재판조력자</h4>
 									</a>
 								</li>
 								<li class="recruitment_image">
-									<a href="#"><img th:src="@{/img/Translate1.png}">
+									<a
+										th:href="@{/announce/announceList?page=1&amount=8&trial_fcltt_proper_num=20&announce_start_date=&announce_end_date=&searchOption=announceAll&searchKeyword=}"><img
+											th:src="@{/img/Translate1.png}">
 										<h4>통번역인</h4>
 									</a>
 								</li>
 								<li class="recruitment_image">
-									<a href="#"><img th:src="@{/img/mediator.png}">
+									<a
+										th:href="@{/announce/announceList?page=1&amount=8&trial_fcltt_proper_num=30&announce_start_date=&announce_end_date=&searchOption=announceAll&searchKeyword=}"><img
+											th:src="@{/img/mediator.png}">
 										<h4>조정위원</h4>
 									</a>
 								</li>
 								<li class="recruitment_image">
-									<a href="#"><img th:src="@{/img/committee1.png}">
+									<a
+										th:href="@{/announce/announceList?page=1&amount=8&trial_fcltt_proper_num=40&announce_start_date=&announce_end_date=&searchOption=announceAll&searchKeyword=}"><img
+											th:src="@{/img/committee1.png}">
 										<h4>전문심리위원</h4>
 									</a>
 								</li>
 								<li class="recruitment_image">
-									<a href="#"><img th:src="@{/img/counseling1.png}">
+									<a
+										th:href="@{/announce/announceList?page=1&amount=8&trial_fcltt_proper_num=50&announce_start_date=&announce_end_date=&searchOption=announceAll&searchKeyword=}"><img
+											th:src="@{/img/counseling1.png}">
 										<h4>상담위원</h4>
 									</a>
 								</li>

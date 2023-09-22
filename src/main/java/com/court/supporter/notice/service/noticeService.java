@@ -26,5 +26,6 @@ public interface noticeService {
 	public int noticeUpdate(TB_003VO vo, List<String> filelist);
 	
 	public void noticeDelete(String notice_proper_num);
+	public void noticeFileDelete(String notice_proper_num);
 	
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.court.supporter.command.TB_003VO;
 import com.court.supporter.command.TB_004VO;
 import com.court.supporter.util.Criteria;
 
@@ -21,6 +22,9 @@ public interface faqMapper {
 	public int faqRegist(TB_004VO vo);
 	
 	public TB_004VO faqDetail(String faq_proper_num);
+	
+	public TB_004VO faqGetNext(String faq_proper_num);
+	public TB_004VO faqGetPerv(String faq_proper_num);
 	
 	public int faqModify(TB_004VO vo);
 	public int faqUpdate(TB_004VO vo);

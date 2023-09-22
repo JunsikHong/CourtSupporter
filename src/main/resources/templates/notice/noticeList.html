@@ -47,7 +47,6 @@
 									<col width="10%">
 									<col width="auto">
 									<col width="15%">
-									<col width="10%" class="adminmenu">
 								</colgroup>
 
 								<thead>
@@ -55,7 +54,6 @@
 										<th scope="col" style="font-weight: bold;">번호</th>
 										<th scope="col" style="font-weight: bold;">제목</th>
 										<th scope="col" style="font-weight: bold;">작성일</th>
-										<th scope="col" style="font-weight: bold;" class="adminmenu">선택</th>
 									</tr>
 								</thead>
 
@@ -67,7 +65,6 @@
 											<a th:href="@{noticeDetail(notice_proper_num=${vo.notice_proper_num})}">[[${vo.notice_title}]]</a>
 										</td>
 										<td><span th:text="${#strings.substring(vo.notice_date, 0, 10)}"></span></td>
-										<td class="adminmenu"><input type="checkbox"></td>
 									</tr>
 
 
@@ -84,7 +81,6 @@
 						<th:block th:if="${member_role == 'ROLE_ADMIN'}">
 							<div class="btnbox btnbox02 adminmenu">
 								<a href="noticeRegist" class="btnfb7">글 작성</a>
-								<a href="#none" class="btn4d5" onclick="javascript:window.close();">일괄삭제</a>
 							</div>							
 						</th:block>
 					</form>

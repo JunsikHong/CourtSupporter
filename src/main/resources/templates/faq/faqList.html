@@ -45,14 +45,12 @@
 								<colgroup>
 									<col width="10%">
 									<col width="auto">
-									<col width="10%" class="adminmenu">
 								</colgroup>
 
 								<thead>
 									<tr style="background-color: rgb(226, 226, 226);">
 										<th scope="col" style="font-weight: bold;">번호</th>
 										<th scope="col" style="font-weight: bold;">제목</th>
-										<th scope="col" style="font-weight: bold;" class="adminmenu">선택</th>
 									</tr>
 								</thead>
 
@@ -63,7 +61,6 @@
 										<td class="left" style="text-align: center;">
 											<a th:href="@{faqDetail(faq_proper_num=${vo.faq_proper_num})}">[[${vo.faq_ask_content}]]</a>
 										</td>
-										<td class="adminmenu"><input type="checkbox"></td>
 									</tr>
 
 
@@ -80,7 +77,6 @@
 						<th:block th:if="${member_role == 'ROLE_ADMIN'}">
 							<div class="btnbox btnbox02 adminmenu">
 								<a href="faqRegist" class="btnfb7">글 작성</a>
-								<a href="#none" class="btn4d5" onclick="javascript:window.close();">일괄삭제</a>
 							</div>
 						</th:block>
 					</form>

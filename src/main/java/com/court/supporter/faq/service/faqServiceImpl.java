@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.court.supporter.command.TB_003VO;
 import com.court.supporter.command.TB_004VO;
 import com.court.supporter.util.Criteria;
 
@@ -32,6 +33,18 @@ public class faqServiceImpl implements faqService{
 	public TB_004VO faqDetail(String faq_proper_num) {
 		
 		return faqMapper.faqDetail(faq_proper_num);
+	}
+	
+	@Override
+	public TB_004VO faqGetNext(String faq_proper_num) {
+		
+		return faqMapper.faqGetNext(faq_proper_num);
+	}
+
+	@Override
+	public TB_004VO faqGetPrev(String faq_proper_num) {
+		
+		return faqMapper.faqGetPerv(faq_proper_num);
 	}
 
 	@Override

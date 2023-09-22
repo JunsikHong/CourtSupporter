@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.court.supporter.adminmypage.service.AdminMypageService;
+import com.court.supporter.command.TB_003VO;
 import com.court.supporter.command.TB_004VO;
 import com.court.supporter.faq.service.faqService;
 import com.court.supporter.security.DefaultUserDetails;
@@ -89,8 +90,15 @@ public class FaqController {
 			HttpServletRequest request) {
 
 		TB_004VO vo = faqService.faqDetail(faq_proper_num);
+		
+		// 이전 글과 다음 글 조회
+        TB_004VO previousPost = faqService.faqGetPrev(faq_proper_num);
+        TB_004VO nextPost = faqService.faqGetNext(faq_proper_num);
 
 		model.addAttribute("vo", vo);
+		
+		model.addAttribute("previousPost", previousPost);
+        model.addAttribute("nextPost", nextPost);  
 
 		// 시큐리티
 		HttpSession session = request.getSession();

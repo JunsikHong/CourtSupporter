@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.court.supporter.aws.config.Awsconfig;
+import com.court.supporter.command.TB_016VO;
 
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
@@ -107,6 +108,40 @@ public class NoticeFileService {
 
 
 		return filelist;
+	}
+	
+	//------------------------------------------------------------------------------------------------------------------------------------
+	
+	public void noticeFileDelete (List<TB_016VO> filevo) {
+		
+		ArrayList<ObjectIdentifier> keys = new ArrayList<>();
+		
+		for(TB_016VO file_path : filevo) {
+			//삭제할 객체 경로
+			String filepath = file_path.getFile_path()+file_path.getNotice_file_uuid()+"_"+file_path.getOriginal_file_name();
+			
+			//삭제할 객체
+	        ObjectIdentifier objectId = ObjectIdentifier.builder().key(filepath).build();
+	
+	        //리스트에 추가
+	        keys.add(objectId);
+		}
+		 //s3 파일 삭제
+        Delete del = Delete.builder().objects(keys).build();
+
+        try {
+            DeleteObjectsRequest multiObjectDeleteRequest = DeleteObjectsRequest.builder().bucket(aws_bucket_name).delete(del).build();
+
+            //삭제요청
+            DeleteObjectsResponse result = s3.deleteObjects(multiObjectDeleteRequest);
+            
+            System.out.println("삭제완료");
+            System.out.println(result.sdkHttpResponse().statusCode());
+        
+        } catch (Exception e) {
+			e.printStackTrace();
+        }
+		
 	}
 
 

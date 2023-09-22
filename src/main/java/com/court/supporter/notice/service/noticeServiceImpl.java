@@ -95,14 +95,14 @@ public class noticeServiceImpl implements noticeService {
 
 	@Override
 	public TB_003VO noticeGetNext(String notice_proper_num) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return noticeMapper.noticeGetNext(notice_proper_num);
 	}
 
 	@Override
 	public TB_003VO noticeGetPrev(String notice_proper_num) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return noticeMapper.noticeGetPerv(notice_proper_num);
 	}
 
 	@Override
@@ -158,6 +158,12 @@ public class noticeServiceImpl implements noticeService {
 	public void noticeDelete(String notice_proper_num) {
 		noticeMapper.noticeDelete(notice_proper_num);
 
+	}
+	
+	@Override
+	public void noticeFileDelete(String notice_proper_num) {
+		noticeMapper.noticeFileDelete(notice_proper_num);
+		
 	}
 
 }

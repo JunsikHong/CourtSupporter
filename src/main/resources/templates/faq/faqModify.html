@@ -73,7 +73,7 @@
         e.preventDefault();
         
         // TextArea에서 텍스트를 가져옵니다.
-        const textarea = document.getElementById('noticeModify');
+        const textarea = document.getElementById('faqModify');
         const text = textarea.value;
         
         // 줄 바꿈 문자를 br 태그로 변환합니다.
@@ -83,7 +83,7 @@
         // 이 예제에서는 hidden input에 저장합니다.
         const hiddenInput = document.createElement('input');
         hiddenInput.type = 'hidden';
-        hiddenInput.name = 'notice_content';
+        hiddenInput.name = 'faq_ask_comment';
         hiddenInput.value = textWithHtmlLineBreaks;
         
         // Form에 hidden input을 추가합니다.
