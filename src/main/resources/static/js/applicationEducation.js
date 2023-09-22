@@ -206,7 +206,7 @@ $(document).ready(function() {
 		str += '<input type="file" id="file-input-' + idx + '" name="file" style="display: none;">';
 		str += '<span class="fileAddBtn">파일선택</span>';
 		str += '</label>';
-		str += '<input id="file-upload-name" class="upload-name' + idx + '" value="" disabled="disabled" style="">';
+		str += '<input id="file-upload-name" class="upload-name' + idx + '" value="" disabled="disabled">';
 		str += '<input type="button" class="fileDeleteBtn" value="삭제" style="color: #fff; width: 80px;display: none">';
 		str += '</div>';
 		
@@ -238,3 +238,10 @@ $(document).ready(function() {
   });
   
 });
+
+/* 이전 버튼 */
+function returnPage() {
+	var announce = document.getElementById('announce_proper_num').value;
+	var fcltt_num = document.getElementById('trial_fcltt_proper_num').value;
+	location.href = '/application/applicationBasic?announce=' + announce + "&fcltt_num=" + fcltt_num;
+}

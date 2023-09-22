@@ -177,7 +177,7 @@ public class ApplicationController {
 		// 기본 정보 등록
 		applicationService.basicRegist(tb_001vo, tb_005vo, tb_010vo);
 		TB_005VO vo = applicationService.getApplicationBasicInfo(tb_005vo);
-		return "redirect:/application/applicationEducation?announce=" + vo.getAnnounce_proper_num() + "&detail=" + vo.getAplcn_dtls_proper_num();
+		return "redirect:/application/applicationEducation?announce=" + vo.getAnnounce_proper_num() + "&fcltt_num=" + vo.getTrial_fcltt_proper_num() + "&detail=" + vo.getAplcn_dtls_proper_num();
 		}
 		return "redirect:/";
 	}
@@ -396,7 +396,7 @@ public class ApplicationController {
 
 			applicationService.attachmentRegist(fileList, tb_009vo);
 		}
-		return "redirect:/application/applicationWork?announce=" + tb_005vo.getAnnounce_proper_num() + "&detail=" + tb_009vo.getAplcn_dtls_proper_num();
+		return "redirect:/application/applicationWork?announce=" + tb_005vo.getAnnounce_proper_num() + "&fcltt_num=" + tb_005vo.getTrial_fcltt_proper_num() + "&detail=" + tb_009vo.getAplcn_dtls_proper_num();
 		}
 		return "redirect:/";
 	}
@@ -635,7 +635,7 @@ public class ApplicationController {
 
 			applicationService.attachmentRegist(fileList, tb_009vo);
 		}
-		return "redirect:/application/applicationCertificate?announce=" + tb_005vo.getAnnounce_proper_num() + "&detail=" + tb_009vo.getAplcn_dtls_proper_num();
+		return "redirect:/application/applicationCertificate?announce=" + tb_005vo.getAnnounce_proper_num() + "&fcltt_num=" + tb_005vo.getTrial_fcltt_proper_num() + "&detail=" + tb_009vo.getAplcn_dtls_proper_num();
 		}
 		return "redirect:/";
 	}
@@ -848,7 +848,7 @@ public class ApplicationController {
 
 			applicationService.attachmentRegist(fileList, tb_009vo);
 		}
-		return "redirect:/application/applicationAttachment?announce=" + tb_005vo.getAnnounce_proper_num() + "&detail=" + tb_009vo.getAplcn_dtls_proper_num();
+		return "redirect:/application/applicationAttachment?announce=" + tb_005vo.getAnnounce_proper_num() + "&fcltt_num=" + tb_005vo.getTrial_fcltt_proper_num() + "&detail=" + tb_009vo.getAplcn_dtls_proper_num();
 		}
 		return "redirect:/";
 	}
@@ -959,7 +959,7 @@ public class ApplicationController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/application/applicationCheck?announce=" + tb_005vo.getAnnounce_proper_num() + "&detail=" + tb_009vo.getAplcn_dtls_proper_num();
+		return "redirect:/application/applicationCheck?announce=" + tb_005vo.getAnnounce_proper_num()+ "&fcltt_num=" + tb_005vo.getTrial_fcltt_proper_num() + "&detail=" + tb_009vo.getAplcn_dtls_proper_num();
 		}
 		return "redirect:/";
 	}
@@ -1054,11 +1054,11 @@ public class ApplicationController {
 			applicationFileService.ApplicationFileDelete(keyNames);
 		}
 
-		try {
-			Thread.sleep(300);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(300);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		return new ResponseEntity<>("응답메시지", HttpStatus.OK);
 		}
@@ -1093,6 +1093,7 @@ public class ApplicationController {
 		model.addAttribute("tb_005vo", vo5);
 		
 		TB_010VO vo10 = applicationService.fclttDescription(tb_005vo);
+		System.out.println("===========" + vo10.toString());
 		model.addAttribute("tb_010vo", vo10);
 
 		ArrayList<TB_011VO> vo11 = userMypageService.usermypage_getapplicationdetail7(tb_005vo);

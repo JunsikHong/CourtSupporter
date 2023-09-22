@@ -134,3 +134,5 @@ fieldset, blockquote, iframe, button{ border:none; }
 .required-img .hidden {position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;}
 
 #date1, #date2{width: 100px}
+
+.career{cursor: pointer;}
