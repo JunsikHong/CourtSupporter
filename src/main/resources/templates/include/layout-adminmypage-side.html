@@ -8,21 +8,17 @@
                <div class="adminmypage-applicationlist">
                   <h3 class="applicationlist-title">신청현황</h3>
                   <ul class="applicationlist-content">
-                     <a th:href="@{adminmypage_evaluationlist}"><li>신청현황</li></a>
+                     <a th:href="@{/adminmypage/adminmypage_evaluationlist}"><li>신청현황</li></a>
                   </ul>
                </div>
-               <div class="adminmypage-admininfo menu">
-                  <h3 class="adminmyinfo-title">관리자 정보관리</h3>
-                  <ul class="adminmyinfo-content">
-                     <a th:href="@{adminmypage}"><li>관리자정보</li></a>
-                  </ul>
-               </div>
-               <div class="adminmypage-userinfo menu">
-                  <h3 class="adminuserinfo-title">사용자 정보관리</h3>
-                  <ul class="adminuserinfo-content">
-                     <a th:href="@{adminuserpage}"><li>사용자정보</li></a>
-                  </ul>
-               </div>
+               <th:block th:if="${session.member_role == 'ROLE_ADMIN'}">
+	               <div class="adminmypage-admininfo menu">
+	                  <h3 class="adminmyinfo-title">관리자 정보관리</h3>
+	                  <ul class="adminmyinfo-content">
+	                     <a th:href="@{/adminmypage/adminmypage_auth_manage}"><li>관리자정보</li></a>
+	                  </ul>
+	               </div>				   
+			   </th:block>
             </div>
          </div>
       </th:block>

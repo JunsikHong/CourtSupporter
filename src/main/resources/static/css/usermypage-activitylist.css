@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
+
 .usermypage-activitylist {
 	display: flex;
 	justify-content: center;
@@ -12,7 +17,6 @@
 
 .myinfo-activitylist-wrap {
 	margin-left: 250px;
-	margin-bottom: 150px;
 }
 
 .myinfo-activitylist {
@@ -37,6 +41,7 @@
 }
 
 .board_table th {
+	background-color: #f3f4fb;
 	font-size: 16px;
 	color: #222222;
 	padding: 12px 0;
@@ -133,32 +138,47 @@
 	margin-top: 30px;
 }
 
+.searchzone {
+	width: 100%;
+	background-color: #f3f4fb;
+	height: 120px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
 .board_search_date {
 	margin-bottom: 20px;
 }
 
+.board_search_sts {
+	float: right;
+	margin-right: 200px;
+	margin-top: 10px;
+}
+
+.choiceyn {
+	width: 150px;
+}
 .board_search input,
 .board_search select {
 	padding-left: 5px;
 	border: 1px #c4c4c4 solid;
 	height: 30px;
 	line-height: 30px;
-	color: #777777;
 	font-size: 15px;
 	box-sizing: border-box;
-	vertical-align: top;
 
 }
 
 .search_btn {
 	display: inline-block;
-	background: #555555;
-	color: #FFF;
+	background: rgb(11, 38, 110);
+	color: white;
 	font-size: 13px;
 	font-family: "ngB" !important;
 	height: 30px;
 	line-height: 30px;
-	width: 54px;
+	width: 80px;
 	text-align: center;
 	vertical-align: top;
 }
@@ -179,11 +199,6 @@ input[type='text'].datepicker {
 	line-height: 30px;
 }
 
-.board_search_sts {
-	float: right;
-	margin-right: 20px;
-	line-height: 30px;
-}
 
 .btnbox {
 	text-align: center;
@@ -192,12 +207,12 @@ input[type='text'].datepicker {
 
 .btnbox .btnfb7 {
 	background-color: rgb(11, 38, 110);
-	font-size: 18px;
+	font-size: 15px;
 	color: #FFF;
-	height: 42px;
-	line-height: 42px;
+	height: 32px;
+	line-height: 32px;
 	display: inline-block;
-	padding: 0 25px;
+	padding: 0 15px;
 	vertical-align: middle;
 	font-family: "ngB" !important;
 }

@@ -12,7 +12,7 @@
 					<table class="announce-table">
 						<tbody>
 							<td class="announce-title">공고제목</td>
-							<td class="announce-content">[[${tb_005VO.announce_title}]] <span>[</span>[[${tb_005VO.trial_fcltt_proper_num}]]<sapn>]</sapn></td>						
+							<td class="announce-content">[[${tb_005VO.announce_title}]] <span>[</span>[[${tb_010VO.trial_fcltt_description}]]<sapn>]</sapn></td>						
 						</tbody>
 					</table>
 				</div>
@@ -68,6 +68,7 @@
 											<th:block th:if="${tb_009VO.key.file_type == 'CARRER'}">경력정보</th:block>
 											<th:block th:if="${tb_009VO.key.file_type == 'CERTIFICATE'}">자격증정보</th:block>
 											<th:block th:if="${tb_009VO.key.file_type == 'OTHER'}">기타</th:block>
+											<th:block th:if="${tb_009VO.key.file_type == 'APPLICATIONRESULT'}">조력자신청서</th:block>
 										</td>
 										<td>
 											<p class="attachTable-content">
@@ -89,10 +90,13 @@
 			
 			<form action="adminmypage_evaluation" method="post" id="adminmypage_evaluation" name="adminmypage_evaluation">
 				<input type="hidden" name="user_proper_num" th:value="${tb_001VO.user_proper_num}">
+				<input type="hidden" name="user_name" th:value="${tb_001VO.user_name}">
 				<input type="hidden" name="user_id" th:value="${tb_001VO.user_id}">
+				<input type="hidden" name="user_email" th:value="${tb_001VO.user_email}">
 				<input type="hidden" name="aplicn_dtls_sts" th:value="${tb_005VO.aplicn_dtls_sts}">
 				<input type="hidden" name="aplcn_dtls_proper_num" th:value="${tb_005VO.aplcn_dtls_proper_num}">
 				<input type="hidden" name="announce_proper_num" th:value="${tb_005VO.announce_proper_num}">
+				<input type="hidden" name="announce_title" th:value="${tb_005VO.announce_title}">
 				<input type="hidden" name="trial_fcltt_proper_num" th:value="${tb_005VO.trial_fcltt_proper_num}">
 				
 				<div class="evaluation-line2">
@@ -474,7 +478,7 @@
 							<span th:if="${member_role == 'ROLE_JURIS'}">사법담당자</span>
 							<span th:if="${member_role == 'ROLE_COURT'}">법원담당자</span>
 							<span th:if="${member_role == 'ROLE_ADMIN'}">관리자</span>
-							[[${member_proper_num}]]							
+							[[${member_id}]]							
 						</p>
 					</div>
 				</div>

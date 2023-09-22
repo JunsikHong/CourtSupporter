@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" th:href="@{/css/usermypage-activity-regist.css}">
 <th:block th:replace="~{./include/layout :: setContent(~{::.usermypage-activity-regist})}">
 	<div class="usermypage-activity-regist">
@@ -22,8 +25,8 @@
 								<tr> <!-- class="boardTitle" -->
 									<th class="propernum">조력자등재번호</th>
 									<td colspan="2">
-										<select name="accept_proper_num" value="">
-											<option value="" class="acceptnum">선택</option>
+										<select name="accept_proper_num" class="acceptnum" value="">
+											<option value="">선택</option>
 											<th:block th:each="vo : ${list}">
 												<option value="${vo.accept_proper_num}">[[${vo.accept_proper_num}]]</option>
 											</th:block>
@@ -33,7 +36,7 @@
 								
 								<tr> <!-- class="boardTitle" -->
 									<th class="title">재판번호</th>
-									<td colspan="2"><input type="text" name="judgement_num" value=""></td>
+									<td colspan="2"><input type="text" name="judgement_num" class="judgement_num" value=""></td>
 								</tr>
 					
 								<tr>
@@ -60,7 +63,6 @@
 									<th class="file">완료여부</th>
 									<td>
 										완료<input type="radio" name="act_complete_yn" value="Y">
-										<br />
 										미완료<input type="radio" name="act_complete_yn" value="N">
 									</td>
 								</tr>
@@ -68,7 +70,7 @@
 								<tr class="announceContent">
 									<th>내용</th>
 									<td class="innerContent">
-					
+										<textarea class="content"></textarea>
 									</td>
 								</tr>
 							</tbody>

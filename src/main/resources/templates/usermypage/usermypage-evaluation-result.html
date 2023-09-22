@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" th:href="@{/css/reset.css}">
 <link rel="stylesheet" th:href="@{/css/usermypage-evaluation-result.css}">
 
@@ -16,7 +19,7 @@
 					</div>
 				</div>
 				<center>
-					<p class="result-content" style="margin-bottom: 15px;"><span style="color: blue;">[[${tb_001VO.user_name}]]</span>님의 평가가 완료되었습니다.</p>
+					<p class="result-content" style="margin-bottom: 15px;"><span style="color: blue;">[[${tb_001VO.user_name}]]</span>님</p>
 					<p class="result-content">
 						신청결과는
 						<span style="color: red;">
@@ -42,7 +45,7 @@
 								합격
 							</th:block>
 						</span>
-						입니다.
+						상태 입니다.
 					</p>
 					<div class="btnbox btnbox02">
 						<button href="#none" class="btn4d5 closebtn">닫기</button>

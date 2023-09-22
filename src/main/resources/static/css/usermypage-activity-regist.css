@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
+}
+
 *{ padding: 0; margin: 0; }
 ul, li { list-style: none; } 
 *{ margin: 0 auto; }
@@ -44,6 +49,7 @@ ul, li { list-style: none; }
   padding: 10px;
 }
 .board th{  
+	background-color: #f3f4fb;
   width: 20%;;
   height: 50px;
   vertical-align: middle;
@@ -123,12 +129,39 @@ ul, li { list-style: none; }
 }
 
 
+.acceptnum {
+	height: 30px;
+	line-height: 30px;
+	width: 200px;
+	font-size: 15px;
+}
+
+.judgement_num {
+	height: 30px;
+	line-height: 30px;
+	width: 200px;
+	font-size: 15px;
+}
+
+.content {
+	resize: none;
+	width: 800px;
+	height: 300px;
+}
+
 input[type='text'].datepicker {
-	width: 120px;
+	width: 140px;
 	background: url('/img/calander.png');
 	background-repeat: no-repeat;
-	background-position-x: 90px;
+	background-position-x: 110px;
 	background-position-y: 5px;
+	padding-left: 5px;
+	border: 1px #c4c4c4 solid;
+	height: 30px;
+	line-height: 30px;
+	
+	font-size: 15px;
+	box-sizing: border-box;
 }
 
 .date-content {

@@ -1,6 +1,12 @@
 package com.court.supporter.user.service;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import com.court.supporter.command.TB_001VO;
+import com.court.supporter.command.TB_005VO;
 import com.court.supporter.command.TB_018VO;
 import com.court.supporter.security.jwt.JwtToken;
 
@@ -21,5 +27,7 @@ public interface UserService {
 	String findUsersForId(TB_001VO tb_001vo);
 	//비밀번호 찾기 정보에 맞는 user 확인
 	String findUsersForPw(TB_001VO tb_001vo);
+	
+	public MimeMessage createMessage(TB_001VO tb_001VO, TB_005VO tb_005VO, String aplicn_dtls_sts)throws MessagingException, UnsupportedEncodingException;
 }
 

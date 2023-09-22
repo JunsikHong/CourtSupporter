@@ -17,20 +17,49 @@
 		where member_proper_num = #{member_proper_num}
 	</select>
 
+	<select id="adminmypage_get_court_pass">
+		select *
+		from TB_005
+		where user_proper_num = #{user_proper_num}
+		and announce_proper_num = #{announce_proper_num}
+	</select>
+
 	<select id="adminmypage_juris_getapplicationtotal">
 		select count(*)
 		from (
 			select count(*) as total
 			from TB_005 as t5
+			
 			left join TB_002 as t2
 			on t5.announce_proper_num = t2.announce_proper_num
-			where aplicn_dtls_sts = '03'
+			
+			left join TB_010 as t10
+        	on t10.trial_fcltt_proper_num = t5.trial_fcltt_proper_num
+			
+			where 1 = 1
+			
+			<if test="aplicn_dtls_sts == '' or aplicn_dtls_sts == null">
+				and cast(aplicn_dtls_sts as unsigned) between 2 and 5
+			</if>
+			
+			<if test="aplicn_dtls_sts == '02'">
+				and aplicn_dtls_sts = '02'
+			</if>
+			<if test="aplicn_dtls_sts == '03'">
+				and aplicn_dtls_sts = '03'
+			</if>
+			<if test="aplicn_dtls_sts == '04'">
+				and aplicn_dtls_sts = '04'
+			</if>
+			<if test="aplicn_dtls_sts == '05'">
+				and aplicn_dtls_sts = '04'
+			</if>
+		
+			<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
+				and t5.trial_fcltt_proper_num like concat(#{trial_fcltt_proper_num}, '%')
+			</if>
 			<if test="announce_title != '' and announce_title != null">
 				and announce_title like concat('%', #{announce_title}, '%')
-			</if>
-			<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-				and aplicn_dtls_sts like concat('%',
-				#{aplicn_dtls_sts}, '%')
 			</if>
 			<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 				<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -47,14 +76,38 @@
 		select *,
 		CONVERT(t5.aplicn_dtls_date, CHAR) AS aplicn_dtls_date_as_varchar
 		from TB_005 as t5
+		
 		left join TB_002 as t2
 		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts = '03'
+		
+		left join TB_010 as t10
+        on t10.trial_fcltt_proper_num = t5.trial_fcltt_proper_num
+		
+		where 1 = 1
+			
+		<if test="aplicn_dtls_sts =='' or aplicn_dtls_sts == null">
+			and cast(aplicn_dtls_sts as unsigned) between 2 and 5
+		</if>
+			
+		
+		<if test="aplicn_dtls_sts == '02'">
+			and aplicn_dtls_sts = '02'
+		</if>
+		<if test="aplicn_dtls_sts == '03'">
+			and aplicn_dtls_sts = '03'
+		</if>
+		<if test="aplicn_dtls_sts == '04'">
+			and aplicn_dtls_sts = '04'
+		</if>
+		<if test="aplicn_dtls_sts == '05'">
+			and aplicn_dtls_sts = '04'
+		</if>
+	
+		<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
+				and t5.trial_fcltt_proper_num like concat(#{trial_fcltt_proper_num}, '%')
+		</if>
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
-		</if>
-		<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%', #{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -75,14 +128,37 @@
 		from (
 			select count(*) as total
 			from TB_005 as t5
+			
 			left join TB_002 as t2
 			on t5.announce_proper_num = t2.announce_proper_num
-			where aplicn_dtls_sts = '05'
+			
+			left join TB_010 as t10
+        	on t10.trial_fcltt_proper_num = t5.trial_fcltt_proper_num
+			
+			where 1 = 1
+			<if test="aplicn_dtls_sts == '' or aplicn_dtls_sts == null">
+				and cast(aplicn_dtls_sts as unsigned) between 5 and 8
+			</if>
+			
+			<if test="aplicn_dtls_sts == '05'">
+				and aplicn_dtls_sts = '05'
+			</if>
+			<if test="aplicn_dtls_sts == '06'">
+				and aplicn_dtls_sts = '06'
+			</if>
+			<if test="aplicn_dtls_sts == '07'">
+				and aplicn_dtls_sts = '07'
+			</if>
+			<if test="aplicn_dtls_sts == '08'">
+				and aplicn_dtls_sts = '08'
+			</if>
+		
+			<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
+				and t5.trial_fcltt_proper_num like concat(#{trial_fcltt_proper_num}, '%')
+			</if>
+			
 			<if test="announce_title != '' and announce_title != null">
 				and announce_title like concat('%', #{announce_title}, '%')
-			</if>
-			<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-				and aplicn_dtls_sts like concat('%', #{aplicn_dtls_sts}, '%')
 			</if>
 			<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 				<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -99,14 +175,37 @@
 		select *,
 		CONVERT(t5.aplicn_dtls_date, CHAR) AS aplicn_dtls_date_as_varchar
 		from TB_005 as t5
+		
 		left join TB_002 as t2
 		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts = '05'
+		
+		left join TB_010 as t10
+        on t10.trial_fcltt_proper_num = t5.trial_fcltt_proper_num
+		
+		where 1 = 1
+		<if test="aplicn_dtls_sts == '' or aplicn_dtls_sts == null">
+			and cast(aplicn_dtls_sts as unsigned) between 5 and 8
+		</if>
+			
+		<if test="aplicn_dtls_sts == '05'">
+			and aplicn_dtls_sts = '05'
+		</if>
+		<if test="aplicn_dtls_sts == '06'">
+			and aplicn_dtls_sts = '06'
+		</if>
+		<if test="aplicn_dtls_sts == '07'">
+			and aplicn_dtls_sts = '07'
+		</if>
+		<if test="aplicn_dtls_sts == '08'">
+			and aplicn_dtls_sts = '08'
+		</if>
+		
+		<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
+			and t5.trial_fcltt_proper_num like concat(#{trial_fcltt_proper_num}, '%')
+		</if>
+		
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
-		</if>
-		<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%', #{aplicn_dtls_sts}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -127,19 +226,46 @@
 		from (
 			select count(*) as total
 			from TB_005 as t5
+			
 			left join TB_002 as t2
 			on t5.announce_proper_num = t2.announce_proper_num
-			where aplicn_dtls_sts != '01'
+			
+			left join TB_010 as t10
+        	on t10.trial_fcltt_proper_num = t5.trial_fcltt_proper_num
+			
+			where 1 = 1
+			<if test="aplicn_dtls_sts == '' or aplicn_dtls_sts == null">
+				and cast(aplicn_dtls_sts as unsigned) between 2 and 8
+			</if>
+			
+			<if test="aplicn_dtls_sts == '02'">
+				and aplicn_dtls_sts = '02'
+			</if>
+			<if test="aplicn_dtls_sts == '03'">
+				and aplicn_dtls_sts = '03'
+			</if>
+			<if test="aplicn_dtls_sts == '04'">
+				and aplicn_dtls_sts = '04'
+			</if>
+			<if test="aplicn_dtls_sts == '05'">
+				and aplicn_dtls_sts = '05'
+			</if>
+			<if test="aplicn_dtls_sts == '06'">
+				and aplicn_dtls_sts = '06'
+			</if>
+			<if test="aplicn_dtls_sts == '07'">
+				and aplicn_dtls_sts = '07'
+			</if>
+			<if test="aplicn_dtls_sts == '08'">
+				and aplicn_dtls_sts = '08'
+			</if>
+		
+			<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
+				and t5.trial_fcltt_proper_num like concat(#{trial_fcltt_proper_num}, '%')
+			</if>
+			
 			<if test="announce_title != '' and announce_title != null">
 				and announce_title like concat('%', #{announce_title}, '%')
-			</if>
-			<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-				and aplicn_dtls_sts like concat('%',
-				#{aplicn_dtls_sts}, '%')
-			</if>
-			<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
-				and t5.trial_fcltt_proper_num like concat('%',
-				#{trial_fcltt_proper_num}, '%')
 			</if>
 			<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 				<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -156,18 +282,46 @@
 		select *,
 		CONVERT(t5.aplicn_dtls_date, CHAR) AS aplicn_dtls_date_as_varchar
 		from TB_005 as t5
+		
 		left join TB_002 as t2
 		on t5.announce_proper_num = t2.announce_proper_num
-		where aplicn_dtls_sts != '01'
+		
+		left join TB_010 as t10
+        on t10.trial_fcltt_proper_num = t5.trial_fcltt_proper_num
+        
+		where 1 = 1
+		<if test="aplicn_dtls_sts == '' or aplicn_dtls_sts == null">
+			and cast(aplicn_dtls_sts as unsigned) between 2 and 8
+		</if>
+			
+		<if test="aplicn_dtls_sts == '02'">
+			and aplicn_dtls_sts = '02'
+		</if>
+		<if test="aplicn_dtls_sts == '03'">
+			and aplicn_dtls_sts = '03'
+		</if>
+		<if test="aplicn_dtls_sts == '04'">
+			and aplicn_dtls_sts = '04'
+		</if>
+		<if test="aplicn_dtls_sts == '05'">
+			and aplicn_dtls_sts = '05'
+		</if>
+		<if test="aplicn_dtls_sts == '06'">
+			and aplicn_dtls_sts = '06'
+		</if>
+		<if test="aplicn_dtls_sts == '07'">
+			and aplicn_dtls_sts = '07'
+		</if>
+		<if test="aplicn_dtls_sts == '08'">
+			and aplicn_dtls_sts = '08'
+		</if>
+		
+		<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
+				and t5.trial_fcltt_proper_num like concat(#{trial_fcltt_proper_num}, '%')
+		</if>
+		
 		<if test="announce_title != '' and announce_title != null">
 			and announce_title like concat('%', #{announce_title}, '%')
-		</if>
-		<if test="aplicn_dtls_sts != '' and aplicn_dtls_sts != null">
-			and aplicn_dtls_sts like concat('%', #{aplicn_dtls_sts}, '%')
-		</if>
-		<if test="trial_fcltt_proper_num != '' and trial_fcltt_proper_num != null">
-				and t5.trial_fcltt_proper_num like concat('%',
-				#{trial_fcltt_proper_num}, '%')
 		</if>
 		<if test="aplicn_dtls_startdate != '' and aplicn_dtls_startdate != null">
 			<![CDATA[and aplicn_dtls_date >= #{aplicn_dtls_startdate}]]>
@@ -314,6 +468,13 @@
 			#{user_proper_num}
 	</insert>
 	
+	<select id="">
+		select *
+		from TB_005
+		where announce_proper_num = #{announce_proper_num}
+		and user_proper_num = #{user_proper_num}
+	</select>
+	
 	<select id="adminmypage_getrecruitnum">
 		select announce_recruit_num
 		from TB_002
@@ -322,7 +483,9 @@
 	
 	<select id="adminmypage_getresult">
 		select *
-		from TB_013
+		from TB_013 t13
+		left join TB_018 t18
+		on t13.admin_proper_num = t18.member_proper_num
 		where user_proper_num = #{user_proper_num}
 		and aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</select>
@@ -365,25 +528,55 @@
 		where member_proper_num = #{member_proper_num}
 	</update>
 	
-	<select id="adminmypage_getaplcninfo">
-		select *
-		from TB_005 t5
-		left join TB_002 t2
-		on t5.announce_proper_num = t2.announce_proper_num
-		
+	<update id="update04">
+		update TB_005
+		set aplicn_dtls_sts = '04'
 		where user_proper_num = #{user_proper_num}
 		and announce_proper_num = #{announce_proper_num}
-		
-		limit 1
+	</update>
+	
+	<update id="update05">
+		update TB_005
+		set aplicn_dtls_sts = '05'
+		where user_proper_num = #{user_proper_num}
+		and announce_proper_num = #{announce_proper_num}
+	</update>
+	
+	<update id="update07">
+		update TB_005
+		set aplicn_dtls_sts = '07'
+		where user_proper_num = #{user_proper_num}
+		and announce_proper_num = #{announce_proper_num}
+	</update>
+	
+	<update id="update08">
+		update TB_005
+		set aplicn_dtls_sts = '08'
+		where user_proper_num = #{user_proper_num}
+		and announce_proper_num = #{announce_proper_num}
+	</update>
+	
+	<select id="getannouncelist">
+		select *
+		from TB_002
+		where
+		<![CDATA[announce_end_date < curdate()]]>
+	
 	</select>
 	
-	<select id="adminmypage_getaceeptinfo">
+	<select id="getannouncecount">
+		select count(*)
+		from TB_002
+		where
+		<![CDATA[announce_end_date < curdate()]]>
+	
+	</select>
+	
+	<select id="getannouncedetail">
 		select *
-		from TB_005 t5
-		
-		where user_proper_num = #{user_proper_num}
-		and announce_proper_num = #{announce_proper_num}
-		
-		limit 1
+		from TB_005
+		where announce_proper_num = #{announce_proper_num}
+		and aplicn_dtls_sts = '06'
+		group by user_proper_num
 	</select>
 </mapper>

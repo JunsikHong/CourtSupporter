@@ -146,7 +146,6 @@
 		t5.announce_proper_num,
 		t5.trial_fcltt_proper_num
 		
-		
 		from TB_005 as t5
 		left join TB_002 as t2
 		on t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM
@@ -195,6 +194,7 @@
 	<!-- 사용자 신청 상세 가져오기 -->
 	<select id="usermypage_getapplicationdetail4">
 		select
+		t8.crtfc_type,
 		t8.crtfc_number,
 		t8.issue_agency,
 		t8.issue_date
@@ -375,9 +375,8 @@
 	<select id="usermypage_getpausedetail">
 		select *
 		from TB_014
-		where user_proper_num =
-		#{user_proper_num}
-		and accept_proper_num = #{accept_proper_num}
+		where user_proper_num = #{user_proper_num}
+		and trial_fcltt_proper_num = #{trial_fcltt_proper_num}
 	</select>
 
 	<!-- 사용자 중지 신청 -->
@@ -385,9 +384,8 @@
 		update TB_014
 		set accept_act_yn = 'N'
 		where
-		accept_proper_num = #{accept_proper_num}
-		and user_proper_num =
-		#{user_proper_num}
+		trial_fcltt_proper_num = #{trial_fcltt_proper_num}
+		and user_proper_num = #{user_proper_num}
 	</update>
 
 	<!-- 사용자 해제 신청 -->
@@ -395,9 +393,8 @@
 		update TB_014
 		set accept_act_yn = 'Y'
 		where
-		accept_proper_num = #{accept_proper_num}
-		and user_proper_num =
-		#{user_proper_num}
+		trial_fcltt_proper_num = #{trial_fcltt_proper_num}
+		and user_proper_num = #{user_proper_num}
 	</update>
 
 	<insert id="usermypage_registimg">
@@ -440,17 +437,19 @@
 			chosen_date,
 			attendance_date,
 			act_complete_yn,
-			accept_proper_num
+			user_id
+			user_proper_num
 		) select
 			coalesce (
-				(select max(img_file_proper_num)+1 
-		 		 from TB_019 
-         		 where cast(substring(img_file_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
+				(select max(act_proper_num)+1 
+		 		 from TB_012 
+         		 where cast(substring(act_proper_num, 1, 6) as date) = DATE_FORMAT(CURDATE(), '%y%m%d'))
 				 , concat(DATE_FORMAT(CURDATE(), '%y%m%d'), '00001')),
 			#{judgement_num},		
 			#{chosen_date},		
 			#{attendance_date},		
-			#{act_complete_yn},		
-			#{accept_proper_num}	
+			#{act_complete_yn},	
+			#{user_id},	
+			#{user_proper_num}	
 	</insert>
 </mapper>

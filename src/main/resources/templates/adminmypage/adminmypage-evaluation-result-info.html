@@ -20,71 +20,73 @@
 					</table>
 				</div>
 			</div>
-			
-			<div class="evaluation-line1">
-				<div class="evaluation-target-section">
-					<table class="evaluation-target-table">
-						<tbody>
-							<tr class="evaluation-target-line1">
-								<td>신청자</td>
-								<td>[[${tb_001VO.user_name}]]</td>
-							</tr>
-							<tr class="evaluation-target-line2">
-								<td>평가자</td>
-								<td>
-									<span style="color: red;">*채점자 : </span>
-									<span th:if="${member_role == 'ROLE_JURIS'}">사법담당자</span>
-									<span th:if="${member_role == 'ROLE_COURT'}">법원담당자</span>
-									<span th:if="${member_role == 'ROLE_ADMIN'}">관리자</span>
-									[[${member_proper_num}]]
-								</td>
-							</tr>
-						</tbody>
-					</table>
+			<th:block th:each="tb_013VO : ${tb_013VOlist}">
+				<div class="evaluation-line1">
+					<div class="evaluation-target-section">
+						<table class="evaluation-target-table">
+							<tbody>
+								<tr class="evaluation-target-line1">
+									<td>신청자</td>
+									<td>[[${tb_001VO.user_name}]]</td>
+								</tr>
+								<tr class="evaluation-target-line2">
+									<td><span style="color: red;">*채점자 : </span></td>
+									<td>
+										<span th:if="${member_role == 'ROLE_JURIS'}">사법담당자</span>
+										<span th:if="${member_role == 'ROLE_COURT'}">법원담당자</span>
+										<span th:if="${member_role == 'ROLE_ADMIN'}">관리자</span>
+										[[${tb_013VO.member_id}]]
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
 			
-			<div class="evaluation-line2">
-				<div class="evaluation-score-section">
-					<table class="evaluation-score-table">
-						<tbody>
-							<tr class="evaluation-score-line1">
-								<td>통산경력점수</td>
-								<td>[[${tb_013VO.all_career_score}]]</td>
-								<td>관내경력점수</td>
-								<td>[[${tb_013VO.jrsdc_career_score}]]</td>
-							</tr>
-							<tr class="evaluation-score-line2">
-								<td>사무소 소재지 점수</td>
-								<td>[[${tb_013VO.office_score}]]</td>
-								<td>자격증점수</td>
-								<td>[[${tb_013VO.certificate_score}]]</td>
-							</tr>
-							<tr class="evaluation-score-line3">
-								<td>조정점수</td>
-								<td>[[${tb_013VO.adjust_score}]]</td>
-								<td style="color: red;">총점</td>
-								<td style="color: red; font-weight: bold;">[[${tb_013VO.evaluate_score}]]</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
 			
-			<div class="evaluation-line3">
-				<div class="evaluation-review-section">
-					<table class="evaluation-review-table">
-						<tbody>
-							<tr class="evaluation-review-line1">
-								<td>검토의견</td>
-							</tr>
-							<tr class="evaluation-review-line2">
-								<td><textarea name="review_etc" id="review_etc" placeholder="없음">[[${tb_013VO.review_etc}]]</textarea></td>
-							</tr>
-						</tbody>
-					</table>
+				<div class="evaluation-line2">
+					<div class="evaluation-score-section">
+						<table class="evaluation-score-table">
+							<tbody>
+								<tr class="evaluation-score-line1">
+									<td>통산경력점수</td>
+									<td>[[${tb_013VO.all_career_score}]]</td>
+									<td>관내경력점수</td>
+									<td>[[${tb_013VO.jrsdc_career_score}]]</td>
+								</tr>
+								<tr class="evaluation-score-line2">
+									<td>사무소 소재지 점수</td>
+									<td>[[${tb_013VO.office_score}]]</td>
+									<td>자격증점수</td>
+									<td>[[${tb_013VO.certificate_score}]]</td>
+								</tr>
+								<tr class="evaluation-score-line3">
+									<td>조정점수</td>
+									<td>[[${tb_013VO.adjust_score}]]</td>
+									<td style="color: red;">총점</td>
+									<td style="color: red; font-weight: bold;">[[${tb_013VO.evaluate_score}]]</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>	
+				
+				<div class="evaluation-line3">
+					<div class="evaluation-review-section">
+						<table class="evaluation-review-table">
+							<tbody>
+								<tr class="evaluation-review-line1">
+									<td>검토의견</td>
+								</tr>
+								<tr class="evaluation-review-line2">
+									<td><textarea name="review_etc" id="review_etc" placeholder="없음">[[${tb_013VO.review_etc}]]</textarea></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>	
+				<hr/>
+			</th:block>
 			
 			<div class="evaluation-line4">
 				<div class="evaluation-result-section">
@@ -120,7 +122,7 @@
 					</table>
 				</div>
 			</div>
-
+			
 			<div class="evaluation-line5">
 					<div class="evaluation-button-section">
 						<div class="btnbox btnbox02">
@@ -134,11 +136,16 @@
 	</div>
 </div>
 
-<script>
+<script th:inline="javascript">
 	var closebtn = document.querySelector('.closebtn')
 	closebtn.addEventListener('click', function() {
 		self.close();
 	});
+	
+	if('[[${result}]]' == 1) {
+		alert('평가결과가 없습니다.');
+		self.close();
+	}
 </script>
 
 </html>
