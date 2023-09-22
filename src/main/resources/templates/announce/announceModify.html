@@ -74,6 +74,7 @@
 						<span >조력자 선택</span> <!--name="trial_fcltt_proper_num"-->
 					</th>
 					<td class="tableT popT"><!--trial_fcltt_proper_num-->
+					
 						<select class="selC" name="trial_fcltt_mainclasifi_code" id="mainSelect" title="조력자 선택"
 						  onchange="selectChange()" th:value="${vo.trial_fcltt_proper_num}"> <!-- th:value="${vo.trial_fcltt_proper_num}"  onchange="selectChange()"-->
 						</select><span id="msg0" style="color: red;"></span>
@@ -100,12 +101,15 @@
                   <th class="announceFile">첨부파일</th>
                   <td>
 					  <div class="file" id="fileList">
-						 <a href="#this" onclick="addFile()" class="add" >파일추가</a>
+						  <div>
+							<!--<p>[[${file}]]</p> 기존 파일 삭제하는부분 추가해야 함 --> 
+						  </div>
+						  <a href="#this" onclick="addFile()" class="add" >파일추가</a>
 						  
-					 	 <div class="file">
+					 	  <div class="file">
 							<input type="file" name="file" multiple class="sel">							
 							<a href="#this" name="file-delete" class="delete">삭제</a>
-						 </div>	
+					 	  </div>	
 					  </div>
                   </td><!--announceFile-->                               
                 </tr>     

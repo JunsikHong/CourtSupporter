@@ -133,8 +133,8 @@
 						
 						<div class="fileBox">
 							<div class="file">첨부파일</div>
-							<div class="left" colspan="5" th:each="vo : ${filevo}">
-							  <a th:href="@{'https://court-supporter-project-t4.s3.ap-northeast-2.amazonaws.com/' + ${vo.file_path} + ${vo.announce_file_uuid} + '_' + ${vo.original_file_name}}">[[${vo.original_file_name}]]</a><br>
+							<div class="left" colspan="5" th:each="vo : ${file}">
+							  <a th:href="@{'https://court-supporter-project-t4.s3.ap-northeast-2.amazonaws.com/' + ${vo.key.file_path} + ${vo.key.announce_file_uuid} + '_' + ${vo.key.original_file_name}}">[[${vo.value}]]</a><br>
 							</div>							
 						</div>
 						
@@ -201,9 +201,9 @@
 								<button class="delBtn btn" id="deleteBtn" >
 									<a href="#">삭제</a> <!-- id="deleteBtn"-->
 								</button>
-								<button class="modifyBtn btn" id="modifyBtn" > 
-									<a th:href="@{/announce/announceModify(announce_proper_num=${vo.announce_proper_num})}">수정</a>
-								</button>
+								
+								<a th:href="@{/announce/announceModify(announce_proper_num=${vo.announce_proper_num})}" class="modifyBtn btn" id="id="modifyBtn"">수정</a>
+								
 							</th:block>
 							
 						</div>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <th:block th:fragment="layout-usermypage-side">
    <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
 
@@ -13,10 +13,10 @@
             <h3 class="notice-title">공지사항</h3>
             <ul class="notice-content">
 
-			   <li><a th:href="@{/announce/announceList}">모집공고</a></li>
-			   <li><a th:href="@{/application/applicationAgree}">등재신청</a></li>
-               <li><a th:href="@{/notice/noticeList}">공지사항</a></li>            
-               <li><a th:href="@{/faq/faqList}">FAQ</a></li>
+			   <a th:href="@{/announce/announceList}"><li>모집공고</li></a>
+			   <a th:href="@{/application/applicationAgree}"><li>등재신청</li></a>
+               <a th:href="@{/notice/noticeList}"><li>공지사항</li></a>          
+               <a th:href="@{/faq/faqList}"><li>FAQ</li></a>
             </ul>
          </div>
 

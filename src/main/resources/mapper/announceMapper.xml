@@ -176,6 +176,7 @@
 						  announce_start_date = #{announce_start_date},
 						  announce_end_date = #{announce_end_date},
 						  announce_last_date = now(),
+						  admin_proper_num = #{admin_proper_num},
 						  trial_fcltt_proper_num = #{trial_fcltt_proper_num},	  
 						  announce_recruit_num = #{announce_recruit_num}	  
 		where announce_proper_num = #{announce_proper_num}			 
@@ -185,7 +186,11 @@
 	<delete id="announceDelete">
 		delete from TB_002 where announce_proper_num = #{announce_proper_num}
 	</delete>	
-		
+	
+	<!-- 공고 파일 삭제 -->
+	<delete id="announceFileDelete">
+		delete from TB_017 where announce_proper_num = #{announce_proper_num}
+	</delete>	
 
 
 </mapper>

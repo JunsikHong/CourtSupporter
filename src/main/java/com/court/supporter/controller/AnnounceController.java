@@ -151,7 +151,7 @@ public class AnnounceController {
 		         }	                  
 		      }	  	      
 		      
-		      List<String> fileList = announceFileService.announceRegist(list);
+		      List<String> fileList = announceFileService.announcefileRegist(list);
 		      
 		      String trialNum = announceService.getTrial_flctt_proper_num(tb_010VO);
 		      vo.setTrial_fcltt_proper_num(trialNum);
@@ -227,22 +227,19 @@ public class AnnounceController {
         //조력자 종류
         TB_010VO tb_010VO = new TB_010VO();
         String num = vo.getTrial_fcltt_proper_num();
-        tb_010VO.setTrial_fcltt_description(num);
+        tb_010VO.setTrial_fcltt_description(num);        
         String name = announceService.getTrial_fcltt_description(num);
-        
+              
         //파일 다운로드. 특수문자로 떠서 수정해야함.
-//        Map<TB_017VO,String> file = new HashMap<TB_017VO, String>();       
-//        
-//        for(int i = 0; i < filevo.size(); i++) {
-//     	   
-//            file.put(filevo.get(i), filevo.get(i).getOriginal_file_name());
-//            try {
-//               filevo.get(i).setOriginal_file_name(URLEncoder.encode(filevo.get(i).getOriginal_file_name(),"UTF-8"));
-//            } catch (UnsupportedEncodingException e) {
-//               // TODO Auto-generated catch block
-//               e.printStackTrace();
-//            }
-//         }
+        Map<TB_017VO,String> file = new HashMap<TB_017VO, String>();         
+        for(int i = 0; i < filevo.size(); i++) {     	   
+        	file.put(filevo.get(i), filevo.get(i).getOriginal_file_name());
+            try {
+               filevo.get(i).setOriginal_file_name(URLEncoder.encode(filevo.get(i).getOriginal_file_name(),"UTF-8"));
+            } catch (UnsupportedEncodingException e) {              
+               e.printStackTrace();
+            }
+         }
                   
         System.out.println("announce_proper_num: " + announce_proper_num);
         System.out.println("jwt: " + jwt);
@@ -252,10 +249,11 @@ public class AnnounceController {
         TB_002VO previousPost = announceService.getPrev(announce_proper_num);
         TB_002VO nextPost = announceService.getNext(announce_proper_num);
         
-        model.addAttribute("filevo", filevo);
         model.addAttribute("previousPost", previousPost);
         model.addAttribute("nextPost", nextPost);      
         model.addAttribute("tb_010VO", tb_010VO); 	
+        model.addAttribute("filevo", filevo);
+        model.addAttribute("file", file);
         model.addAttribute("name", name);	
         model.addAttribute("vo", vo);	
        
@@ -312,33 +310,39 @@ public class AnnounceController {
 	
 	//공고 수정 화면
 	@GetMapping("/announceModify")
-	public String announceModify(HttpServletRequest request, @RequestParam("announce_proper_num") String announce_proper_num, Model model) {
+	public String announceModify(HttpServletRequest request, @RequestParam("announce_proper_num") String announce_proper_num, Model model, TB_017VO tb_017VO) {
 		
 		HttpSession session = request.getSession();
 	    String jwt = (String) session.getAttribute("token");
 	      
 	    //로그인 했을 때(= 토큰이 있을 때)
 	    if (jwt != null) {
-           Authentication authentication = jwtValidator.getAuthentication(jwt);
-           DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();;
+            Authentication authentication = jwtValidator.getAuthentication(jwt);
+            DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();;
          
-           //token에서 member_proper_num 가져오기
-           String member_proper_num = userDetails.getUsername(); 
-           Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
-           Object[] roles = member_role.toArray();
-
+            //token에서 member_proper_num 가져오기
+            String member_proper_num = userDetails.getUsername(); 
+            Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
+            Object[] roles = member_role.toArray();
+           	       			
 			TB_002VO vo = announceService.getDetail(announce_proper_num);
+			vo.setAdmin_proper_num(member_proper_num);
+			tb_017VO.setOriginal_file_name(announce_proper_num);
+			String file = tb_017VO.getOriginal_file_name();
 			model.addAttribute("vo", vo); 
+			model.addAttribute("file", file); 
+			
 			System.out.println(vo.toString());
 		
 			return "announce/announceModify";
+	      
 	    }
 	    return "redirect:/announce/announceList";
 	}
 	
-	//공고 수정후 게시물로 이동
+	//공고 수정 후 목록으로 이동
 	@PostMapping("/announceModifyForm")
-	public String modify(HttpServletRequest request, @ModelAttribute("vo") TB_002VO vo, RedirectAttributes ra, @RequestParam("file") List<MultipartFile> list, TB_010VO tb_010VO) { //, @RequestParam("file") List<MultipartFile> list
+	public String modify(HttpServletRequest request, @ModelAttribute("vo") TB_002VO vo, RedirectAttributes ra, @RequestParam("file") List<MultipartFile> list, @RequestParam("announce_proper_num") String announce_proper_num, TB_010VO tb_010VO) { //, @RequestParam("file") List<MultipartFile> list
 		
 		//System.out.println(vo); //확인
 		
@@ -349,40 +353,44 @@ public class AnnounceController {
 	    if (jwt != null) {
            Authentication authentication = jwtValidator.getAuthentication(jwt);
            DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
-         
            //token에서 member_proper_num 가져오기
            String member_proper_num = userDetails.getUsername(); 
            Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
            Object[] roles = member_role.toArray();
            
            vo.setAdmin_proper_num(member_proper_num); //"1"
-		   System.out.println(vo.getAdmin_proper_num());
-		      
+		   System.out.println(vo.getAdmin_proper_num());		      
 		   String trialNum = announceService.getTrial_flctt_proper_num(tb_010VO);
 		   vo.setTrial_fcltt_proper_num(trialNum);		   
-		   
-		   
-		   //파일 업로드
-//		   list = list.stream().filter(t -> t.isEmpty() == false).toList();
-//			for (MultipartFile file : list) {
-//				if (file.getContentType().contains("image") == false
-//						&& file.getContentType().contains("application/pdf") == false
-//						&& file.getContentType().contains("text/plain") == false
-//						&& file.getContentType().contains("application/x-hwp") == false) {
-//					// 허용되지 않는 MIME타입인 경우 처리
-//					ra.addFlashAttribute("msg", "올바른 파일 형식이 아닙니다");		    
-//					return "redirect:/notice/noticeList";
-//				}
-//			}			 
-			// 파일 업로드하고 저장경로를 리스트로 받음
-			//List<String> filelist = announceFileService.announceRegist(list);
+		   		   
+		   //file upload
+		   list = list.stream().filter(t -> t.isEmpty() == false).toList();		
+		   for (MultipartFile file : list) {
+		        if (file.getContentType().contains("image") == false &&
+		            file.getContentType().contains("application/pdf") == false &&
+		            file.getContentType().contains("text/plain") == false &&
+		            file.getContentType().contains("application/x-hwp") == false) {
+		            
+		            //허용되지 않는 MIME타입인 경우 처리            
+		            ra.addFlashAttribute("msg", "올바른 파일 형식이 아닙니다");	
+		            return "redirect:/announce/announceList";
+		        }	                  
+		    }		      
+		    // 파일 업로드하고 저장경로를 리스트로 받음  
+		    List<String> fileList = announceFileService.announcefileRegist(list);	      
+			//기존업로드 파일 삭제   //데이터 이름 가져오기
+		    List<TB_017VO> filevo = announceService.getFileDetail(announce_proper_num);
+		     
+		    //파일삭제
+		    announceFileService.announceFileDelete(filevo);
+		    //sql삭제
+		    announceService.announceFileDelete(announce_proper_num);
+			   
 			// 파일리스트와 같이 등록 진행
-			//announceService.announceModify(vo, filelist);
-		   
-		   int result = announceService.announceModify(vo);
-		   String msg = result == 1 ? "수정 완료" : "수정 실패";
-		   ra.addFlashAttribute("msg", msg);
-		   
+		    int result = announceService.announceModify(vo, fileList); //, fileList
+		    String msg = result == 1 ? "수정 완료" : "수정 실패";
+		    ra.addFlashAttribute("msg", msg);		 		
+		    System.out.println(announce_proper_num + "fsdfsafsdfasldfjk;vkj;lk");
 		   return "redirect:/announce/announceList";
 	    }   
 	    return "redirect:/announce/announceList";
@@ -406,8 +414,15 @@ public class AnnounceController {
            Object[] roles = member_role.toArray();
            
            String auth = announceService.announce_authcheck(member_proper_num);
-           if(auth.equals("ROLE_ADMIN")) {	       	   		
-        	   	announceService.announceDelete(announce_proper_num);
+           if(auth.equals("ROLE_ADMIN")) {
+        	   
+	        	//기존업로드 파일 삭제   //데이터 이름 가져오기
+	   		    List<TB_017VO> filevo = announceService.getFileDetail(announce_proper_num);	   		     
+	   		    //파일삭제
+	   		    announceFileService.announceFileDelete(filevo);
+	   		    //sql삭제
+	   		    announceService.announceFileDelete(announce_proper_num);
+        	   	announceService.announceDelete(announce_proper_num);        	   	
         	    ra.addFlashAttribute("deleteForm", "삭제하시겠습니까?");
 	        	return "redirect:/announce/announceList";         
            }		  
