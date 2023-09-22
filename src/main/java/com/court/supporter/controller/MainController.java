@@ -42,7 +42,7 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String main(@CookieValue(name="Authorization", required=false) String token,
-			HttpServletRequest request) {
+			HttpServletRequest request, Model model) {
 		//로그인한 상태
 		if (token != null) {
 			HttpSession session = request.getSession();
@@ -77,6 +77,12 @@ public class MainController {
 //			Object[] roles = member_role.toArray();
 //			System.out.println("ROLE_ADMIN".equals(roles[0].toString()));
 //		}
+		
+	    ArrayList<TB_002VO> tb_002list = mainService.getannouncelist("");
+	    ArrayList<TB_003VO> tb_003list = mainService.getnoticelist("");
+	    
+	    model.addAttribute("tb_002list", tb_002list);
+	    model.addAttribute("tb_003list", tb_003list);
 
 		return "/main";
 	}
@@ -127,5 +133,5 @@ public class MainController {
 		return "/total-search";
 	}
 
-	
+
 }

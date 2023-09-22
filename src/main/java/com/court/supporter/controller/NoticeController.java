@@ -306,7 +306,7 @@ public class NoticeController {
 			}
 		}
 		//기존업로드 파일 삭제
-			//데이터 이름 가져오기
+		//데이터 이름 가져오기
 		List<TB_016VO> filevo = noticeService.noticeFileDetail(notice_proper_num);
 		//파일삭제
 		noticeFileService.noticeFileDelete(filevo);
@@ -351,6 +351,12 @@ public class NoticeController {
 		}
 
 		noticeService.noticeDelete(notice_proper_num);
+		//기존업로드 파일 삭제
+		//데이터 이름 가져오기
+		List<TB_016VO> filevo = noticeService.noticeFileDetail(notice_proper_num);
+		//파일삭제
+		noticeFileService.noticeFileDelete(filevo);
+		//sql삭제
 		noticeService.noticeFileDelete(notice_proper_num);
 		
 		return "redirect:/notice/noticeList";
