@@ -34,21 +34,21 @@
 								<tr class="uptr02">
 									<th>기본 정보</th>
 									<td>
-										<div>
+										<div class="basicInfo">
 											<p>신청인 : [[${tb_001vo.user_name}]]</p>	
 										</div>
-										<div>주소 : [[${tb_001vo.user_ar}]] [[${tb_001vo.user_ar_detail}]]</div>
-										<div>조력자 분류 : [[${tb_010vo.trial_fcltt_description}]]</div>
-										<div>
+										<div class="basicInfo">주소 : [[${tb_001vo.user_ar}]] [[${tb_001vo.user_ar_detail}]]</div>
+										<div class="basicInfo">조력자 분류 : [[${tb_010vo.trial_fcltt_description}]]</div>
+										<div class="basicInfo">
 											희망 법원 : 
 											<span th:each="vo : ${tb_011vo}">[[${vo.court_name}]] </span>
 										</div>
-										<div>소송사건 당사자 경력 : [[${tb_005vo.ligtn_case_carer_yn}]]</div>
-										<div th:if="${tb_005vo.ligtn_case_carer_etc != ''}">소송사건 당사자 경력 내용: [[${tb_005vo.ligtn_case_carer_etc}]]</div>
-										<div>보험업계 자문 경력 : [[${tb_005vo.insrn_indst_carer_yn}]]</div>
-										<div th:if="${tb_005vo.insrn_indst_carer_etc != ''}">보험업계 자문 내용 : [[${tb_005vo.insrn_indst_carer_etc}]]</div>
-										<div>형사 처벌 받은 경력 : [[${tb_005vo.criminal_penalty_carer_yn}]]</div>
-										<div th:if="${tb_005vo.criminal_penalty_carer_etc != ''}">형사 처벌 받은 내용 : [[${tb_005vo.criminal_penalty_carer_etc}]]</div>
+										<div class="basicInfo">소송사건 당사자 경력 : [[${tb_005vo.ligtn_case_carer_yn}]]</div>
+										<div class="basicInfo" th:if="${tb_005vo.ligtn_case_carer_etc != ''}">소송사건 당사자 경력 내용: [[${tb_005vo.ligtn_case_carer_etc}]]</div>
+										<div class="basicInfo">보험업계 자문 경력 : [[${tb_005vo.insrn_indst_carer_yn}]]</div>
+										<div class="basicInfo" th:if="${tb_005vo.insrn_indst_carer_etc != ''}">보험업계 자문 내용 : [[${tb_005vo.insrn_indst_carer_etc}]]</div>
+										<div class="basicInfo">형사 처벌 받은 경력 : [[${tb_005vo.criminal_penalty_carer_yn}]]</div>
+										<div class="basicInfo" th:if="${tb_005vo.criminal_penalty_carer_etc != ''}">형사 처벌 받은 내용 : [[${tb_005vo.criminal_penalty_carer_etc}]]</div>
 									</td>
 								</tr>
 							</tbody>

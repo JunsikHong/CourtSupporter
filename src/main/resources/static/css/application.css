@@ -84,14 +84,16 @@ font-family: 'Noto Sans KR', sans-serif;
 .Tth03{width: 15%;}
 .board_viewT .viewth{padding-left: 35px;}
 
+.basicInfo{padding-bottom: 2px;}
+
 /* file 업로드 */
 .filePlusBtn, .OtFilePlusBtn, .CoFilePlusBtn1, .CoFilePlusBtn2, .CoFilePlusBtn3, .PeFilePlusBtn2, .PeFilePlusBtn3, .PeFilePlusBtn4{
-	background-color: rgb(11, 38, 110);display: inline-block;padding: 0 10px;vertical-align: middle;
+	background-color: rgb(11, 38, 110);display: inline-block;padding: 0 10px;vertical-align: middle;height: 30px;
 	font-family: 'Noto Sans KR', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 .fileDeleteBtn{
-	background-color: rgb(11, 38, 110);display: inline-block;padding: 0 5px;vertical-align: middle;
+	background-color: rgb(11, 38, 110);display: inline-block;padding: 0 5px;vertical-align: middle;height: 30px;
 	font-family: 'Noto Sans KR', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
@@ -101,10 +103,11 @@ font-family: 'Noto Sans KR', sans-serif;
 	font-family: 'Noto Sans KR', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
+.addFile{width: 130px;}
 .file-container{margin: 5px}
 .upload-name, .name_box{background-color: #fff;}
 .PeFileDeleteBtn1, .fileDeleteBtn2{
-	background-color: rgb(11, 38, 110);color: #fff; width: 80px;
+	background-color: rgb(11, 38, 110);color: #fff; width: 80px;height: 30px;
 	font-family: 'Noto Sans KR', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 	}
@@ -161,7 +164,7 @@ font-family: 'Noto Sans KR', sans-serif;
 .required-img {display: inline-block;font-size: 10px;color: #ec464d;width: 10px;height: 10px;background: url(https://www.gov.kr/2017/img/page/ico_fa_asterisk.png) no-repeat 0 0;}
 .required-img .hidden {position: absolute;left: -10000px;top: auto;width: 1px;height: 1px;overflow: hidden;}
 
-.modifyBtn, .deleteBtn{background-color: rgb(11, 38, 110);color: #fff;padding: 1px;border: none;}
+.modifyBtn, .deleteBtn{background-color: rgb(11, 38, 110);color: #fff;padding: 3px;margin-right: 2px; border: none;}
 #file-upload-name{border: none;margin-right: 8px;background-color: #fff;}
 #file-upload-name2{border: none;margin-right: 3px;}
 .file-container{margin:2px;}
