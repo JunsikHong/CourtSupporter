@@ -351,7 +351,8 @@ public class NoticeController {
 		}
 
 		noticeService.noticeDelete(notice_proper_num);
-
+		noticeService.noticeFileDelete(notice_proper_num);
+		
 		return "redirect:/notice/noticeList";
 	}
 
