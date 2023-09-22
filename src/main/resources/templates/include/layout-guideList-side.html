@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap">
 <th:block th:fragment="layout-usermypage-side">
    <link rel="stylesheet" th:href="@{/css/layout-announceList-side.css}">
 
@@ -11,9 +11,8 @@
       <div class="notice-sidemenu">
          <div class="usermypage-myinfo">
             <ul class="notice-content">
-
-			   <li><a th:href="@{/guide/guideInfo}">재판조력자 제도 안내</a></li>
-			   <li><a th:href="@{/guide/guideProcedure}">재판조력자의 신청 절차 안내</a></li>
+			   <a th:href="@{/guide/guideInfo}"><li>재판조력자 제도 안내</li></a>
+			   <a th:href="@{/guide/guideProcedure}"><li>재판조력자의 신청 절차 안내</li></a>
             </ul>
          </div>
 

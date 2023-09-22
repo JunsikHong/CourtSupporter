@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
 <th:block th:fragment="setContent(content)">
-
-
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>재판조력자선발</title>
-		<link rel="stylesheet" th:href="@{/css/reset.css}">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap">
+		
 		<link rel="stylesheet" th:href="@{/css/head.css}">
+		<link rel="stylesheet" th:href="@{/css/reset.css}">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
 			integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 		<link rel="stylesheet" th:href="@{/css/page.css}">
+		
 	</head>
 
 
@@ -86,10 +87,10 @@
 									</ul>
 									<ul class="detail-menu02">
 										<a th:href="@{/guide/guideInfo}">
-											<h2>조력자 제도안내</h2>
+											<h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp조력자 제도안내</h2>
 										</a>
 										<a th:href="@{/guide/guideProcedure}">
-											<h2>조력자 신청절차안내</h2>
+											<h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp조력자 신청안내</h2>
 										</a>
 									</ul>
 									<ul class="detail-menu03">
@@ -124,6 +125,7 @@
 										</a>
 									</ul>
 								</div>
+							  </div>
 							</nav>
 						</th:block>
 						<th:block th:if="${session.member_role == 'ROLE_ADMIN'}">
@@ -151,18 +153,18 @@
 									<div class="detail-menus">
 										<ul class="detail-menu01">
 											<a th:href="@{/adminmypage/adminmypage_auth_manage}">
-												<h2>권한관리</h2>
+												<h2>&nbsp권한관리</h2>
 											</a>
 										</ul>
 										<ul class="detail-menu02">
 											<!--<a th:href="@{/}">
 												<h3>조력자신청안내</h3>
 											</a>-->
-											<a th:href="@{/}">
-												<h2>조력자 제도안내</h2>
+											<a th:href="@{/guide/guideInfo}">
+												<h2>&nbsp&nbsp&nbsp조력자 제도안내</h2>
 											</a>
-											<a th:href="@{/}">
-												<h2>조력자 신청절차안내</h2>
+											<a th:href="@{/guide/guideProcedure}">
+												<h2>&nbsp&nbsp&nbsp조력자 신청안내</h2>
 											</a>
 										</ul>
 										<ul class="detail-menu03">
@@ -170,13 +172,13 @@
 												<h3>공지사항</h3>
 											</a>-->
 											<a th:href="@{/announce/announceList}">
-												<h2>모집공고</h2>
+												<h2>&nbsp&nbsp모집공고</h2>
 											</a>
 											<a th:href="@{/notice/noticeList}">
-												<h2>공지사항</h2>
+												<h2>&nbsp&nbsp공지사항</h2>
 											</a>
 											<a th:href="@{/faq/faqList}">
-												<h2>FAQ</h2>
+												<h2>&nbsp&nbspFAQ</h2>
 											</a>
 										</ul>
 									</div>
@@ -185,9 +187,9 @@
 						</th:block>
 						<th:block th:if="${session.member_role == 'ROLE_COURT' || session.member_role == 'ROLE_JURIS'}">
 							<ul class="menus">
-								<a th:href="@{/}">
+								<a th:href="@{/adminmypage/adminmypage_evaluationlist}">
 									<li class="menu01">
-										<span class="">평가</span>
+										<span class="">&nbsp&nbsp평가</span>
 									</li>
 								</a>
 								<a th:href="@{/}">
@@ -207,18 +209,18 @@
 								<div class="detail-menu-wrap">
 									<div class="detail-menus">
 										<ul class="detail-menu01">
-											<a th:href="@{/}">
-												<h2>평가</h2>
+											<a th:href="@{/adminmypage/adminmypage_evaluationlist}">
+												<h2>&nbsp&nbsp&nbsp평가</h2>
 											</a>
 										</ul>
 										<ul class="detail-menu02">
 											<!--<a th:href="@{/}">
 												<h3>조력자신청안내</h3>
 											</a>-->
-											<a th:href="@{/}">
+											<a th:href="@{/guide/guideInfo}">
 												<h2>조력자 제도안내</h2>
 											</a>
-											<a th:href="@{/}">
+											<a th:href="@{/guide/guideProcedure}">
 												<h2>조력자 신청절차안내</h2>
 											</a>
 										</ul>

@@ -1,13 +1,9 @@
 @font-face {
-  font-family: 'Noto Sans KR', sans-serif;
-<<<<<<< HEAD
-  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
+  font-family: 'Noto Sans KR';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;700;800;900&display=swap'); 
+  font-weight: normal; /* 폰트의 기본 굵기 (일반적으로는 normal로 설정) */
+  font-style: normal; /* 폰트의 기본 스타일 (일반적으로는 normal로 설정) */
 }
-
-=======
-  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
-}
->>>>>>> 676e3afc7d25362301e3b5b0967325c7d5606931
 * {
 	padding: 0;
 	margin: 0;
@@ -31,16 +27,16 @@ li {
 .usermypage-applicationdetail-wrap {
 	width: 1280px;
 }
-
 .container {
 	width: 100%;
 	height: 100%;
+	margin : 0 auto;
 }
 
 .announceTitle {
-	font-size: x-large;
+	font-size: xx-large;
 	font-weight: 800;
-	padding: 20px;
+	padding: 15px;
 	text-align: center;
 	border-bottom: 3px solid rgb(109, 109, 109);
 	box-sizing: border-box;
@@ -53,6 +49,7 @@ li {
 	margin-top: 15px;
 	float: right;
 	margin-right: 20px;
+	padding-top: 9px;
 }
 
 .arrow {
@@ -76,15 +73,18 @@ li {
 	margin-bottom: 80px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
-	overflow: hidden;
+	border-radius: 9px;
+	overflow: hidden;	
 }
 
 .myinfoSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .myinfoTable {
@@ -103,13 +103,15 @@ li {
 .myinfoLine2 td:nth-child(1),
 .myinfoLine2 td:nth-child(3),
 .myinfoLine3 td:nth-child(1) {
-	width: 20%;
+	width: 13%;
 	height: 70px;
+	text-align: center;
 	vertical-align: middle;
+	/*font-size: 17px;*/
 	font-weight: bold;
-	padding-left: 20px;
-	background-color: #034273;
-	color: white;
+	/*padding-left: 20px;*/
+	background-color: #f3f4fb; /* #034273;*/
+	color:  #525252;  /* white;*/
 }
 
 .myinfoLine1 td:nth-child(2),
@@ -119,30 +121,33 @@ li {
 	padding-left: 20px;
 	vertical-align: middle;
 	width: 30%;
-	background-color: rgb(228, 228, 228);
+	background-color: white;  /* rgb(228, 228, 228);*/
 }
 
 .myinfoLine3 td:nth-child(2) {
 	padding-left: 20px;
 	vertical-align: middle;
-	background-color: rgb(228, 228, 228);
+	background-color: white; /*  rgb(228, 228, 228);*/
 }
 
 /***********************************************/
 /*detail*/
 .detailSection {
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .detailSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;	
 }
 
 .detailTable {
@@ -165,13 +170,14 @@ li {
 .detailLine3 td:nth-child(1),
 .detailLine4 td:nth-child(1),
 .detailLine5 td:nth-child(1) {
-	width: 20%;
+	width: 13%;
 	height: 70px;
+	text-align: center;
 	vertical-align: middle;
 	font-weight: bold;
-	padding-left: 20px;
-	background-color: #034273;
-	color: white;
+	/*padding-left: 20px;*/
+	background-color: #f3f4fb; /*#034273;*/
+	color: #525252;  /* white;*/
 }
 
 .detailLine1 td:nth-child(2),
@@ -179,9 +185,10 @@ li {
 .detailLine2 td:nth-child(2),
 .detailLine2 td:nth-child(4) {
 	padding-left: 20px;
+	/*padding-right: 5px;*/
 	vertical-align: middle;
 	width: 30%;
-	background-color: rgb(228, 228, 228);
+	/*background-color: rgb(228, 228, 228);*/
 }
 
 .detailLine3 td:nth-child(2),
@@ -189,7 +196,7 @@ li {
 .detailLine5 td:nth-child(2) {
 	padding-left: 20px;
 	vertical-align: middle;
-	background-color: rgb(228, 228, 228);
+	/*background-color: rgb(228, 228, 228);*/
 }
 
 textarea {
@@ -209,15 +216,19 @@ textarea {
 	margin-bottom: 80px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .courtSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;	
 }
 
 .courtTable {
@@ -230,8 +241,8 @@ textarea {
 	height: 50px;
 	text-align: center;
 	font-weight: bold;
-	background-color: #034273;
-	color: white;
+	background-color:#f3f4fb;  /* #034273;*/
+	color: #525252;
 	height: 70px;
 }
 
@@ -247,25 +258,28 @@ textarea {
 
 .courtBody td {
 	vertical-align: middle;
-	background-color: rgb(228, 228, 228);
+	/*background-color: rgb(228, 228, 228); */
 	height: 70px;
 }
 
 /***********************************************/
 /*edctn*/
 .edctnSection {
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .edctnSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .edctnTable {
@@ -278,8 +292,8 @@ textarea {
 	height: 50px;
 	text-align: center;
 	font-weight: bold;
-	background-color: #034273;
-	color: white;
+	background-color:  #f3f4fb;  /* #034273;*/
+	color: #525252;
 	height: 70px;
 }
 
@@ -295,25 +309,29 @@ textarea {
 
 .edctnBody td {
 	vertical-align: middle;
-	background-color: rgb(228, 228, 228);
+	/*background-color: rgb(228, 228, 228); */
 	height: 70px;
 }
 
 /***********************************************/
 /*carerTable*/
 .carerSection {
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .carerSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .carerTable {
@@ -326,8 +344,8 @@ textarea {
 	height: 50px;
 	text-align: center;
 	font-weight: bold;
-	background-color: #034273;
-	color: white;
+	background-color:  #f3f4fb;  /* #034273;*/
+	color: #525252;
 	height: 70px;
 }
 
@@ -343,25 +361,28 @@ textarea {
 
 .carerBody td {
 	vertical-align: middle;
-	background-color: rgb(228, 228, 228);
+	/*background-color: rgb(228, 228, 228); */
 	height: 70px;
 }
 
 /***********************************************/
 /*crtfcTable*/
 .crtfcSection {
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .crtfcSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .crtfcTable {
@@ -374,8 +395,8 @@ textarea {
 	height: 50px;
 	text-align: center;
 	font-weight: bold;
-	background-color: #034273;
-	color: white;
+	background-color: #f3f4fb;  /* #034273;*/
+	color: #525252;
 	height: 70px;
 }
 
@@ -391,7 +412,7 @@ textarea {
 
 .crtfcBody td {
 	vertical-align: middle;
-	background-color: rgb(228, 228, 228);
+	/*background-color: rgb(228, 228, 228); */
 	height: 50px;
 }
 
@@ -416,11 +437,12 @@ textarea {
 
 .attachTable td:nth-child(1) {
 	width: 20%;
+	text-align: center;
 	vertical-align: middle;
 	font-weight: bold;
-	padding-left: 20px;
-	background-color: #034273;
-	color: white;
+	/*padding-left: 20px;*/
+	background-color:#f3f4fb;  /* #034273;*/
+	color:  #525252; /* white;*/
 }
 
 .attachTable td:nth-child(2) {
@@ -452,7 +474,8 @@ textarea {
 	display: inline-block;
 	padding: 0 25px;
 	vertical-align: middle;
-	font-family: "ngB" !important;
+	font-family: "Noto Sans KR", sans-serif;
+	/*font-family: "ngB"; !important;*/
 }
 
 .btnbox .btn4d5 {
@@ -464,7 +487,8 @@ textarea {
 	display: inline-block;
 	padding: 0 25px;
 	vertical-align: middle;
-	font-family: "ngB" !important;
+	font-family: "Noto Sans KR", sans-serif; 
+	/*font-family: "ngB"; !important;*/
 }
 
 .btnbox02 a {
@@ -520,6 +544,7 @@ textarea {
 	margin-top: 15px;
 	float: right;
 	margin-right: 20px;
+	padding-top: 9px;
 }
 
 .arrow {
@@ -532,10 +557,12 @@ textarea {
 
 .arrow-up {
 	border-bottom: 15px solid rgb(212, 212, 212);
+	
 }
 
 .arrow-down {
 	border-top: 15px solid rgb(212, 212, 212);
+	
 }
 /***********************************************/
 /*myinfo*/
@@ -543,15 +570,18 @@ textarea {
 	margin-bottom: 80px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .myinfoSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .myinfoTable {
@@ -595,18 +625,21 @@ textarea {
 /***********************************************/
 /*detail*/
 .detailSection {
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .detailSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .detailTable {
@@ -664,15 +697,19 @@ textarea {
 	margin-bottom: 80px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .courtSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .courtTable {
@@ -708,15 +745,18 @@ textarea {
 	margin-bottom: 20px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .edctnSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .edctnTable {
@@ -754,18 +794,21 @@ textarea {
 /***********************************************/
 /*carerTable*/
 .carerSection {
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .carerSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .carerTable {
@@ -798,18 +841,21 @@ textarea {
 /***********************************************/
 /*crtfcTable*/
 .crtfcSection {
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	border: 1px solid rgb(230, 230, 230);
 	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
-	border-radius: 15px;
+	border-radius: 9px;
 	overflow: hidden;
 }
 
 .crtfcSection h3 {
 	float: left;
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: bold;
 	margin: 15px 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 3px;
 }
 
 .crtfcTable {
@@ -855,7 +901,7 @@ textarea {
 	font-size: 16px;
 	border-top: 2px solid rgb(230, 230, 230);
 	border-bottom: 2px solid rgb(230, 230, 230);
-	margin-bottom: 80px;
+	margin-bottom: 50px;
 }
 
 .attachTable td:nth-child(1) {
@@ -883,9 +929,13 @@ textarea {
 /***********************************************/
 .btnbox {
 	text-align: center;
-	margin: 40px 0;
+	margin: 100px 0;
 }
-
+.btnbox > a {
+	text-decoration: none;
+	font-family: "Noto Sans KR", sans-serif;
+	color: white;
+} 
 .btnbox .btnfb7 {
 	background-color: rgb(11, 38, 110);
 	font-size: 18px;
@@ -895,7 +945,8 @@ textarea {
 	display: inline-block;
 	padding: 0 25px;
 	vertical-align: middle;
-	font-family: "ngB" !important;
+	/*font-family: "ngB" !important;*/
+	font-family: "Noto Sans KR", sans-serif;  	
 }
 
 .btnbox .btn4d5 {
@@ -907,7 +958,8 @@ textarea {
 	display: inline-block;
 	padding: 0 25px;
 	vertical-align: middle;
-	font-family: "ngB" !important;
+	/*font-family: "ngB" !important;*/
+	font-family: "Noto Sans KR", sans-serif;  	
 }
 
 .btnbox02 a {
