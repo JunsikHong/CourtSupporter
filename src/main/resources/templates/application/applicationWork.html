@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" th:href="@{/css/application.css}">
 <link rel="stylesheet" th:href="@{/css/applicationStateBar.css}">
 <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -53,6 +56,7 @@
 				</div>
 				<form action="workForm" id="workForm" name="workForm" method="post" enctype="multipart/form-data">
 					<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+					<input type="hidden" id="trial_fcltt_proper_num" name="trial_fcltt_proper_num" th:value="${param.fcltt_num}">
 					<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 					<div class="pop_contents">
 						<table class="board_table topT">
@@ -88,8 +92,8 @@
 									<td style="vertical-align: middle;">[[${vo.work_description}]]</td>
 									<td style="vertical-align: middle;">[[${vo.work_department}]]/[[${vo.work_position}]]</td>
 									<td style="vertical-align: middle;">
-										<input type="button" class="modifyBtn" value="수정" style="border: 1px solid #888888;" />
-										<input type="button" class="deleteBtn" value="삭제" style="border: 1px solid #888888;" />
+										<input type="button" class="modifyBtn" value="수정" style="padding: 1px;"/>
+										<input type="button" class="deleteBtn" value="삭제" style="padding: 1px;"/>
 									</td>
 								</tr>
 
@@ -165,7 +169,7 @@
 										  <label for="file-input" class="file-label">
 										    <input type="hidden" class="uuid" th:value="${vo.uuid}">
 										  </label>
-										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;">
+										  <input class="upload-name" th:value="${vo.original_file_name}" disabled="disabled" style="border: none;margin:2px;">
 										  <input type="button" class="fileDeleteBtn2" value="삭제" style="color: #fff; width: 80px;">
 											</div>
 										</div>
@@ -175,7 +179,7 @@
 						</table>
 					</div>
 					<div class="btnbox btnbox02">
-						<input type="button" class="btn4d5" value="이전" onclick="history.back()" />
+						<input type="button" class="btn4d5" value="이전" onclick="returnPage()" />
 						<input type="submit" class="btnfb7" value="다음">
 					</div>
 				</form>

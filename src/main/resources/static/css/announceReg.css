@@ -76,10 +76,10 @@ body{font-family: 'Noto Sans KR', sans-serif;}
   line-height: 40px;
   width: 130px;  
  
-  color: #424242; /* #332E3B */
+  color: #424242;/* #424d65 */  /* #332E3B */
   /*border-top: 0.3px solid #AEAFBbF; */  /*#BDBDBD;*/
   /*border-bottom: 0.3px solid #AEAFBF; */
-  background-color: #F2F2F2; /* #EAEBF8;*/ /*#E8E8E9; */
+  background-color: #f3f4fb; /* F2F2F2 #EAEBF8;*/ /*#E8E8E9; */
 }
 .board td {
    /*border-top: 0.3px solid #AEAFBF;

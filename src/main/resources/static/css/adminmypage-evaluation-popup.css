@@ -1,7 +1,12 @@
 /******************************************************************/
 /* wrap */
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
+
 #popup-wrap {
-	width: 1860px;
+	width: 80%; /*1860px;*/
 	margin: 0 auto;
 }
 

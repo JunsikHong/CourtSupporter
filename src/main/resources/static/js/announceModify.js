@@ -205,7 +205,7 @@ if (!secondSelect) {
 }
 }*/
 
-
+/*
 //등록 전 확인
 let modifyBtn = document.getElementById("modifyBtn");  
   modifyBtn.onclick = () => {
@@ -239,7 +239,7 @@ let modifyBtn = document.getElementById("modifyBtn");
       return true;
     }
   }    
-  
+ */ 
   
  //작성취소 - 목록으로 돌아가기
 let listBtn = document.getElementById("listBtn");
@@ -248,7 +248,7 @@ listBtn.onclick = () => {
 	window.location.href = "/announce/announceList";
 }
 
-
+/*
 //파일 첨부
 var contentDetail = document.getElementById("contentDetail");
 contentDetail.innerHTML = contentDetail.innerHTML.replace(/\n/g, "<br>");
@@ -277,3 +277,4 @@ function deleteFile(obj) {
 	obj.parent().remove();		
 }
 
+*/

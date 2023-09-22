@@ -20,11 +20,11 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
    position: relative;
 }
 .announceInner{
-/*   display: block;
+/*  display: block;
    margin: 0 auto; */
    margin-left: 250px;
    margin-bottom: 250px;
-   min-height: 800px;
+   min-height: 1000px;
 }
 
 
@@ -38,10 +38,23 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
   padding-bottom: 15px;
   border-bottom: 3px solid  #08125E;  /* #081247;  #090C5F; *//* #424242;*/
   color:  #2E2E2E; /* #081247;*/  /*  08124E #090C5F;2E2E2E*/
+  
+ 
 }
 .announceTitle > p {
-  font-size: x-large;
-  font-weight: 700;
+  font-size: 25px;
+  font-weight: 900;
+}
+.titleImg {
+  background-image: url(/img/title_img_de.png);
+  background-size: 1100px;
+  background-position: 0px 90px;
+  height: 70px;
+  line-height: 70px;
+  
+  margin-top: 30px;
+  padding-left: 20px;
+  color : #08125E;
 }
 .contentTitle a:hover{ 
   color:#004B8C; 
@@ -64,7 +77,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 	margin-bottom: 30px;
 	
 	height: 100px;
-	background-color: #F2F2F2; /* #EAEBF8*/
+	background-color: #f3f4fb;  /* f3f3fb #f4f5fa #EAEDF8 #F2F2F2; */
 }
 .searchTxt {
   margin-top: 15px;
@@ -124,38 +137,41 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
  /* width: 1029px;*/
   height: 60px;
   text-align: center;
+  align-items: center;
   justify-content: center;
-  border-bottom: 2px solid #08125E; /*#081247;*/
-  background-color: #F2F2F2;
+   /*#081247;*/
+  background-color:  #f3f4fb; /* #F2F2F2;*/
   color:#515151;
 }
-.announceMenu > li {
-   /*inline-block */
+.announceMenu > li {  /*.on:before*/
   float: left;
-  width: 167.6px;
+  width: 171.6px; /*167.6px;*/
   height: 60px;
   line-height: 60px; 
   border-radius: 3px;  
- /* background-color: #F2F2F2;*/
-  /*border: 2px solid #F2F2F2;*/
   text-align: center; 
-  vertical-align: middle; 
+  vertical-align: middle;  
 }
 .announceMenu > li > a { 
   text-align: center;   
   text-decoration: none;
-  display: block;   
+  display: block;
+  border-bottom: 2px solid #08125E;
 }
-.menu .on {
-  width: 143px;
-  height: 53px;
-  background-color: #FFFFFF;  
- 
-  border-radius: 3px;
-  border-bottom: 2px solid  #091366; 
-  color: #081247;;
-  font-weight: bold;
 
+.announceMenu > li > a.active {
+  
+  width: 168px; 
+  height: 58px;
+  line-height: 58px;
+  border-radius: 3px;  
+  border-top: 2px solid #08125E;
+  border-left: 2px solid #08125E;
+  border-right: 2px solid #08125E;
+  
+  color: #081247;
+  font-weight: bold;
+   background-color: #FFFFFF;  
 }
 
 
@@ -185,7 +201,7 @@ td {
   border-top: 2px solid #08125E;/* #081247;*/
   border-bottom: 1px solid #848484; /* #090C5F;*/ /* rgb(160, 160, 160);*/
   padding: 15px;
-  background-color:  #F2F2F2;  /* #EAEBF8;*/
+  background-color:  #f3f4fb; /*  #F2F2F2;   #EAEBF8;*/
   box-sizing: border-box;
 /*  background-color: rgb(226, 226, 226);*/
   /*background-color:  rgb(214, 221, 238);*/
@@ -232,7 +248,7 @@ td {
 	width: 700px;
 }
 .supporter {
-	 width: 110px;
+	width: 110px;
 }
 .contentTitle {
   /*width: 50%;  */
@@ -253,6 +269,7 @@ td {
   font-weight: 700;  
 }
 .recruitNumber {
+	display: none;
 	width: 100px;
 	text-align: center;
 }
