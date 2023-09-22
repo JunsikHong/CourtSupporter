@@ -48,10 +48,7 @@ public class MainController {
 //			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
 		}
-
-
-		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("member_role"));
+		
 //		String jwt = (String) session.getAttribute("token");
 //
 //		//로그인 했을 때(= 토큰이 있을 때)
