@@ -67,11 +67,13 @@ a:hover {
 
  .menus {
 	line-height: 100px;
+	height: 100px;
  	list-style: none;
  	display: flex;
  	margin: 0;
  	padding: 0;
  	justify-content: space-between;
+ 	align-items: center;
  }
 
  .menus li span {
