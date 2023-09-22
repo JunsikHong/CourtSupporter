@@ -132,11 +132,7 @@ public class AnnounceServiceImpl implements AnnounceService{
 
 	@Override
 	public int getUserInfo(String announce_proper_num, String user_proper_num) {				
-		/*
-		 * Map<String, String> userMap = new HashMap<>();
-		 * userMap.put("announce_proper_num", announce_proper_num);
-		 * userMap.put("user_proper_num", user_proper_num);
-		 */
+		
 		return announceMapper.getUserInfo(announce_proper_num, user_proper_num);
 	}
 
@@ -145,12 +141,11 @@ public class AnnounceServiceImpl implements AnnounceService{
 	public String announce_authcheck(String member_proper_num) {		
 		return announceMapper.announce_authcheck(member_proper_num);
 	}
-
-
+	 
 	@Override
-	public String getTrial_fcltt_description(TB_010VO tb_010vo) {
-		
-		return announceMapper.getTrial_fcltt_description(tb_010vo);
+	public String getTrial_fcltt_description(String trial_fcltt_proper_num) {
+	
+		return announceMapper.getTrial_fcltt_description(trial_fcltt_proper_num);
 	}
 
 	

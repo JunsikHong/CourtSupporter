@@ -14,31 +14,37 @@
 
 .usermypage-title {
    font-size: 25px;
-   font-weight: 550;
+   font-weight: 800;
    padding-bottom: 15px;
-   border-bottom: 3px solid black;
+   border-bottom: 3px solid #08125E;
+   color: #424242;
+   padding-left: 3px;
 }
 
 .usermypage-sidemenu {
-   border-bottom: 3px solid black;
+   border-bottom: 3px solid #08125E;
 }
 
 .myinfo-title {
-   border-bottom: 1px solid #777;
+   border-bottom: 1px solid #08125E;
    font-size: 18px;
-   font-weight: 550;
+   font-weight: 800;
    padding: 10px 0;
+   color: #424242;
+   padding-left: 3px;
 }
 
 .myapplication-title {
-   border-bottom: 1px solid #777;
+   border-bottom: 1px solid #08125E; /* #777;*/
    font-size: 18px;
-   font-weight: 550;
+   font-weight: 800;/* 550;*/
    padding: 10px 0;
+   color: #515151;
+   padding-left: 3px;
 }
 
 .myinfo-content {
-   background-color: rgb(232, 232, 232);
+   background-color:#f3f4fb;  /* rgb(232, 232, 232);*/
 }
 
 .myinfo-content li {
@@ -46,14 +52,19 @@
    padding: 10px;
    font-size: 13px;
    border-bottom: 1px solid white;
+   color: #515151;
 }
 
 .myinfo-content li:hover {
-   background-color: rgb(227, 0, 0);
+   background-color: #FD2B2A;
+   color: white;
+}
+.myinfo-content > a {
+	text-decoration: none;
 }
 
 .myapplication-content {
-   background-color: rgb(232, 232, 232);
+   background-color:#f3f4fb; 
 }
 
 .myapplication-content li {
@@ -61,10 +72,15 @@
    padding: 10px;
    font-size: 13px;
    border-bottom: 1px solid white;
+   color: #515151;
 }
 
 .myapplication-content li:hover {
-   background-color: rgb(227, 0, 0);
+   background-color: #FD2B2A;
+   color: white;
+}
+.myapplication-content > a {
+	text-decoration: none;
 }
 
 .hide {

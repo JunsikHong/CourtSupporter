@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.court.supporter.command.TB_001VO;
+import com.court.supporter.command.TB_002VO;
 import com.court.supporter.command.TB_005VO;
 import com.court.supporter.command.TB_006VO;
 import com.court.supporter.command.TB_007VO;
@@ -17,6 +18,8 @@ import com.court.supporter.command.TB_010VO;
 
 public interface ApplicationService {
 
+	//조력자 분류 번호 조회
+	public TB_002VO getFclttNum(String announce);
 	//기본 정보 페이지 - 신청인 기본 정보 불러오기
 	public TB_001VO getUserInfo(TB_001VO tb_001vo);
 	//기본 정보 페이지 - tb_005vo 데이터 가져오기

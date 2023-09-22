@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	
 	var firstSelect_a = ["시가등(소송)", "경매", "공사비등", "측량", "문서/인영/필적", "번역/통역"];
 	var firstSelect_b = ["통역", "번역/통역", "통번역"];
@@ -69,7 +69,7 @@ function selectChange() {
 		secondSelect.style.display = 'none';
 	}
 }
-
+*/
 
 $(document).ready(function() {
     document.getElementById("addressSearch").addEventListener("click", function(){ //주소입력칸을 클릭하면
@@ -149,7 +149,7 @@ $(document).ready(function() {
         e.preventDefault();
 
 		/* 조력자 분류 유효성 검사 */
-		$('#firstSelect').on('change', function() {
+		/*$('#firstSelect').on('change', function() {
 	        $("#msg1").text(""); // 선택 값이 변경되면 메시지 삭제
 	        $("#msg2").text("");
 	        $('#firstSelect').focus().css('border', '');
@@ -173,7 +173,7 @@ $(document).ready(function() {
 				$('#secondSelect').focus().css('border', '1.8px solid red');
 				return false;
 			}
-		}
+		}*/
 
 		/* 희망 법원 선택 유효성 검사 */
 		$('.pBtn, .mBtn').on('click', function() {
@@ -312,4 +312,10 @@ $(document).ready(function() {
 	});
 	
 })
+
+/* 이전 버튼 */
+function returnPage() {
+	var announce = document.getElementById('announce_proper_num').value;
+	location.href = '/application/applicationAgree?announce_proper_num=' + announce;
+}
 

@@ -16,7 +16,7 @@ import com.court.supporter.util.Criteria;
 	//공고 등록
 	 public int announceRegist(TB_002VO vo, List<String> list ); 
 	 public String getTrial_flctt_proper_num(TB_010VO tb_010VO);
-	 public String getTrial_fcltt_description(TB_010VO tb_010VO);
+	 public String getTrial_fcltt_description(String trial_fcltt_proper_num);
 	 
 	 //공고 목록 조회	
 	 public ArrayList<TB_002VO> announce_getList(@Param("cri") Criteria cri); //@Param("cri")

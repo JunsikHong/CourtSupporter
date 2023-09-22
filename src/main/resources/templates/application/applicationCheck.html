@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" th:href="@{/css/application.css}">
 <script th:src="@{/js/html2canvas.min.js}"></script>
 <script th:src="@{/js/jspdf.min.js}"></script>
@@ -11,9 +14,10 @@
 			
 			<form action="checkForm" id="checkForm" name="checkForm" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="announce_proper_num" name="announce_proper_num" th:value="${param.announce}">
+				<input type="hidden" id="trial_fcltt_proper_num" name="trial_fcltt_proper_num" th:value="${param.fcltt_num}">
 				<input type="hidden" id="aplcn_dtls_proper_num" name="aplcn_dtls_proper_num" th:value="${param.detail}">
 			
-			<div class="pop_header checkTitle">
+			<div class="pop_header checkTitle" style="width: 80%;margin: 0 auto">
 				<h1 class="tith5">[[${tb_005vo.announce_title}]]</h1>
 			</div>
 			
@@ -31,7 +35,7 @@
 									<th>기본 정보</th>
 									<td>
 										<div>
-											<p>신청인 : <!--[[${tb_001vo.user_name}]]--></p>	
+											<p>신청인 : [[${tb_001vo.user_name}]]</p>	
 										</div>
 										<div>주소 : [[${tb_001vo.user_ar}]] [[${tb_001vo.user_ar_detail}]]</div>
 										<div>조력자 분류 : [[${tb_010vo.trial_fcltt_description}]]</div>
@@ -86,7 +90,7 @@
 					
 		
 					<div class="pop_contents">
-						<table class="board_table topT" style="margin: 0 auto" th:if="${tb_007vo[0] != null}">
+						<table class="board_table topT" style="margin: 0 auto" th:if="${tb_007vo[0].company_name != null}">
 							<colgroup>
 								<col width="20%">
 								<col width="20%">
@@ -111,7 +115,7 @@
 									<td>[[${#strings.substring(vo.work_start_date, 0, 10)}]] ~ <span>[[${#strings.substring(vo.work_end_date, 0, 10)}]]</span></td>
 									<td>[[${vo.work_description}]]</td>
 									<td>[[${vo.work_department}]] / <span>[[${vo.work_position}]]</span></td>
-									<td th:text="${vo.carer_type eq 'CA' ? 'O' : ''}"></td>
+									<td th:text="${vo.carer_type eq 'CA' ? 'O' : 'X'}"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -197,7 +201,7 @@
 				
 			</div>
 			<div class="btnbox btnbox02">
-				<input type="button" class="btn4d5" value="이전" onclick="history.back()" />
+				<input type="button" class="btn4d5" value="이전" onclick="returnPage()" />
 				<input type="submit" class="btnfb7" value="제출">
 			</div>
 			</form>

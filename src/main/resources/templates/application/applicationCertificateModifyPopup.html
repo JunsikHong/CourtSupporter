@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" th:href="@{/css/applicationPopup.css}">
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -25,12 +28,7 @@
 								<tr class="uptr02">
 									<th class="">자격/면허명</th>
 									<td>
-										<select class="selC" name="crtfc_type" id="crtfc_type" title="자격/면허명" style="width: 140px;">
-											<!--<option value='' selected="selected">선택하세요</option>-->
-											<option value='자격증명1' th:selected="${vo.crtfc_type == '자격증명1'}">자격증명1</option>
-											<option value='자격증명2' th:selected="${vo.crtfc_type == '자격증명2'}">자격증명2</option>
-											<option value='자격증명3' th:selected="${vo.crtfc_type == '자격증명3'}">자격증명3</option>
-										</select>
+										<input type="text" name="crtfc_type" id="crtfc_type" title="자격/면허명"  th:value="${vo.crtfc_type}">
 									</td>
 								</tr>
 								<tr class="uptr01">
@@ -54,7 +52,7 @@
 					</div>
 					
 					<div class="btnbox btnbox02">
-						<input type="submit" class="btnfb7" id="certificateModifyBtn" value="입력"/>
+						<input type="submit" class="btnfb7" id="certificateModifyBtn" value="수정"/>
 					</div>
 			</div>
 			</form>
