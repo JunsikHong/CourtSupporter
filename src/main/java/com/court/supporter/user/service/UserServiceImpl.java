@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			message.setRecipients(MimeMessage.RecipientType.TO, tb_001vo.getUser_email());
 			message.setFrom("904lhw@gmail.com");
-			message.setSubject("메일 인증 두둔");
+			message.setSubject("[재판조력자선발] 메일 인증");
 			
 			String body = "";
 			body += "<h3>요청하신 인증번호입니다.</h3>";
@@ -83,6 +83,18 @@ public class UserServiceImpl implements UserService {
 	public String findUsersForPw(TB_001VO tb_001vo) {
 		return userMapper.findUsersForPw(tb_001vo);
 	}
+
+	//비밀번호 재설정
+	@Override
+	public int updatePw(TB_001VO tb_001vo) {
+		int tb001Update = userMapper.updatePwTB001(tb_001vo);
+		int tb018Update = userMapper.updatePwTB018(tb_001vo);
+		if (tb001Update == 1 && tb018Update == 1) {
+			return 1;
+		}
+		return 0;
+	}
+	
 
 }
 

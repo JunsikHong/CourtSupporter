@@ -40,6 +40,5 @@ public class TB_002VO {
 
 	private String previousPost;
 	private String nextPost;
-
 	
 }

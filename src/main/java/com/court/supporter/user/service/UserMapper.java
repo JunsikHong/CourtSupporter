@@ -23,5 +23,8 @@ public interface UserMapper {
 	String findUsersForId(TB_001VO tb_001vo);
 	//비밀번호 찾기 정보에 맞는 user 확인
 	String findUsersForPw(TB_001VO tb_001vo);
+	//비밀번호 재설정
+	int updatePwTB001(TB_001VO tb_001vo);
+	int updatePwTB018(TB_001VO tb_001vo);
 }
 

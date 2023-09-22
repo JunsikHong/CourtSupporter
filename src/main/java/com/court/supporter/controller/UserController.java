@@ -70,4 +70,13 @@ public class UserController {
 			return ResponseEntity.ok(userService.findUsersForPw(tb_001vo));
 		}
 	}
+	
+	//비밀번호 재설정
+	@PostMapping("/updatePw")
+	public ResponseEntity<Integer> updatePw(@RequestBody TB_001VO tb_001vo) {
+		//비밀번호 암호화
+		String pw = bCryptPasswordEncoder.encode(tb_001vo.getUser_pw());
+		tb_001vo.setUser_pw(pw);
+		return ResponseEntity.ok(userService.updatePw(tb_001vo));
+	}
 }

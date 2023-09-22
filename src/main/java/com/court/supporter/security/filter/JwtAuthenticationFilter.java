@@ -33,8 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		token.ifPresent(t -> {
 			Authentication authentication = jwtValidator.getAuthentication(t);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
-			
-			
+
 		});
 		
 		filterChain.doFilter(request, response);

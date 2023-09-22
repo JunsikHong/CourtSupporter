@@ -210,3 +210,29 @@
  a:hover {
  	text-decoration: underline;
  }
+ 
+ body {
+	 position: relative;
+ }
+ 
+ .to-the-top-wrap {
+	 position: fixed;
+	 bottom: 80px;
+	 right: 220px;
+	 opacity: 0; /* 초기 투명도를 0으로 설정하여 숨김 */
+     transition: opacity 0.3s ease, transform 0.3s ease; /* 애니메이션 속성 추가 */
+     transform: translateY(20px); /* 초기에 아래로 이동한 상태로 시작 */
+ }
+ 
+ .to-the-top-wrap.active {
+    opacity: 1; /* 활성화 상태에서 투명도를 1로 변경하여 나타냄 */
+    transform: translateY(0); /* 활성화 상태에서 위로 이동하여 나타냄 */
+}
+ 
+ .to-the-top-wrap a { 
+	 cursor: pointer;
+ }
+ 
+ .to-the-top-wrap img {
+	 width: 60px;
+ }
