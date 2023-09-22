@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+}
+body{ font-family: 'Noto Sans KR', sans-serif;}
 .adminmypage-sidemenu-wrap {
    position: absolute;
    top: 0px;
@@ -5,14 +10,19 @@
    width: 200px;
    height: 400px;
    z-index: 10;
+   
 }
 
 /*mypage*/
 .adminmypage-title {
+   color: #424242;
    font-size: 25px;
    font-weight: 550;
    padding-bottom: 15px;
-   border-bottom: 3px solid black;
+   border-bottom: 3px solid #08125E;
+   font-family: 'Noto Sans KR', sans-serif;
+   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
 }
 
 .adminmypage-sidemenu {
@@ -25,10 +35,14 @@
    font-size: 18px;
    font-weight: 550;
    padding: 10px 0;
+   
+   color: #424242;
+   font-family: 'Noto Sans KR', sans-serif;
+   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
 .adminmyinfo-content {
-   background-color: rgb(232, 232, 232);
+   background-color: #f3f4fb; /* rgb(232, 232, 232);*/
 }
 
 .adminmyinfo-content li {
@@ -36,10 +50,16 @@
    padding: 10px;
    font-size: 13px;
    border-bottom: 1px solid white;
+   
+   color: #424242;
 }
 
 .adminmyinfo-content li:hover {
-   background-color: rgb(227, 0, 0);
+   background-color: #FD2B2A;
+   color: white;	
+}
+.adminmyinfo-content > a {
+	text-decoration: none;
 }
 
 /*applicationlist*/
@@ -48,21 +68,32 @@
    font-size: 18px;
    font-weight: 550;
    padding: 10px 0;
+   
+   color: #424242;
+   font-family: 'Noto Sans KR', sans-serif;
+   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
 .applicationlist-content {
-   background-color: rgb(232, 232, 232);
+   background-color: #f3f4fb;  /*rgb(232, 232, 232);*/
 }
-
+.applicationlist-content > a {
+	text-decoration: none;
+}
 .applicationlist-content li {
    margin: 0 auto;
    padding: 10px;
    font-size: 13px;
    border-bottom: 1px solid white;
+   
+   color: #424242;
+   font-family: 'Noto Sans KR', sans-serif;
+   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
 .applicationlist-content li:hover {
-   background-color: rgb(227, 0, 0);
+   background-color: #FD2B2A;
+   color: white;   
 }
 
 /*adminmypage-userinfo*/
@@ -71,13 +102,19 @@
    font-size: 18px;
    font-weight: 550;
    padding: 10px 0;
+   font-family: 'Noto Sans KR', sans-serif;
+   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
 }
 
 .adminuserinfo-content {
-   background-color: rgb(232, 232, 232);
+   background-color:#f3f4fb; 
 }
 
 .adminuserinfo-content li {
+   font-family: 'Noto Sans KR', sans-serif;
+   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
    margin: 0 auto;
    padding: 10px;
    font-size: 13px;
@@ -85,9 +122,12 @@
 }
 
 .adminuserinfo-content li:hover {
-   background-color: rgb(227, 0, 0);
+   color: white;	
+   background-color: #FD2B2A;
 }
-
+.adminuserinfo-content > a {
+	text-decoration: none;
+}
 /*hide*/
 .hide {
    display: none;

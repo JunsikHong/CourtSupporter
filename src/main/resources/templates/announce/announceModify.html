@@ -73,8 +73,8 @@
 						<i class="required-img"><span class="hidden">필수입력</span></i>
 						<span >조력자 선택</span> <!--name="trial_fcltt_proper_num"-->
 					</th>
-					<td class="tableT popT">					
-						<select class="selC" name="trial_fcltt_proper_num" id="mainSelect" title="조력자 선택"
+					<td class="tableT popT"><!--trial_fcltt_proper_num-->
+						<select class="selC" name="trial_fcltt_mainclasifi_code" id="mainSelect" title="조력자 선택"
 						  onchange="selectChange()" th:value="${vo.trial_fcltt_proper_num}"> <!-- th:value="${vo.trial_fcltt_proper_num}"  onchange="selectChange()"-->
 						</select><span id="msg0" style="color: red;"></span>
 							
@@ -153,5 +153,71 @@
 
 <script th:src="@{/js/announceModify.js}"></script>
 
+<script th:inline="javascript">
+	
+	//등록 전 확인
+	let modifyBtn = document.getElementById("modifyBtn");  
+	  modifyBtn.onclick = () => {
+		  
+	    if(modifyForm.announce_title.value == ""){
+	      alert("제목을 입력하세요.");
+	      modifyForm.announce_title.focus();    
+	      return false;      
+		} else if(modifyForm.announce_start_date.value == "") {
+	      alert("모집 시작일을 선택하세요.");
+	      modifyForm.announce_start_date.focus();      
+	      return false;
+	    } else if(modifyForm.announce_end_date.value == "") {
+	      alert("모집 종료일을 선택하세요.");
+	      modifyForm.announce_end_date.focus();      
+	      return false;
+	    } else if(modifyForm.trial_fcltt_proper_num.value == "") {
+	      alert("조력자 선택은 필수입니다.");
+	      modifyForm.trial_fcltt_proper_num.focus();
+	      return false;    
+	    } else if(modifyForm.announce_recruit_num.value == "") {
+	      alert("모집 인원을 입력하세요.");
+	      modifyForm.announce_recruit_num.focus();
+	      return false;
+	    } else if(modifyForm.announce_content.value == "") {
+	      alert("내용을 입력하세요.");
+	      modifyForm.announce_content.focus();      
+	      return false;
+	    } else {
+	      alert("정상적으로 등록되었습니다.");     
+	      return true;
+	    }
+	  }    
+  
+	
+	//파일 첨부
+	var contentDetail = document.getElementById("contentDetail");
+	contentDetail.innerHTML = contentDetail.innerHTML.replace(/\n/g, "<br>");
+	
+	//파일 첨부 및 삭제
+	$(document).ready(function() {
+		$("a[name='file-delete']").on("click", function(e) {
+			e.preventDefault();
+			deleteFile($(this));
+		})
+	});
+		  
+	function addFile(){ // id='fileList'
+		
+		 var str = "<div><input type='file' name='file' class='sel' multiple >";
+		    str += "<a href='#this' name='file-delete' class='delete'>삭제</a></div>";
+		   
+		$("#fileList").append(str);
+		$("a[name='file-delete']").on("click", function(e) {
+			e.preventDefault();
+			deleteFile($(this));
+		});
+	}
+	
+	function deleteFile(obj) {
+		obj.parent().remove();		
+	}
+	
+</script>
 
 </html>

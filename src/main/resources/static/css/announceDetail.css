@@ -66,8 +66,7 @@ a{
 }
 .btn_plus {	
 }
-.btn_reset {		
-	
+.btn_reset {	
 }
 .btn_mius {
 	padding-bottom: 5px;
@@ -127,10 +126,15 @@ a{
 #boardTitle {
   border-top: 2px solid  #081247;  /* 08124E #222A61; */
 }
+
+.recruitNumth, .recruitNum {
+    display: none;
+}
+
 .board tr{
   /* width: 100%; */
   /*border-bottom: 0.5px solid rgb(196, 196, 196);*/
-  border-bottom: 0.3px solid #AEAFBF;
+  border-bottom: 0.3px solid #dbdbe4;  /* #AEAFBF;*/
 }
 .board th{  
   width: 180px;
@@ -141,8 +145,8 @@ a{
  /* text-align: center;*/
   color: #5e5e5e;
 /*  border-top: 0.3px solid #BDBDBD;*/
-  border-bottom: 0.3px solid #BDBDBD;   
-  background-color:   #F2F2F2; /* #EAEBF8;*/  /*   #E8E8E9; #E0E0E0 ;*/
+  border-bottom: 0.3px solid #dbdbe4;   /* #BDBDBD; */  
+  background-color: #f3f4fb; /* #f3f3fb;  */  /* #F2F2F2; #E8E8E9; #E0E0E0 ;*/
 }
 .modifyDate{
   width: 180px;
@@ -161,7 +165,7 @@ a{
   vertical-align: middle;  
   white-space: nowrap;
   /*border-top: 0.3px solid #BDBDBD;*/
-  border-bottom: 0.3px solid #BDBDBD; /* #B8B9D9;*/
+  border-bottom: 0.3px solid #dbdbe4; /* #B8B9D9;*/
 }
 
 .tdsize {
@@ -183,8 +187,8 @@ td .left{
 	margin-top: 50px;
 	margin-bottom: 20px;
 	/*padding-bottom: 15px;*/
-	border-top: 1.5px solid #c1c1c1;
-	border-bottom: 1.5px solid #c1c1c1;
+	border-top: 1.5px solid #dbdbe4; /* #c1c1c1;*/
+	border-bottom: 1.5px solid #dbdbe4;
 }
 .file {	
 	padding-top: 15px;
@@ -193,7 +197,7 @@ td .left{
 	font-size: 16px;
 	font-weight: 800px;
 	/*border-bottom: 0.5px solid #A4A4A4;  #BDBDBD;*/
-	background-color: #F2F2F2;
+	background-color: #f3f4fb;
 }
 .left{
 	display: inline-block;
@@ -228,7 +232,7 @@ td .left{
   margin-top: 50px;  
   /*margin-bottom: 30px;*/
   border-top: 2px solid  #08124E;/* #222A61;  */
-  border-bottom: 1px solid #BDBDBD; 
+  border-bottom: 1px solid #dbdbe4; 
   font-size:16px;
 }
 .nextContent {  
@@ -236,6 +240,7 @@ td .left{
   padding-bottom: 20px ;
   width: 100px;
   font-weight: 700;  
+  background-color: #f3f4fb;  /*  #f3f3fb; */
 }
 .nextTable tr td {
   padding-top: 20px;
@@ -248,7 +253,7 @@ td .left{
 }
 .nextTitle {
   text-decoration: none;
-  padding-left:10px; 
+  padding-left: 25px; 
   color: #5e5e5e;
 }
 
@@ -258,14 +263,15 @@ td .left{
   margin-bottom: 30px;
   padding-bottom: 30px;
   /*border-top: 1px solid #BDBDBD;  */
-  border-bottom: 2px solid  #08124E; /* #222A61;*/ 
+  border-bottom: 2px solid  #081247; /* #222A61;*/ 
   font-size:16px;
 }
 .prevContent {  
   padding-left:50px;
   padding-bottom: 20px; 
   width: 100px;
-  font-weight: 700;  
+  font-weight: 700; 
+  background-color:   #f3f4fb;  
 }
 .prevTable tr td {
   padding-top: 20px;
@@ -278,7 +284,7 @@ td .left{
 }
 .prevTitle {
   text-decoration: none;
-  padding-left:10px; 
+  padding-left:25px; 
   color: #5e5e5e; /* rgb(97, 97, 97);*/
 }
 
@@ -287,7 +293,7 @@ td .left{
   margin-top: 50px;  
   /*margin-bottom: 30px;*/
   border-top: 2px solid #081247;  
-  border-bottom: 1px solid #BDBDBD; 
+  border-bottom: 1px solid #dbdbe4; 
   font-size:16px;	
 }
 .nextTxt {

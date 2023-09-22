@@ -224,6 +224,12 @@ public class AnnounceController {
         List<TB_017VO> filevo = announceService.getFileDetail(announce_proper_num);
         
         
+        //조력자 종류
+        TB_010VO tb_010VO = new TB_010VO();
+        String num = vo.getTrial_fcltt_proper_num();
+        tb_010VO.setTrial_fcltt_description(num);
+        String name = announceService.getTrial_fcltt_description(num);
+        
         //파일 다운로드. 특수문자로 떠서 수정해야함.
 //        Map<TB_017VO,String> file = new HashMap<TB_017VO, String>();       
 //        
@@ -249,6 +255,8 @@ public class AnnounceController {
         model.addAttribute("filevo", filevo);
         model.addAttribute("previousPost", previousPost);
         model.addAttribute("nextPost", nextPost);      
+        model.addAttribute("tb_010VO", tb_010VO); 	
+        model.addAttribute("name", name);	
         model.addAttribute("vo", vo);	
        
 	  	    
@@ -265,8 +273,7 @@ public class AnnounceController {
         	   	model.addAttribute("auth", auth);
 	        	return "announce/announceDetail";         
 	       } 
-	    } 
-
+	    }   
 	    return   "announce/announceDetail";	//"redirect:/announce/announceList"; //"redirect:/"; 
 	}
 	
@@ -289,17 +296,18 @@ public class AnnounceController {
 	         //user 해당 공고 신청기록이 없다면	 	      
 	         if(userInfo == 0) { //int 라면 == 0일 경우,
 	        	//String mainCode = "0" + announce_proper_num.substring(0, 1);  //대분류코드 넘길 때
-	        	//String trialNum = vo.getTrial_fcltt_proper_num();
 	        	 return "redirect:/application/applicationAgree?announce_proper_num=" + announce_proper_num; // + "&trial_fcltt_proper_num=" + trial_fcltt_proper_num 
 	        	 
 	         } else { //이미 해당 공고를 신청한 경우 
 	        	 ra.addFlashAttribute("result", userInfo);
 	        	 return "redirect:/announce/announceList";
 	         }	         
-	    } else { 
-	    	ra.addFlashAttribute("loginresult", jwt);
+	    } else { //else if (jwt == null)
+	    	ra.addFlashAttribute("loginresult", 1);	    	
+	    	return "redirect:/announce/announceList";
 	    }
-	    return "redirect:/announce/announceList";
+	    
+//	    return "redirect:/announce/announceList";
 	}
 	
 	//공고 수정 화면
@@ -312,15 +320,16 @@ public class AnnounceController {
 	    //로그인 했을 때(= 토큰이 있을 때)
 	    if (jwt != null) {
            Authentication authentication = jwtValidator.getAuthentication(jwt);
-           DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
+           DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();;
          
            //token에서 member_proper_num 가져오기
            String member_proper_num = userDetails.getUsername(); 
            Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
            Object[] roles = member_role.toArray();
-//	    }
+
 			TB_002VO vo = announceService.getDetail(announce_proper_num);
-			model.addAttribute("vo", vo); System.out.println(vo.toString());
+			model.addAttribute("vo", vo); 
+			System.out.println(vo.toString());
 		
 			return "announce/announceModify";
 	    }
@@ -329,9 +338,9 @@ public class AnnounceController {
 	
 	//공고 수정후 게시물로 이동
 	@PostMapping("/announceModifyForm")
-	public String modify(HttpServletRequest request, @ModelAttribute("vo") TB_002VO vo, RedirectAttributes ra) {
+	public String modify(HttpServletRequest request, @ModelAttribute("vo") TB_002VO vo, RedirectAttributes ra, @RequestParam("file") List<MultipartFile> list, TB_010VO tb_010VO) { //, @RequestParam("file") List<MultipartFile> list
 		
-		System.out.println(vo); //확인
+		//System.out.println(vo); //확인
 		
 		HttpSession session = request.getSession();
 	    String jwt = (String) session.getAttribute("token");
@@ -345,9 +354,31 @@ public class AnnounceController {
            String member_proper_num = userDetails.getUsername(); 
            Collection<? extends GrantedAuthority> member_role = userDetails.getAuthorities();
            Object[] roles = member_role.toArray();
-//	    }	
-	       vo.setAdmin_proper_num("1");
-           //vo.setAdmin_proper_num(member_proper_num);
+           
+           vo.setAdmin_proper_num(member_proper_num); //"1"
+		   System.out.println(vo.getAdmin_proper_num());
+		      
+		   String trialNum = announceService.getTrial_flctt_proper_num(tb_010VO);
+		   vo.setTrial_fcltt_proper_num(trialNum);		   
+		   
+		   
+		   //파일 업로드
+//		   list = list.stream().filter(t -> t.isEmpty() == false).toList();
+//			for (MultipartFile file : list) {
+//				if (file.getContentType().contains("image") == false
+//						&& file.getContentType().contains("application/pdf") == false
+//						&& file.getContentType().contains("text/plain") == false
+//						&& file.getContentType().contains("application/x-hwp") == false) {
+//					// 허용되지 않는 MIME타입인 경우 처리
+//					ra.addFlashAttribute("msg", "올바른 파일 형식이 아닙니다");		    
+//					return "redirect:/notice/noticeList";
+//				}
+//			}			 
+			// 파일 업로드하고 저장경로를 리스트로 받음
+			//List<String> filelist = announceFileService.announceRegist(list);
+			// 파일리스트와 같이 등록 진행
+			//announceService.announceModify(vo, filelist);
+		   
 		   int result = announceService.announceModify(vo);
 		   String msg = result == 1 ? "수정 완료" : "수정 실패";
 		   ra.addFlashAttribute("msg", msg);

@@ -88,7 +88,7 @@ video {
   border: 0;
   font-size: 100%; 
   vertical-align: baseline;
-   font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
@@ -105,7 +105,7 @@ menu,
 nav,
 section {
   display: block;
-   font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
@@ -118,6 +118,8 @@ body {
 ol,
 ul {
   list-style: none;
+  font-family: 'Noto Sans KR', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 }
 
 blockquote,
