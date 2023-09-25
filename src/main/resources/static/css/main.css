@@ -7,6 +7,33 @@ body {font-family: 'Noto Sans KR', sans-serif;}
    margin-top: 103px; /*150*/
    margin-bottom: 50px;/*150px;*/
 }
+
+/***********************************/
+.search1 {
+  width: 1250px;
+  height: 60px;
+  position: relative;
+}
+
+.input1 {
+height: 30px;
+  width: 100%;
+  border: 3px solid rgb(11, 38, 110);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.img1 {
+	color: rgb(11, 38, 110);
+  position : absolute;
+  width: 17px;
+  top: 19px;
+  right: 4px;
+  margin: 0;
+}
+
+/***********************************/
 .main-wrap {
    /*width: 1280px;*/
    width: 100%;
@@ -139,6 +166,7 @@ a:link, a:visited { /* a링크 색깔 조정 */
  /* position:relative;*/
   width: 1280px;
   height: 200px;
+
  /* border: 1px solid #777;*/
   align-items: center;
   padding-left: 90px;
@@ -150,8 +178,17 @@ a:link, a:visited { /* a링크 색깔 조정 */
   font-weight: 600;
   color: #0e3a71;
   line-height: 60px;
-  height: 60px;  
+  height: 60px;
+  border :1px solid rgb(11, 38, 110);
 }
+
+#notice{/* 공지사항 전체 박스 */
+  width: 30%;
+  height: 200px;
+  margin-left: 4%;
+  position: relative;
+}
+
 .flowbox {/* 재판조력자 신청 이미지 및 링크 */
   margin-top: 10px;  
   overflow: hidden;

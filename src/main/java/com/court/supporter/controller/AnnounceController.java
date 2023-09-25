@@ -275,7 +275,7 @@ public class AnnounceController {
 	    return   "announce/announceDetail";	//"redirect:/announce/announceList"; //"redirect:/"; 
 	}
 	
-	@GetMapping("/applicationAgree")
+	@GetMapping("/applicationAgree")///
 	public String applicationAgree(@RequestParam("announce_proper_num") String announce_proper_num, Model model, HttpServletRequest request, RedirectAttributes ra ) {
 									//@RequestParam("trial_fcltt_proper_num") String trial_fcltt_proper_num
 		
