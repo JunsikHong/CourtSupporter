@@ -8,15 +8,17 @@
 <th:block th:replace="~{./include/layout :: setContent(~{::.total-search-wrap})}">
 	<div class="total-search-wrap">
 		<div class="total-search">
-			<div class="announce-section">
-				
-				<div class="searchbarwrap">
+			
+			<div style="margin-bottom: 60px;">
+				<div class="search1">
 					<form action="total_search" method="get">
-						<input type="text" name="search" value="" class="searchbar">	
-						<button type="submit" class="btnfb7">검색</button>				
-					</form>					
-				</div>
-				
+		  				<input type="text" class="input1" placeholder="검색어 입력" name="search" th:value="${search}">
+		  				<input type="image" class="img1" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+					</form>
+				</div>				
+			</div>
+
+			<div class="announce-section">				
 				<div class="announce-section-title-wrap">
 					<p class="announce-section-title">공고내역</p>
 				</div>
@@ -45,7 +47,8 @@
 										</p>
 									</div>
 									<div class="announce-right">
-										<form action="/announce/announceList" method="get">
+										<form th:action="@{/announce/announceDetail}" method="get">
+											<input type="hidden" th:value="${tb_002.announce_proper_num}" name="announce_proper_num">
 											<button type="submit" class="btnfb7">사이트 가기</button>
 										</form>
 									</div>
@@ -55,7 +58,7 @@
 					</div>
 				</th:block>
 
-				<a href="announce/announceList">
+				<a th:href="@{announce/announceList(announce_title=${search})}">
 					<div class="announce-section-more-wrap">
 						<p class="announce-section-more">[[${tb_002total}]] 개 더보기 >></p>
 					</div>
@@ -92,7 +95,8 @@
 										</p>
 									</div>
 									<div class="announce-right">
-										<form action="/notice/noticeList" method="get">
+										<form th:action="@{/notice/noticeDetail}" method="get">
+											<input type="hidden" th:value="${tb_003.notice_proper_num}" name="notice_proper_num">
 											<button type="submit" class="btnfb7">사이트 가기</button>
 										</form>
 									</div>
@@ -102,7 +106,7 @@
 					</div>		
 				</th:block>
 
-				<a href="/notice/noticeList">
+				<a th:href="@{/notice/noticeList(searchNotice=${search})}">
 					<div class="announce-section-more-wrap">
 						<p class="announce-section-more">[[${tb_003total}]] 개 더보기 >></p>
 					</div>
@@ -139,7 +143,8 @@
 										</p>
 									</div>
 									<div class="announce-right">
-										<form action="/faq/faqList" method="get">
+										<form th:action="@{/faq/faqDetail}" method="get">
+											<input type="hidden" th:value="${tb_004.faq_proper_num}" name="faq_proper_num">
 											<button type="submit" class="btnfb7">사이트 가기</button>
 										</form>
 									</div>
@@ -149,7 +154,7 @@
 					</div>		
 				</th:block>
 
-				<a href="/faq/faqList">
+				<a th:href="@{/faq/faqList(searchFaq=${search})}">
 					<div class="announce-section-more-wrap">
 						<p class="announce-section-more">[[${tb_004total}]] 개 더보기 >></p>
 					</div>
@@ -161,7 +166,18 @@
 	</div>
 
 </th:block>
-<script th:src="@{/js/usermypage.js}"></script>
+<script th:inline="javascript">
+	var elements = document.getElementsByClassName('announce-left-content');
+	var keyword = /*[[${search}]]*/"";
+	console.log(keyword)
+	if(keyword != '') {
+		for (var i = 0; i < elements.length; i++) {
+			var content = elements[i].innerHTML;
+			var replacedContent = content.replace(new RegExp(keyword, 'g'), '<span style="color: red; font-weight: bold;">' + keyword + '</span>');
+			elements[i].innerHTML = replacedContent;
+		}		
+	}
+</script>
 
 </html>
 

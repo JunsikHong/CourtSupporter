@@ -39,6 +39,7 @@ public class MainController {
   @Qualifier("mainService")
   private MainService mainService;
 
+
   @GetMapping("/")
   public String main(@CookieValue(name = "Authorization", required = false) String token,
       HttpServletRequest request, Model model) {
@@ -51,8 +52,6 @@ public class MainController {
       DefaultUserDetails userDetails = (DefaultUserDetails) authentication.getPrincipal();
 
       List<GrantedAuthority> member_role = (List<GrantedAuthority>) userDetails.getAuthorities();
-
-      session.setAttribute("member_role", member_role.get(0).getAuthority());
     }
 
     ArrayList<TB_002VO> tb_002list = mainService.getannouncelist("");
@@ -95,17 +94,24 @@ public class MainController {
     ArrayList<TB_004VO> tb_004list = mainService.getfaqlist(search);
 
     int tb_002total = mainService.getannouncetotal(search);
-    int tb_003total = mainService.getnoticetotal(search);
-    int tb_004total = mainService.getfaqtotal(search);
+	int tb_003total = mainService.getnoticetotal(search);
+	int tb_004total = mainService.getfaqtotal(search);
+	
+	for (int i = 0; i < tb_002list.size(); i++) {
+	    TB_002VO tb_002 = tb_002list.get(i);
+	    String cleanedData = tb_002.getAnnounce_content().replaceAll("\\<.*?\\>", "").replaceAll("&nbsp;", "").replaceAll("-", "");
+	    tb_002.setAnnounce_content(cleanedData);
+	}
+	
+	model.addAttribute("tb_002list", tb_002list);
+	model.addAttribute("tb_003list", tb_003list);
+	model.addAttribute("tb_004list", tb_004list);
+	model.addAttribute("tb_002total", tb_002total);
+	model.addAttribute("tb_003total", tb_003total);
+	model.addAttribute("tb_004total", tb_004total);
+	model.addAttribute("search", search);
 
-    model.addAttribute("tb_002list", tb_002list);
-    model.addAttribute("tb_003list", tb_003list);
-    model.addAttribute("tb_004list", tb_004list);
-    model.addAttribute("tb_002total", tb_002total);
-    model.addAttribute("tb_003total", tb_003total);
-    model.addAttribute("tb_004total", tb_004total);
-
-    return "/total-search";
+    return "total-search";
   }
 
 }

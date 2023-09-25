@@ -11,6 +11,33 @@ body {font-family: 'Noto Sans KR', sans-serif;}
    margin-top: 150px;
    margin-bottom: 150px;
 }
+
+/***********************************/
+.search1 {
+  width: 1250px;
+  height: 60px;
+  position: relative;
+}
+
+.input1 {
+height: 30px;
+  width: 100%;
+  border: 3px solid rgb(11, 38, 110);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.img1 {
+	color: rgb(11, 38, 110);
+  position : absolute;
+  width: 17px;
+  top: 19px;
+  right: 4px;
+  margin: 0;
+}
+
+/***********************************/
 .main-wrap {
    width: 1280px;
    text-align: center;
@@ -29,18 +56,15 @@ a:link, a:visited { /* a링크 색깔 조정 */
 
 .contentboxin {
   width: 100%;
-  margin: 20px auto;
   overflow: hidden;
   display: flex;
-  min-height: 300px;
 }
 
 .recruitment {/* 재판조력자 신청 전체박스 */
   position:relative;
   width: 60%;
   height: 200px;
-  border: 1px solid #777;
-  margin-left: 3%;
+  border :1px solid rgb(11, 38, 110);
 }
 
 #notice{/* 공지사항 전체 박스 */
@@ -48,11 +72,11 @@ a:link, a:visited { /* a링크 색깔 조정 */
   height: 200px;
   margin-left: 4%;
   position: relative;
-  box-shadow: 5px 5px 5px 0px  #aaa;
 }
 
 
 .recruitment span {/* 재판조력자 신청박스 제목 */
+
   line-height: 30px;
 }
 
