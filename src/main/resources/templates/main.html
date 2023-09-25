@@ -9,7 +9,7 @@
 <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css}" />
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
 <th:block th:replace="~{./include/layout :: setContent(~{::.main})}">
 	<div class="main">
@@ -28,17 +28,19 @@
 						</div>
 					</div>
 				</div>
-				<div>
-					<form action="total_search" method="get" id="total_searchform" >
-						<input type="text" name="search" id="searchtxt" placeholder="검색어를 입력하세요">
-						<button type="submit" id="searchBtn">검색</button>
-					</form>
+				<div style="margin: 20px 0;">
+					<div class="search1">
+						<form action="total_search" method="get">
+		  					<input type="text" class="input1" placeholder="검색어 입력" name="search">
+		  					<input type="image" class="img1" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+						</form>
+					</div>				
 				</div>
 				<div class="contentbox">
 					<div class="contentboxin">
 
 						<div class="recruitment">
-							<span>재판조력자 신청 바로가기</span>
+							<span style="font-weight: bold; font-size: 20px; margin-bottom: 15px;">재판조력자 신청 바로가기</span>
 							<ul class="flowbox">
 
 								<li class="recruitment_image">
@@ -83,27 +85,18 @@
 						<div id="notice">
 							<section class="container_head">
 								<ul class="listbox">
-									<li class="on">
+									<li class="notice on">
 										<a href="#"><span>공지사항</span></a>
 									</li>
-									<li>
+									<li class="announce">
 										<a href="#"><span>모집공고</span></a>
 									</li>
 								</ul>
 								<div class="tabcontent on">
 									<ul>
-										<li>
-											<a href="#">sodyd<span>20230317</span></a>
-										</li>
-										<li>
-											<a href="#">sodyd<span>20230317</span></a>
-										</li>
-										<li>
-											<a href="#">sodyd<span>20230317</span></a>
-										</li>
-										<li>
-											<a href="#">sodud<span>20230317</span></a>
-										</li>
+										<li th:each="notice : ${tb_003list}">
+            								<a th:href="@{/notice/noticeDetail(notice_proper_num=${notice.notice_proper_num})}">[[${notice.notice_title}]]<span>[[${notice.notice_date}]]</span></a>
+        								</li>
 									</ul>
 									<a href="notice/noticeList" class="more">
 										<span class="text">더보기</span>
@@ -112,18 +105,9 @@
 
 								<div class="tabcontent">
 									<ul>
-										<li>
-											<a href="#">제목은 이거다<span>20230317</span></a>
-										</li>
-										<li>
-											<a href="#">제목은 이거다<span>20230317</span></a>
-										</li>
-										<li>
-											<a href="#">제목은 이거다<span>20230317</span></a>
-										</li>
-										<li>
-											<a href="#">제목은 이거다<span>20230317</span></a>
-										</li>
+										<li th:each="announce : ${tb_002list}">
+            								<a th:href="@{/announce/announceDetail(announce_proper_num=${announce.announce_proper_num})}">[[${announce.announce_title}]]<span>[[${announce.announce_start_date}]]</span></a>
+        								</li>
 									</ul>
 									<a href="announce/announceList" class="more">
 										<span class="text">더보기</span>
@@ -142,37 +126,7 @@
 	</div>
 </th:block>
 <script th:src="@{/js/swiper.js}"></script>
-<script>
-	$(document).ready(function () {
-		$("#notice > .container_head > .listbox > li > a").on("click", function () {
-			// 기본 동작 비활성화
-			event.preventDefault();
+<script th:src="@{/js/main.js}"></script>
 
-			var clicknum = $(this).parent().index();
-			var containerHead = $(this).closest(".container_head");
-
-			// 클릭한 항목의 부모에 "on" 클래스를 추가하고 형제 요소에서 제거합니다.
-			$(this).parent().addClass("on").siblings().removeClass("on");
-
-			// AJAX 요청을 보냅니다.
-			$.ajax({
-				type: "GET", // 또는 다른 HTTP 메서드를 사용할 수 있습니다.
-				url: "your-api-url", // 비동기 데이터를 가져올 엔드포인트 URL을 지정하세요.
-				data: {clicknum: clicknum}, // 필요한 데이터를 전달할 수 있습니다.
-				success: function (response) {
-					// AJAX 요청이 성공하면 이 함수가 실행됩니다.
-					// response를 사용하여 원하는 작업을 수행하세요.
-					// 예를 들어, 데이터를 표시하거나 업데이트할 수 있습니다.
-					containerHead.find(".tabcontent").removeClass("on");
-					containerHead.find(".tabcontent").eq(clicknum).addClass("on");
-				},
-				error: function (error) {
-					// AJAX 요청이 실패하면 이 함수가 실행됩니다.
-					console.error("Error:", error);
-				}
-			});
-		});
-	});
-</script>
 
 </html>

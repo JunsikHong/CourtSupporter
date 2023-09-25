@@ -1,13 +1,9 @@
 @font-face {
-  font-family: 'Noto Sans KR', sans-serif;
-<<<<<<< HEAD
-  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
+  font-family: 'Noto Sans KR';
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;700;800;900&display=swap'); 
+  font-weight: normal; /* 폰트의 기본 굵기 (일반적으로는 normal로 설정) */
+  font-style: normal; /* 폰트의 기본 스타일 (일반적으로는 normal로 설정) */
 }
-
-=======
-  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
-}
->>>>>>> 676e3afc7d25362301e3b5b0967325c7d5606931
 *{ padding: 0; margin: 0; }
 ul, li { list-style: none; } 
 *{ margin: 0 auto; }

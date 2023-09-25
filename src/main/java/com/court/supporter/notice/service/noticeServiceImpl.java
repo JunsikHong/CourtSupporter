@@ -35,7 +35,7 @@ public class noticeServiceImpl implements noticeService {
 		for (String filePath : filelist) {
 
 			String regex1 = "(.*?/.*?/)"; // 파일 저장 경로
-			String regex2 = "([^/]+)_"; // UUID
+			String regex2 = "/([0-9a-fA-F-]+)_"; // UUID
 			// String regex3 = "_(.*?)\\.[^.]+$"; //원본 파일 이름
 			String regex3 = "_(.*)"; // 원본 파일 이름
 
@@ -121,7 +121,7 @@ public class noticeServiceImpl implements noticeService {
 		for (String filePath : filelist) {
 
 			String regex1 = "(.*?/.*?/)"; // 파일 저장 경로
-			String regex2 = "([^/]+)_"; // UUID
+			String regex2 = "/([0-9a-fA-F-]+)_"; // UUID
 			// String regex3 = "_(.*?)\\.[^.]+$"; //원본 파일 이름
 			String regex3 = "_(.*)"; // 원본 파일 이름
 

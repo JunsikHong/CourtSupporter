@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" th:href="@{/css/adminmypage-evaluationdetail.css}">
 <th:block th:replace="~{./include/layout :: setContent(~{::.adminmypage-evaluationdetail})}">
@@ -438,15 +438,15 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="crtfcBody">
-										<th:block th:each="tb_008VO, status : ${tb_008VOlist}">
+									<th:block th:each="tb_008VO, status : ${tb_008VOlist}">
+										<tr class="crtfcBody">
 											<td>[[${status.count}]]</td>
 											<td>[[${tb_008VO.crtfc_type}]]</td>
 											<td><span th:text="${#strings.substring(tb_008VO.issue_date, 0, 10)}" />
 											</td>
 											<td>[[${tb_008VO.issue_agency}]]</td>
-										</th:block>
-									</tr>
+										</tr>
+									</th:block>
 								</tbody>
 							</table>
 						</div>

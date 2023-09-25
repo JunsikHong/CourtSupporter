@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <!-- <script th:src="@{/js/announceModify.js}"></script>-->
 
@@ -102,7 +101,14 @@
                   <td>
 					  <div class="file" id="fileList">
 						  <div>
-							<!--<p>[[${file}]]</p> 기존 파일 삭제하는부분 추가해야 함 --> 
+						<!--<p>[[${file}]]</p> 기존 파일 이름 +  삭제하는부분 추가해야 함 
+							<div id="fileNames">
+								<ul>
+									<li th:each="vo : ${file}" >
+										<a class="downloadLinks" th:href="@{'https://court-supporter-project-t4.s3.ap-northeast-2.amazonaws.com/' + ${vo.key.file_path} + ${vo.key.notice_file_uuid} + '_' + ${vo.key.original_file_name}}">[[${vo.value}]]</a>
+									</li>
+								</ul>
+							</div>--> 
 						  </div>
 						  <a href="#this" onclick="addFile()" class="add" >파일추가</a>
 						  

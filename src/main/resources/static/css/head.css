@@ -1,13 +1,15 @@
-
- @font-face {
-  font-family: 'Noto Sans KR', sans-serif;
-  src: url('https://fonts.google.com/noto/specimen/Noto+Sans+KR');
+@font-face {
+   font-family: 'Noto Sans KR', sans-serif; /* 폰트 패밀리 이름 지정 */
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap'); /* 폰트 파일의 경로 */
+  font-weight: normal; /* 폰트의 기본 굵기 (일반적으로는 normal로 설정) */
+  font-style: normal; /* 폰트의 기본 스타일 (일반적으로는 normal로 설정) */
 }
-
 a:hover {
 	text-decoration: none !important;
 }
-
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
  /* 로그인 스타일 */
  .color {
 	 background-color: rgb(0, 64, 128);
@@ -67,11 +69,13 @@ a:hover {
 
  .menus {
 	line-height: 100px;
+	height: 100px;
  	list-style: none;
  	display: flex;
  	margin: 0;
  	padding: 0;
  	justify-content: space-between;
+ 	align-items: center;
  }
 
  .menus li span {
@@ -86,9 +90,11 @@ a:hover {
 /***********************************************************************/
  /* 상단 상세메뉴 바 스타일 */
  .detail-menus {
-	 display: flex;
-	 /*border-left: 2px solid rgb(219, 219, 219);*/
-	 text-align: center;
+	display: flex;
+	/*border-left: 2px solid rgb(219, 219, 219);*/
+	text-align: center;
+	font-family: 'Noto Sans KR', sans-serif;
+  	src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;700;800;900&display=swap'); 
 
  }
  

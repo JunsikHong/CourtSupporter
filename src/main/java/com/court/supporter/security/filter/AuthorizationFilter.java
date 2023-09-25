@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class AuthorizationFilter implements Filter {
 
 	@Override
@@ -66,7 +66,7 @@ public class AuthorizationFilter implements Filter {
             		return;
             	//관리자가 아닐 때 들어갈 수 없다
             	} else if ((requestURI.equals("/adminmypage/adminmypage_evaluationlist") || requestURI.equals("/adminmypage/adminmypage_evaluationdetail") ||
-            		requestURI.equals("/adminmypage/adminmypage_evaluation") || requestURI.equals("/adminmypage/adminmypage_evaluation_popup")) && (!"ROLE_ADMIN".equals(role) || !"ROLE_JURIS".equals(role) || !"ROLE_COURT".equals(role))) {
+            		requestURI.equals("/adminmypage/adminmypage_evaluation") || requestURI.equals("/adminmypage/adminmypage_evaluation_popup")) && !("ROLE_ADMIN".equals(role) || "ROLE_JURIS".equals(role) || "ROLE_COURT".equals(role))) {
             		httpResponse.sendRedirect("/");
             		return;
             	}
