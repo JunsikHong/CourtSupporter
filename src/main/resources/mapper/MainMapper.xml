@@ -9,10 +9,13 @@
 		select *
 		from TB_002
 		where
-		announce_title like concat
-		('%', #{search}, '%')
-		or announce_content like concat ('%', #{search},
-		'%')
+		<if test="search != '' and search != null">
+			announce_title like concat ('%', #{search}, '%')
+			or announce_content like concat ('%', #{search}, '%')					
+		</if>
+		<if test="search == ''">
+			1 = 0
+		</if>
 		order by announce_start_date desc
 		limit 5
 
@@ -22,8 +25,13 @@
 		select *
 		from TB_003
 		where
-		notice_title like concat ('%', #{search}, '%')
-		or notice_content like concat ('%', #{search}, '%')
+		<if test="search != '' and search != null">
+			notice_title like concat ('%', #{search}, '%')
+			or notice_content like concat ('%', #{search}, '%')				
+		</if>
+		<if test="search == ''">
+			1 = 0
+		</if>
 		order by notice_date desc
 		limit 5
 
@@ -34,8 +42,13 @@
 		select *
 		from TB_004
 		where
-		faq_ask_content like concat ('%', #{search}, '%')
-		or faq_ask_comment like concat ('%', #{search}, '%')
+		<if test="search != '' and search != null">
+			faq_ask_content like concat ('%', #{search}, '%')
+			or faq_ask_comment like concat ('%', #{search}, '%')						
+		</if>
+		<if test="search == ''">
+			1 = 0
+		</if>
 		order by faq_ask_date desc
 		limit 5
 
@@ -45,17 +58,26 @@
 		select count(*) as total
 		from TB_002
 		where
-		announce_title like concat ('%', #{search}, '%')
-		or announce_content like concat ('%', #{search}, '%')
-
+		<if test="search != '' and search != null">
+			announce_title like concat ('%', #{search}, '%')
+			or announce_content like concat ('%', #{search}, '%')					
+		</if>
+		<if test="search == ''">
+			1 = 0
+		</if>
 	</select>
 
 	<select id="getnoticetotal">
 		select count(*)
 		from TB_003
 		where
-		notice_title like concat ('%', #{search}, '%')
-		or notice_content like concat ('%', #{search}, '%')
+		<if test="search != '' and search != null">
+			notice_title like concat ('%', #{search}, '%')
+			or notice_content like concat ('%', #{search}, '%')				
+		</if>
+		<if test="search == ''">
+			1 = 0
+		</if>
 
 	</select>
 
@@ -63,8 +85,13 @@
 		select count(*)
 		from TB_004
 		where
-		faq_ask_content like concat ('%', #{search}, '%')
-		or faq_ask_comment like concat ('%', #{search}, '%')
+		<if test="search != '' and search != null">
+			faq_ask_content like concat ('%', #{search}, '%')
+			or faq_ask_comment like concat ('%', #{search}, '%')						
+		</if>
+		<if test="search == ''">
+			1 = 0
+		</if>
 	</select>
 
 </mapper>

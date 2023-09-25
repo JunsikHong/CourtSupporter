@@ -1,5 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
 body{ font-family: 'Noto Sans KR', sans-serif;}
+
+
+/***************************************************/
+.search1 {
+  width: 1250px;
+  height: 60px;
+  position: relative;
+}
+
+.input1 {
+height: 30px;
+  width: 100%;
+  border: 3px solid rgb(11, 38, 110);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.img1 {
+	color: rgb(11, 38, 110);
+  position : absolute;
+  width: 17px;
+  top: 19px;
+  right: 4px;
+  margin: 0;
+}
+/***************************************************/
+
 .total-search-wrap {
 	display: flex;
 	justify-content: center;
@@ -14,9 +42,9 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 
 .announce-section-title-wrap {
 	height: 50px;
-	border-bottom: 2px solid #777;
+	border-bottom: 5px solid rgb(11, 38, 110);
 	line-height: 50px;
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: bold;
 	margin-bottom: 20px;
 }
@@ -51,7 +79,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 }
 
 .announce-right {
-	width: 270px;
+	width: 200px;
 	text-align: center;
 	line-height: 80px;
 	float: right;
@@ -78,7 +106,7 @@ body{ font-family: 'Noto Sans KR', sans-serif;}
 	height: 35px;
 	line-height: 35px;
 	display: inline-block;
-	padding: 0 25px;
+	padding: 0 15px;
 	vertical-align: middle;
 	font-family: "ngB" !important;
 }
