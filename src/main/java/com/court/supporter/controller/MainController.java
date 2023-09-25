@@ -84,7 +84,7 @@ public class MainController {
 	    model.addAttribute("tb_002list", tb_002list);
 	    model.addAttribute("tb_003list", tb_003list);
 
-		return "/main";
+		return "main";
 	}
 
 	@GetMapping("/guide/guideInfo")
@@ -121,6 +121,11 @@ public class MainController {
 		int tb_003total = mainService.getnoticetotal(search);
 		int tb_004total = mainService.getfaqtotal(search);
 		
+		for (int i = 0; i < tb_002list.size(); i++) {
+		    TB_002VO tb_002 = tb_002list.get(i);
+		    String cleanedData = tb_002.getAnnounce_content().replaceAll("\\<.*?\\>", "").replaceAll("&nbsp;", "").replaceAll("-", "");
+		    tb_002.setAnnounce_content(cleanedData);
+		}
 		
 		
 		model.addAttribute("tb_002list", tb_002list);
@@ -129,7 +134,7 @@ public class MainController {
 		model.addAttribute("tb_002total", tb_002total);
 		model.addAttribute("tb_003total", tb_003total);
 		model.addAttribute("tb_004total", tb_004total);
-
+		model.addAttribute("search", search);
 		return "/total-search";
 	}
 
