@@ -290,15 +290,16 @@ public class AnnounceController {
 	         //회원 고유번호과 공고 고유번호를 매개변수로 받아 해당 데이터가 있다면	       
 	         int userInfo = announceService.getUserInfo(announce_proper_num, member_proper_num);
 	         System.out.println(userInfo);
-	      
+	         ArrayList<TB_005VO> list = announceService.getUserInfo2(announce_proper_num, member_proper_num);
+	         
 	         //user 해당 공고 신청기록이 없다면	 	      
-	         if(userInfo == 0) { //int 라면 == 0일 경우,
-	        	//String mainCode = "0" + announce_proper_num.substring(0, 1);  //대분류코드 넘길 때
+	         if(list.get(0).getAplicn_dtls_sts().equals("01") || userInfo == 0) { //int 라면 == 0일 경우,
+	        	 //String mainCode = "0" + announce_proper_num.substring(0, 1);  //대분류코드 넘길 때
 	        	 return "redirect:/application/applicationAgree?announce_proper_num=" + announce_proper_num; // + "&trial_fcltt_proper_num=" + trial_fcltt_proper_num 
-	        	 
 	         } else { //이미 해당 공고를 신청한 경우 
 	        	 ra.addFlashAttribute("result", userInfo);
 	        	 return "redirect:/announce/announceList";
+	        	 
 	         }	         
 	    } else { //else if (jwt == null)
 	    	ra.addFlashAttribute("loginresult", 1);	    	
