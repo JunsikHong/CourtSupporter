@@ -6,10 +6,10 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>재판조력자선발</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<!--<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap">
-		
+		-->
 		<link rel="stylesheet" th:href="@{/css/head.css}">
 		<link rel="stylesheet" th:href="@{/css/reset.css}">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
@@ -41,7 +41,7 @@
 					<!--로고-->
 					<div class="logo-wrap">
 						<a th:href="@{/}">
-							<img th:src="@{/img/logo_.png}" alt="재판조력자" />
+							<img th:src="@{/img/courtsupporterLogo_trans.png}" alt="재판조력자" />
 						</a>
 					</div>
 					
@@ -49,25 +49,24 @@
 					<div class="menu-wrap">
 
 						<th:block th:if="${session.member_role == null || session.member_role == 'ROLE_USER'}">
-						<ul class="menus">
+						<ul class="usermenus">
 							<a th:href="@{/announce/announceList}">
-								<li class="menu01">
-									<span class="">조력자등재신청</span>
+								<li class="menu01 longline">
+									<span class="">조력자 등재신청</span>
 								</li>
 							</a>
 							<a th:href="@{/guide/guideInfo}">
-								<li class="menu02">
-									<span class="">조력자신청안내</span>
+								<li class="menu02 longline">
+									<span class="">조력자 신청안내</span>
 								</li>
 							</a>
 							<a th:href="@{/usermypage/usermypage}">
-								<li class="menu03">
+								<li class="menu03 line">
 									<span class="">My Page</span>
 								</li>
 							</a>
 							<a th:href="@{/announce/announceList}">
-								<li class="menu04">
-									
+								<li class="menu04 line">									
 									<span class="">공지사항</span>
 								</li>
 							</a>
@@ -77,71 +76,72 @@
 						<nav>
 							<div class="detail-menu-wrap">
 								<div class="detail-menus">
-									<ul class="detail-menu01">
+									<ul class="detail-menu01 userdetailmenu01">
 										<!--<a th:href="@{/announce/announceList}">
 											<h3>조력자등재신청</h3>
 										</a>-->
 										<a th:href="@{/announce/announceList}">
-											<h2>조력자등재신청</h2>
+											<li>조력자 등재신청</li> <!--&nbsp&nbsp-->
 										</a>
 									</ul>
-									<ul class="detail-menu02">
+									<ul class="detail-menu02 userdetailmenu02">
 										<a th:href="@{/guide/guideInfo}">
-											<h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp조력자 제도안내</h2>
+											<li>조력자 제도안내</li>
 										</a>
 										<a th:href="@{/guide/guideProcedure}">
-											<h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp조력자 신청안내</h2>
+											<li>조력자 신청안내</li>
 										</a>
 									</ul>
-									<ul class="detail-menu03">
+									<ul class="detail-menu03 userdetailmenu03">
 										<!--<a th:href="@{/usermypage/usermypage}">
 											<h3>My Page</h3>
 										</a>-->
 										<a th:href="@{/usermypage/usermypage_applicationlist}">
-											<h2>나의 신청현황</h2>
+											<li>나의 신청현황</li>
 										</a>
 										<a th:href="@{/usermypage/usermypage_activitylist}">
-											<h2>나의 활동내역</h2>
+											<li>나의 활동내역</li>
 										</a>
 										<a th:href="@{/usermypage/usermypage}">
-											<h2>나의 정보관리</h2>
+											<li>나의 정보관리</li>
 										</a>
 										<a th:href="@{/usermypage/usermypage_pauselist}">
-											<h2>중지/해제신청 관리</h2>
+											<li>중지/해제신청 관리</li>
 										</a>
 									</ul>
-									<ul class="detail-menu04">
+									<ul class="detail-menu04 userdetailmenu04">
 										<!--<a th:href="@{/announce/announceList}">
 											<h3>공지사항</h3>
 										</a>-->
 										<a th:href="@{/announce/announceList}">
-											<h2>모집공고</h2>
+											<li>모집공고</li> <!--&nbsp-->
 										</a>
 										<a th:href="@{/notice/noticeList}">
-											<h2>공지사항</h2>
+											<li>공지사항</li>
 										</a>
 										<a th:href="@{/faq/faqList}">
-											<h2>FAQ</h2>
+											<li>FAQ</li>
 										</a>
 									</ul>
 								</div>
 							  </div>
 							</nav>
-						</th:block>
+						</th:block> <!-- ROLE_USER END -->
+						
 						<th:block th:if="${session.member_role == 'ROLE_ADMIN'}">
 							<ul class="menus">
 								<a th:href="@{/}">
-									<li class="menu01">
+									<li class="menu01 line" >
 										<span class="">권한관리</span>
 									</li>
 								</a>
 								<a th:href="@{/}">
-									<li class="menu02">
-										<span class="">조력자신청안내</span>
+									<li class="menu02 longline">
+										<span class="">조력자 신청안내</span>
 									</li>
 								</a>
-								<a th:href="@{/usermypage/usermypage}">
-									<li class="menu03">
+								<a th:href="@{/}"> <!--/usermypage/usermypage-->
+									<li class="menu03 line">
 										<span class="">공지사항</span>
 									</li>
 								</a>
@@ -151,54 +151,55 @@
 							<nav>
 								<div class="detail-menu-wrap">
 									<div class="detail-menus">
-										<ul class="detail-menu01">
+										<ul class="detail-menu01 admindetailmenu01">
 											<a th:href="@{/adminmypage/adminmypage_auth_manage}">
-												<h2>&nbsp권한관리</h2>
+												<li>권한관리</li>
 											</a>
 										</ul>
-										<ul class="detail-menu02">
+										<ul class="detail-menu02 admindetailmenu02">
 											<!--<a th:href="@{/}">
 												<h3>조력자신청안내</h3>
 											</a>-->
 											<a th:href="@{/guide/guideInfo}">
-												<h2>&nbsp&nbsp&nbsp조력자 제도안내</h2>
+												<li>조력자 제도안내</li> <!-- &nbsp&nbsp&nbsp -->
 											</a>
 											<a th:href="@{/guide/guideProcedure}">
-												<h2>&nbsp&nbsp&nbsp조력자 신청안내</h2>
+												<li>조력자 신청안내</li>
 											</a>
 										</ul>
-										<ul class="detail-menu03">
+										<ul class="detail-menu03 admindetailmenu03">
 											<!--<a th:href="@{/announce/announceList}">
 												<h3>공지사항</h3>
 											</a>-->
 											<a th:href="@{/announce/announceList}">
-												<h2>&nbsp&nbsp모집공고</h2>
+												<li>모집공고</li>
 											</a>
 											<a th:href="@{/notice/noticeList}">
-												<h2>&nbsp&nbsp공지사항</h2>
+												<li>공지사항</li>
 											</a>
 											<a th:href="@{/faq/faqList}">
-												<h2>&nbsp&nbspFAQ</h2>
+												<li>FAQ</li>
 											</a>
 										</ul>
 									</div>
 								</div>
 							</nav>
-						</th:block>
+						</th:block> <!-- ROLE_ADMIN END  -->
+						
 						<th:block th:if="${session.member_role == 'ROLE_COURT' || session.member_role == 'ROLE_JURIS'}">
 							<ul class="menus">
 								<a th:href="@{/adminmypage/adminmypage_evaluationlist}">
-									<li class="menu01">
-										<span class="">&nbsp&nbsp평가</span>
+									<li class="menu01 line">
+										<span class="">평가</span>
 									</li>
 								</a>
 								<a th:href="@{/}">
-									<li class="menu02">
-										<span class="">조력자신청안내</span>
+									<li class="menu02 longline">
+										<span class="">조력자 신청안내</span>
 									</li>
 								</a>
 								<a th:href="@{/announce/announceList}">
-									<li class="menu03">
+									<li class="menu03 line">
 										<span class="">공지사항</span>
 									</li>
 								</a>
@@ -208,34 +209,34 @@
 							<nav>
 								<div class="detail-menu-wrap">
 									<div class="detail-menus">
-										<ul class="detail-menu01">
+										<ul class="detail-menu01 courtdetailmenu01">
 											<a th:href="@{/adminmypage/adminmypage_evaluationlist}">
-												<h2>&nbsp&nbsp&nbsp평가</h2>
+												<li>평가</li> <!--&nbsp&nbsp&nbsp-->
 											</a>
 										</ul>
-										<ul class="detail-menu02">
+										<ul class="detail-menu02 courtdetailmenu02">
 											<!--<a th:href="@{/}">
 												<h3>조력자신청안내</h3>
 											</a>-->
 											<a th:href="@{/guide/guideInfo}">
-												<h2>조력자 제도안내</h2>
+												<li>조력자 제도안내</li>
 											</a>
 											<a th:href="@{/guide/guideProcedure}">
-												<h2>조력자 신청절차안내</h2>
+												<li>조력자 신청절차안내</li>
 											</a>
 										</ul>
-										<ul class="detail-menu03">
+										<ul class="detail-menu03 courtdetailmenu03">
 											<!--<a th:href="@{/announce/announceList}">
 												<h3>공지사항</h3>
 											</a>-->
 											<a th:href="@{/announce/announceList}">
-												<h2>모집공고</h2>
+												<li>모집공고</li>
 											</a>
 											<a th:href="@{/notice/noticeList}">
-												<h2>공지사항</h2>
+												<li>공지사항</li>
 											</a>
 											<a th:href="@{/faq/faqList}">
-												<h2>FAQ</h2>
+												<li>FAQ</li>
 											</a>
 										</ul>
 									</div>
@@ -256,7 +257,7 @@
 			<div id="footer-box">
 				<!--로고-흑백-->
 				<div class="logo-footer">
-					<img th:src="@{/img/logo_black_tr.png}" alt="재판조력자">
+					<img th:src="@{/img/courtsupporterLogo_black_trans_.png}" alt="재판조력자">
 				</div>
 				<ul class="footer-menu">
 					<li></li>
@@ -317,7 +318,8 @@
 		}
 	
 	</script>
-	<script>
+	<script>	
+		
 		var top_wrap = document.querySelector(".to-the-top-wrap");
 		function handleScroll() {
 			var scrollY = window.scrollY || window.pageYOffset;
@@ -354,6 +356,7 @@
 		});
 
 		window.addEventListener("scroll", handleScroll);
+		
 	</script>
 	
 </th:block>
